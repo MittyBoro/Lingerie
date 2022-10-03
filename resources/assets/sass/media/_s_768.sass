@@ -1,0 +1,305 @@
+@media (max-width: 767.98px)
+
+
+	h1, .h1
+		font-size: 22px
+	h2, .h2
+		font-size: 22px
+	h3, .h3
+		font-size: 18px
+
+	.btn
+		font-size: 13px
+	.btn-mini
+		font-size: 10px
+	body
+		font-size: 14px
+
+	.h2-title
+		margin-bottom: 40px
+
+	.header
+		padding-bottom: 40px
+
+	.page-home .home-screen .screen
+		height: 640px
+		flex-direction: column
+		justify-content: center
+		text-align: center
+		.left-wrap
+			padding: 0
+		.h1
+			line-height: 1.27
+		.right-wrap
+			order: -1
+			max-width: 400px
+			margin-bottom: 20px
+		&.screen-2
+			.right-wrap
+				max-width: 300px
+				margin: 30px 0
+
+	.page-home .home-about
+		padding-top: 80px
+
+
+	.page-home .home-categories
+		.left-text
+			margin-bottom: 0
+		.my-little-grid
+			margin-top: 30px
+			.h3
+				font-size: 15px
+			.el-right
+				display: none
+			.middle-col
+				order: -1
+				width: 50%
+			.el-left
+				width: calc(50% - 30px)
+				border-radius: 2px 2px 100px 2px
+			.el-top
+				display: flex
+				flex-direction: column
+				justify-content: flex-end
+				img
+					margin: auto 0 -50px auto
+			.el-top,
+			.el-bottom
+				margin: 35px 0
+		.btn
+			width: 50%
+			margin-top: 20px
+			display: inline-flex
+
+
+	.page-home
+		.home-catalog
+			padding-top: 50px
+		.blog-subscribe
+			padding-top: 80px
+
+	.blog-subscribe .top-row
+		margin: 0
+		.h2
+			margin: 0
+			margin-bottom: 40px
+		p
+			display: none
+	.blog-subscribe .form-subscribe
+		display: none
+
+
+	.news-list
+		grid-template-columns: 1fr 1fr
+	.page-home, .page-post
+		.news-list .news-item:last-child
+			display: flex
+
+	.page-home .home-news
+		padding-top: 0
+		.btn-wrap
+			display: grid
+			grid-template-columns: 1fr 1fr
+			gap: 30px
+			.btn
+				display: inline-flex
+			.f-icons
+				display: flex
+				align-items: center
+				justify-content: center
+				a
+					margin: 7px
+
+	.page-home .home-contact .top-row
+		margin: 0
+		.h2
+			margin: 0 0 40px
+		p
+			display: none
+
+	.contacts-box
+		margin-bottom: 80px
+		.contact-grid
+			grid-template-columns: 100%
+		.contact-map #map
+			max-height: 450px
+
+
+	.about-box
+		margin-bottom: 80px
+		.distributors-grid
+			grid-template-columns: 1fr
+			gap: 20px
+		.go-distrib .top-row
+			align-items: center
+			.h2
+				flex-shrink: 0
+				margin-right: 30px
+
+	.pagination
+		margin-top: 40px
+
+	.news-box, .article-box, .page-post .blog-subscribe,
+	.franchising-box, .contract-box, .franchisee-box, .distributors-box,
+	.checkout-box, .cart-box
+		margin-bottom: 80px
+
+
+	.article-box .gallery
+		grid-template-columns: repeat(3, 1fr)
+	.page-post .blog-subscribe
+		display: none
+
+	.contract-box .contract-svg
+		flex-wrap: wrap
+		justify-content: center
+		margin: 60px 0
+		.c-item
+			margin-bottom: 25px
+			svg
+				+square(40px)
+				margin-bottom: 8px
+		.arrow
+			flex-shrink: 0
+			margin: 15px
+			+square(10px)
+
+	.form-row
+		display: grid
+		grid-template-columns: 1fr 1fr
+		grid-gap: 30px
+		.space
+			display: none
+
+	.franchising-box .franchising-text ol
+		margin-bottom: 40px
+		li
+			margin-bottom: 8px
+			&::before
+				+square(20px)
+
+	.franchisee-box .form-box
+		justify-content: flex-end
+		.left-text
+			display: none
+
+	.franchisee-box .franchisee-flex
+		display: block
+
+	.distributors-box .form-box
+		justify-content: flex-end
+		.left-text
+			display: none
+
+	.distributors-grid
+		grid-template-columns: 1fr
+		grid-gap: 25px
+
+	.page-catalog
+		.sidebar
+			display: none
+		.catalog-content
+			grid-template-columns: 1fr
+			.catalog-list
+				gap: 40px 20px
+		.catalog-box .catalog-description
+			margin-bottom: 30px
+		.line-title
+			border-bottom: 0
+		.cat-header
+			display: flex
+			.cat-sort
+				margin-top: auto
+			.line-title
+				padding: 3px
+				text-align: right
+				text-transform: uppercase
+				font-size: 10px
+			.sort-list a
+				padding: 7px 15px
+				font-size: 12px
+		.catalog-top-line
+			display: flex
+			padding-bottom: 15px
+			width: 100%
+			justify-content: space-between
+			border-bottom: 1px solid #ACACAC
+		.ctl-mini-menu
+			display: block
+			.btn
+				height: 40px
+				border-radius: 20px 2px
+				&::after
+					content: '+'
+					margin-left: 5px
+					width: 8px
+				&.active::after
+					content: '-'
+
+			.sb-menu
+				display: none
+				margin: 15px 0 0
+				li
+					padding: 3px 0
+					.subcat
+						margin-bottom: 1px
+						font-size: .9em
+
+	.prouct-box
+		.back-to-catalog
+			display: none
+
+		.breadcrumb
+			display: none
+		.breadcrumb-top
+			display: block
+			margin-bottom: 35px
+		.product-content
+			display: block
+
+		.prod-gallery
+			max-width: 400px
+			margin: 0 auto
+
+		.prod-right
+			display: flex
+			flex-direction: column
+
+		.title-price
+			display: flex
+			align-items: baseline
+			justify-content: space-between
+			flex-wrap: wrap
+			margin: 40px 0 40px
+			.h1
+				margin: 0
+				font-size: 18px
+			.price-wrap
+				margin-top: 20px
+				width: 100%
+			.prod-price
+				margin-left: 0
+				margin-right: 20px
+				font-size: 20px
+				flex-shrink: 0
+				order: 0
+		.btn
+			align-self: flex-start
+		.product-content
+			.prod-variations
+				margin-bottom: 20px
+			.prod-tabs
+				order: 9
+				margin-top: 50px
+				margin-bottom: 30px
+				padding-bottom: 20px
+				border-bottom: 1px solid #ACACAC
+				font-size: 10px
+		.prod-text-container
+			order: 10
+	.product-catalog
+		margin: 30px 0 70px
+
+	.contract-box .cities-list
+		grid-template-columns: repeat(3, 1fr)

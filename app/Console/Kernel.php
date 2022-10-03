@@ -15,7 +15,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('sitemap:generate')->daily();
+        $schedule->command('payments:check')->everyFiveMinutes();
+        $schedule->command('payments:clear')->dailyAt('04:20');
+        $schedule->command('cart:clear')->dailyAt('04:20');
+        $schedule->command('bonuses:clear')->hourly();
+
+        $schedule->command('users:clear')->daily('04:20');
     }
 
     /**

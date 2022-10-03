@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
+use Closure;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
@@ -12,10 +15,26 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+
+
+    public function handle($request, Closure $next, ...$guards)
+    {
+		$this->authenticate($request, $guards);
+
+		if ($request->user() && $request->user()->role == User::ROLE_BLOCKED) {
+			Auth::logout();
+			return back()->withErrors('Ваш аккаунт заблокирован');
+		}
+
+        return $next($request);
+    }
+
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            return !$request->is_inertia ?
+						route('login') :
+						route('admin.login');
         }
     }
 }

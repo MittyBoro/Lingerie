@@ -5,19 +5,29 @@ namespace App\Providers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
     /**
-     * The event to listener mappings for the application.
+     * The event listener mappings for the application.
      *
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+            \App\Listeners\AddRegisterBonuses::class,
         ],
+
+		\Illuminate\Auth\Events\Login::class => [
+			\App\Listeners\TransferGuestCartToUser::class
+		],
+
+		\App\Events\ProductOrderPaid::class => [
+			\App\Listeners\Cart\AddPaymentBonuses::class,
+			\App\Listeners\Cart\SendProductOrderMail::class,
+			\App\Listeners\Cart\ClearUserCart::class,
+		],
     ];
 
     /**

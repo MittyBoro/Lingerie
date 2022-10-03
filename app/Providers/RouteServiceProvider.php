@@ -10,43 +10,64 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    /**
-     * The path to the "home" route for your application.
-     *
-     * Typically, users are redirected here after authentication.
-     *
-     * @var string
-     */
-    public const HOME = '/home';
+	/**
+	 * The path to the "home" route for your application.
+	 *
+	 * This is used by Laravel authentication to redirect users after login.
+	 *
+	 * @var string
+	 */
+	public const HOME = '/';
+	public const HOME_ADMIN = '/@theadmin';
 
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->configureRateLimiting();
+	protected $adminNamespace = 'App\Http\Controllers\Admin';
+	protected $apiNamespace = 'App\Http\Controllers\Api';
+	protected $namespace = 'App\Http\Controllers';
 
-        $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
-                ->group(base_path('routes/api.php'));
+	/**
+	 * Define your route model bindings, pattern filters, etc.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		$this->configureRateLimiting();
 
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
-        });
-    }
+		$this->routes(function () {
 
-    /**
-     * Configure the rate limiters for the application.
-     *
-     * @return void
-     */
-    protected function configureRateLimiting()
-    {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
-    }
+			Route::prefix('api')
+				->middleware('api')
+				->name('api.')
+				->namespace($this->apiNamespace)
+				->group(base_path('routes/api.php'));
+
+			Route::prefix(config('admin.path'))
+				->middleware(['web', 'inertia'])
+				->name('admin.')
+				->namespace($this->adminNamespace)
+				->group(base_path('routes/admin.php'));
+
+			Route::middleware('web')
+				->namespace($this->namespace)
+				->group(base_path('routes/web.php'));
+		});
+	}
+
+	/**
+	 * Configure the rate limiters for the application.
+	 *
+	 * @return void
+	 */
+	protected function configureRateLimiting()
+	{
+		RateLimiter::for('api', function (Request $request) {
+			return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+		});
+	}
+	public static function home(Request $request)
+	{
+		return $request->is_inertia ?
+					self::HOME_ADMIN :
+					self::HOME;
+	}
 }

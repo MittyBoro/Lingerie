@@ -1,0 +1,74 @@
+<template>
+
+	<div class="py-4 even:bg-gray-50 bg-opacity-50 -mx-3 px-3 rounded-lg" >
+
+		<div class="flex justify-between mb-2">
+			<div>
+				<span class="font-semibold">{{ item.title }}</span> <code class="text-xs text-gray-400">[{{ item.key }}]</code>
+			</div>
+			<div class="flex items-center text-sm text-gray-400">
+				<font-awesome-icon icon="arrows-up-down-left-right" class="mr-2 drag-handle"/>
+				<Link :href="route('admin.props.edit', item.id)" class="cursor-pointer transition-colors hover:text-primary-600">
+					<font-awesome-icon icon="gear" class="block"/>
+				</Link>
+			</div>
+		</div>
+		<div class="props-item">
+			<template v-if="item.type == 'text'">
+				<f-textarea v-model.lazy="form.admin_value" @update:modelValue="update" />
+			</template>
+			<template v-if="item.type == 'text_array'">
+				<f-textarea v-model.lazy="form.admin_value" @update:modelValue="update" />
+			</template>
+			<template v-else-if="item.type == 'format_text'">
+				<f-textarea-editor v-model.lazy="form.admin_value" @update:modelValue="update" :name="item.key" type="prop" :id="item.id" :allMedia="form.admin_media"  />
+			</template>
+			<template v-else-if="item.type == 'files'">
+				<f-file-input multiple v-model="form.admin_value" @update:modelValue="update" />
+			</template>
+			<template v-else-if="item.type == 'file'">
+				<f-file-input v-model="form.admin_value" @update:modelValue="update" />
+			</template>
+			<template v-else-if="item.type == 'boolean'">
+				<f-switcher v-model="form.admin_value" @update:modelValue="update" />
+			</template>
+			<template v-else>
+				<f-input v-model.lazy="form.admin_value" @update:modelValue="update" />
+			</template>
+		</div>
+	</div>
+
+</template>
+
+
+<script>
+
+	export default {
+
+		props: ['item'],
+
+		data() {
+			return {
+				routePrefix: 'admin.props.',
+
+				form: this.$inertia.form(this.item)
+			}
+		},
+
+		methods: {
+			update()
+			{
+				this.form
+					.transform((data) => ({
+						...data,
+						value_edit : true,
+						_method : 'PUT',
+					}))
+					.post( route(this.routePrefix + 'update', this.item.id) , {
+						preserveScroll: true,
+					});
+			},
+		},
+	}
+
+</script>
