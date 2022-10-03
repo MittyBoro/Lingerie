@@ -1,8 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors')
 
-const { inProduction } = require('laravel-mix');
-
 module.exports = {
 	content: [
 		'./storage/framework/views/*.php',
