@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"  class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,14 +14,12 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap">
 
 		<!-- Styles -->
-		<link rel="stylesheet" href="{{ mix('admin/css/app.css', 'assets') }}">
+        @vite(['resources/admin/js/app.js'])
 
 		@inertiaHead
 		@routes
 	</head>
 	<body class="font-sans antialiased">
 		@inertia
-
-		<script src="{{ mix('admin/js/app.js', 'assets') }}" defer></script>
 	</body>
 </html>

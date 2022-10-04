@@ -14,10 +14,6 @@ class Payment
 		$this->paymentType = $paymentType;
 		if ($paymentType == 'yookassa')
 			$this->payment = new YooKassa();
-		elseif ($paymentType == 'tinkoff')
-			$this->payment = new Tinkoff();
-		elseif ($paymentType == 'dolyame')
-			$this->payment = new Dolyame();
 		else
 			throw new \Exception('Invalid payment type');
 	}

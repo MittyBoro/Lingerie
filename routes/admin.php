@@ -14,8 +14,6 @@ Route::middleware(['admin.role:editor'])
 	Route::resource('users', 'UserController')->except(['create','store']);
 	Route::post('users/{user}/verify', 'UserController@verify')->name('users.verify');
 
-	Route::resource('bonuses', 'BonusController')->except(['show']);
-
 	Route::resource('media', 'MediaController')->only(['store','destroy']);
 
 
@@ -28,14 +26,8 @@ Route::middleware(['admin.role:editor'])
 	Route::resource('products', 'ProductController')->except(['show']);
 	Route::post('products/sort', 'ProductController@sort')->name('products.sort');
 
-	Route::resource('promo_codes', 'PromoCodeController')->only(['index','store','update','destroy']);
-
-	Route::resource('partners', 'PartnerController')->except(['show']);
 
 	Route::resource('pages', 'PageController')->except(['show']);
-
-	Route::resource('posts', 'PostController')->except(['show']);
-
 
 
 	Route::resource('product_orders', 'ProductOrderController')->only(['index', 'show', 'update']);

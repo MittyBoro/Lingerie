@@ -40,16 +40,7 @@ return [
 					'route' => 'admin.categories.index',
 					'query' => [ 'type' => 'products' ],
 				],
-				[
-					'name' => 'Промокоды',
-					'route' => 'admin.promo_codes.index',
-				],
 			],
-		],
-		[
-			'name' => 'Партнёры',
-			'route' => 'admin.partners.index',
-			'icon' => 'handshake',
 		],
 		[
 			'name' => 'Страницы',
@@ -57,20 +48,9 @@ return [
 			'icon' => 'note-sticky',
 		],
 		[
-			'name' => 'Блог',
-			'route' => 'admin.posts.index',
-			'icon' => 'newspaper',
-		],
-		[
 			'name' => 'Пользователи',
 			'route' => 'admin.users.index',
 			'icon' => 'users-gear',
-			'role_except' => [User::ROLE_EDITOR],
-		],
-		[
-			'name' => 'Бонусы',
-			'route' => 'admin.bonuses.index',
-			'icon' => 'gift',
 			'role_except' => [User::ROLE_EDITOR],
 		],
 		[
