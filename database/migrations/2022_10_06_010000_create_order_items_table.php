@@ -13,10 +13,10 @@ return new class extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('product_order_items', function (Blueprint $table) {
+		Schema::create('order_items', function (Blueprint $table) {
 			$table->id();
 
-			$table->foreignId('order_id')->index()->constrained('product_orders')->cascadeOnDelete();
+			$table->foreignId('order_id')->index()->constrained()->cascadeOnDelete();
 			$table->foreignId('product_id')->nullable()->constrained()->nullOnDelete();
 
 			$table->string('name');
@@ -34,6 +34,6 @@ return new class extends Migration
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('product_order_items');
+		Schema::dropIfExists('order_items');
 	}
 };

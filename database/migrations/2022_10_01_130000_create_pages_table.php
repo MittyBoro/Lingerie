@@ -16,18 +16,22 @@ return new class extends Migration
 		Schema::create('pages', function (Blueprint $table) {
 			$table->id();
 
-			$table->string('title')->nullable();
 			$table->string('slug')->index()->unique();
-
-			$table->text('description')->nullable();
-
 			$table->boolean('is_hidden')->index()->default(false);
-
 			$table->string('route')->nullable();
 
-			$table->string('meta_title')->nullable();
-			$table->string('meta_description')->nullable();
-			$table->string('meta_keywords')->nullable();
+            // ru
+			$table->string('title_ru')->nullable();
+			$table->text('description_ru')->nullable();
+			$table->string('meta_title_ru')->nullable();
+			$table->string('meta_description_ru')->nullable();
+			$table->string('meta_keywords_ru')->nullable();
+            // en
+			$table->string('title_en')->nullable();
+			$table->text('description_en')->nullable();
+			$table->string('meta_title_en')->nullable();
+			$table->string('meta_description_en')->nullable();
+			$table->string('meta_keywords_en')->nullable();
 
 			$table->timestamps();
 		});
