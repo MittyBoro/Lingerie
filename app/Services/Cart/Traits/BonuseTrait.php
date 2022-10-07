@@ -10,54 +10,54 @@ use Darryldecode\Cart\CartCondition;
 trait BonuseTrait
 {
 
-	public function getFutureBonuses()
-	{
-		if ( !$this->allowAddBonuses() )
-			return 0;
+    public function getFutureBonuses()
+    {
+        if ( !$this->allowAddBonuses() )
+            return 0;
 
-		$sum = $this->list()->sum(function($item) {
-			return $item->attributes->bonuses * $item->quantity;
-		});
+        $sum = $this->list()->sum(function($item) {
+            return $item->attributes->bonuses * $item->quantity;
+        });
 
-		return $sum;
-	}
+        return $sum;
+    }
 
-	public function getBonusLimit($balance)
-	{
-		$total = $this->getSubTotal();
-		$allowByTotal = Bonus::getMaxPaymentByTotal($total);
+    public function getBonusLimit($balance)
+    {
+        $total = $this->getSubTotal();
+        $allowByTotal = Bonus::getMaxPaymentByTotal($total);
 
-		return min($allowByTotal, $balance);
-	}
+        return min($allowByTotal, $balance);
+    }
 
-	public function applyCartBonuses($bonuses)
-	{
-		if (!$this->allowAddBonuses())
-			return;
+    public function applyCartBonuses($bonuses)
+    {
+        if (!$this->allowAddBonuses())
+            return;
 
-		$condition = new CartCondition([
-			'name' => 'bonuses',
-			'type' => 'bonuses',
-			'target' => 'total',
-			'value' => $bonuses * -1,
-		]);
+        $condition = new CartCondition([
+            'name' => 'bonuses',
+            'type' => 'bonuses',
+            'target' => 'total',
+            'value' => $bonuses * -1,
+        ]);
 
-		Cart::condition($condition);
-	}
+        Cart::condition($condition);
+    }
 
-	public function getCartBonuses()
-	{
-		return Cart::getCondition('bonuses')?->getValue() ?? 0;
-	}
+    public function getCartBonuses()
+    {
+        return Cart::getCondition('bonuses')?->getValue() ?? 0;
+    }
 
-	public function clearCartBonuses()
-	{
-		Cart::removeCartCondition('bonuses');
-	}
+    public function clearCartBonuses()
+    {
+        Cart::removeCartCondition('bonuses');
+    }
 
-	public function allowAddBonuses()
-	{
-		return $this->promoCodeInstance->getModel()?->add_bonuses !== 0;
-	}
+    public function allowAddBonuses()
+    {
+        return $this->promoCodeInstance->getModel()?->add_bonuses !== 0;
+    }
 
 }

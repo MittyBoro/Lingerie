@@ -8,44 +8,44 @@ use Darryldecode\Cart\CartCondition;
 trait DeliveryTrait
 {
 
-	public function getCartDelivery()
-	{
-		$condition = Cart::getCondition('delivery');
+    public function getCartDelivery()
+    {
+        $condition = Cart::getCondition('delivery');
 
-		if (!$condition)
-			$condition = 0;
-		else
-			$condition = $condition->getValue();
+        if (!$condition)
+            $condition = 0;
+        else
+            $condition = $condition->getValue();
 
-		return $condition;
-	}
+        return $condition;
+    }
 
-	public function updateCartDelivery()
-	{
-		if ($this->allowFreeDelivery())
-			$delivery = 0;
-		else
-			$delivery = config('alevi.delivery.cost');
+    public function updateCartDelivery()
+    {
+        if ($this->allowFreeDelivery())
+            $delivery = 0;
+        else
+            $delivery = config('alevi.delivery.cost');
 
-		$condition = new CartCondition([
-			'name' => 'delivery',
-			'type' => 'delivery',
-			'target' => 'total',
-			'value' => $delivery,
-		]);
+        $condition = new CartCondition([
+            'name' => 'delivery',
+            'type' => 'delivery',
+            'target' => 'total',
+            'value' => $delivery,
+        ]);
 
-		Cart::condition($condition);
-	}
+        Cart::condition($condition);
+    }
 
-	private function allowFreeDelivery()
-	{
-		$total = Cart::getTotal();
+    private function allowFreeDelivery()
+    {
+        $total = Cart::getTotal();
 
-		$allowByTotal = $total >= config('alevi.delivery.free_from');
+        $allowByTotal = $total >= config('alevi.delivery.free_from');
 
-		$allowByPromo = !$this->promoCodeInstance->getCode() || config('alevi.delivery.free_with_promo');
+        $allowByPromo = !$this->promoCodeInstance->getCode() || config('alevi.delivery.free_with_promo');
 
-		return $allowByTotal && $allowByPromo;
-	}
+        return $allowByTotal && $allowByPromo;
+    }
 
 }

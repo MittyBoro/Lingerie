@@ -7,11 +7,11 @@
 
 
 <div class="four-box">
-	<div class="container">
-		<img src="{{ asset('images/404.png') }}" alt="">
-		<div class="h2">Страница не найдена</div>
-		<a href="/" class="btn-mini">На главную</a>
-	</div>
+    <div class="container">
+        <img src="{{ asset('images/404.png') }}" alt="">
+        <div class="h2">Страница не найдена</div>
+        <a href="/" class="btn-mini">На главную</a>
+    </div>
 </div>
 
 
@@ -22,5 +22,5 @@
 
 
 @section('end_content')
-	<script src="{{ mix('js/gallery.js', 'assets') }}" defer></script>
+    <script src="{{ mix('js/gallery.js', 'assets') }}" defer></script>
 @endsection

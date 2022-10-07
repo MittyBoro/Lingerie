@@ -133,6 +133,6 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
-	'phone' => 'Значение поля :attribute имеет некорректные данные.',
+    'phone' => 'Значение поля :attribute имеет некорректные данные.',
 
 ];

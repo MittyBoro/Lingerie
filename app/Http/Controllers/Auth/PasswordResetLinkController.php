@@ -17,13 +17,13 @@ class PasswordResetLinkController extends Controller
      */
     public function create(Request $request)
     {
-		if ($request->is_inertia) {
-			return Inertia::render('Auth/ForgotPassword', [
-				'status' => session('status'),
-			]);
-		} else {
-			return view('auth.forgot-password');
-		}
+        if ($request->is_inertia) {
+            return Inertia::render('Auth/ForgotPassword', [
+                'status' => session('status'),
+            ]);
+        } else {
+            return view('auth.forgot-password');
+        }
     }
 
     /**

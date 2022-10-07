@@ -36,16 +36,16 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-		$request->merge(['is_inertia' => true]);
+        $request->merge(['is_inertia' => true]);
 
-		return array_merge(parent::share($request), [
-			'config' => fn () => config('admin'),
+        return array_merge(parent::share($request), [
+            'config' => fn () => config('admin'),
 
             'auth' => [
-				'user' => fn () => $request->user()
-						? $request->user()->only('id', 'name', 'username', 'email', 'role', 'avatar')
-						: null,
+                'user' => fn () => $request->user()
+                        ? $request->user()->only('id', 'name', 'username', 'email', 'role', 'avatar')
+                        : null,
             ],
-		]);
+        ]);
     }
 }

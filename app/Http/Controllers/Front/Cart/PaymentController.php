@@ -9,30 +9,30 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-	public function webhook($type)
-	{
-		if (! in_array($type, config('payment.types')))
-			abort(404);
+    public function webhook($type)
+    {
+        if (! in_array($type, config('payment.types')))
+            abort(404);
 
-		$payment = new Payment($type);
-		$payment->webhook($type);
+        $payment = new Payment($type);
+        $payment->webhook($type);
 
-		return response('Success', 200);
-	}
+        return response('Success', 200);
+    }
 
-	public function return(Request $request, ProductOrder $order)
-	{
-		$userOrder = $request->user()?->orders()->find($order->id);
+    public function return(Request $request, ProductOrder $order)
+    {
+        $userOrder = $request->user()?->orders()->find($order->id);
 
-		if (!$userOrder)
-			return redirect()->route('profile.show');
+        if (!$userOrder)
+            return redirect()->route('profile.show');
 
-		if (!$order->is_paid) {
-			$payment = new Payment($order->payment_type);
-			$payment->updateStatus($order);
-		}
+        if (!$order->is_paid) {
+            $payment = new Payment($order->payment_type);
+            $payment->updateStatus($order);
+        }
 
-		return redirect()->route('profile.order', $order->id);
-	}
+        return redirect()->route('profile.order', $order->id);
+    }
 
 }

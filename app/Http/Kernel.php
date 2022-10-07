@@ -38,10 +38,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
             \App\Http\Middleware\ApplyCart::class,
-		],
+        ],
 
         'inertia' => [
-			\App\Http\Middleware\HandleInertiaRequests::class,
+            \App\Http\Middleware\HandleInertiaRequests::class,
         ],
 
         'api' => [
@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
-		'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -72,9 +72,9 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-		'admin.role' => \App\Http\Middleware\Admin\Role::class,
-		'admin.category' => \App\Http\Middleware\Admin\Category::class,
+        'admin.role' => \App\Http\Middleware\Admin\Role::class,
+        'admin.category' => \App\Http\Middleware\Admin\Category::class,
 
-		'guest_or_verified' => \App\Http\Middleware\GuestOrVerified::class,
+        'guest_or_verified' => \App\Http\Middleware\GuestOrVerified::class,
     ];
 }

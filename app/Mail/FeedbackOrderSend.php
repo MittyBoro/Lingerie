@@ -12,28 +12,28 @@ use App\Models\FeedbackOrder;
 
 class FeedbackOrderSend extends Mailable
 {
-	use Queueable, SerializesModels;
+    use Queueable, SerializesModels;
 
-	public $props;
-	public $order;
-	public $subject;
+    public $props;
+    public $order;
+    public $subject;
 
-	public function __construct(FeedbackOrder $order)
-	{
-		$this->props = Prop::list();
-		$this->order = $order;
+    public function __construct(FeedbackOrder $order)
+    {
+        $this->props = Prop::list();
+        $this->order = $order;
 
-		$this->subject = "«{$this->order->form_name}» – новая заявка";
-	}
+        $this->subject = "«{$this->order->form_name}» – новая заявка";
+    }
 
-	/**
-	 * Build the message.
-	 *
-	 * @return $this
-	 */
-	public function build()
-	{
-		return $this->subject($this->subject)
-					->view('emails.feedback_orders');
-	}
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->subject($this->subject)
+                    ->view('emails.feedback_orders');
+    }
 }

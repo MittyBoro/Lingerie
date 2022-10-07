@@ -13,19 +13,19 @@ use Illuminate\Queue\SerializesModels;
 
 class ProductOrderPaid
 {
-	use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
 
-	public $order;
+    public $order;
 
-	/**
-	 * Create a new event instance.
-	 *
-	 * @return void
-	 */
-	public function __construct(ProductOrder $order)
-	{
-		$this->order = $order;
-	}
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct(ProductOrder $order)
+    {
+        $this->order = $order;
+    }
 
  }

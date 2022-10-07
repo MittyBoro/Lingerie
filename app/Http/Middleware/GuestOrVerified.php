@@ -8,12 +8,12 @@ use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class GuestOrVerified
 {
-	public function handle(Request $request, Closure $next, ...$guards)
-	{
-		if ($request->user()) {
-			return app(EnsureEmailIsVerified::class)->handle($request, $next);
-		}
+    public function handle(Request $request, Closure $next, ...$guards)
+    {
+        if ($request->user()) {
+            return app(EnsureEmailIsVerified::class)->handle($request, $next);
+        }
 
-		return $next($request);
-	}
+        return $next($request);
+    }
 }

@@ -12,88 +12,88 @@ use Inertia\Inertia;
 class ProductController extends Controller
 {
 
-	public function index(Request $request)
-	{
-		$products = Product::filter($request->all())
-							->with('media')
-							->withPrice('*')
-							->paginated();
+    public function index(Request $request)
+    {
+        $products = Product::filter($request->all())
+                            ->with('media')
+                            ->withPrice('*')
+                            ->paginated();
 
-		return Inertia::render('Products/Index', [
-			'list' => $products,
-			'categories' => ProductCategory::get4Admin(Product::class),
-		]);
-	}
+        return Inertia::render('Products/Index', [
+            'list' => $products,
+            'categories' => ProductCategory::get4Admin(Product::class),
+        ]);
+    }
 
-	public function create()
-	{
-		return Inertia::render('Products/Form', [
-			...$this->editorData(),
-		]);
-	}
+    public function create()
+    {
+        return Inertia::render('Products/Form', [
+            ...$this->editorData(),
+        ]);
+    }
 
-	public function store(ProductRequest $request)
-	{
-		$data = $request->validated();
+    public function store(ProductRequest $request)
+    {
+        $data = $request->validated();
 
-		$data['user_id'] = $request->user()->id;
+        $data['user_id'] = $request->user()->id;
 
-		$product = Product::create($data);
-		$product->saveRelations($data);
+        $product = Product::create($data);
+        $product->saveRelations($data);
 
-		return redirect(route('admin.products.edit', $product->id));
-	}
+        return redirect(route('admin.products.edit', $product->id));
+    }
 
-	public function edit(Product $product)
-	{
-		$product->editing = true;
+    public function edit(Product $product)
+    {
+        $product->editing = true;
 
-		$product->setAppends(['gallery']);
-		$product->load(['categories', 'variations']);
+        $product->setAppends(['gallery']);
+        $product->load(['categories', 'variations']);
 
-		return Inertia::render('Products/Form', [
-			'item' => $product,
+        return Inertia::render('Products/Form', [
+            'item' => $product,
 
-			...$this->editorData(),
-		]);
-	}
+            ...$this->editorData(),
+        ]);
+    }
 
-	public function update(ProductRequest $request, Product $product)
-	{
-		$data = $request->validated();
+    public function update(ProductRequest $request, Product $product)
+    {
+        $data = $request->validated();
 
-		$product->update($data);
-		$product->saveRelations($data);
+        $product->update($data);
+        $product->saveRelations($data);
 
-		return back();
-	}
+        return back();
+    }
 
-	public function sort(Request $request, Product $product)
-	{
-		$validated = $this->validateSort($request, 'products');
+    public function sort(Request $request, Product $product)
+    {
+        $validated = $this->validateSort($request, 'products');
 
-		$product->massUpdate($validated);
+        $product->massUpdate($validated);
 
-		return back();
-	}
+        return back();
+    }
 
-	public function destroy(Product $product)
-	{
-		if ( $product->is_published )
-		{
-			return back()->withErrors(['Запрещено удалять опубликованные товары']);
-		}
+    public function destroy(Product $product)
+    {
+        if ( $product->is_published )
+        {
+            return back()->withErrors(['Запрещено удалять опубликованные товары']);
+        }
 
-		$product->delete();
+        $product->delete();
 
-		return back();
-	}
+        return back();
+    }
 
-	private function editorData() : array
-	{
-		return [
-			'categories' => ProductCategory::get4Admin(Product::class),
-			'characteristics_list' => Product::characteristicsList(),
-		];
-	}
+    private function editorData() : array
+    {
+        return [
+            'categories' => ProductCategory::get4Admin(Product::class),
+            'characteristics_list' => Product::characteristicsList(),
+        ];
+    }
 }

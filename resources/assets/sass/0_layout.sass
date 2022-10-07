@@ -1,308 +1,308 @@
 
 .header
-	padding-top: 36px
-	padding-bottom: 90px
+    padding-top: 36px
+    padding-bottom: 90px
 
-	.top-row
-		display: flex
-		align-items: center
+    .top-row
+        display: flex
+        align-items: center
 
-	.logo
-		margin: auto 0
+    .logo
+        margin: auto 0
 
-	@at-root .logo
-		display: block
-		margin: auto
-		svg
-			display: block
-			fill: $primary
-			width: 81px
-			height: 32px
-			transition: .15s
-			&:hover
-				fill: $secondary
+    @at-root .logo
+        display: block
+        margin: auto
+        svg
+            display: block
+            fill: $primary
+            width: 81px
+            height: 32px
+            transition: .15s
+            &:hover
+                fill: $secondary
 
-	.head_search
-		position: relative
-		margin-left: 40px
-		display: flex
-		align-items: center
-		cursor: pointer
-		height: 36px
-		input
-			font-size: 12px
-			padding: 0 25px
-			margin-right: 10px
-			height: 100%
-			width: 270px
-			transition: .25s
-			background: #fff
-			border: 1px solid #A5A5A5
-			border-radius: 15px 0px
-			&:focus
-				border-color: transparent
-				background: #FAF1FF
-			&::placeholder
-				color: #A5A5A5
-		.btn
-			position: absolute
-			top: 0
-			right: 0
-			padding: 0
-			width: 36px
-			height: 100%
-			max-height: 36px
-			cursor: pointer
-			border-radius: 15px 0px
-			svg
-				+square(17px)
-				fill: #fff
+    .head_search
+        position: relative
+        margin-left: 40px
+        display: flex
+        align-items: center
+        cursor: pointer
+        height: 36px
+        input
+            font-size: 12px
+            padding: 0 25px
+            margin-right: 10px
+            height: 100%
+            width: 270px
+            transition: .25s
+            background: #fff
+            border: 1px solid #A5A5A5
+            border-radius: 15px 0px
+            &:focus
+                border-color: transparent
+                background: #FAF1FF
+            &::placeholder
+                color: #A5A5A5
+        .btn
+            position: absolute
+            top: 0
+            right: 0
+            padding: 0
+            width: 36px
+            height: 100%
+            max-height: 36px
+            cursor: pointer
+            border-radius: 15px 0px
+            svg
+                +square(17px)
+                fill: #fff
 
-	.cont-col
-		display: flex
-		align-items: center
-		align-self: stretch
-		margin: 0 auto
-		padding: 2px 11px
-		min-height: 1px
-		background: #F8F8F8
-		font-size: 12px
-		font-weight: 500
-		border-radius: 15px 0px
-		.cont-phone
-			display: flex
-			align-items: center
-			margin-right: 20px
-			color: $body-color
-			&:hover
-				color: $secondary
-			svg
-				+square(17px)
-				fill: $primary
-				margin-right: 8px
-		.cont-time
-			color: #a5a5a5
+    .cont-col
+        display: flex
+        align-items: center
+        align-self: stretch
+        margin: 0 auto
+        padding: 2px 11px
+        min-height: 1px
+        background: #F8F8F8
+        font-size: 12px
+        font-weight: 500
+        border-radius: 15px 0px
+        .cont-phone
+            display: flex
+            align-items: center
+            margin-right: 20px
+            color: $body-color
+            &:hover
+                color: $secondary
+            svg
+                +square(17px)
+                fill: $primary
+                margin-right: 8px
+        .cont-time
+            color: #a5a5a5
 
-	.btn
-		padding: 0 24px
-		height: 36px
-		max-height: 36px
-		font-size: 12px
-		border-radius: 15px 0px
+    .btn
+        padding: 0 24px
+        height: 36px
+        max-height: 36px
+        font-size: 12px
+        border-radius: 15px 0px
 
-	.person
-		position: relative
-		display: flex
-		align-items: center
-		margin-right: 40px
-		padding-bottom: 10px
-		margin-bottom: -10px
-		font-size: 12px
-		cursor: default
-		.p-ava
-			+square(21px)
-			margin-right: 10px
-			background: url('../images/svg/person.svg') 50% no-repeat
-			background-size: contain
-			flex-shrink: 0
-		.p-name
-			font-weight: 500
-		.p-name-mini
-			max-width: 100px
-			text-overflow: ellipsis
-			white-space: nowrap
-			overflow: hidden
-			color: #A5A5A5
-			cursor: pointer
-		&:not(:hover)
-			.person-box
-				opacity: 0
-				pointer-events: none
-				transform: translateX(10%)
-		.person-box
-			position: absolute
-			right: -10px
-			top: 99%
-			padding: 23px
-			background: #fff
-			border: 1px solid $primary
-			border-radius: 10px
-			box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07)
-			z-index: 30
-			transition: .2s
-			.p-name-row
-				display: flex
-				align-items: center
-			.p-ava
-				+square(30px)
-				margin-right: 10px
-			.p-name
-				color: $body-color
-			.links
-				display: grid
-				gap: 8px
-				margin-top: 20px
-				white-space: nowrap
-				button
-					display: flex
-					margin-top: 5px
-					margin-bottom: -2px
-					align-items: center
-					font-weight: 500
-					color: rgba($body-color, .7)
-					text-transform: uppercase
-					transition: .2s
-					&:hover
-						color: $secondary
-					svg
-						+square(18px)
-						margin-right: 6px
+    .person
+        position: relative
+        display: flex
+        align-items: center
+        margin-right: 40px
+        padding-bottom: 10px
+        margin-bottom: -10px
+        font-size: 12px
+        cursor: default
+        .p-ava
+            +square(21px)
+            margin-right: 10px
+            background: url('../images/svg/person.svg') 50% no-repeat
+            background-size: contain
+            flex-shrink: 0
+        .p-name
+            font-weight: 500
+        .p-name-mini
+            max-width: 100px
+            text-overflow: ellipsis
+            white-space: nowrap
+            overflow: hidden
+            color: #A5A5A5
+            cursor: pointer
+        &:not(:hover)
+            .person-box
+                opacity: 0
+                pointer-events: none
+                transform: translateX(10%)
+        .person-box
+            position: absolute
+            right: -10px
+            top: 99%
+            padding: 23px
+            background: #fff
+            border: 1px solid $primary
+            border-radius: 10px
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07)
+            z-index: 30
+            transition: .2s
+            .p-name-row
+                display: flex
+                align-items: center
+            .p-ava
+                +square(30px)
+                margin-right: 10px
+            .p-name
+                color: $body-color
+            .links
+                display: grid
+                gap: 8px
+                margin-top: 20px
+                white-space: nowrap
+                button
+                    display: flex
+                    margin-top: 5px
+                    margin-bottom: -2px
+                    align-items: center
+                    font-weight: 500
+                    color: rgba($body-color, .7)
+                    text-transform: uppercase
+                    transition: .2s
+                    &:hover
+                        color: $secondary
+                    svg
+                        +square(18px)
+                        margin-right: 6px
 
-	.sign-btns
-		display: grid
-		gap: 10px
-		grid-template-columns: repeat(2, auto)
-		margin-right: 20px
+    .sign-btns
+        display: grid
+        gap: 10px
+        grid-template-columns: repeat(2, auto)
+        margin-right: 20px
 
 
-	.head_cart
-		position: relative
-		display: flex
-		align-items: center
-		cursor: pointer
-		color: #999
-		flex-shrink: 0
-		transition: .35s
-		&:hover
-			color: $secondary
-		svg
-			width: 16px
-			fill: $primary
-		span
-			min-width: 17px
-			padding-left: 4px
-			text-align: right
-			font-size: 12px
-			font-weight: 500
+    .head_cart
+        position: relative
+        display: flex
+        align-items: center
+        cursor: pointer
+        color: #999
+        flex-shrink: 0
+        transition: .35s
+        &:hover
+            color: $secondary
+        svg
+            width: 16px
+            fill: $primary
+        span
+            min-width: 17px
+            padding-left: 4px
+            text-align: right
+            font-size: 12px
+            font-weight: 500
 
-	.ul-menu
-		display: flex
-		justify-content: space-between
-		margin-top: 35px
+    .ul-menu
+        display: flex
+        justify-content: space-between
+        margin-top: 35px
 
-		font-size: 12px
-		font-weight: 500
-		text-transform: uppercase
-		transition: .2s
+        font-size: 12px
+        font-weight: 500
+        text-transform: uppercase
+        transition: .2s
 
-		li
-			padding: 5px 0
-			flex-shrink: 0
-			transition: .2s
-			& > span
-				position: relative
-				cursor: pointer
-				z-index: 2
-				&::after
-					content: '+'
-					display: inline-block
-					text-align: right
-					width: 10px
-				& ~ div
-					position: absolute
-					display: flex
-					margin: -5px
-					padding: 5px
-					flex-direction: column
-					background: #fff
-					box-shadow: 0 0 7px 7px #fff
-					color: $body-color
-					font-weight: 300
-					text-transform: none
-					transition: .25s
-					transform: scaleY(.5) translateY(-60%)
-					opacity: 0
-					span
-						padding: 10px 0 0
-			&:hover
-				& > span
-					color: $secondary
-					&::after
-						content: '-'
-					& ~ div
-						transform: none
-						opacity: 1
+        li
+            padding: 5px 0
+            flex-shrink: 0
+            transition: .2s
+            & > span
+                position: relative
+                cursor: pointer
+                z-index: 2
+                &::after
+                    content: '+'
+                    display: inline-block
+                    text-align: right
+                    width: 10px
+                & ~ div
+                    position: absolute
+                    display: flex
+                    margin: -5px
+                    padding: 5px
+                    flex-direction: column
+                    background: #fff
+                    box-shadow: 0 0 7px 7px #fff
+                    color: $body-color
+                    font-weight: 300
+                    text-transform: none
+                    transition: .25s
+                    transform: scaleY(.5) translateY(-60%)
+                    opacity: 0
+                    span
+                        padding: 10px 0 0
+            &:hover
+                & > span
+                    color: $secondary
+                    &::after
+                        content: '-'
+                    & ~ div
+                        transform: none
+                        opacity: 1
 
 
 
 .footer
-	margin-top: 20px
-	font-size: 13px
-	.container
-		&::before
-			content: ''
-			position: absolute
-			top: 0
-			left: 15px
-			right: 15px
-			border-top: 1px solid #ACACAC
+    margin-top: 20px
+    font-size: 13px
+    .container
+        &::before
+            content: ''
+            position: absolute
+            top: 0
+            left: 15px
+            right: 15px
+            border-top: 1px solid #ACACAC
 
-	.footer-content
-		margin: 0 auto
-		padding-top: 60px
-		display: flex
-		justify-content: space-between
+    .footer-content
+        margin: 0 auto
+        padding-top: 60px
+        display: flex
+        justify-content: space-between
 
-	.f-column
-		.f-title
-			text-transform: uppercase
-			font-weight: 500
-			color: $body-color2
-		li
-			margin-top: 17px
+    .f-column
+        .f-title
+            text-transform: uppercase
+            font-weight: 500
+            color: $body-color2
+        li
+            margin-top: 17px
 
-		.f-wrap
-			margin-top: 25px
-			font-size: 12px
-			.f-placeholder
-				left: 25px
-				top: -16px
-				font-size: 10px
-			input
-				padding-left: 25px
-			.btn
-				width: 40px
-			input, .btn
-				height: 40px
-				border-radius: 15px 2px
-			svg
-				+square(15px)
+        .f-wrap
+            margin-top: 25px
+            font-size: 12px
+            .f-placeholder
+                left: 25px
+                top: -16px
+                font-size: 10px
+            input
+                padding-left: 25px
+            .btn
+                width: 40px
+            input, .btn
+                height: 40px
+                border-radius: 15px 2px
+            svg
+                +square(15px)
 
-	.footer-bottom
-		display: flex
-		flex-direction: column
-		align-items: center
-		padding: 60px 0 30px
+    .footer-bottom
+        display: flex
+        flex-direction: column
+        align-items: center
+        padding: 60px 0 30px
 
-		.policy
-			margin: 30px 0 20px
+        .policy
+            margin: 30px 0 20px
 
 
 .arrow-top
-	position: fixed
-	right: 25px
-	bottom: 15px
-	width: 40px
-	height: 40px
-	background: $primary url('../images/svg/arrow-top.svg') no-repeat 50%
-	background-size: 9px auto
-	border-radius: 15px 2px
-	cursor: pointer
-	transition: opacity .2s
-	z-index: 20
-	box-shadow: 0 0 30px rgba(#000, .05)
-	&:not(:hover)
-		opacity: .7
-	&:not(.active)
-		opacity: 0
-		pointer-events: none
+    position: fixed
+    right: 25px
+    bottom: 15px
+    width: 40px
+    height: 40px
+    background: $primary url('../images/svg/arrow-top.svg') no-repeat 50%
+    background-size: 9px auto
+    border-radius: 15px 2px
+    cursor: pointer
+    transition: opacity .2s
+    z-index: 20
+    box-shadow: 0 0 30px rgba(#000, .05)
+    &:not(:hover)
+        opacity: .7
+    &:not(.active)
+        opacity: 0
+        pointer-events: none

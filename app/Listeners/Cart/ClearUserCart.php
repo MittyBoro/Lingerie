@@ -22,8 +22,8 @@ class ClearUserCart
      */
     public function handle(ProductOrderPaid $event)
     {
-		if ($event->order->user_id) {
-			\Cart::session($event->order->user_id)->clear();
-		}
+        if ($event->order->user_id) {
+            \Cart::session($event->order->user_id)->clear();
+        }
     }
 }

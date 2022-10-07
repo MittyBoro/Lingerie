@@ -5,170 +5,170 @@
 
 
 ::-webkit-scrollbar-thumb
-	@apply rounded-lg bg-primary-600
-	border: 4px solid #fff
+    @apply rounded-lg bg-primary-600
+    border: 4px solid #fff
 
 ::-webkit-scrollbar-track
-	@apply bg-white
+    @apply bg-white
 
 ::-webkit-scrollbar
-	@apply w-4 h-4
+    @apply w-4 h-4
 
 ::selection
-	@apply bg-primary-500 text-white
+    @apply bg-primary-500 text-white
 
 
 
 .btn, .btn-secondary
-	@apply inline-flex items-center px-6 py-3 h-9 bg-primary-600 border-none outline-none rounded-md font-semibold justify-center text-xs text-white uppercase transition cursor-pointer tracking-widest text-center select-none
-	&:hover
-		@apply bg-primary-700 ring-primary-700
-	&:disabled
-		@apply opacity-25
-	&:active
-		@apply border-none outline-none bg-primary-600 ring-4 ring-primary-200
-	&:focus
-		@apply border-none outline-none
+    @apply inline-flex items-center px-6 py-3 h-9 bg-primary-600 border-none outline-none rounded-md font-semibold justify-center text-xs text-white uppercase transition cursor-pointer tracking-widest text-center select-none
+    &:hover
+        @apply bg-primary-700 ring-primary-700
+    &:disabled
+        @apply opacity-25
+    &:active
+        @apply border-none outline-none bg-primary-600 ring-4 ring-primary-200
+    &:focus
+        @apply border-none outline-none
 
 .btn-secondary
-	@apply bg-secondary-600
-	&:hover
-		@apply bg-secondary-700 ring-secondary-700
-	&:active
-		@apply ring-secondary-200
+    @apply bg-secondary-600
+    &:hover
+        @apply bg-secondary-700 ring-secondary-700
+    &:active
+        @apply ring-secondary-200
 
 .btn-gray
-	@extend .btn
-	@apply bg-gray-400 ring-gray-400
-	&:hover
-		@apply bg-gray-600
-	&:active
-		@apply ring-gray-400
+    @extend .btn
+    @apply bg-gray-400 ring-gray-400
+    &:hover
+        @apply bg-gray-600
+    &:active
+        @apply ring-gray-400
 
 .btn-danger
-	@extend .btn
-	@apply bg-red-600 ring-red-600
-	&:hover
-		@apply bg-red-500
-	&:active
-		@apply ring-red-500
+    @extend .btn
+    @apply bg-red-600 ring-red-600
+    &:hover
+        @apply bg-red-500
+    &:active
+        @apply ring-red-500
 
 .btn-vk
-	@extend .btn
-	@apply bg-blue-500 ring-blue-500
-	&:hover
-		@apply bg-blue-400
-	&:active
-		@apply ring-blue-400
+    @extend .btn
+    @apply bg-blue-500 ring-blue-500
+    &:hover
+        @apply bg-blue-400
+    &:active
+        @apply ring-blue-400
 
 .btn-square
-	@apply p-3
+    @apply p-3
 
 .btn-mini
-	@apply max-h-6 px-2
-	font-size: .7em
-	&.btn-square
-		@apply p-1.5
+    @apply max-h-6 px-2
+    font-size: .7em
+    &.btn-square
+        @apply p-1.5
 
 .sortable-chosen
-	background-color: #eee !important
-	td
-		background-color: #eee !important
+    background-color: #eee !important
+    td
+        background-color: #eee !important
 
 
 .form-input,
 .form-textarea,
 .form-select,
 .form-text
-	@apply block w-full bg-white border border-gray-200 px-4 pr-6 rounded-md shadow-sm transition outline-none
+    @apply block w-full bg-white border border-gray-200 px-4 pr-6 rounded-md shadow-sm transition outline-none
 .form-input,
 .form-textarea,
 .form-select
-	@apply h-10
-	&:focus
-		@apply border-transparent ring-4 ring-primary-200 outline-none bg-white
-	&:disabled
-		@apply bg-gray-50 text-gray-500
-	&.f-mini
-		@apply px-3 pr-4 h-8 text-xs
+    @apply h-10
+    &:focus
+        @apply border-transparent ring-4 ring-primary-200 outline-none bg-white
+    &:disabled
+        @apply bg-gray-50 text-gray-500
+    &.f-mini
+        @apply px-3 pr-4 h-8 text-xs
 
 .form-checkbox
-	@apply rounded border-gray-300 text-primary-600 shadow-sm cursor-pointer
-	&:checked
-		@apply bg-primary-600 border-primary-600
-	&:focus
-		@apply border-primary-300 ring ring-primary-100 ring-offset-0 outline-none
+    @apply rounded border-gray-300 text-primary-600 shadow-sm cursor-pointer
+    &:checked
+        @apply bg-primary-600 border-primary-600
+    &:focus
+        @apply border-primary-300 ring ring-primary-100 ring-offset-0 outline-none
 
 
 .link
-	@apply text-primary-500 transition-colors cursor-pointer
-	&:hover
-		@apply text-primary-600 underline
+    @apply text-primary-500 transition-colors cursor-pointer
+    &:hover
+        @apply text-primary-600 underline
 .hover-link
-	@apply transition-colors cursor-pointer
-	&:hover
-		@apply text-primary-600
+    @apply transition-colors cursor-pointer
+    &:hover
+        @apply text-primary-600
 
 .drag-handle
-	@apply text-sm text-gray-300 transition-colors select-none cursor-move
-	&:hover
-		@apply text-primary-500
+    @apply text-sm text-gray-300 transition-colors select-none cursor-move
+    &:hover
+        @apply text-primary-500
 
 
 
 .table-wrapper
-	width: 100%
+    width: 100%
 .table-overflow
-	width: 100%
-	overflow-x: auto
+    width: 100%
+    overflow-x: auto
 
 .table
-	@apply border-collapse w-full leading-4
-	th:not(.no-style)
-		@apply font-bold text-sm bg-gray-50 text-gray-600 border-b text-left table-cell
-		&.text-center
-			text-align: center
-	th, td
-		&:not(.no-style)
-			@apply px-3
-			&:first-child
-				@apply pl-8
-			&.sort-td
-				@apply pl-5
-			&:last-child
-				@apply pr-8
+    @apply border-collapse w-full leading-4
+    th:not(.no-style)
+        @apply font-bold text-sm bg-gray-50 text-gray-600 border-b text-left table-cell
+        &.text-center
+            text-align: center
+    th, td
+        &:not(.no-style)
+            @apply px-3
+            &:first-child
+                @apply pl-8
+            &.sort-td
+                @apply pl-5
+            &:last-child
+                @apply pr-8
 
-	tbody tr
-		@apply table-row transition z-10
-		&:not(:last-child) td:not(.no-style)
-			@apply border-gray-200
-		&:hover
-			@apply relative z-20
-			& > td:not(.no-style)
-				@apply bg-gray-100
-		td:not(.no-style)
-			@apply bg-white w-auto table-cell py-3 text-gray-800 border-b relative transition align-middle
-			&.w-min
-				width: 1%
+    tbody tr
+        @apply table-row transition z-10
+        &:not(:last-child) td:not(.no-style)
+            @apply border-gray-200
+        &:hover
+            @apply relative z-20
+            & > td:not(.no-style)
+                @apply bg-gray-100
+        td:not(.no-style)
+            @apply bg-white w-auto table-cell py-3 text-gray-800 border-b relative transition align-middle
+            &.w-min
+                width: 1%
 
 .table-save-row
-	position: sticky
-	bottom: 0
-	@apply px-4 py-2 bg-gray-100
-	width: 100%
-	z-index: 20
+    position: sticky
+    bottom: 0
+    @apply px-4 py-2 bg-gray-100
+    width: 100%
+    z-index: 20
 
 
 
 .customer-info
-	display: grid
-	grid-template-columns: max-content auto
-	.ci-title
-		display: flex
-		align-items: baseline
-		&::after
-			content: ''
-			min-width: 25px
-			width: 100%
-			margin: 0 5px
-			border-bottom: 1px dotted #aaa
+    display: grid
+    grid-template-columns: max-content auto
+    .ci-title
+        display: flex
+        align-items: baseline
+        &::after
+            content: ''
+            min-width: 25px
+            width: 100%
+            margin: 0 5px
+            border-bottom: 1px dotted #aaa

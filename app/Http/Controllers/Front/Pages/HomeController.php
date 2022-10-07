@@ -9,28 +9,28 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-	public function index(Request $request)
-	{
-		$products = Product::with('media')
-							->publicCatalog()
-							->withPrice()
-							->latest()
-							->limit(4)
-							->get();
+    public function index(Request $request)
+    {
+        $products = Product::with('media')
+                            ->publicCatalog()
+                            ->withPrice()
+                            ->latest()
+                            ->limit(4)
+                            ->get();
 
-		$news = Post::with('media')
-					->publicPosts()
-					->latest()
-					->limit(4)
-					->get();
+        $news = Post::with('media')
+                    ->publicPosts()
+                    ->latest()
+                    ->limit(4)
+                    ->get();
 
-		$mapAddresses = Partner::franchiseeAdresses()->toArray();
+        $mapAddresses = Partner::franchiseeAdresses()->toArray();
 
-		return view('pages.home', [
-			'page' => $this->page,
-			'map_addresses' => $mapAddresses,
-			'products' => $products,
-			'news' => $news,
-		]);
-	}
+        return view('pages.home', [
+            'page' => $this->page,
+            'map_addresses' => $mapAddresses,
+            'products' => $products,
+            'news' => $news,
+        ]);
+    }
 }

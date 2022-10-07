@@ -19,50 +19,50 @@ use Pion\Laravel\ChunkUpload\Receiver\FileReceiver;
 class MediaController extends Controller
 {
 
-	/**
-	 * пока не требуется
-	 */
+    /**
+     * пока не требуется
+     */
 
-	public function store(Request $request, Media $media)
-	{
-		$model = $this->checkModel($request);
-		$validated = $request->validate([
-			'upload' => 'dimensions:min_width=10,min_height=10|max:10000',
-		]);
+    public function store(Request $request, Media $media)
+    {
+        $model = $this->checkModel($request);
+        $validated = $request->validate([
+            'upload' => 'dimensions:min_width=10,min_height=10|max:10000',
+        ]);
 
-		$media = $model->syncMedia(['file' => $validated['upload']]);
+        $media = $model->syncMedia(['file' => $validated['upload']]);
 
-		return ['urls' => ['default' => $media->getFullUrl()] ];
-	}
+        return ['urls' => ['default' => $media->getFullUrl()] ];
+    }
 
-	public function destroy($id)
-	{
-		$media = Media::find($id);
+    public function destroy($id)
+    {
+        $media = Media::find($id);
 
-		if (!$media)
-			return back()->withErrors(['Файл не найден']);
+        if (!$media)
+            return back()->withErrors(['Файл не найден']);
 
-		$model_type = $media->model_type;
+        $model_type = $media->model_type;
 
-		$model = $model_type::find($media->model_id);
-		$model->deleteMedia($media->id);
-		$media->delete();
+        $model = $model_type::find($media->model_id);
+        $model->deleteMedia($media->id);
+        $media->delete();
 
-		return back();
-	}
+        return back();
+    }
 
-	private function checkModel($request)
-	{
-		$modelName = Str::studly($request->type);
-		$id = $request->id;
+    private function checkModel($request)
+    {
+        $modelName = Str::studly($request->type);
+        $id = $request->id;
 
-		$modelClass = 'App\\Models\\'.$modelName;
+        $modelClass = 'App\\Models\\'.$modelName;
 
-		if ( !class_exists($modelClass) ||
-				!($model = $modelClass::find($id)) ) {
+        if ( !class_exists($modelClass) ||
+                !($model = $modelClass::find($id)) ) {
 
-			throw ValidationException::withMessages(['type_id' => 'Неверное имя поля']);
-		}
-		return $model;
-	}
+            throw ValidationException::withMessages(['type_id' => 'Неверное имя поля']);
+        }
+        return $model;
+    }
 }

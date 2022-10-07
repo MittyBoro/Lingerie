@@ -7,19 +7,19 @@
 @section('content')
 
 <div class="article-box">
-	<div class="container">
+    <div class="container">
 
-		<div class="breadcrumb">
-			<a href="/">Главная</a> /
-			<span>{{ $page['title'] }}</span>
-		</div>
+        <div class="breadcrumb">
+            <a href="/">Главная</a> /
+            <span>{{ $page['title'] }}</span>
+        </div>
 
-		<h1 class="h2 h2-title">{{ $page->title }}</h1>
+        <h1 class="h2 h2-title">{{ $page->title }}</h1>
 
-		<div class="article-content text-box">
-			{!! $page->description !!}
-		</div>
-	</div>
+        <div class="article-content text-box">
+            {!! $page->description !!}
+        </div>
+    </div>
 </div>
 
 @endsection

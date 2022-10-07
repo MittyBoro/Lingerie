@@ -13,98 +13,98 @@ use Propaganistas\LaravelPhone\PhoneNumber;
 
 class CheckoutController extends Controller
 {
-	public function get(Request $request)
-	{
-		return [
-			...$this->getTotalData($request),
-		];
-	}
+    public function get(Request $request)
+    {
+        return [
+            ...$this->getTotalData($request),
+        ];
+    }
 
-	public function applyBonuses(Request $request)
-	{
-		$bonusLmit = $request->cart->getBonusLimit($request->user()->bonuses);
+    public function applyBonuses(Request $request)
+    {
+        $bonusLmit = $request->cart->getBonusLimit($request->user()->bonuses);
 
-		$request->validate([
-			'bonuses' => 'integer|min:0|max:' . $bonusLmit,
-		]);
+        $request->validate([
+            'bonuses' => 'integer|min:0|max:' . $bonusLmit,
+        ]);
 
-		$request->cart->applyCartBonuses($request->bonuses);
+        $request->cart->applyCartBonuses($request->bonuses);
 
-		return [
-			...$this->getTotalData($request),
-		];
+        return [
+            ...$this->getTotalData($request),
+        ];
 
-	}
+    }
 
-	private function getTotalData(Request $request): array
-	{
-		$total = $request->cart->getTotal();
-		$bonusLmit = $request->cart->getBonusLimit($request->user()->bonuses);
-		$cartBonuses = $request->cart->getCartBonuses();
+    private function getTotalData(Request $request): array
+    {
+        $total = $request->cart->getTotal();
+        $bonusLmit = $request->cart->getBonusLimit($request->user()->bonuses);
+        $cartBonuses = $request->cart->getCartBonuses();
 
-		return [
-			'total'      => $total,
-			'bonus_limit' => $bonusLmit,
-			'spending_bonuses' => $cartBonuses,
-		];
-	}
+        return [
+            'total'      => $total,
+            'bonus_limit' => $bonusLmit,
+            'spending_bonuses' => $cartBonuses,
+        ];
+    }
 
-	public function pay(Request $request)
-	{
-		if ($request->total != $request->cart->getTotal()) {
-			logger()->error('Несовпадение итоговой суммы',
-							[$request->total, $request->cart->getTotal()]);
-			return [
-				'success' => false,
-				'message' => 'Несовпадение итоговой суммы. Обновите страницу и повторите попытку',
-			];
-		}
+    public function pay(Request $request)
+    {
+        if ($request->total != $request->cart->getTotal()) {
+            logger()->error('Несовпадение итоговой суммы',
+                            [$request->total, $request->cart->getTotal()]);
+            return [
+                'success' => false,
+                'message' => 'Несовпадение итоговой суммы. Обновите страницу и повторите попытку',
+            ];
+        }
 
-		if ($request->phone)
-			$request->merge(['phone' => PhoneNumber::make($request->phone)->formatE164()]);
+        if ($request->phone)
+            $request->merge(['phone' => PhoneNumber::make($request->phone)->formatE164()]);
 
-		$data = $request->validate([
-			'name'    => 'string',
-			'phone'   => 'string',
-			'email'   => 'email|required',
+        $data = $request->validate([
+            'name'    => 'string',
+            'phone'   => 'string',
+            'email'   => 'email|required',
 
-			'address.region' => 'required|string',
-			'address.city' => 'required|string',
-			'address.street' => 'required|string',
-			'address.postcode' => 'nullable',
-			'address.transport' => 'string|nullable',
+            'address.region' => 'required|string',
+            'address.city' => 'required|string',
+            'address.street' => 'required|string',
+            'address.postcode' => 'nullable',
+            'address.transport' => 'string|nullable',
 
-			'comment'   => 'string|nullable',
+            'comment'   => 'string|nullable',
 
-			'payment_type' => [ 'string', Rule::in(config('payment.types'),) ],
-		]);
+            'payment_type' => [ 'string', Rule::in(config('payment.types'),) ],
+        ]);
 
-		$data += [
-			'amount' => $request->cart->getTotal(),
-			'delivery' => $request->cart->getCartDelivery(),
-			'promocode' => $request->cart->getPromoCode(),
-			'spent_bonuses' => abs($request->cart->getCartBonuses()),
+        $data += [
+            'amount' => $request->cart->getTotal(),
+            'delivery' => $request->cart->getCartDelivery(),
+            'promocode' => $request->cart->getPromoCode(),
+            'spent_bonuses' => abs($request->cart->getCartBonuses()),
 
-			'user_id' => $request->user()->id,
-		];
+            'user_id' => $request->user()->id,
+        ];
 
-		$items = $request->cart->creatableList();
+        $items = $request->cart->creatableList();
 
-		$order = ProductOrder::createOrder($data, $items);
+        $order = ProductOrder::createOrder($data, $items);
 
-		if (!$order) {
-			return [
-				'success' => false,
-				'message' => 'Ошибка создания платежа, повторите попытку',
-			];
-		}
+        if (!$order) {
+            return [
+                'success' => false,
+                'message' => 'Ошибка создания платежа, повторите попытку',
+            ];
+        }
 
-		try {
-			return (new Payment($data['payment_type']))->create($order);
-		} catch (\Throwable $e) {
-			$order->delete();
-			throw $e;
-		}
-	}
+        try {
+            return (new Payment($data['payment_type']))->create($order);
+        } catch (\Throwable $e) {
+            $order->delete();
+            throw $e;
+        }
+    }
 
 }

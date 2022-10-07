@@ -25,18 +25,18 @@ app/helpers.php
 `composer.json`
 ```
 "autoload": {
-	*****
-	"files": [
-		"app/helpers.php"
-	]
+*****
+"files": [
+    "app/helpers.php"
+]
 },
 ```
 
 `App\Http\Kernel`
 ```
 'web' => [
-    // ...
-    \App\Http\Middleware\HandleInertiaRequests::class,
+// ...
+\App\Http\Middleware\HandleInertiaRequests::class,
 ],
 ```
 
@@ -70,8 +70,8 @@ webpack.mix.js
 `App\Http\Kernel`
 ```
 protected $routeMiddleware = [
-	'admin' => \App\Http\Middleware\Admin::class,
-	// ...
+'admin' => \App\Http\Middleware\Admin::class,
+// ...
 ];
 ```
 
@@ -79,13 +79,13 @@ protected $routeMiddleware = [
 ```
 public function share(Request $request)
 {
-	return array_merge(parent::share($request), [
-		'config' => fn () => config('theadmin'),
-		'currentRouteName' => fn () => $request->route()->getName(),
-		'user' => fn () => $request->user()
-			? $request->user()->only('id', 'name', 'login', 'email', 'avatar')
-			: null,
-	]);
+return array_merge(parent::share($request), [
+    'config' => fn () => config('theadmin'),
+    'currentRouteName' => fn () => $request->route()->getName(),
+    'user' => fn () => $request->user()
+        ? $request->user()->only('id', 'name', 'login', 'email', 'avatar')
+        : null,
+]);
 }
 ```
 
@@ -105,8 +105,8 @@ Copy paste `media-library.php`
 `view.php`
 ```
 'paths' => [
-	resource_path('views'),
-	resource_path('admin/views'),
+resource_path('views'),
+resource_path('admin/views'),
 ],
 ```
 

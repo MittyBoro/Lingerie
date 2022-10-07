@@ -25,14 +25,14 @@ class TransferGuestCartToUser
      */
     public function handle(Login $event)
     {
-		$guestCartItems = Cart::getContent();
+        $guestCartItems = Cart::getContent();
 
-		Cart::clear();
-		Cart::clearCartConditions();
+        Cart::clear();
+        Cart::clearCartConditions();
 
-		$userCart = Cart::session($event->user->id);
+        $userCart = Cart::session($event->user->id);
 
-		if ($guestCartItems->isNotEmpty())
-			$userCart->add($guestCartItems->toArray());
+        if ($guestCartItems->isNotEmpty())
+            $userCart->add($guestCartItems->toArray());
     }
 }

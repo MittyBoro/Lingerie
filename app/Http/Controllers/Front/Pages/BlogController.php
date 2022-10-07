@@ -9,18 +9,18 @@ use App\Models\Post;
 
 class BlogController extends Controller
 {
-	public function index(Request $request)
-	{
-		$countPerPage = is_desktop() ? 8 : 6;
+    public function index(Request $request)
+    {
+        $countPerPage = is_desktop() ? 8 : 6;
 
-		$news = Post::with('media')->publicPosts()
-					->setPerPage($countPerPage)
-					->paginated();
+        $news = Post::with('media')->publicPosts()
+                    ->setPerPage($countPerPage)
+                    ->paginated();
 
-		return view('pages.blog', [
-			'page' => $this->page,
-			'news' => $news,
-		]);
-	}
+        return view('pages.blog', [
+            'page' => $this->page,
+            'news' => $news,
+        ]);
+    }
 
 }

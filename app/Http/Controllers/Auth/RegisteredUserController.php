@@ -21,11 +21,11 @@ class RegisteredUserController extends Controller
      */
     public function create(Request $request)
     {
-		if ($request->is_inertia) {
-			return Inertia::render('Auth/Register');
-		} else {
-			return view('auth.register');
-		}
+        if ($request->is_inertia) {
+            return Inertia::render('Auth/Register');
+        } else {
+            return view('auth.register');
+        }
     }
 
     /**
@@ -38,8 +38,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-		if ($request->phone)
-			$request->merge(['phone' => PhoneNumber::make($request->phone)->formatE164()]);
+        if ($request->phone)
+            $request->merge(['phone' => PhoneNumber::make($request->phone)->formatE164()]);
 
         $request->validate([
             'name' => 'nullable|string|max:255',

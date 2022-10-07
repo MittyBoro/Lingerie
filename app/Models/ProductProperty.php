@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductProperty extends BaseModel
 {
-	use HasFactory;
+    use HasFactory;
 
-	public $timestamps = false;
+    public $timestamps = false;
 
     protected $languageFieds = [
         'title',

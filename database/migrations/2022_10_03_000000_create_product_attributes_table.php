@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('product_attribute_type_id')->index()
                                     ->constrained()->cascadeOnDelete();
 
-			$table->integer('position')->default(0);
+            $table->integer('position')->default(0);
         });
     }
 

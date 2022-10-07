@@ -9,79 +9,79 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-	use PageTrait;
+    use PageTrait;
 
-	public function index(Request $request)
-	{
-		$request->cart->recalculateCart();
+    public function index(Request $request)
+    {
+        $request->cart->recalculateCart();
 
-		$page = $this->getPage('checkout');
+        $page = $this->getPage('checkout');
 
-		$cart = $request->cart->list();
+        $cart = $request->cart->list();
 
-		if (!$cart->count()) {
-			return redirect('/cart');
-		}
+        if (!$cart->count()) {
+            return redirect('/cart');
+        }
 
-		$customer = $this->getCustomer($request);
+        $customer = $this->getCustomer($request);
 
-		$promocode = $request->cart->getPromoCode();
-		$subtotal = $request->cart->getSumWithoutDiscount();
-		// $subtotal = $request->cart->getSubTotal();
-		$discount = $subtotal - $request->cart->getSubTotal();
+        $promocode = $request->cart->getPromoCode();
+        $subtotal = $request->cart->getSumWithoutDiscount();
+        // $subtotal = $request->cart->getSubTotal();
+        $discount = $subtotal - $request->cart->getSubTotal();
 
-		$delivery = $request->cart->getCartDelivery();
-		$futureBonuses = $request->cart->getFutureBonuses();
+        $delivery = $request->cart->getCartDelivery();
+        $futureBonuses = $request->cart->getFutureBonuses();
 
-		// $total = $request->cart->getTotal();
+        // $total = $request->cart->getTotal();
 
-		$bonusLmit = $request->cart->getBonusLimit($request->user()->bonuses);
+        $bonusLmit = $request->cart->getBonusLimit($request->user()->bonuses);
 
-		return view('pages.checkout', [
-			'page' => $page,
-			'customer' => $customer,
+        return view('pages.checkout', [
+            'page' => $page,
+            'customer' => $customer,
 
-			'cart'      => $cart,
-			'promocode' => $promocode,
-			'delivery'  => $delivery,
-			'discount'  => $discount,
-			'subtotal'  => $subtotal,
-			'futureBonuses'   => $futureBonuses,
+            'cart'      => $cart,
+            'promocode' => $promocode,
+            'delivery'  => $delivery,
+            'discount'  => $discount,
+            'subtotal'  => $subtotal,
+            'futureBonuses'   => $futureBonuses,
 
-			'bonusLimit' => $bonusLmit,
+            'bonusLimit' => $bonusLmit,
 
-			// 'total'     => $total,
-		]);
-	}
+            // 'total'     => $total,
+        ]);
+    }
 
-	private function getCustomer(Request $request)
-	{
-		$lastOrder = ProductOrder::latest()
-							->where('user_id', $request->user()->id)
-							->first();
+    private function getCustomer(Request $request)
+    {
+        $lastOrder = ProductOrder::latest()
+                            ->where('user_id', $request->user()->id)
+                            ->first();
 
-		if ( $lastOrder ) {
-			$customer = [
-				'name' => $lastOrder->name,
-				'email' => $lastOrder->email,
-				'phone' => $lastOrder->phone,
+        if ( $lastOrder ) {
+            $customer = [
+                'name' => $lastOrder->name,
+                'email' => $lastOrder->email,
+                'phone' => $lastOrder->phone,
 
-				'region' => $lastOrder->address['region'],
-				'city' => $lastOrder->address['region'],
-				'street' => $lastOrder->address['street'],
-				'postcode' => $lastOrder->address['postcode'],
-				'transport' => $lastOrder->address['transport'],
-			];
-		} else {
-			$customer = [
-				'name' => $request->user()->name,
-				'email' => $request->user()->email,
-				'phone' => $request->user()->phone,
-			];
-		}
+                'region' => $lastOrder->address['region'],
+                'city' => $lastOrder->address['region'],
+                'street' => $lastOrder->address['street'],
+                'postcode' => $lastOrder->address['postcode'],
+                'transport' => $lastOrder->address['transport'],
+            ];
+        } else {
+            $customer = [
+                'name' => $request->user()->name,
+                'email' => $request->user()->email,
+                'phone' => $request->user()->phone,
+            ];
+        }
 
-		return $customer;
-	}
+        return $customer;
+    }
 
 
 }

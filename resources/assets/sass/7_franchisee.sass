@@ -1,135 +1,135 @@
 
 
 .franchisee-box
-	margin-bottom: 140px
+    margin-bottom: 140px
 
-	.form-box
-		display: flex
-		align-items: center
-		justify-content: space-between
-		.left-text
-			margin-right: 50px
-		.right-form
-			max-width: 400px
-			width: 100%
-			.btn
-				width: 70px
-				background: transparent
-				pointer-events: none
-				svg
-					fill: $primary
-	.space
-		flex-shrink: 0
-		+square(30px)
+    .form-box
+        display: flex
+        align-items: center
+        justify-content: space-between
+        .left-text
+            margin-right: 50px
+        .right-form
+            max-width: 400px
+            width: 100%
+            .btn
+                width: 70px
+                background: transparent
+                pointer-events: none
+                svg
+                    fill: $primary
+    .space
+        flex-shrink: 0
+        +square(30px)
 
-	#map
-		width: 100%
-		height: 100%
-		max-height: 600px
-		min-height: 400px
-		background: #eee
+    #map
+        width: 100%
+        height: 100%
+        max-height: 600px
+        min-height: 400px
+        background: #eee
 
-	.franchisee-flex
-		display: flex
-		margin-top: 60px
+    .franchisee-flex
+        display: flex
+        margin-top: 60px
 
-	$padding: 15px
+    $padding: 15px
 
-	.fr-list-wrap
-		position: relative
-		margin: 30px 0
-		&::before,
-		&::after
-			+pseudo
-			left: 0
-			right: 25px
-			box-shadow: 0 0 7px 7px #fff
-			pointer-events: none
-		&::before
-			top: 0
-		&::after
-			bottom: 0
+    .fr-list-wrap
+        position: relative
+        margin: 30px 0
+        &::before,
+        &::after
+            +pseudo
+            left: 0
+            right: 25px
+            box-shadow: 0 0 7px 7px #fff
+            pointer-events: none
+        &::before
+            top: 0
+        &::after
+            bottom: 0
 
-	.fr-list
-		margin-left: -$padding
-		padding-left: $padding
-		padding-right: 50px
-		height: 100%
-		max-height: 540px
-		overflow-y: scroll
-		scroll-behavior: smooth
-		&::-webkit-scrollbar-thumb
-			background: $primary
-			background-clip: content-box
-		&::-webkit-scrollbar-track
-			background: #DCDCDC
-		&::-webkit-scrollbar
-			width: 4px
-			height: 4px
-			-webkit-appearance: none
-		.list-empty
-			color: $secondary
-			text-align: center
-	@at-root .franchisee-item
-		display: flex
-		align-items: center
-		justify-content: space-between
-		padding: 15px 0
-		font-size: 13px
-		transition: background-color .25s
-		&.active
-			background-color: #FAF2FE
-			margin-left: -$padding
-			margin-right: -$padding
-			padding-left: $padding
-			padding-right: $padding
-		&.invisible
-			display: none
-			& ~ .list-empty
-				display: block
-		&:not(.invisible) ~ .list-empty
-			display: none
+    .fr-list
+        margin-left: -$padding
+        padding-left: $padding
+        padding-right: 50px
+        height: 100%
+        max-height: 540px
+        overflow-y: scroll
+        scroll-behavior: smooth
+        &::-webkit-scrollbar-thumb
+            background: $primary
+            background-clip: content-box
+        &::-webkit-scrollbar-track
+            background: #DCDCDC
+        &::-webkit-scrollbar
+            width: 4px
+            height: 4px
+            -webkit-appearance: none
+        .list-empty
+            color: $secondary
+            text-align: center
+    @at-root .franchisee-item
+        display: flex
+        align-items: center
+        justify-content: space-between
+        padding: 15px 0
+        font-size: 13px
+        transition: background-color .25s
+        &.active
+            background-color: #FAF2FE
+            margin-left: -$padding
+            margin-right: -$padding
+            padding-left: $padding
+            padding-right: $padding
+        &.invisible
+            display: none
+            & ~ .list-empty
+                display: block
+        &:not(.invisible) ~ .list-empty
+            display: none
 
-		.h3
-			margin-bottom: 10px
-		.frd-name
-			font-weight: 500
-			margin-bottom: 10px
-			color: #898989
-		.fr-address
-			margin-bottom: 10px
-		.frd-city:not(:empty)
-			margin-bottom: 10px
-			font-weight: 500
-			.highlight
-				background: $primary
-				color: #fff
+        .h3
+            margin-bottom: 10px
+        .frd-name
+            font-weight: 500
+            margin-bottom: 10px
+            color: #898989
+        .fr-address
+            margin-bottom: 10px
+        .frd-city:not(:empty)
+            margin-bottom: 10px
+            font-weight: 500
+            .highlight
+                background: $primary
+                color: #fff
 
-		@at-root .f-icons-partners
-			display: flex
-			flex-wrap: wrap
-			color: #898989
-			a
-				display: flex
-				align-items: center
-				margin: 0
-				font-weight: 500
-				svg
-					margin-right: 6px
-					& ~ span
-						color: #898989
-				&:hover span
-					color: inherit
-			p
-				margin-bottom: 5px
-				width: 100%
-	.to_map
-		flex-shrink: 0
-		display: block
-		margin-left: 20px
-		+square(28px)
-		cursor: pointer
-		svg
-			fill: $primary
-			&:hover
-				fill: $secondary
+        @at-root .f-icons-partners
+            display: flex
+            flex-wrap: wrap
+            color: #898989
+            a
+                display: flex
+                align-items: center
+                margin: 0
+                font-weight: 500
+                svg
+                    margin-right: 6px
+                    & ~ span
+                        color: #898989
+                &:hover span
+                    color: inherit
+            p
+                margin-bottom: 5px
+                width: 100%
+    .to_map
+        flex-shrink: 0
+        display: block
+        margin-left: 20px
+        +square(28px)
+        cursor: pointer
+        svg
+            fill: $primary
+            &:hover
+                fill: $secondary

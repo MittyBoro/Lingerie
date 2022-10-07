@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 class DefaultController extends Controller
 {
 
-	public function index()
-	{
-		$viewName = view()->exists('pages.'.$this->page->route) ? 'pages.'.$this->page->route : 'pages.default';
+    public function index()
+    {
+        $viewName = view()->exists('pages.'.$this->page->route) ? 'pages.'.$this->page->route : 'pages.default';
 
-		return view($viewName, [
-			'page' => $this->page
-		]);
-	}
+        return view($viewName, [
+            'page' => $this->page
+        ]);
+    }
 
 }

@@ -121,11 +121,11 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
-		'telegram' => [
-			'driver' => 'custom',
-			'via'    => Logger\TelegramLogger::class,
-			'level'  => 'debug',
-		],
+        'telegram' => [
+            'driver' => 'custom',
+            'via'    => Logger\TelegramLogger::class,
+            'level'  => 'debug',
+        ],
     ],
 
 ];

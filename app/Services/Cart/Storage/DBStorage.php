@@ -26,8 +26,8 @@ class DBStorage {
 
     public function put($key, $value)
     {
-		if (strlen($key) >= 255)
-			throw new \Exception('Invalid key: ' . $key);
+        if (strlen($key) >= 255)
+            throw new \Exception('Invalid key: ' . $key);
 
         if($row = DatabaseStorageModel::find($key))
         {

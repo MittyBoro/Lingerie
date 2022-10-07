@@ -1,168 +1,168 @@
 <template>
-	<app-layout title="Настройки" >
+    <app-layout title="Настройки" >
 
-		<form-section :submit="submit" :form="form">
-			<template #title>
-				<div v-if="!isEdit">Добавить параметр</div>
-				<div v-else>Редактировать параметр</div>
-			</template>
+        <form-section :submit="submit" :form="form">
+            <template #title>
+                <div v-if="!isEdit">Добавить параметр</div>
+                <div v-else>Редактировать параметр</div>
+            </template>
 
-			<template v-if="isEdit" #buttons>
-				<Link :href="route(routePrefix + 'create')" class="btn">Добавить ещё</Link>
-			</template>
+            <template v-if="isEdit" #buttons>
+                <Link :href="route(routePrefix + 'create')" class="btn">Добавить ещё</Link>
+            </template>
 
-			<template #content>
+            <template #content>
 
-				<f-label title="Название" :error="form.errors.title">
-					<f-input @change="stopKeyFromTitle" v-model="form.title" />
-				</f-label>
+                <f-label title="Название" :error="form.errors.title">
+                    <f-input @change="stopKeyFromTitle" v-model="form.title" />
+                </f-label>
 
-				<f-label title="Ключ" :error="form.errors.key">
-					<f-input @change="stopKeyFromTitle" classes="opacity-60" v-model="form.key" mini />
-				</f-label>
+                <f-label title="Ключ" :error="form.errors.key">
+                    <f-input @change="stopKeyFromTitle" classes="opacity-60" v-model="form.key" mini />
+                </f-label>
 
-				<f-label title="Тип" :error="form.errors.type">
-					<f-select :options="types" v-model="form.type" />
-				</f-label>
+                <f-label title="Тип" :error="form.errors.type">
+                    <f-select :options="types" v-model="form.type" />
+                </f-label>
 
-				<f-label v-if="!page_id" title="Имя вкладки (только в панели)" :error="form.errors.tab">
-					<f-input v-model="form.tab" :options="tabs" />
-				</f-label>
+                <f-label v-if="!page_id" title="Имя вкладки (только в панели)" :error="form.errors.tab">
+                    <f-input v-model="form.tab" :options="tabs" />
+                </f-label>
 
-				<!-- можно дополнять -->
-				<f-label title="Прикрепить к странице" :error="form.errors.model_id">
-					<f-select :options="pages" :keys="['id','title']" v-model="page_id" />
-					<Link v-if="page_id" :href="route('admin.pages.edit', page_id)" class="link mt-2">
-						<font-awesome-icon icon="pencil" class="mr-1" />
-						<span>Редактировать страницу</span>
-					</Link>
-				</f-label>
+                <!-- можно дополнять -->
+                <f-label title="Прикрепить к странице" :error="form.errors.model_id">
+                    <f-select :options="pages" :keys="['id','title']" v-model="page_id" />
+                    <Link v-if="page_id" :href="route('admin.pages.edit', page_id)" class="link mt-2">
+                        <font-awesome-icon icon="pencil" class="mr-1" />
+                        <span>Редактировать страницу</span>
+                    </Link>
+                </f-label>
 
-			</template>
+            </template>
 
-			<template v-if="isEdit" #actions>
-				<Link @click.prevent :href="route(routePrefix + 'destroy', form.id)" method="delete" as="button" class="ml-3">
-					<div @click="confirm" class="btn-danger btn-square block">
-						<font-awesome-icon icon="trash-can"/>
-					</div>
-				</Link>
-			</template>
+            <template v-if="isEdit" #actions>
+                <Link @click.prevent :href="route(routePrefix + 'destroy', form.id)" method="delete" as="button" class="ml-3">
+                    <div @click="confirm" class="btn-danger btn-square block">
+                        <font-awesome-icon icon="trash-can"/>
+                    </div>
+                </Link>
+            </template>
 
-		</form-section>
-	</app-layout>
+        </form-section>
+    </app-layout>
 </template>
 
 <script>
-	import slugify from 'slugify'
+    import slugify from 'slugify'
 
-	import AppLayout from '@/Layouts/AppLayout'
-	import FormSection from '@/Layouts/Sections/Form'
-
-
-	export default {
-		components: {
-			AppLayout,
-			FormSection,
-		},
+    import AppLayout from '@/Layouts/AppLayout'
+    import FormSection from '@/Layouts/Sections/Form'
 
 
-		data() {
+    export default {
+        components: {
+            AppLayout,
+            FormSection,
+        },
 
-			let hasItem = !!this.$page.props.item
 
-			let page_id = route().params.page_id;
+        data() {
 
-			return {
-				routePrefix: 'admin.props.',
+            let hasItem = !!this.$page.props.item
 
-				form: this.$inertia.form(this.$page.props.item || {
-					title: null,
-					key: null,
-					type: 'string',
-					tab: null,
-					model_id: page_id,
-					model_type: page_id ? 'pages' : null,
-				}),
+            let page_id = route().params.page_id;
 
-				isEdit: hasItem,
-				editSlug: !hasItem,
+            return {
+                routePrefix: 'admin.props.',
 
-				types: this.$page.props.types,
-				tabs: this.$page.props.tabs,
-			}
-		},
+                form: this.$inertia.form(this.$page.props.item || {
+                    title: null,
+                    key: null,
+                    type: 'string',
+                    tab: null,
+                    model_id: page_id,
+                    model_type: page_id ? 'pages' : null,
+                }),
 
-		watch: {
-			'form.title'(val) {
-				if (!this.isEdit && this.editSlug)
-				this.form.key = val
-			},
-			'form.key'(val) {
-				this.form.key = slugify(val, {lower: true, strict: true, replacement: '_'});
-			},
-		},
+                isEdit: hasItem,
+                editSlug: !hasItem,
 
-		computed: {
-			pages() {
-				let list = [...this.$page.props.pages].map(el => {
-					el.title = `[${el.slug}] ${el.title}`
-					return el
-				});
+                types: this.$page.props.types,
+                tabs: this.$page.props.tabs,
+            }
+        },
 
-				list.unshift({ id: null, title: '---' });
-				return list;
-			},
+        watch: {
+            'form.title'(val) {
+                if (!this.isEdit && this.editSlug)
+                this.form.key = val
+            },
+            'form.key'(val) {
+                this.form.key = slugify(val, {lower: true, strict: true, replacement: '_'});
+            },
+        },
 
-			page_id: {
-				get() {
-					return this.form.model_id;
-				},
-				set(val) {
-					if (val) {
-						this.form.model_id = val
-						this.form.model_type = 'pages'
-					} else {
-						this.form.model_id = null
-						this.form.model_type = null
-					}
-				}
-			},
-		},
+        computed: {
+            pages() {
+                let list = [...this.$page.props.pages].map(el => {
+                    el.title = `[${el.slug}] ${el.title}`
+                    return el
+                });
 
-		methods: {
-			stopKeyFromTitle() {
-				this.editSlug = this.form.key === '';
-			},
+                list.unshift({ id: null, title: '---' });
+                return list;
+            },
 
-			submit() {
-				this.isEdit ?
-							this.update() :
-							this.store()
-			},
+            page_id: {
+                get() {
+                    return this.form.model_id;
+                },
+                set(val) {
+                    if (val) {
+                        this.form.model_id = val
+                        this.form.model_type = 'pages'
+                    } else {
+                        this.form.model_id = null
+                        this.form.model_type = null
+                    }
+                }
+            },
+        },
 
-			store() {
-				this.form
-					.transform((data) => ({
-						...data,
-					}))
-					.post(route(this.routePrefix + 'store'), {
-						preserveState: (page) => Object.keys(page.props.errors).length,
-					});
-			},
+        methods: {
+            stopKeyFromTitle() {
+                this.editSlug = this.form.key === '';
+            },
 
-			update() {
+            submit() {
+                this.isEdit ?
+                            this.update() :
+                            this.store()
+            },
 
-				this.form
-					.transform((data) => ({
-						...data,
-						_method : 'PUT',
-					}))
-					.post(route(this.routePrefix + 'update', this.form.id), {
-						preserveState: (page) => Object.keys(page.props.errors).length,
-						preserveScroll: true,
-					});
-			},
-		},
-	}
+            store() {
+                this.form
+                    .transform((data) => ({
+                        ...data,
+                    }))
+                    .post(route(this.routePrefix + 'store'), {
+                        preserveState: (page) => Object.keys(page.props.errors).length,
+                    });
+            },
+
+            update() {
+
+                this.form
+                    .transform((data) => ({
+                        ...data,
+                        _method : 'PUT',
+                    }))
+                    .post(route(this.routePrefix + 'update', this.form.id), {
+                        preserveState: (page) => Object.keys(page.props.errors).length,
+                        preserveScroll: true,
+                    });
+            },
+        },
+    }
 </script>
 

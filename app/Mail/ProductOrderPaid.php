@@ -12,31 +12,31 @@ use App\Models\Product\ProductOrder;
 
 class ProductOrderPaid extends Mailable
 {
-	use Queueable, SerializesModels;
+    use Queueable, SerializesModels;
 
-	public $props;
-	public $order;
-	public $subject;
+    public $props;
+    public $order;
+    public $subject;
 
-	public function __construct(ProductOrder $order, $toCustomer)
-	{
-		$this->props = Prop::list();
-		$this->order = $order;
+    public function __construct(ProductOrder $order, $toCustomer)
+    {
+        $this->props = Prop::list();
+        $this->order = $order;
 
-		if ( $toCustomer )
-			$this->subject = "Ваш заказ принят в обработку";
-		else
-			$this->subject = "Оплачен новый заказ";
-	}
+        if ( $toCustomer )
+            $this->subject = "Ваш заказ принят в обработку";
+        else
+            $this->subject = "Оплачен новый заказ";
+    }
 
-	/**
-	 * Build the message.
-	 *
-	 * @return $this
-	 */
-	public function build()
-	{
-		return $this->subject($this->subject)
-					->view('emails.product_order');
-	}
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->subject($this->subject)
+                    ->view('emails.product_order');
+    }
 }

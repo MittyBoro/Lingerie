@@ -10,64 +10,64 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-	/**
-	 * The path to the "home" route for your application.
-	 *
-	 * This is used by Laravel authentication to redirect users after login.
-	 *
-	 * @var string
-	 */
-	public const HOME = '/';
-	public const HOME_ADMIN = '/@theadmin';
+    /**
+     * The path to the "home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const HOME = '/';
+    public const HOME_ADMIN = '/@theadmin';
 
-	protected $adminNamespace = 'App\Http\Controllers\Admin';
-	protected $apiNamespace = 'App\Http\Controllers\Api';
-	protected $namespace = 'App\Http\Controllers';
+    protected $adminNamespace = 'App\Http\Controllers\Admin';
+    protected $apiNamespace = 'App\Http\Controllers\Api';
+    protected $namespace = 'App\Http\Controllers';
 
-	/**
-	 * Define your route model bindings, pattern filters, etc.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->configureRateLimiting();
+    /**
+     * Define your route model bindings, pattern filters, etc.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->configureRateLimiting();
 
-		$this->routes(function () {
+        $this->routes(function () {
 
-			Route::prefix('api')
-				->middleware('api')
-				->name('api.')
-				->namespace($this->apiNamespace)
-				->group(base_path('routes/api.php'));
+            Route::prefix('api')
+                ->middleware('api')
+                ->name('api.')
+                ->namespace($this->apiNamespace)
+                ->group(base_path('routes/api.php'));
 
-			Route::prefix(config('admin.path'))
-				->middleware(['web', 'inertia'])
-				->name('admin.')
-				->namespace($this->adminNamespace)
-				->group(base_path('routes/admin.php'));
+            Route::prefix(config('admin.path'))
+                ->middleware(['web', 'inertia'])
+                ->name('admin.')
+                ->namespace($this->adminNamespace)
+                ->group(base_path('routes/admin.php'));
 
-			Route::middleware('web')
-				->namespace($this->namespace)
-				->group(base_path('routes/web.php'));
-		});
-	}
+            Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));
+        });
+    }
 
-	/**
-	 * Configure the rate limiters for the application.
-	 *
-	 * @return void
-	 */
-	protected function configureRateLimiting()
-	{
-		RateLimiter::for('api', function (Request $request) {
-			return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-		});
-	}
-	public static function home(Request $request)
-	{
-		return $request->is_inertia ?
-					self::HOME_ADMIN :
-					self::HOME;
-	}
+    /**
+     * Configure the rate limiters for the application.
+     *
+     * @return void
+     */
+    protected function configureRateLimiting()
+    {
+        RateLimiter::for('api', function (Request $request) {
+            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        });
+    }
+    public static function home(Request $request)
+    {
+        return $request->is_inertia ?
+                    self::HOME_ADMIN :
+                    self::HOME;
+    }
 }

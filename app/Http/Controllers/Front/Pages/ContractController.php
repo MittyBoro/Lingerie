@@ -7,37 +7,37 @@ use App\Services\Cities;
 
 class ContractController extends Controller
 {
-	public function index(Request $request)
-	{
-		$leftMenu = $this->getLeftMenu();
-		$cities = Cities::list()->sortBy('name');
+    public function index(Request $request)
+    {
+        $leftMenu = $this->getLeftMenu();
+        $cities = Cities::list()->sortBy('name');
 
-		return view('pages.contract', [
-			'page' => $this->page,
-			'left_menu' => $leftMenu,
-			'cities' => $cities,
-		]);
-	}
+        return view('pages.contract', [
+            'page' => $this->page,
+            'left_menu' => $leftMenu,
+            'cities' => $cities,
+        ]);
+    }
 
-	private function getLeftMenu()
-	{
-		$leftMenu = [];
+    private function getLeftMenu()
+    {
+        $leftMenu = [];
 
-		foreach($this->page->props['left_menu'] as $v) {
-			if (empty($v))
-				continue;
+        foreach($this->page->props['left_menu'] as $v) {
+            if (empty($v))
+                continue;
 
-			$vArray = explode(':', $v);
-			$title = ltrim($vArray[0], '-');
+            $vArray = explode(':', $v);
+            $title = ltrim($vArray[0], '-');
 
-			$leftMenu[] = (object) [
-				'depth' => $title === $vArray[0] ? 0 : 1,
-				'title' => trim($title),
-				'url' => trim($vArray[1]) ?? '/',
-			];
-		}
+            $leftMenu[] = (object) [
+                'depth' => $title === $vArray[0] ? 0 : 1,
+                'title' => trim($title),
+                'url' => trim($vArray[1]) ?? '/',
+            ];
+        }
 
-		return $leftMenu;
-	}
+        return $leftMenu;
+    }
 
 }

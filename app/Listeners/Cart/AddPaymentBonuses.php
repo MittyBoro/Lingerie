@@ -10,12 +10,12 @@ use Illuminate\Queue\InteractsWithQueue;
 class AddPaymentBonuses implements ShouldQueue
 {
 
-	public $delay = 0;
+    public $delay = 0;
 
-	public function viaQueue()
-	{
+    public function viaQueue()
+    {
         $this->delay = Bonus::getBuyHoursToCharge() * 60*60;
-	}
+    }
 
     /**
      * Handle the event.
@@ -25,6 +25,6 @@ class AddPaymentBonuses implements ShouldQueue
      */
     public function handle(ProductOrderPaid $event)
     {
-		Bonus::appendByOrder($event->order);
+        Bonus::appendByOrder($event->order);
     }
 }

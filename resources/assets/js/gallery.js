@@ -9,16 +9,16 @@ import 'lg-hash.js'
 
 
 document.querySelectorAll('.lightgallery').forEach(el => {
-	lightGallery(el, {
-		controls: true,
-		counter: false,
+    lightGallery(el, {
+        controls: true,
+        counter: false,
 
-		zoom: true,
-		actualSize: false,
+        zoom: true,
+        actualSize: false,
 
-		fullScreen: false,
-		download: false,
-		// thumbnail: false,
-		// autoplay: false,
-	});
+        fullScreen: false,
+        download: false,
+        // thumbnail: false,
+        // autoplay: false,
+    });
 })

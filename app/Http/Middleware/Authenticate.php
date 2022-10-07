@@ -19,12 +19,12 @@ class Authenticate extends Middleware
 
     public function handle($request, Closure $next, ...$guards)
     {
-		$this->authenticate($request, $guards);
+        $this->authenticate($request, $guards);
 
-		if ($request->user() && $request->user()->role == User::ROLE_BLOCKED) {
-			Auth::logout();
-			return back()->withErrors('Ваш аккаунт заблокирован');
-		}
+        if ($request->user() && $request->user()->role == User::ROLE_BLOCKED) {
+            Auth::logout();
+            return back()->withErrors('Ваш аккаунт заблокирован');
+        }
 
         return $next($request);
     }
@@ -33,8 +33,8 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             return !$request->is_inertia ?
-						route('login') :
-						route('admin.login');
+                        route('login') :
+                        route('admin.login');
         }
     }
 }
