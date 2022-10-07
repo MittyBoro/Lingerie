@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Models;
 
-use App\Models\BaseModel;
 use App\Models\Product\Product;
 
-class ProductOrderItem extends BaseModel
+class OrderItem extends BaseModel
 {
 	public $timestamps = false;
 

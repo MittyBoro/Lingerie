@@ -9,7 +9,7 @@ use Kalnoy\Nestedset\NodeTrait;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends BaseModel
+class ProductCategory extends BaseModel
 {
 	use HasFactory;
 	use NodeTrait;
@@ -24,6 +24,14 @@ class Category extends BaseModel
 	];
 
 	protected $hidden = ['_lft', '_rgt', 'position'];
+
+    protected $languageFieds = [
+        'title',
+        'description',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+    ];
 
 
 	public static function boot()

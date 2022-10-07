@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Models;
 
-use App\Models\BaseModel;
-use App\Models\Category;
 use App\Models\Traits\ProductCartTrait;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use Illuminate\Database\Eloquent\Builder;
@@ -111,7 +109,7 @@ class Product extends BaseModel implements HasMedia
 	public function saveRelations($data)
 	{
 		if ( isset($data['categories']) ) {
-			$categories = Category::whereIn('id', $data['categories'])
+			$categories = ProductCategory::whereIn('id', $data['categories'])
 							->with('ancestors')
 							->get()
 							->map(

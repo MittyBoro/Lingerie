@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Models\Product;
+namespace App\Models;
 
 use App\Events\ProductOrderPaid;
-use App\Models\BaseModel;
 
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Bonus;
-use App\Models\User;
-
-class ProductOrder extends BaseModel
+class Order extends BaseModel
 {
 	protected $casts = [
 		'address' => 'array',
@@ -27,9 +23,6 @@ class ProductOrder extends BaseModel
 
 		static::created( function($model)
 		{
-			if ($model->user_id) {
-				Bonus::debitByOrder($model);
-			}
 		});
 
 		static::saving( function($model)
@@ -39,16 +32,9 @@ class ProductOrder extends BaseModel
 					event(new ProductOrderPaid($model));
 				}
 
-				if ($model->status != self::STATUS_PENDING)
-					$model->url = null;
+				// if ($model->status != self::STATUS_PENDING)
+				// 	$model->url = null;
 
-				if ($model->status == self::STATUS_CANCELED) {
-					$model->cancelDebitBonuses();
-				}
-
-				if ($model->status == self::STATUS_REFUNDED) {
-					$model->cancelDebitBonuses();
-				}
 			}
 		});
 
@@ -71,14 +57,6 @@ class ProductOrder extends BaseModel
 	public function items()
 	{
 		return $this->hasMany(ProductOrderItem::class, 'order_id')->with('product');
-	}
-	public function bonus()
-	{
-		return $this->hasOne(Bonus::class, 'order_id')->where('amount', '>', 0);
-	}
-	public function debit_bonus()
-	{
-		return $this->hasOne(Bonus::class, 'order_id')->where('amount', '<', 0);
 	}
 	public function user()
 	{
