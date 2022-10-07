@@ -2,62 +2,61 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\PartnerRequest;
 use Illuminate\Http\Request;
 
-use App\Models\Product\ProductOrder;
+use App\Models\Order;
 use App\Models\User;
 use App\Services\Payment\Payment;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
-class ProductOrderController extends Controller
+class OrderController extends Controller
 {
 	public function index(Request $request)
 	{
-		$orders = ProductOrder::orderByDesc('id')
+		$orders = Order::orderByDesc('id')
 							->with(['items', 'bonus', 'user'])
 							->filter($request->all())
 							->paginated(['old_amount', 'discounts']);
 
 		$sales = [
-			'month' => ProductOrder::filter($request->all())->month()->sumAndCount()->first(),
-			'year' => ProductOrder::filter($request->all())->year()->sumAndCount()->first(),
-			'all' => ProductOrder::filter($request->all())->sumAndCount()->first(),
+			'month' => Order::filter($request->all())->month()->sumAndCount()->first(),
+			'year' => Order::filter($request->all())->year()->sumAndCount()->first(),
+			'all' => Order::filter($request->all())->sumAndCount()->first(),
 		];
 
 		$user = User::find($request->user_id);
 
-		return Inertia::render('ProductOrders/Index', [
+		return Inertia::render('Orders/Index', [
 			'list' => $orders,
 			'sales' => $sales,
 			'user' => $user,
 		]);
 	}
-	public function show(ProductOrder $productOrder)
+	public function show(Order $productOrder)
 	{
 		$productOrder->load(['items', 'bonus', 'user']);
 		$productOrder->setAppends(['old_amount', 'discounts']);
 
-		return Inertia::render('ProductOrders/Show', [
+		return Inertia::render('Orders/Show', [
 			'item' => $productOrder,
 		]);
 	}
 
-	public function update(Request $request, ProductOrder $productOrder)
+	public function update(Request $request, Order $productOrder)
 	{
 		$data = $request->validate([
-			'status' => ['required', 'string', Rule::in(ProductOrder::statuses())]
+			'status' => ['required', 'string', Rule::in(Order::statuses())]
 		]);
 
 		$productOrder->load(['items']);
 
 
 
-		if ($data['status'] == ProductOrder::STATUS_REFUNDED) {
+		if ($data['status'] == Order::STATUS_REFUNDED) {
 			try {
 				$payment = new Payment($productOrder->payment_type);
-				$payment->refund($productOrder);
+				// $payment->refund($productOrder);
 
 			} catch (\Throwable $th) {
 				return back()->withErrors([

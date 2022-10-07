@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\ProductRequest;
 use Illuminate\Http\Request;
 
-use App\Models\Product\Product;
-use App\Models\Product\PromoCode;
-use App\Models\Category;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -22,7 +21,7 @@ class ProductController extends Controller
 
 		return Inertia::render('Products/Index', [
 			'list' => $products,
-			'categories' => Category::get4Admin(Product::class),
+			'categories' => ProductCategory::get4Admin(Product::class),
 		]);
 	}
 
@@ -93,9 +92,8 @@ class ProductController extends Controller
 	private function editorData() : array
 	{
 		return [
-			'categories' => Category::get4Admin(Product::class),
+			'categories' => ProductCategory::get4Admin(Product::class),
 			'characteristics_list' => Product::characteristicsList(),
-			'promo_codes' => PromoCode::getOrdered(),
 		];
 	}
 }
