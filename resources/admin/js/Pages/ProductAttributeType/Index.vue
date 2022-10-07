@@ -1,0 +1,74 @@
+<template>
+	<app-layout title="Страницы">
+		<index-section class="max-w-3xl">
+
+			<template #title>Все страницы</template>
+			<template #buttons>
+				<Link :href="route(routePrefix + 'create')" class="btn">Добавить</Link>
+			</template>
+
+			<template #content>
+
+				<t-table :table="table">
+					<template #row="sp">
+						<t-data v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
+						<t-data v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
+						<t-data mini>
+							<a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
+								<font-awesome-icon icon="eye"/>
+							</a>
+						</t-data>
+					</template>
+				</t-table>
+
+			</template>
+		</index-section>
+	</app-layout>
+</template>
+
+<script>
+
+	import AppLayout from '@/Layouts/AppLayout'
+	import IndexSection from '@/Layouts/Sections/Index'
+
+	export default {
+		components: {
+			AppLayout, IndexSection,
+		},
+
+		data() {
+			return {
+				routePrefix: 'admin.pages.',
+			}
+		},
+
+		computed: {
+			table() {
+				return {
+					headers: [
+						{ key: 'title', text: 'Заголовок',  sortable: true },
+						{ key: 'slug', text: 'Ярлык',  sortable: true },
+						{},
+					],
+					items: this.$page.props.list.data,
+					pagination: this.$page.props.list,
+
+					editRoute: this.routePrefix + 'edit',
+					destroyRoute: this.routePrefix + 'destroy',
+				}
+			}
+		},
+
+		methods: {
+			update(item) {
+				item.index_edit = true;
+
+				let form = this.$inertia.form(item);
+
+				form.put( route(this.routePrefix + 'update', item.id) , {
+					preserveScroll: true,
+				});
+			},
+		}
+	}
+</script>
