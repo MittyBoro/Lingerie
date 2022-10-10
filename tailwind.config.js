@@ -18,7 +18,7 @@ module.exports = {
 
             black: colors.black,
             white: colors.white,
-            gray: colors.zinc,
+            gray: colors.stone,
             red: colors.red,
             orange: colors.orange,
             yellow: colors.yellow,
@@ -30,8 +30,8 @@ module.exports = {
             fuchsia: colors.fuchsia,
             pink: colors.pink,
 
-            primary: colors.purple,
-            secondary: colors.gray,
+            primary: colors.rose,
+            secondary: colors.stone,
         },
         extend: {
             fontFamily: {

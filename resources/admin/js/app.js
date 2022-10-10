@@ -1,17 +1,16 @@
-require('./bootstrap');
-
-// Import modules...
-import { createApp, h } from 'vue';
-import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
-import { InertiaProgress } from '@inertiajs/progress';
-import { Link } from '@inertiajs/inertia-vue3'
-
-import Toast from "vue-toastification";
-
-import MyMixin from "./Mixins/Mixin.js";
-
+import { componentFromFolder } from './bootstrap';
 import "../sass/app.sass";
 
+// Import modules...
+
+import { createApp, h } from 'vue';
+import { createInertiaApp, Link } from '@inertiajs/inertia-vue3';
+import { InertiaProgress } from '@inertiajs/progress';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from 'ziggy';
+
+import Toast from "vue-toastification";
+import MyMixin from "./Mixins/Mixin.js";
 
 // fortawesome
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -21,50 +20,35 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas, fab)
 
 
+// const el = document.getElementById('app');
+const appName = document.getElementsByTagName('title')[0]?.innerText;
+
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+
+    setup({ el, app, props, plugin }) {
+
+        let createdApp = createApp({ render: () => h(app, props) });
+
+        createdApp
+            .use(plugin)
+            .use(ZiggyVue, Ziggy)
+
+            .mixin({ methods: { route } })
+            .mixin(MyMixin)
+            .use(Toast)
+            .component('font-awesome-icon', FontAwesomeIcon)
+            .component('Link', Link)
 
 
-const el = document.getElementById('app');
+        componentFromFolder(createdApp, import.meta.globEager('./Elements/Form/*.vue'), 'F')
+        componentFromFolder(createdApp, import.meta.globEager('./Elements/Table/*.vue'), 'T')
 
-const app = createApp({
-	render: () =>
-		h(InertiaApp, {
-			initialPage: JSON.parse(el.dataset.page),
-			resolveComponent: (name) => require(`./Pages/${name}`).default,
-		}),
+        return createdApp.mount(el);
+    },
 });
 
 
+
 InertiaProgress.init({ color: '#fff' });
-
-app.mixin({ methods: { route } });
-app.mixin(MyMixin);
-app.use(InertiaPlugin);
-app.use(Toast);
-
-app.component('font-awesome-icon', FontAwesomeIcon)
-
-
-
-const componentFromFolder = (requireComponent, prefix) => {
-
-	requireComponent.keys().forEach(fileName => {
-		let componentConfig = requireComponent(fileName)
-		let componentName = _.upperFirst(
-			_.camelCase( fileName.split('/').pop().replace(/\.\w+$/, '') )
-		)
-
-		app.component(
-			prefix + componentName,
-			componentConfig.default || componentConfig
-		)
-	})
-}
-
-componentFromFolder(require.context('./Elements/Form', false, /.*\.vue$/), 'F')
-componentFromFolder(require.context('./Elements/Table', false, /.*\.vue$/), 'T')
-
-
-app.component('Link', Link)
-
-
-app.mount(el);
