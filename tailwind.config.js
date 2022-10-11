@@ -30,7 +30,18 @@ module.exports = {
             fuchsia: colors.fuchsia,
             pink: colors.pink,
 
-            primary: colors.rose,
+            primary: {
+                50: '#FAF6F5',
+                100: '#EFE1DF',
+                200: '#E4CCC9',
+                300: '#D8B8B3',
+                400: '#CDA39D',
+                500: '#C28E87',
+                600: '#9C7772',
+                700: '#765E5B',
+                800: '#534442',
+                900: '#302A29',
+            },
             secondary: colors.stone,
         },
         extend: {
