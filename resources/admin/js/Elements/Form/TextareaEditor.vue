@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="0">
 		<div class="ckeditor-component form-textarea" :class="{'ckeditor-focused': focus, 'ckeditor-mini': mini, 'wo-upload': !uploadImages}">
 			<div class="ckeditor" ref="ckeditor" v-html="content"></div>
 			<div class="word-count" ref="words_count"></div>
@@ -27,9 +27,9 @@
 
 <script>
 
-import Notify from '../../Layouts/AppComponets/Notify'
+import Notify from '@/Layouts/AppComponets/Notify'
 
-import {Editor, UploadAdapter} from 'ckeditor5'
+// import { Editor, UploadAdapter } from 'ckeditor5'
 
 export default {
 
@@ -75,6 +75,9 @@ export default {
 	},
 
 	mounted() {
+
+
+        return ;
 
 		let config = {
 			toolbar: {

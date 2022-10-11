@@ -24,11 +24,11 @@ Route::middleware(['admin.role:editor'])
     //         Route::post('categories/sort', 'CategoryController@sort')->name('categories.sort');
     // });
 
-    // Route::resource('products', 'ProductController')->except(['show']);
+    Route::resource('products', 'ProductController')->except(['show']);
     // Route::post('products/sort', 'ProductController@sort')->name('products.sort');
 
 
-    // Route::resource('pages', 'PageController')->except(['show']);
+    Route::resource('pages', 'PageController')->except(['show']);
 
 
     // Route::resource('product_orders', 'ProductOrderController')->only(['index', 'show', 'update']);

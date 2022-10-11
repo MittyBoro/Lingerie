@@ -16,17 +16,6 @@ return [
         ],
 
         [
-            'name' => 'Заказы товаров',
-            'route' => 'admin.product_orders.index',
-            'icon' => 'cart-shopping',
-        ],
-        [
-            'name' => 'Обратная связь',
-            'route' => 'admin.feedback_orders.index',
-            'icon' => 'headset',
-        ],
-
-        [
             'name' => 'Магазин',
             'icon' => 'store',
             'route' => 'admin.products.index',
@@ -37,10 +26,23 @@ return [
                 ],
                 [
                     'name' => 'Категории',
-                    'route' => 'admin.categories.index',
-                    'query' => [ 'type' => 'products' ],
+                    'route' => 'admin.products.index',
+                    // 'query' => [ 'type' => 'products' ],
+                ],
+                [
+                    'name' => 'Группы атрибутов',
+                    'route' => 'admin.products.index',
+                ],
+                [
+                    'name' => 'Атрибуты',
+                    'route' => 'admin.products.index',
                 ],
             ],
+        ],
+        [
+            'name' => 'Заказы',
+            'route' => 'admin.products.index',
+            'icon' => 'cart-shopping',
         ],
         [
             'name' => 'Страницы',
@@ -55,9 +57,20 @@ return [
         ],
         [
             'name' => 'Дополнительно',
-            'route' => 'admin.props.index',
             'icon' => 'gear',
             'role_except' => [User::ROLE_EDITOR],
+            'route' => 'admin.props.index',
+            'sublinks' => [
+                [
+                    'name' => 'Основное',
+                    'route' => 'admin.props.index',
+                ],
+                [
+                    'name' => 'FAQ',
+                    'route' => 'admin.props.index',
+                ],
+            ],
         ],
+
     ],
 ];

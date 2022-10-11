@@ -17,7 +17,6 @@
         "@vitejs/plugin-vue": "^3.1.2",
         "autoprefixer": "^10.4.12",
         "axios": "^0.27",
-        "ckeditor5": "file:./resources/admin/js/Elements/CKEditor5",
         "laravel-vite-plugin": "^0.6.1",
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
@@ -32,6 +31,7 @@
         "vuedraggable": "^4.1.0"
     },
     "dependencies": {
+        "libphonenumber-js": "^1.10.13",
         "swiper": "^8.4.2"
     }
 }
