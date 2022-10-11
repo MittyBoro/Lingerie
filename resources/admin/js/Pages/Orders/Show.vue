@@ -1,14 +1,14 @@
 <template>
-	<app-layout title="Заказы товаров">
-		<index-section class="max-w-4xl">
+	<AppLayout title="Заказы товаров">
+		<IndexSection class="max-w-4xl">
 
 			<template #content>
 
-				<list-item :element="item" class="-mb-10 shadow-none bg-transparent" single="1"/>
+				<ListItem :element="item" class="-mb-10 shadow-none bg-transparent" single="1"/>
 
 			</template>
-		</index-section>
-	</app-layout>
+		</IndexSection>
+	</AppLayout>
 </template>
 
 <script>

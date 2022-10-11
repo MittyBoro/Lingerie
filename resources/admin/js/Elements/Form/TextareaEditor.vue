@@ -5,7 +5,7 @@
 			<div class="word-count" ref="words_count"></div>
 		</div>
 		<div v-if="0 && uploadImages">
-			<f-notice v-if="!id">Сохраните страницу, что бы добавлять изображения в текст</f-notice>
+			<FNotice v-if="!id">Сохраните страницу, что бы добавлять изображения в текст</FNotice>
 			<div v-else-if="images.length">
 				<div class="inline-block mt-3 px-2 py-0.5 bg-gray-50 cursor-pointer transition" :class="{'rounded-t-md ' : showImages, 'rounded-md shadow-sm': !showImages}" @click="showImages = !showImages">
 					<span class="text-xs border-b border-current border-dotted">Файлы ({{ images.length }})</span>

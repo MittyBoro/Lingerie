@@ -1,6 +1,6 @@
 <template>
-	<app-layout title="Категории" >
-		<index-section class="max-w-3xl">
+	<AppLayout title="Категории" >
+		<IndexSection class="max-w-3xl">
 
 			<template #title>Категории</template>
 			<template #buttons>
@@ -14,12 +14,12 @@
 						<div @click="saveSort" class="btn w-full">Сохранить сортировку</div>
 					</div>
 				</div>
-				<t-notify class="border-t border-b" v-else>Данных ещё нет</t-notify>
+				<TNotify class="border-t border-b" v-else>Данных ещё нет</TNotify>
 
 			</template>
 
-		</index-section>
-	</app-layout>
+		</IndexSection>
+	</AppLayout>
 </template>
 
 <script>

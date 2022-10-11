@@ -50,13 +50,13 @@
 		<template v-if="!hideButtons">
 			<div v-if="form" class="flex items-center rounded-b-md sm:rounded-b-xl justify-end bg-gray-50 text-right px-4 py-4 sm:px-8"
 				:class="{'rounded-md sm:rounded-xl': !hasContentSlots }">
-				<f-button class="w-full text-xs" :disabled="form.processing">
+				<FButton class="w-full text-xs" :disabled="form.processing">
 					Сохранить
-				</f-button>
+				</FButton>
 				<slot v-if="$slots.actions" name="actions"></slot>
 			</div>
 
-			<f-button-fixed v-if="form && !hideFix" :disabled="form.processing" />
+			<FButtonFixed v-if="form && !hideFix" :disabled="form.processing" />
 		</template>
 	</form>
 

@@ -1,6 +1,6 @@
 <template>
-    <app-layout title="Настройки" >
-        <form-section class="max-w-3xl load-opacity" :tabs="tabs" v-model:activeTab="activeTab">
+    <AppLayout title="Настройки" >
+        <FormSection class="max-w-3xl load-opacity" :tabs="tabs" v-model:activeTab="activeTab">
             <template #title>
                 <div class="flex items-center">
                     <span>Настройки</span>
@@ -20,8 +20,8 @@
 
             </template>
 
-        </form-section>
-    </app-layout>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <script>

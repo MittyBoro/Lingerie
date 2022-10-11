@@ -1,25 +1,25 @@
 <template>
-	<auth-layout>
+	<AuthLayout>
 
 		<div class="mb-4 text-sm text-gray-600">
 			Пожалуйста, подтвердите свой пароль, прежде чем продолжить.
 		</div>
 
-		<f-validation-errors class="mb-4" />
+		<FValidationErrors class="mb-4" />
 
 		<form @submit.prevent="submit">
 
-			<f-label title="Пароль" classes="block">
-				<f-input type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
-			</f-label>
+			<FLabel title="Пароль" classes="block">
+				<FInput type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" autofocus />
+			</FLabel>
 
 			<div class="flex justify-end mt-4">
-				<f-button class="ml-4" :disabled="form.processing">
+				<FButton class="ml-4" :disabled="form.processing">
 					Подтвердить
-				</f-button>
+				</FButton>
 			</div>
 		</form>
-	</auth-layout>
+	</AuthLayout>
 </template>
 
 <script>

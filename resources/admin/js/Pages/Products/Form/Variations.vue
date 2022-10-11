@@ -15,16 +15,16 @@
 				<div v-if="list.length > 1" class="text-xs text-gray-400">{{ options.join(', ') }}</div>
 			</div>
 
-			<draggable v-if="list.length" class="mb-6 grid gap-y-4" v-model="list" item-key="name" handle=".drag-handle" group="name" >
+			<Draggable v-if="list.length" class="mb-6 grid gap-y-4" v-model="list" item-key="name" handle=".drag-handle" group="name" >
 				<template #item="{ element, index }">
 					<div class="variations-big flex flex-col">
 						<div class="grid gap-3 variations-row">
 							<div class="col-icon mt-6 pt-0.5">
 								<font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
 							</div>
-							<f-label title="Имя вариации" classes="">
-								<f-input v-model.lazy="element.name" :placeholder="isSingle ? '-' : ''" :required="element.list.length > 1" mini/>
-							</f-label>
+							<FLabel title="Имя вариации" classes="">
+								<FInput v-model.lazy="element.name" :placeholder="isSingle ? '-' : ''" :required="element.list.length > 1" mini/>
+							</FLabel>
 							<div class="col-icon mt-7 pt-0.5">
 								<span @click="removeAt(index)">
 									<font-awesome-icon icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 				</template>
-			</draggable>
+			</Draggable>
 
 			<div class="flex">
 				<div @click="addVariation()" class="btn-gray w-full">
@@ -49,9 +49,9 @@
 				<div @click="showText = !showText" class="btn-gray flex-shrink-0">Из текста</div>
 			</div>
 			<div v-show="showText" class="fromtext mt-4">
-				<f-label title="Например: «Цвет: Синий | Красный | Желтый = 200»">
-					<f-textarea v-model="variText" />
-				</f-label>
+				<FLabel title="Например: «Цвет: Синий | Красный | Желтый = 200»">
+					<FTextarea v-model="variText" />
+				</FLabel>
 				<div @click="textToList" class="mt-2 btn-gray w-full">Текст в вариации</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 <template>
-	<app-layout title="Категории" >
+	<AppLayout title="Категории" >
 
-		<form-section :submit="submit" :form="form" :tabs="['Основное', 'SEO']" v-model:activeTab="activeTab"  class="max-w-xl">
+		<FormSection :submit="submit" :form="form" :tabs="['Основное', 'SEO']" v-model:activeTab="activeTab"  class="max-w-xl">
 			<template #title>
 				<div v-if="!isEdit">Добавить категорию</div>
 				<div v-else>Редактировать категорию</div>
@@ -16,9 +16,9 @@
 				<TabSEO v-show="activeTab == 'SEO'" :form="form" />
 
 			</template>
-		</form-section>
+		</FormSection>
 
-	</app-layout>
+	</AppLayout>
 </template>
 
 <script>

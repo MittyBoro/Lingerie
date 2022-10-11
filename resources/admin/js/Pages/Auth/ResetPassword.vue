@@ -1,33 +1,33 @@
 <template>
-	<auth-layout>
+	<AuthLayout>
 
-		<f-validation-errors class="mb-4" />
+		<FValidationErrors class="mb-4" />
 
 		<form @submit.prevent="submit">
 
-			<f-label title="Email" classes="block">
-				<f-input type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
-			</f-label>
+			<FLabel title="Email" classes="block">
+				<FInput type="email" class="mt-1 block w-full" v-model="form.email" required autofocus />
+			</FLabel>
 
-			<f-label title="Новый пароль" classes="block  mt-4">
-				<f-input type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
-			</f-label>
+			<FLabel title="Новый пароль" classes="block  mt-4">
+				<FInput type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
+			</FLabel>
 
-			<f-label title="Подтверждение пароля" classes="block  mt-4">
-				<f-input type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
-			</f-label>
+			<FLabel title="Подтверждение пароля" classes="block  mt-4">
+				<FInput type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+			</FLabel>
 
 			<div class="flex items-center justify-between mt-4">
 				<Link :href="route('admin.login')" class="underline text-sm text-gray-600 hover:text-gray-900">
 					Вход
 				</Link>
 
-				<f-button :class="{ 'opacity-25': form.processing }" class="ml-4" :disabled="form.processing">
+				<FButton :class="{ 'opacity-25': form.processing }" class="ml-4" :disabled="form.processing">
 					Сброс пароля
-				</f-button>
+				</FButton>
 			</div>
 		</form>
-	</auth-layout>
+	</AuthLayout>
 </template>
 
 <script>

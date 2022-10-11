@@ -15,25 +15,25 @@
 		</div>
 		<div class="props-item">
 			<template v-if="item.type == 'text'">
-				<f-textarea v-model.lazy="form.admin_value" @update:modelValue="update" />
+				<FTextarea v-model.lazy="form.admin_value" @update:modelValue="update" />
 			</template>
 			<template v-if="item.type == 'text_array'">
-				<f-textarea v-model.lazy="form.admin_value" @update:modelValue="update" />
+				<FTextarea v-model.lazy="form.admin_value" @update:modelValue="update" />
 			</template>
 			<template v-else-if="item.type == 'format_text'">
-				<f-textarea-editor v-model.lazy="form.admin_value" @update:modelValue="update" :name="item.key" type="prop" :id="item.id" :allMedia="form.admin_media"  />
+				<FTextareaEditor v-model.lazy="form.admin_value" @update:modelValue="update" :name="item.key" type="prop" :id="item.id" :allMedia="form.admin_media"  />
 			</template>
 			<template v-else-if="item.type == 'files'">
-				<f-file-input multiple v-model="form.admin_value" @update:modelValue="update" />
+				<FFileInput multiple v-model="form.admin_value" @update:modelValue="update" />
 			</template>
 			<template v-else-if="item.type == 'file'">
-				<f-file-input v-model="form.admin_value" @update:modelValue="update" />
+				<FFileInput v-model="form.admin_value" @update:modelValue="update" />
 			</template>
 			<template v-else-if="item.type == 'boolean'">
-				<f-switcher v-model="form.admin_value" @update:modelValue="update" />
+				<FSwitcher v-model="form.admin_value" @update:modelValue="update" />
 			</template>
 			<template v-else>
-				<f-input v-model.lazy="form.admin_value" @update:modelValue="update" />
+				<FInput v-model.lazy="form.admin_value" @update:modelValue="update" />
 			</template>
 		</div>
 	</div>

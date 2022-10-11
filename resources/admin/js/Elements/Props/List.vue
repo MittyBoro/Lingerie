@@ -1,9 +1,9 @@
 <template>
-	<draggable class="col-span-6 loading" :class="{drag: drag}" v-model="list" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
+	<Draggable class="col-span-6 loading" :class="{drag: drag}" v-model="list" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
 		<template #item="{ element }">
-			<props-item :item="element" />
+			<PropsItem :item="element" />
 		</template>
-	</draggable>
+	</Draggable>
 </template>
 
 <script>

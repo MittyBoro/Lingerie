@@ -1,6 +1,6 @@
 <template>
-    <app-layout title="Пользователь" >
-        <index-section class="max-w-5xl">
+    <AppLayout title="Пользователь" >
+        <IndexSection class="max-w-5xl">
 
             <template #title>Пользователь</template>
 
@@ -43,8 +43,8 @@
                     </div>
                 </div>
             </template>
-        </index-section>
-    </app-layout>
+        </IndexSection>
+    </AppLayout>
 </template>
 
 <script>

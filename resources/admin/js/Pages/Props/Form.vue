@@ -1,7 +1,7 @@
 <template>
-    <app-layout title="Настройки" >
+    <AppLayout title="Настройки" >
 
-        <form-section :submit="submit" :form="form">
+        <FormSection :submit="submit" :form="form">
             <template #title>
                 <div v-if="!isEdit">Добавить параметр</div>
                 <div v-else>Редактировать параметр</div>
@@ -13,30 +13,30 @@
 
             <template #content>
 
-                <f-label title="Название" :error="form.errors.title">
-                    <f-input @change="stopKeyFromTitle" v-model="form.title" />
-                </f-label>
+                <FLabel title="Название" :error="form.errors.title">
+                    <FInput @change="stopKeyFromTitle" v-model="form.title" />
+                </FLabel>
 
-                <f-label title="Ключ" :error="form.errors.key">
-                    <f-input @change="stopKeyFromTitle" classes="opacity-60" v-model="form.key" mini />
-                </f-label>
+                <FLabel title="Ключ" :error="form.errors.key">
+                    <FInput @change="stopKeyFromTitle" classes="opacity-60" v-model="form.key" mini />
+                </FLabel>
 
-                <f-label title="Тип" :error="form.errors.type">
-                    <f-select :options="types" v-model="form.type" />
-                </f-label>
+                <FLabel title="Тип" :error="form.errors.type">
+                    <FSelect :options="types" v-model="form.type" />
+                </FLabel>
 
-                <f-label v-if="!page_id" title="Имя вкладки (только в панели)" :error="form.errors.tab">
-                    <f-input v-model="form.tab" :options="tabs" />
-                </f-label>
+                <FLabel v-if="!page_id" title="Имя вкладки (только в панели)" :error="form.errors.tab">
+                    <FInput v-model="form.tab" :options="tabs" />
+                </FLabel>
 
                 <!-- можно дополнять -->
-                <f-label title="Прикрепить к странице" :error="form.errors.model_id">
-                    <f-select :options="pages" :keys="['id','title']" v-model="page_id" />
+                <FLabel title="Прикрепить к странице" :error="form.errors.model_id">
+                    <FSelect :options="pages" :keys="['id','title']" v-model="page_id" />
                     <Link v-if="page_id" :href="route('admin.pages.edit', page_id)" class="link mt-2">
                         <font-awesome-icon icon="pencil" class="mr-1" />
                         <span>Редактировать страницу</span>
                     </Link>
-                </f-label>
+                </FLabel>
 
             </template>
 
@@ -48,8 +48,8 @@
                 </Link>
             </template>
 
-        </form-section>
-    </app-layout>
+        </FormSection>
+    </AppLayout>
 </template>
 
 <script>

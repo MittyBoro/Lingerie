@@ -20,7 +20,7 @@
 
 					<div class="link ml-2 text-xs" v-if="isAdmin" @click="element.showEdit = !element.showEdit">[изменить статус]</div>
 				</div>
-				<f-select v-if="element.showEdit" :options="statuses" v-model="status" @update:modelValue="updateStatus" class="mt-2 max-w-xs" mini/>
+				<FSelect v-if="element.showEdit" :options="statuses" v-model="status" @update:modelValue="updateStatus" class="mt-2 max-w-xs" mini/>
 
 			</div>
 			<template v-if="element.payment_type && isAdmin">

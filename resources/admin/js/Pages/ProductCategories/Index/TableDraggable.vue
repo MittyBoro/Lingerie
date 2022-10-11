@@ -1,34 +1,34 @@
 
 <template>
 	<table class="table">
-		<draggable @change="$emit('showSaveBtn')" tag="tbody" :group="{ name: type }" :list="list" item-key="id" handle=".drag-handle">
+		<Draggable @change="$emit('showSaveBtn')" tag="tbody" :group="{ name: type }" :list="list" item-key="id" handle=".drag-handle">
 			<template #item="{ element }">
 			<tr>
 			<td class="no-style p-0">
 				<table class="table big-row">
 					<tbody>
 						<tr class="drag-tr">
-							<t-data class="sort-td w-min" :class="{'border-l': deep}">
+							<TData class="sort-td w-min" :class="{'border-l': deep}">
 								<font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
-							</t-data>
-							<t-data title="Название" v-model="element.title" @update:modelValue="update(element)" />
+							</TData>
+							<TData title="Название" v-model="element.title" @update:modelValue="update(element)" />
 
-							<t-data class="w-min">
+							<TData class="w-min">
 								<Link :href="route('admin.' + type + '.index', {category: element.id})" class="link font-bold text-xs flex items-center">
 									<font-awesome-icon icon="box-open" class="mr-1" />
 									<span>{{ element.models_count }}</span>
 								</Link>
-							</t-data>
-							<t-data class="w-min">
+							</TData>
+							<TData class="w-min">
 								<Link :href="route(routePrefix + 'edit', {category: element.id, type: type})">
 									<font-awesome-icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
 								</Link>
-							</t-data>
-							<t-data class="w-min">
+							</TData>
+							<TData class="w-min">
 								<Link :href="route(routePrefix + 'destroy', {category: element.id, type: type})" method="delete" as="button">
 									<font-awesome-icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
 								</Link>
-							</t-data>
+							</TData>
 						</tr>
 						<tr>
 							<td colspan="5" class="no-style pl-6 p-0 bg-gray-500 bg-opacity-10 ">
@@ -40,7 +40,7 @@
 			</td>
 			</tr>
 			</template>
-		</draggable>
+		</Draggable>
 	</table>
 
 </template>

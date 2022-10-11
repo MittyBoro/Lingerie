@@ -1,7 +1,7 @@
 <template>
-	<f-label :title="code.code" classes="text-xs">
-		<f-input classes="text-xs max-h-9" type="number" v-model.number="price" mini />
-	</f-label>
+	<FLabel :title="code.code" classes="text-xs">
+		<FInput classes="text-xs max-h-9" type="number" v-model.number="price" mini />
+	</FLabel>
 </template>
 
 <script>

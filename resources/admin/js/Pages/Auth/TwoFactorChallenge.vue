@@ -1,5 +1,5 @@
 <template>
-	<auth-layout>
+	<AuthLayout>
 
 		<div class="mb-4 text-sm text-gray-600">
 			<template v-if="! recovery">
@@ -11,19 +11,19 @@
 			</template>
 		</div>
 
-		<f-validation-errors class="mb-4" />
+		<FValidationErrors class="mb-4" />
 
 		<form @submit.prevent="submit">
 
 
-			<f-label v-if="!recovery" title="Code" classes="block">
-				<f-input ref="code" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.code" autofocus autocomplete="one-time-code" />
-			</f-label>
+			<FLabel v-if="!recovery" title="Code" classes="block">
+				<FInput ref="code" type="text" inputmode="numeric" class="mt-1 block w-full" v-model="form.code" autofocus autocomplete="one-time-code" />
+			</FLabel>
 
 
-			<f-label v-else title="Recovery Code" classes="block mt-4">
-				<f-input ref="recovery_code" type="text" class="mt-1 block w-full" v-model="form.recovery_code" autocomplete="one-time-code" />
-			</f-label>
+			<FLabel v-else title="Recovery Code" classes="block mt-4">
+				<FInput ref="recovery_code" type="text" class="mt-1 block w-full" v-model="form.recovery_code" autocomplete="one-time-code" />
+			</FLabel>
 
 			<div class="flex items-center justify-end mt-4">
 				<button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer" @click.prevent="toggleRecovery">
@@ -36,12 +36,12 @@
 					</template>
 				</button>
 
-				<f-button class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+				<FButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
 					Log in
-				</f-button>
+				</FButton>
 			</div>
 		</form>
-	</auth-layout>
+	</AuthLayout>
 </template>
 
 <script>

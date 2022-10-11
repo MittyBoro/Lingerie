@@ -1,35 +1,35 @@
 <template>
 	<div class="col-span-6 grid grid-cols-6 gap-5">
 
-		<f-label title="Описание" :error="form.errors.description" as="div">
-			<f-textarea-editor v-model="form.description" :mini="true" :allowImages="false"/>
-		</f-label>
+		<FLabel title="Описание" :error="form.errors.description" as="div">
+			<FTextareaEditor v-model="form.description" :mini="true" :allowImages="false"/>
+		</FLabel>
 
 		<!-- characteristics -->
 		<div class="col-span-6 xl:col-span-4 mt-3">
 			<div class="text-lg font-semibold mb-4">Характеристики</div>
-			<draggable v-if="characteristics.length" class="mb-6 grid gap-y-6" v-model="characteristics" item-key="index" handle=".drag-handle">
+			<Draggable v-if="characteristics.length" class="mb-6 grid gap-y-6" v-model="characteristics" item-key="index" handle=".drag-handle">
 				<template #item="{ element, index }">
 					<div class="grid gap-3 row-variations characteristics-grid">
 						<div class="col-icon mt-6 pt-0.5">
 							<font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
 						</div>
 						<div>
-							<f-label title="Описание">
-								<f-input classes="text-xs max-h-9" :options="characteristics_list" v-model="element.name" required />
-							</f-label>
+							<FLabel title="Описание">
+								<FInput classes="text-xs max-h-9" :options="characteristics_list" v-model="element.name" required />
+							</FLabel>
 						</div>
 						<div>
-							<f-label title="Значение">
-								<f-textarea rows="1" class="col-textarea text-xs" v-model="element.value" required />
-							</f-label>
+							<FLabel title="Значение">
+								<FTextarea rows="1" class="col-textarea text-xs" v-model="element.value" required />
+							</FLabel>
 						</div>
 						<div class="col-icon mt-6 pt-0.5">
 							<font-awesome-icon @click="removeAt(index)" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
 						</div>
 					</div>
 				</template>
-			</draggable>
+			</Draggable>
 			<div @click="addDetail" class="btn-gray w-full">
 				<span>Добавить</span>
 				<font-awesome-icon icon="plus" class="ml-1" />

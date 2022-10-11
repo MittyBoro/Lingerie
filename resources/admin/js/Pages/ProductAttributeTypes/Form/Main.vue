@@ -2,30 +2,30 @@
 
 	<div class="col-span-6 grid grid-cols-6 gap-4">
 
-		<f-notice class="col-span-6 xl:col-span-4">
+		<FNotice class="col-span-6 xl:col-span-4">
 			Укажите <code class="monfont-mono font-semibold">%replace%</code> для замены на значение из дочернего элемента
-		</f-notice>
+		</FNotice>
 
-		<f-label title="Название" :error="form.errors.title">
-			<f-input @change="stopSlugFromTitle" type="text" v-model="form.title" />
-		</f-label>
+		<FLabel title="Название" :error="form.errors.title">
+			<FInput @change="stopSlugFromTitle" type="text" v-model="form.title" />
+		</FLabel>
 
-		<f-label title="Ярлык" :error="form.errors.slug">
-			<f-input @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
-		</f-label>
+		<FLabel title="Ярлык" :error="form.errors.slug">
+			<FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
+		</FLabel>
 
-		<!-- <f-label title="Скрытая страница?" :error="form.errors.is_hidden">
-			<f-switcher v-model="form.is_hidden" secondary/>
-			<f-notice v-text="'Не будет доступно для просмотра, рекомендуется для шаблонных страниц'" />
-		</f-label> -->
+		<!-- <FLabel title="Скрытая страница?" :error="form.errors.is_hidden">
+			<FSwitcher v-model="form.is_hidden" secondary/>
+			<FNotice v-text="'Не будет доступно для просмотра, рекомендуется для шаблонных страниц'" />
+		</FLabel> -->
 
-		<f-label title="Описание" :error="form.errors.description" as="div">
-			<f-textarea-editor v-model="form.description" />
-		</f-label>
+		<FLabel title="Описание" :error="form.errors.description" as="div">
+			<FTextareaEditor v-model="form.description" />
+		</FLabel>
 
-		<f-label title="Роутер" :error="form.errors.route">
-			<f-input type="text" v-model="form.route" />
-		</f-label>
+		<FLabel title="Роутер" :error="form.errors.route">
+			<FInput type="text" v-model="form.route" />
+		</FLabel>
 
 	</div>
 

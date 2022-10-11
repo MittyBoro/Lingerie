@@ -1,6 +1,6 @@
 <template>
-    <app-layout title="Пользователи" >
-        <index-section class="max-w-5xl">
+    <AppLayout title="Пользователи" >
+        <IndexSection class="max-w-5xl">
 
             <template #title>Пользователи</template>
 
@@ -8,39 +8,39 @@
 
                 <ListFilter v-if="table.items.length" class="border-t bg-gray-50" />
 
-                <t-table :table="table">
+                <TTable :table="table">
                     <template #row="sp">
-                        <t-data :title="sp.element.id" mini>
+                        <TData :title="sp.element.id" mini>
                             <div class="min-w-max">
                                 <img :src="sp.element.avatar" class="h-7 w-7 border rounded-full object-cover" alt="">
                             </div>
-                        </t-data>
-                        <t-data v-model="sp.element.name" @update:modelValue="update(sp.element)" />
-                        <!-- <t-data v-model="sp.element.username" @update:modelValue="update(sp.element)" /> -->
-                        <t-data v-model="sp.element.email" @update:modelValue="update(sp.element)" />
-                        <t-data v-text="roles[sp.element.role]" />
-                        <t-data>
+                        </TData>
+                        <TData v-model="sp.element.name" @update:modelValue="update(sp.element)" />
+                        <!-- <TData v-model="sp.element.username" @update:modelValue="update(sp.element)" /> -->
+                        <TData v-model="sp.element.email" @update:modelValue="update(sp.element)" />
+                        <TData v-text="roles[sp.element.role]" />
+                        <TData>
                             <Link class="btn btn-mini" :href="route('admin.product_orders.index', {user_id: sp.element.id})">{{ formatPrice(sp.element.paid) }}₽</Link>
-                        </t-data>
-                        <t-data>
+                        </TData>
+                        <TData>
                             <Link class="btn btn-mini" :href="route('admin.bonuses.index', {user_id: sp.element.id})">{{ formatPrice(sp.element.bonuses) }}</Link>
-                        </t-data>
-                        <t-data>
+                        </TData>
+                        <TData>
                             <div class="text-xs" v-text="formatDateTime(sp.element.created_at)"></div>
                             <div v-if="!sp.element.email_verified_at" class="btn btn-mini mt-1" @click="verify(sp.element.id)">Подтв.email</div>
-                        </t-data>
-                        <t-data mini>
+                        </TData>
+                        <TData mini>
                             <Link :href="route(routePrefix + 'show', sp.element.id)" class="text-gray-500 hover-link">
                                 <font-awesome-icon icon="eye"/>
                             </Link>
-                        </t-data>
+                        </TData>
                     </template>
-                </t-table>
+                </TTable>
 
             </template>
 
-        </index-section>
-    </app-layout>
+        </IndexSection>
+    </AppLayout>
 </template>
 
 <script>

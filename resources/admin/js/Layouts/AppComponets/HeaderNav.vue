@@ -28,13 +28,13 @@
 					</template>
 
 					<template #content >
-						<dropdown-link :href="route('admin.users.edit', $page.props.auth.user.id)">
+						<DropdownLink :href="route('admin.users.edit', $page.props.auth.user.id)">
 							Редактировать
-						</dropdown-link>
+						</DropdownLink>
 						<div class="border-t border-gray-100"></div>
-						<dropdown-link @click="logout">
+						<DropdownLink @click="logout">
 							Выход
-						</dropdown-link>
+						</DropdownLink>
 					</template>
 				</dropdown>
 			</div>

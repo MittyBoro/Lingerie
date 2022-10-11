@@ -1,16 +1,16 @@
 <template>
-    <app-layout title="Редактирование пользователя" >
+    <AppLayout title="Редактирование пользователя" >
 
         <div class="grid grid-cols-6 gap-4 items-start">
-            <form-section :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix  :showLink="route(routePrefix + 'show', form.id)" internalLink>
+            <FormSection :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix  :showLink="route(routePrefix + 'show', form.id)" internalLink>
                 <template #title>Пользовательские данные</template>
 
                 <template #content>
                     <div class="col-span-6 grid grid-cols-6 xl:grid-cols-4 gap-5">
                         <template v-if="0">
-                            <f-label title="Аватар" :error="form.errors.admin_avatar">
-                                <f-file-input :isImage="true" v-model="form.admin_avatar" />
-                            </f-label>
+                            <FLabel title="Аватар" :error="form.errors.admin_avatar">
+                                <FFileInput :isImage="true" v-model="form.admin_avatar" />
+                            </FLabel>
 
                             <!-- vk -->
                             <div v-if="isCurrent" class="col-span-6">
@@ -22,51 +22,51 @@
                             </div>
                         </template>
 
-                        <f-label title="Имя" :error="form.errors.name">
-                            <f-input type="text" v-model="form.name" />
-                        </f-label>
+                        <FLabel title="Имя" :error="form.errors.name">
+                            <FInput type="text" v-model="form.name" />
+                        </FLabel>
 
-                        <f-label title="Логин" :error="form.errors.username">
-                            <f-input type="text" v-model="form.username" />
-                        </f-label>
+                        <FLabel title="Логин" :error="form.errors.username">
+                            <FInput type="text" v-model="form.username" />
+                        </FLabel>
 
-                        <f-label title="Телефон" :error="form.errors.phone">
-                            <f-input type="text" v-model="phone" />
-                        </f-label>
+                        <FLabel title="Телефон" :error="form.errors.phone">
+                            <FInput type="text" v-model="phone" />
+                        </FLabel>
 
-                        <f-label title="Email" :error="form.errors.email">
-                            <f-input type="email" v-model="form.email" />
-            			</f-label>
+                        <FLabel title="Email" :error="form.errors.email">
+                            <FInput type="email" v-model="form.email" />
+            			</FLabel>
 
-						<f-label title="Роль" :error="form.errors.role">
-							<f-select :options="roles" v-model="form.role" />
-						</f-label>
+						<FLabel title="Роль" :error="form.errors.role">
+							<FSelect :options="roles" v-model="form.role" />
+						</FLabel>
 					</div>
 				</template>
-			</form-section>
+			</FormSection>
 
-			<form-section :submit="updatePass" :form="formP" class="col-span-6 sm:col-span-3" hideFix>
+			<FormSection :submit="updatePass" :form="formP" class="col-span-6 sm:col-span-3" hideFix>
 				<template #title>Пароль</template>
 
 				<template #content>
 					<div class="col-span-6 grid grid-cols-6 xl:grid-cols-4 gap-5">
-						<f-label v-if="isCurrent" title="Текущий пароль" :error="formP.errors.current_password">
-							<f-input type="password" v-model="formP.current_password" />
-						</f-label>
+						<FLabel v-if="isCurrent" title="Текущий пароль" :error="formP.errors.current_password">
+							<FInput type="password" v-model="formP.current_password" />
+						</FLabel>
 
-						<f-label title="Новый пароль" :error="formP.errors.password">
-							<f-input type="password" v-model="formP.password" />
-						</f-label>
+						<FLabel title="Новый пароль" :error="formP.errors.password">
+							<FInput type="password" v-model="formP.password" />
+						</FLabel>
 
-						<f-label title="Подтверждение пароля" :error="formP.errors.password_confirmation">
-							<f-input type="password" v-model="formP.password_confirmation" />
-						</f-label>
+						<FLabel title="Подтверждение пароля" :error="formP.errors.password_confirmation">
+							<FInput type="password" v-model="formP.password_confirmation" />
+						</FLabel>
 					</div>
 				</template>
-			</form-section>
+			</FormSection>
 		</div>
 
-	</app-layout>
+	</AppLayout>
 </template>
 
 <script>

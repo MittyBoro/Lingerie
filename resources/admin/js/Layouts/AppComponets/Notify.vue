@@ -1,7 +1,6 @@
 <script>
 
 	import { useToast } from "vue-toastification";
-import route from "../../../../../vendor/tightenco/ziggy/src/js";
 
 	export default {
 

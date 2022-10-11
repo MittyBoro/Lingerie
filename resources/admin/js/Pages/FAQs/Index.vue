@@ -1,6 +1,6 @@
 <template>
-	<app-layout title="Страницы">
-		<index-section class="max-w-3xl">
+	<AppLayout title="Страницы">
+		<IndexSection class="max-w-3xl">
 
 			<template #title>Все страницы</template>
 			<template #buttons>
@@ -9,21 +9,21 @@
 
 			<template #content>
 
-				<t-table :table="table">
+				<TTable :table="table">
 					<template #row="sp">
-						<t-data v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
-						<t-data v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
-						<t-data mini>
+						<TData v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
+						<TData v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
+						<TData mini>
 							<a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
 								<font-awesome-icon icon="eye"/>
 							</a>
-						</t-data>
+						</TData>
 					</template>
-				</t-table>
+				</TTable>
 
 			</template>
-		</index-section>
-	</app-layout>
+		</IndexSection>
+	</AppLayout>
 </template>
 
 <script>

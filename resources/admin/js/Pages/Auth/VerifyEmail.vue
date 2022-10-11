@@ -14,9 +14,9 @@
 
 		<form @submit.prevent="submit">
 			<div class="mt-4 flex items-center justify-between">
-				<f-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+				<FButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
 					Resend Verification Email
-				</f-button>
+				</FButton>
 
 				<Link :href="route('admin.logout')" method="post" as="button" class="underline text-sm text-gray-600 hover:text-gray-900">Log Out</Link>
 			</div>

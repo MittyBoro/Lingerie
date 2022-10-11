@@ -1,12 +1,12 @@
 <template>
 	<tbody>
 		<tr v-for="(row, i) in items" :key="i">
-			<t-data
+			<TData
 				v-for="head in headers"
 				:key="head.key"
 				:title="head.text">
 				{{ row[head.key] }}
-			</t-data>
+			</TData>
 		</tr>
 	</tbody>
 

@@ -3,7 +3,7 @@
 		<div v-if="modelValue !== undefined">
 			<div class="max-h-0 overflow-hidden invisible" v-html="modelValue"></div>
 			<div class="-mx-2">
-				<f-textarea
+				<FTextarea
 					rows="1"
 					@update:modelValue="$emit('update:modelValue', $event)"
 					v-model.lazy="modelValue"

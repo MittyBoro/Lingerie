@@ -11,7 +11,7 @@
 
 				<span class="perpage">
 					<span>На странице:</span>
-					<f-input type="number" @update:modelValue="setPerPage" v-model.lazy="pages.per_page" min="1" />
+					<FInput type="number" @update:modelValue="setPerPage" v-model.lazy="pages.per_page" min="1" />
 				</span>
 			</p>
 		</div>

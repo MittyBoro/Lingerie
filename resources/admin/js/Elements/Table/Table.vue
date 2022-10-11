@@ -1,6 +1,6 @@
 <template>
 	<div class="table-wrapper loading text-sm">
-		<t-pagination v-if="(pagination && pagination.total) || sortRoute" :pages="pagination" class="border-t" ref="pagination">
+		<TPagination v-if="(pagination && pagination.total) || sortRoute" :pages="pagination" class="border-t" ref="pagination">
 			<div
 				v-if="sortRoute"
 				@click="sortToggle"
@@ -9,12 +9,12 @@
 				<div v-else class="btn-gray btn-mini">Назад</div>
 			</div>
 
-		</t-pagination>
+		</TPagination>
 
 		<div class="table-overflow">
 			<table v-if="items && items.length > 0" class="border-t table">
 
-				<t-head v-if="headers" :headers="headers" />
+				<THead v-if="headers" :headers="headers" />
 				<thead v-else-if="$slots.thead">
 					<slot name="thead"></slot>
 				</thead>
@@ -23,50 +23,50 @@
 					<tbody v-if="!sortRoute">
 						<tr v-for="element in items" :key="element.id">
 							<slot name="row" :element="element"></slot>
-							<t-data v-if="editRoute" class="w-min">
+							<TData v-if="editRoute" class="w-min">
 								<Link :href="route(editRoute, element.id)">
 									<font-awesome-icon icon="pencil" class="text-gray-500 hover-link"/>
 								</Link>
-							</t-data>
-							<t-data v-if="destroyRoute" class="w-min">
+							</TData>
+							<TData v-if="destroyRoute" class="w-min">
 								<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
 									<font-awesome-icon @click="confirm" icon="trash-can" class="text-gray-500 hover-link block"/>
 								</Link>
-							</t-data>
+							</TData>
 						</tr>
 					</tbody>
-					<draggable v-else tag="tbody" v-model="items" item-key="element.id" handle=".drag-handle" :scroll="true" :scroll-sensitivity="500">
+					<Draggable v-else tag="tbody" v-model="items" item-key="element.id" handle=".drag-handle" :scroll="true" :scroll-sensitivity="500">
 						<template #item="{ element }">
 							<tr class="drag-tr">
-								<t-data v-if="sortEnable" class="sort-td w-min">
+								<TData v-if="sortEnable" class="sort-td w-min">
 									<font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
-								</t-data>
+								</TData>
 								<slot name="row" :element="element"></slot>
-								<t-data v-if="editRoute" class="w-min">
+								<TData v-if="editRoute" class="w-min">
 									<Link :href="route(editRoute, element.id)">
 										<font-awesome-icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
 									</Link>
-								</t-data>
-								<t-data v-if="destroyRoute" class="w-min">
+								</TData>
+								<TData v-if="destroyRoute" class="w-min">
 									<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
 										<font-awesome-icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
 									</Link>
-								</t-data>
+								</TData>
 							</tr>
 						</template>
-					</draggable>
+					</Draggable>
 				</template>
-				<t-body v-else :items="items" :headers="headers" />
+				<TBody v-else :items="items" :headers="headers" />
 
 			</table>
 
-			<t-notify class="border-t border-b" v-else>Данных ещё нет</t-notify>
+			<TNotify class="border-t border-b" v-else>Данных ещё нет</TNotify>
 		</div>
 		<div v-if="sortEnable" class="table-save-row border-b">
 			<div @click="saveSort" class="btn w-full">Сохранить сортировку</div>
 		</div>
 
-		<t-pagination ref="pagination" v-if="pagination && pagination.total" :pages="pagination" />
+		<TPagination ref="pagination" v-if="pagination && pagination.total" :pages="pagination" />
 	</div>
 </template>
 

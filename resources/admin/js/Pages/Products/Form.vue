@@ -1,7 +1,7 @@
 <template>
-	<app-layout title="Товары" >
+	<AppLayout title="Товары" >
 
-		<form-section :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Цена', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)">
+		<FormSection :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Цена', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)">
 			<template #title>
 				<div v-if="!isEdit">Добавить</div>
 				<div v-else>Редактировать</div>
@@ -18,9 +18,9 @@
 				<TabSEO v-show="activeTab == 'SEO'" :form="form" />
 
 			</template>
-		</form-section>
+		</FormSection>
 
-	</app-layout>
+	</AppLayout>
 </template>
 
 <script>

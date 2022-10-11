@@ -1,6 +1,6 @@
 <template>
-	<app-layout title="Товары" >
-		<index-section class="max-w-5xl">
+	<AppLayout title="Товары" >
+		<IndexSection class="max-w-5xl">
 
 			<template #title>Товары</template>
 			<template #buttons>
@@ -12,38 +12,38 @@
 
 				<ListFilter v-if="table.items.length" class="border-t bg-gray-50" />
 
-				<t-table :table="table">
+				<TTable :table="table">
 					<template #row="sp">
-						<t-data :title="sp.element.id" mini>
+						<TData :title="sp.element.id" mini>
 							<div class="min-w-max">
 								<img :src="sp.element.preview" class="h-8 w-8 rounded borderobject-cover" alt="">
 							</div>
-						</t-data>
-						<t-data v-model="sp.element.title" @update:modelValue="update(sp.element)" />
-						<t-data>
+						</TData>
+						<TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
+						<TData>
 							<span class="whitespace-nowrap">
 								<span v-if="sp.element.variations_count > 1">от</span>
 								{{ formatPrice(sp.element.min_price) }}₽
 							</span>
-						</t-data>
-						<t-data mini>
-							<f-switcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>
-						</t-data>
-						<t-data mini>
-							<f-switcher v-model="sp.element.is_stock" @update:modelValue="update(sp.element)" mini secondary/>
-						</t-data>
-						<t-data mini>
+						</TData>
+						<TData mini>
+							<FSwitcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>
+						</TData>
+						<TData mini>
+							<FSwitcher v-model="sp.element.is_stock" @update:modelValue="update(sp.element)" mini secondary/>
+						</TData>
+						<TData mini>
 							<a :href="frontUrl('product/' + sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
 								<font-awesome-icon icon="eye"/>
 							</a>
-						</t-data>
+						</TData>
 					</template>
-				</t-table>
+				</TTable>
 
 			</template>
 
-		</index-section>
-	</app-layout>
+		</IndexSection>
+	</AppLayout>
 </template>
 
 <script>

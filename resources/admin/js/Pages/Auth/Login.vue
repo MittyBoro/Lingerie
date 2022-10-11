@@ -1,7 +1,7 @@
 <template>
-	<auth-layout>
+	<AuthLayout>
 
-		<f-validation-errors class="mb-4" />
+		<FValidationErrors class="mb-4" />
 
 		<div v-if="status" class="mb-4 font-semibold text-sm text-green-600">
 			{{ status }}
@@ -9,27 +9,27 @@
 
 		<form @submit.prevent="submit">
 
-			<f-label title="Email или логин" classes="block" >
-				<f-input type="text" class="mt-1" v-model="form.login" required autofocus />
-			</f-label>
+			<FLabel title="Email или логин" classes="block" >
+				<FInput type="text" class="mt-1" v-model="form.login" required autofocus />
+			</FLabel>
 
-			<f-label title="Пароль" classes="mt-4 block" >
-				<f-input type="password" class="mt-1" v-model="form.password" required />
-			</f-label>
+			<FLabel title="Пароль" classes="mt-4 block" >
+				<FInput type="password" class="mt-1" v-model="form.password" required />
+			</FLabel>
 
 
 			<div class="flex items-center mt-4">
 
-				<f-label classes="flex items-center cursor-pointer mr-auto" >
-					<f-checkbox name="remember" v-model="form.remember" />
+				<FLabel classes="flex items-center cursor-pointer mr-auto" >
+					<FCheckbox name="remember" v-model="form.remember" />
 					<span class="ml-2 text-sm text-gray-600">Запомнить меня</span>
-				</f-label>
+				</FLabel>
 
 			</div>
 
-			<f-button class="w-full mt-4" :disabled="form.processing">
+			<FButton class="w-full mt-4" :disabled="form.processing">
 				Вход
-			</f-button>
+			</FButton>
 
 			<!-- <a :href="route('oauth.vk')" class="btn-vk w-full mt-4">Вход через ВК</a> -->
 
@@ -42,7 +42,7 @@
 				</Link>
 			</div>
 		</form>
-	</auth-layout>
+	</AuthLayout>
 </template>
 
 <script>

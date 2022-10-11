@@ -2,25 +2,25 @@
 
 	<div class="col-span-6 grid grid-cols-6 xl:grid-cols-4 gap-5">
 
-		<f-label title="Название" :error="form.errors.title">
-			<f-input @change="stopSlugFromTitle" type="text" v-model="form.title" />
-		</f-label>
+		<FLabel title="Название" :error="form.errors.title">
+			<FInput @change="stopSlugFromTitle" type="text" v-model="form.title" />
+		</FLabel>
 
-		<f-label title="Ярлык" :error="form.errors.slug">
-			<f-input @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
-		</f-label>
+		<FLabel title="Ярлык" :error="form.errors.slug">
+			<FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
+		</FLabel>
 
-		<f-label title="Родительская категория" :error="form.errors.parent_id">
-			<f-select :options="categories" :keys="['id','title']" v-model="form.parent_id" />
-		</f-label>
+		<FLabel title="Родительская категория" :error="form.errors.parent_id">
+			<FSelect :options="categories" :keys="['id','title']" v-model="form.parent_id" />
+		</FLabel>
 
-		<f-label title="Описание" :error="form.errors.description" as="div">
-			<f-textarea-editor v-model="form.description" mini/>
-		</f-label>
+		<FLabel title="Описание" :error="form.errors.description" as="div">
+			<FTextareaEditor v-model="form.description" mini/>
+		</FLabel>
 
-		<f-label title="Описание внизу" :error="form.errors.footer_description" as="div">
-			<f-textarea-editor v-model="form.footer_description" mini/>
-		</f-label>
+		<FLabel title="Описание внизу" :error="form.errors.footer_description" as="div">
+			<FTextareaEditor v-model="form.footer_description" mini/>
+		</FLabel>
 
 	</div>
 

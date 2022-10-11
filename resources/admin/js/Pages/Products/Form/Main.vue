@@ -3,35 +3,35 @@
 	<div class="col-span-6 grid grid-cols-6 gap-5">
 
 		<!-- Title -->
-		<f-label title="Название" :error="form.errors.title">
-			<f-input @change="stopSlugFromTitle" type="text" v-model="form.title" />
-		</f-label>
+		<FLabel title="Название" :error="form.errors.title">
+			<FInput @change="stopSlugFromTitle" type="text" v-model="form.title" />
+		</FLabel>
 
 		<!-- Slug -->
-		<f-label title="Ярлык" :error="form.errors.slug">
-			<f-input @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
-		</f-label>
+		<FLabel title="Ярлык" :error="form.errors.slug">
+			<FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
+		</FLabel>
 
 		<div class="col-span-6 xl:col-span-4 grid grid-cols-6 gap-4">
 			<!-- is_published -->
-			<f-label classes="col-span-3 md:col-span-2" title="Опубликовано?" :error="form.errors.is_published">
-				<f-switcher v-model="form.is_published" />
-			</f-label>
+			<FLabel classes="col-span-3 md:col-span-2" title="Опубликовано?" :error="form.errors.is_published">
+				<FSwitcher v-model="form.is_published" />
+			</FLabel>
 			<!-- is_stock -->
-			<f-label classes="col-span-3 md:col-span-2" title="Наличие" :error="form.errors.is_stock">
-				<f-switcher v-model="form.is_stock" secondary/>
-			</f-label>
+			<FLabel classes="col-span-3 md:col-span-2" title="Наличие" :error="form.errors.is_stock">
+				<FSwitcher v-model="form.is_stock" secondary/>
+			</FLabel>
 		</div>
 
 		<!-- gallery -->
-		<f-label title="Фотографии" :error="form.errors.gallery">
-			<f-file-input :isImage="true" v-model="form.gallery" multiple/>
-		</f-label>
+		<FLabel title="Фотографии" :error="form.errors.gallery">
+			<FFileInput :isImage="true" v-model="form.gallery" multiple/>
+		</FLabel>
 
 		<!-- categories -->
-		<f-label as="div" title="Категория" :error="form.errors.categories">
+		<FLabel as="div" title="Категория" :error="form.errors.categories">
 			<o-checkbox-list v-model="form.categories" :list="categories" />
-		</f-label>
+		</FLabel>
 
 	</div>
 

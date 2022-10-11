@@ -1,9 +1,9 @@
 <template>
 	<div class="grid gap-4" :class="{'md:grid-cols-6': isSingleImage}">
 
-		<draggable
+		<Draggable
 			class="grid"
-			:class="[isImage ? 'gap-3' : 'gap-1 max-w-xs', {'grid-cols-3 sm:grid-cols-4 md:grid-cols-6': !isSingleImage && isImage, 'w-28 md:w-auto': isSingleImage}]"
+			:class="dragClasses"
 			v-if="showList"
 			v-model="files"
 			:group="rand"
@@ -29,7 +29,7 @@
 				</div>
 
 			</template>
-		</draggable>
+		</Draggable>
 
 		<label :class="{'drop-area': drop, 'md:col-span-5': isSingleImage}">
 			<div class="form-input flex-wrap">
@@ -107,6 +107,16 @@
 
 			showList() {
 				return this.files.length;
+			},
+
+			dragClasses() {
+				return [
+                    isImage ? 'gap-3' : 'gap-1 max-w-xs',
+                    {
+                        'grid-cols-3 sm:grid-cols-4 md:grid-cols-6': !isSingleImage && isImage,
+                        "w-28 md:w-auto": isSingleImage
+                    }
+                ]
 			}
 		},
 

@@ -1,43 +1,43 @@
 <template>
-	<auth-layout>
+	<AuthLayout>
 
-		<f-validation-errors class="mb-4" />
+		<FValidationErrors class="mb-4" />
 
 		<form @submit.prevent="submit">
 
-			<f-label title="Ваше имя" classes="block">
-				<f-input type="text" v-model="form.name" required autofocus autocomplete="name" />
-			</f-label>
+			<FLabel title="Ваше имя" classes="block">
+				<FInput type="text" v-model="form.name" required autofocus autocomplete="name" />
+			</FLabel>
 
-			<f-label title="Логин" classes="block mt-4">
-				<f-input type="text" v-model="form.login" required autocomplete="login" />
-			</f-label>
+			<FLabel title="Логин" classes="block mt-4">
+				<FInput type="text" v-model="form.login" required autocomplete="login" />
+			</FLabel>
 
-			<f-label title="Email" classes="block mt-4">
-				<f-input type="email" class="mt-1 block w-full" v-model="form.email" required />
-			</f-label>
+			<FLabel title="Email" classes="block mt-4">
+				<FInput type="email" class="mt-1 block w-full" v-model="form.email" required />
+			</FLabel>
 
-			<f-label title="Пароль" classes="block mt-4">
-				<f-input type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
-			</f-label>
+			<FLabel title="Пароль" classes="block mt-4">
+				<FInput type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
+			</FLabel>
 
-			<f-label title="Подтвердите пароль" classes="block mt-4">
-				<f-input type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
-			</f-label>
+			<FLabel title="Подтвердите пароль" classes="block mt-4">
+				<FInput type="password" class="mt-1 block w-full" v-model="form.password_confirmation" required autocomplete="new-password" />
+			</FLabel>
 
 			<div class="flex items-center justify-between mt-4">
 				<Link :href="route('admin.login')" class="hover-link text-sm">
 					Уже зарегистрированы?
 				</Link>
 
-				<f-button class="ml-4" :disabled="form.processing">
+				<FButton class="ml-4" :disabled="form.processing">
 					Регистрация
-				</f-button>
+				</FButton>
 			</div>
 
 			<!-- <a :href="route('oauth.vk')" class="btn-vk w-full mt-4">Регистрация через ВК</a> -->
 		</form>
-	</auth-layout>
+	</AuthLayout>
 </template>
 
 <script>

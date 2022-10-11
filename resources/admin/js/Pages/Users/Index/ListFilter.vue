@@ -3,11 +3,11 @@
     <div class="flex flex-wrap px-6 md:px-10 py-3">
 
         <label class="mr-8 my-2">
-            <f-select @update:modelValue="setFilter" :options="roles" v-model.lazy="filter.role" />
+            <FSelect @update:modelValue="setFilter" :options="roles" v-model.lazy="filter.role" />
         </label>
 
         <label class="my-2">
-            <f-input placeholder="Поиск…" @update:modelValue="setFilter" v-model.lazy="filter.q" />
+            <FInput placeholder="Поиск…" @update:modelValue="setFilter" v-model.lazy="filter.q" />
         </label>
     </div>
 

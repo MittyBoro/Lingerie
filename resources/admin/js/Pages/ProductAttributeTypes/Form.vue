@@ -1,7 +1,7 @@
 <template>
-	<app-layout title="Страницы">
+	<AppLayout title="Страницы">
 
-		<form-section :submit="submit" :form="form"
+		<FormSection :submit="submit" :form="form"
 		:tabs="isEdit ? ['Основное', 'SEO', 'Дополнительно'] : ['Основное', 'SEO']"
 		:showLink="frontUrl(form.slug)"
 		v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'">
@@ -20,9 +20,9 @@
 				<TabProps v-if="isEdit" v-show="activeTab == 'Дополнительно'" :page_id="form.id" />
 
 			</template>
-		</form-section>
+		</FormSection>
 
-	</app-layout>
+	</AppLayout>
 </template>
 
 <script>
