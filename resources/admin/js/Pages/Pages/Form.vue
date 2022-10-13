@@ -1,16 +1,12 @@
 <template>
-    <AppLayout title="Страницы">
+    <AppLayout :title="!isEdit ? 'Добавить страницу' : 'Редактировать страницу'">
 
         <FormSection :submit="submit" :form="form"
         :tabs="isEdit ? ['Основное', 'SEO', 'Дополнительно'] : ['Основное', 'SEO']"
         :showLink="frontUrl(form.slug)"
         v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'">
-            <template #title>
-                <div v-if="!isEdit">Добавить страницу</div>
-                <div v-else>Редактировать страницу</div>
-            </template>
-            <template #buttons>
-                <Link v-if="isEdit" :href="route(routePrefix + 'create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
+            <template v-if="isEdit" #buttons>
+                <Link :href="route(routePrefix + 'create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </template>
 
             <template #content>

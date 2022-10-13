@@ -12,7 +12,7 @@ return [
         [
             'name' => 'Главная',
             'route' => 'admin.dashboard',
-            'icon' => 'gauge-high',
+            'icon' => 'house',
         ],
 
         [

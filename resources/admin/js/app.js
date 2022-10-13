@@ -20,11 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(fas, fab)
 
 
-// const el = document.getElementById('app');
-const appName = document.getElementsByTagName('title')[0]?.innerText;
-
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
 
     setup({ el, app, props, plugin }) {

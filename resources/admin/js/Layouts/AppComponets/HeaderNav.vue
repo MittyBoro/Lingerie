@@ -1,9 +1,15 @@
 <template>
-    <nav class="flex justify-between px-3 md:px-0 pt-0 md:pt-1 items-center h-16 md:h-20 border-b border-opacity-50">
-        <h2 class="font-extrabold text-xl pr-7 pt-0 text-gray-700 leading-tight">
-            {{ title }}
-        </h2>
-
+    <nav class="flex justify-between px-3 md:px-0 pt-0 md:pt-1 items-center h-16 md:h-20 border-b border-gray-300">
+        <div class="flex items-center font-bold pr-7 pt-0 text-gray-700 leading-tight">
+            <a :href="route('admin.dashboard')" class="link"><font-awesome-icon icon="house" /></a>
+            <div class="text-sm opacity-50 mx-2">/</div>
+            
+            <div class="flex items-center" v-for="item in breadCrumbs" v-show="item.name != title" :key="item.route">
+                <a :href="route(item.route)" class="link">{{ item.name }}</a>
+                <div class="text-sm opacity-30 mx-2">/</div>
+            </div>
+            <span class="opacity-70">{{ title }}</span>
+        </div>
 
         <a :href="frontUrl()" target="_blank" class="whitespace-nowrap ml-auto pl-4 text-xs md:text-base bold font-semibold hover-link">
             На сайт
@@ -54,13 +60,44 @@
         props: {
             title: String,
         },
+        
+        computed: {
+            breadCrumbs() {
+                
+                let currentRoute = route().current()
+                let routeStart = currentRoute.split('.').slice(0, 2).join('.');
+                
+                let menu = this.$page.props.config.menu;
+                
+                let breadCrumbsArray = this.findItemInMenu(menu, routeStart);
+                
+                return breadCrumbsArray
+            },
+        },
+        
+        mounted() {
+        },
 
         methods: {
 
-            logout()
-            {
+            logout() {
                 axios.post(route('admin.logout'))
                     .then(() => location.href = route('admin.login'))
+            },
+            
+            findItemInMenu(menu, routeStart) {
+                let breadCrembs = []
+                
+                menu.forEach(el => {
+                    if (el.route.startsWith(routeStart)) {
+                        breadCrembs.push(el)
+                    }
+                    if (el.sublinks) {
+                        breadCrembs = [ ...this.findItemInMenu(el.sublinks, routeStart), ...breadCrembs ]
+                    }
+                })
+                
+                return breadCrembs;
             },
 
         }

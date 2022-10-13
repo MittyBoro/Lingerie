@@ -3,7 +3,7 @@
         <!-- Sidebar -->
         <Sidebar />
 
-        <div class="content-lay rounded-3xl shadow-2xl px-3 md:px-8 bg-gray-100 min-h-screen w-full min-w-0">
+        <div class="content-lay rounded-3xl shadow-2xl px-3 md:px-8 bg-gray-200 min-h-screen w-full min-w-0">
 
             <!-- Primary Navigation Menu -->
             <HeaderNav :title="title" />
@@ -34,9 +34,11 @@
         },
 
         created() {
-            document.title = this.title || 'Главная';
-            this.addNotiEvents();
+            document.title = `${this.title} | TheAdmin`;
+            
+            this.$page.title = this.title
         },
+        
         methods: {
 
         }

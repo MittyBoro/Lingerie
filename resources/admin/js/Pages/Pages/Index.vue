@@ -1,8 +1,7 @@
 <template>
-    <AppLayout title="Страницы">
+    <AppLayout title="Все страницы">
         <IndexSection class="max-w-3xl">
 
-            <template #title>Все страницы</template>
             <template #buttons>
                 <Link :href="route(routePrefix + 'create')" class="btn">Добавить</Link>
             </template>

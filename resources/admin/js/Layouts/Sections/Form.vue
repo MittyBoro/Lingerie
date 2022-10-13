@@ -5,7 +5,8 @@
             <div>
                 <div class="font-bold text-xl">
                     <div class="flex items-center">
-                        <slot name="title"></slot>
+                        <slot v-if="$slots.title" name="title"></slot>
+                        <template v-else>{{ $page.title }}</template>
                         <component
                             v-if="showLink && form.id"
                             :is="internalLink ? 'Link' : 'a'"
@@ -75,6 +76,10 @@
             hideButtons: Boolean,
             showLink: null,
             internalLink: Boolean,
+            showTitle: {
+                type: Boolean,
+                default: true,
+            },
         },
 
         emits: ['update:activeTab'],
@@ -90,7 +95,8 @@
                 return this.$slots.content || this.$slots.simplecontent;
             },
             hasHeaderSlots() {
-                return this.$slots.title || this.$slots.subtitle || this.$slots.buttons;
+                return this.$slots.title || this.$slots.subtitle ||
+                            this.$slots.buttons || this.showTitle;
             }
         },
 

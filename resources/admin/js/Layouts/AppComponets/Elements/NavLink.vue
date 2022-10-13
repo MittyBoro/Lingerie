@@ -104,11 +104,11 @@
 
 <style lang="sass" scoped>
     .active
-        @apply relative text-gray-600 bg-gradient-to-r from-white to-gray-100
+        @apply relative text-gray-600 bg-gradient-to-r from-white to-gray-200
         &::before,
         &::after
             content: ''
-            @apply w-6 h-6 absolute right-0 pointer-events-none bg-gray-100 hidden lg:block
+            @apply w-6 h-6 absolute right-0 pointer-events-none bg-gray-200 hidden lg:block
             clip-path: url(#nav-clip)
 
         &::before
