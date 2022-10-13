@@ -30,7 +30,7 @@ module.exports = {
             fuchsia: colors.fuchsia,
             pink: colors.pink,
 
-            primary: {
+            secondary: {
                 50: '#FAF6F5',
                 100: '#EFE1DF',
                 200: '#E4CCC9',
@@ -42,7 +42,8 @@ module.exports = {
                 800: '#534442',
                 900: '#302A29',
             },
-            secondary: colors.stone,
+            primary: colors.gray,
+            // secondary: colors.stone,
         },
         extend: {
             fontFamily: {
