@@ -28,7 +28,7 @@ class Role
         $user = Auth::user();
 
         // нельзя в админку - выкинуть
-        if ( !in_array( $user->role, User::roleTypes() ) ) {
+        if ( !in_array( $user->role, User::ROLES ) ) {
             Auth::logout();
             return redirect()->route('admin.login')->withErrors('У вас нет доступа к панели управления');
         }

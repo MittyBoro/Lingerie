@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="Пользователи" >
-        <IndexSection class="max-w-5xl">
+        <IndexSection class="max-w-6xl">
 
             <template #title>Пользователи</template>
 
@@ -20,19 +20,8 @@
                         <TData v-model="sp.element.email" @update:modelValue="update(sp.element)" />
                         <TData v-text="roles[sp.element.role]" />
                         <TData>
-                            <Link class="btn btn-mini" :href="route('admin.product_orders.index', {user_id: sp.element.id})">{{ formatPrice(sp.element.paid) }}₽</Link>
-                        </TData>
-                        <TData>
-                            <Link class="btn btn-mini" :href="route('admin.bonuses.index', {user_id: sp.element.id})">{{ formatPrice(sp.element.bonuses) }}</Link>
-                        </TData>
-                        <TData>
                             <div class="text-xs" v-text="formatDateTime(sp.element.created_at)"></div>
                             <div v-if="!sp.element.email_verified_at" class="btn btn-mini mt-1" @click="verify(sp.element.id)">Подтв.email</div>
-                        </TData>
-                        <TData mini>
-                            <Link :href="route(routePrefix + 'show', sp.element.id)" class="text-gray-500 hover-link">
-                                <font-awesome-icon icon="eye"/>
-                            </Link>
                         </TData>
                     </template>
                 </TTable>
@@ -70,10 +59,7 @@
                         // { key: 'username', text: 'Логин', sortable: true },
                         { key: 'email', text: 'Email', sortable: true },
                         { key: 'role', text: 'Роль', sortable: true },
-                        { key: 'paid', text: 'Купили на', sortable: false },
-                        { key: 'bonuses', text: 'Бонусов', sortable: true },
                         { key: 'created_at', fa: 'calendar-days', sortable: true, },
-                        {},
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,

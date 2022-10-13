@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Product\ProductOrder;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail;
@@ -52,6 +51,13 @@ class User extends BaseModel implements
     const ROLE_USER = 'user';
     const ROLE_EDITOR = 'editor';
     const ROLE_ADMIN = 'admin';
+    
+    const ROLES = [
+        self::ROLE_BLOCKED,
+        self::ROLE_USER,
+        self::ROLE_EDITOR,
+        self::ROLE_ADMIN,
+    ];
 
     protected $fillable = [
         'name',
@@ -60,8 +66,6 @@ class User extends BaseModel implements
         'phone',
         'password',
         'role',
-        'vk_id',
-        'bonuses',
     ];
 
     protected $hidden = [
@@ -97,7 +101,6 @@ class User extends BaseModel implements
         ],
     ];
 
-
     public static function boot()
     {
         parent::boot();
@@ -106,11 +109,6 @@ class User extends BaseModel implements
         {
             if ( !$model->username )
                 $model->username = email_to_username($model->email) . '_' . Str::random(5);
-        });
-
-        static::deleted( function($model)
-        {
-            $model->bonus_list->each->delete();
         });
     }
 
@@ -127,35 +125,7 @@ class User extends BaseModel implements
                     ->nonQueued();
             });
     }
-
-    public function orders()
-    {
-        return $this->hasMany(ProductOrder::class)->ordered();
-    }
-
-    public function bonus_list()
-    {
-        return $this->hasMany(Bonus::class)->ordered();
-    }
-
-    public function paidOrders()
-    {
-        return $this->orders()->isPaid();
-    }
-
-    public static function roleList()
-    {
-        return [
-            self::ROLE_ADMIN => 'Админ',
-            self::ROLE_EDITOR => 'Редактор',
-            self::ROLE_USER => 'Пользователь',
-            self::ROLE_BLOCKED => 'Заблокирован',
-        ];
-    }
-    public static function roleTypes()
-    {
-        return array_keys( self::roleList() );
-    }
+    
 
     public function setPhoneAttribute($val)
     {
@@ -168,11 +138,6 @@ class User extends BaseModel implements
         $this->attributes['password'] = Hash::make($val);
     }
 
-    public function getPaidAttribute()
-    {
-        return $this->paidOrders->sum('amount');
-    }
-
     public function getIsAdminAttribute()
     {
         return $this->role == self::ROLE_ADMIN;
@@ -182,12 +147,7 @@ class User extends BaseModel implements
         return $this->role == self::ROLE_ADMIN || $this->role == self::ROLE_EDITOR;
     }
 
-    public function getAdminAvatarAttribute()
-    {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION);
-    }
-
-    public function getAvatarAttribute($value)
+    public function getAvatarAttribute()
     {
         return $this->getFirstMediaUrl(self::MEDIA_COLLECTION, 'thumb');
     }
@@ -195,15 +155,6 @@ class User extends BaseModel implements
     public function getFirstNameAttribute()
     {
         return explode(' ', $this->name)[0];
-    }
-
-
-    public function scopeUpdateUser($query, $data)
-    {
-        $this->update($data);
-
-        if ( isset($data['admin_avatar']) )
-            $this->syncMedia($data['admin_avatar'], self::MEDIA_COLLECTION);
     }
 
     private function getDefaultAvatar()
@@ -214,22 +165,4 @@ class User extends BaseModel implements
         return $gravatar;
     }
 
-    public function scopeFilter($query, array $filter)
-    {
-        if ( isset($filter['role']) ) {
-            $query->where('role', $filter['role']);
-        }
-
-        if ( isset($filter['q']) ) {
-            $query->search($filter['q']);
-        }
-    }
-
-    public function recalculateBonuses()
-    {
-        $sum = Bonus::where('user_id', $this->id)->sum('amount');
-        $newBonuses = max(0, $sum);
-
-        $this->update(['bonuses' => $newBonuses]);
-    }
 }

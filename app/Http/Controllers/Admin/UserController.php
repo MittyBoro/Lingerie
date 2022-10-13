@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Inertia\Inertia;
 
-use App\Models\User;
+use App\Models\Admin\User;
 use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,24 +20,12 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::filter($request->all())
-                            ->with(['media', 'paidOrders'])
-                            ->paginated('paid');
+                            ->with(['media'])
+                            ->paginated();
 
         return Inertia::render('Users/Index', [
             'roles' => User::roleList(),
             'list' => $users,
-        ]);
-    }
-
-
-    public function show(User $user)
-    {
-        $user->load(['paidOrders']);
-        $user->setAppends(['paid']);
-
-        return Inertia::render('Users/Show', [
-            'roles' => User::roleList(),
-            'item' => $user,
         ]);
     }
 

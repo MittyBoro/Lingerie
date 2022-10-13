@@ -2,7 +2,7 @@
     <AppLayout title="Редактирование пользователя" >
 
         <div class="grid grid-cols-6 gap-4 items-start">
-            <FormSection :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix  :showLink="route(routePrefix + 'show', form.id)" internalLink>
+            <FormSection :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix>
                 <template #title>Пользовательские данные</template>
 
                 <template #content>
@@ -11,15 +11,6 @@
                             <FLabel title="Аватар" :error="form.errors.admin_avatar">
                                 <FFileInput :isImage="true" v-model="form.admin_avatar" />
                             </FLabel>
-
-                            <!-- vk -->
-                            <div v-if="isCurrent" class="col-span-6">
-                                <a v-if="!form.vk_id"  :href="route('oauth.vk')" class="btn-vk w-full mt-4">Прикрепить ВК</a>
-                                <div class="inline-flex items-center bg-gray-50 rounded py-2 px-5" v-else>
-                                    <a target="_blank" class="text-blue-600" :href="'https://vk.com/id' + form.vk_id">ВК аккаунт</a>
-                                    <span class="flex items-center justify-center h-4 w-4 bg-red-500 text-white rounded cursor-pointer ml-3" @click="unpinVK">×</span>
-                                </div>
-                            </div>
                         </template>
 
                         <FLabel title="Имя" :error="form.errors.name">
