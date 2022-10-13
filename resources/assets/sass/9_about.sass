@@ -1,56 +1,56 @@
 
 .about-box
-	margin-bottom: 150px
+    margin-bottom: 150px
 
-	.about-text
-		margin-bottom: 60px
-		max-width: 1000px
-		img
-			max-width: 750px
-			margin: 15px 0
-	.gallery-thumbs
-		display: flex
-		align-items: center
-		justify-content: space-between
-		.swiper-button
-			flex-shrink: 0
-			+square(25px)
-		.swiper-container
-			margin: 0 22px
-			width: 100%
-			max-width: 960px
-		.swiper-slide
-			position: relative
-			@extend .flex-center
-			height: auto
-			&::after
-				+pseudo
-				+absfull
-				background: url(../images/svg/search.svg) rgba($primary, .9) no-repeat 50%
-				background-size: 30px
-				transition: .15s
-				opacity: 0
-			&:hover::after
-				opacity: 1
+    .about-text
+        margin-bottom: 60px
+        max-width: 1000px
+        img
+            max-width: 750px
+            margin: 15px 0
+    .gallery-thumbs
+        display: flex
+        align-items: center
+        justify-content: space-between
+        .swiper-button
+            flex-shrink: 0
+            +square(25px)
+        .swiper-container
+            margin: 0 22px
+            width: 100%
+            max-width: 960px
+        .swiper-slide
+            position: relative
+            @extend .flex-center
+            height: auto
+            &::after
+                +pseudo
+                +absfull
+                background: url(../images/svg/search.svg) rgba($primary, .9) no-repeat 50%
+                background-size: 30px
+                transition: .15s
+                opacity: 0
+            &:hover::after
+                opacity: 1
 
-	.second-text,
-	.third-text
-		margin-top: 40px
-		margin-bottom: 25px
-		max-width: 680px
-		font-size: 18px
-	.go-distrib
-		margin-top: 90px
-		.top-row
-			display: flex
-			align-items: baseline
-			margin-bottom: 50px
-			line-height: 1.2
-			.h2
-				margin: 0
-				margin-right: 60px
+    .second-text,
+    .third-text
+        margin-top: 40px
+        margin-bottom: 25px
+        max-width: 680px
+        font-size: 18px
+    .go-distrib
+        margin-top: 90px
+        .top-row
+            display: flex
+            align-items: baseline
+            margin-bottom: 50px
+            line-height: 1.2
+            .h2
+                margin: 0
+                margin-right: 60px
 
-	.distributors-grid
-		display: grid
-		grid-template-columns: repeat(2, 1fr)
-		max-width: 670px
+    .distributors-grid
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        max-width: 670px

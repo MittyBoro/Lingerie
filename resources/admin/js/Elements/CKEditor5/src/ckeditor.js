@@ -39,82 +39,82 @@ class Editor extends ClassicEditor {}
 
 // Plugins to include in the build.
 Editor.builtinPlugins = [
-	Alignment,
-	AutoLink,
-	BlockQuote,
-	Bold,
-	Code,
-	Essentials,
-	Heading,
-	Image,
-	// ImageCaption,
-	ImageInline,
-	ImageInsert,
-	ImageResize,
-	ImageStyle,
-	ImageToolbar,
-	// ImageUpload,
-	// SimpleUploadAdapter,
-	Italic,
-	Link,
-	LinkImage,
-	List,
-	// MediaEmbed,
-	Paragraph,
-	RemoveFormat,
-	SourceEditing,
-	Table,
-	TableToolbar,
-	TextTransformation,
-	Underline,
-	WordCount,
+    Alignment,
+    AutoLink,
+    BlockQuote,
+    Bold,
+    Code,
+    Essentials,
+    Heading,
+    Image,
+    // ImageCaption,
+    ImageInline,
+    ImageInsert,
+    ImageResize,
+    ImageStyle,
+    ImageToolbar,
+    // ImageUpload,
+    // SimpleUploadAdapter,
+    Italic,
+    Link,
+    LinkImage,
+    List,
+    // MediaEmbed,
+    Paragraph,
+    RemoveFormat,
+    SourceEditing,
+    Table,
+    TableToolbar,
+    TextTransformation,
+    Underline,
+    WordCount,
 
-	UploadAdapter,
+    UploadAdapter,
 ];
 
 // Editor configuration.
 Editor.defaultConfig = {
-	toolbar: {
-		items: [
-			'heading',
-			'|',
-			'bold',
-			'italic',
-			'underline',
-			'link',
-			'blockQuote',
-			'removeFormat',
-			'|',
-			'alignment',
-			'bulletedList',
-			'numberedList',
-			'todoList',
-			'|',
-			'imageInsert',
-			// 'mediaEmbed',
-			'insertTable',
-			'code',
-			'|',
-			'undo',
-			'redo',
-			'|',
-			'sourceEditing'
-		]
-	},
-	language: 'ru',
-	image: {
-		toolbar: [
-			'imageTextAlternative',
-			'linkImage'
-		]
-	},
-	table: {
-		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
-	},
+    toolbar: {
+        items: [
+            'heading',
+            '|',
+            'bold',
+            'italic',
+            'underline',
+            'link',
+            'blockQuote',
+            'removeFormat',
+            '|',
+            'alignment',
+            'bulletedList',
+            'numberedList',
+            'todoList',
+            '|',
+            'imageInsert',
+            // 'mediaEmbed',
+            'insertTable',
+            'code',
+            '|',
+            'undo',
+            'redo',
+            '|',
+            'sourceEditing'
+        ]
+    },
+    language: 'ru',
+    image: {
+        toolbar: [
+            'imageTextAlternative',
+            'linkImage'
+        ]
+    },
+    table: {
+        contentToolbar: [
+            'tableColumn',
+            'tableRow',
+            'mergeTableCells'
+        ]
+    },
 };
 
 export default { Editor, UploadAdapter };

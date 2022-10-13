@@ -1,11 +1,11 @@
 @use "sass:math"
 /*
-	********************
-	* Lark.sass v2.0.3
-	* Description: CSS reset and adaptive layout
-	* Author: Dima Boro
-	* LastUpd: 30.04.2021
-	********************
+    ********************
+    * Lark.sass v2.0.3
+    * Description: CSS reset and adaptive layout
+    * Author: Dima Boro
+    * LastUpd: 30.04.2021
+    ********************
 
 $laPrimary: #333
 $laSecondary: #333
@@ -16,239 +16,239 @@ $columns: 0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 10, 11, 12
 
 
 // *::selection
-// 	background: #333
-// 	color: #fff
+//     background: #333
+//     color: #fff
 
 // ------- Reset Styles -------
 *
-	margin: 0
-	padding: 0
-	outline: none
-	border: 0
-	box-sizing: border-box
+    margin: 0
+    padding: 0
+    outline: none
+    border: 0
+    box-sizing: border-box
 
 input,textarea,select,pre,blockquote,button
-	font: inherit
-	background: transparent
+    font: inherit
+    background: transparent
 input
-	appearance: none
-	&::-webkit-outer-spin-button,
-	&::-webkit-inner-spin-button
-		appearance: none
-		margin: 0
-	&[type=number]
-		appearance: textfield
+    appearance: none
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button
+        appearance: none
+        margin: 0
+    &[type=number]
+        appearance: textfield
 textarea
-	resize: none
+    resize: none
 
 \:focus
-	outline: 0
+    outline: 0
 [hidden]
-	display: none
+    display: none
 [draggable=false]
-	user-select: none
+    user-select: none
 img
-	vertical-align: middle
-	max-width: 100%
-	height: auto
+    vertical-align: middle
+    max-width: 100%
+    height: auto
 
 h1,h2,h3,h4,h5,h6
-	font-weight: normal
+    font-weight: normal
 a
-	color: currentColor
+    color: currentColor
 a, a:hover
-	text-decoration: none
+    text-decoration: none
 li
-	list-style: none
+    list-style: none
 table
-	border-collapse: collapse
-	border-spacing: 0
+    border-collapse: collapse
+    border-spacing: 0
 button
-	cursor: pointer
+    cursor: pointer
 
 .preload *
-	transition: none !important
+    transition: none !important
 
 .text-box
-	h1,h2,h3,h4,h5,h6
-		margin: 25px 0 15px
+    h1,h2,h3,h4,h5,h6
+        margin: 25px 0 15px
 
-	a
-		text-decoration: underline
-	ul, ol
-		margin: 10px 10px 20px
-	li
-		margin: 5px 0
-	ul li
-		list-style: disc inside
-	ol li
-		list-style: decimal inside
-	p
-		margin: 10px 0 15px
+    a
+        text-decoration: underline
+    ul, ol
+        margin: 10px 10px 20px
+    li
+        margin: 5px 0
+    ul li
+        list-style: disc inside
+    ol li
+        list-style: decimal inside
+    p
+        margin: 10px 0 15px
 
-	& > *:first-child
-		margin-top: 0
-	& > *:last-child
-		margin-bottom: 0
+    & > *:first-child
+        margin-top: 0
+    & > *:last-child
+        margin-bottom: 0
 
 
 // ------- Display -------
 .dib, .inline-block, .d-yinline-block
-	display: inline-block
+    display: inline-block
 .dif, .inline-flex, .d-inline-flex
-	display: inline-flex
+    display: inline-flex
 .di, .inline, .d-inline
-	display: inline
+    display: inline
 .db, .block, .d-block
-	display: block
+    display: block
 .df, .flex, .d-flex
-	display: flex
+    display: flex
 .dn, .none, .d-none
-	display: none
+    display: none
 .dg, .grid, .d-grig
-	display: grid
+    display: grid
 .vv .visible
-	visibility: visible
+    visibility: visible
 .vh, .invisible
-	visibility: hidden
+    visibility: hidden
 .poa, .absolute, .abs
-	position: absolute
+    position: absolute
 .por, .relative
-	position: relative
+    position: relative
 
 
 // ------- Flex -------
 .fww, .flex-wrap
-	flex-wrap: wrap
+    flex-wrap: wrap
 .fwnw, .flex-nowrap
-	flex-wrap: nowrap
+    flex-wrap: nowrap
 
 .jcc, .justify-content-center
-	justify-content: center
+    justify-content: center
 .jcfs, .justify-content-start
-	justify-content: flex-start
+    justify-content: flex-start
 .jcfe, .justify-content-end
-	justify-content: flex-end
+    justify-content: flex-end
 .jsb, .jcsb, .sb, .space-between, .justify-space-between
-	justify-content: space-between
+    justify-content: space-between
 
 .aic, .align-items-center
-	align-items: center
+    align-items: center
 .aifs, .ais, .align-items-flex-start
-	align-items: flex-start
+    align-items: flex-start
 .aife, .aie, .align-items-flex-end
-	align-items: flex-end
+    align-items: flex-end
 
 .fdc, .flex-column
-	flex-direction: column
+    flex-direction: column
 .fdcr, .flex-column-reverse
-	flex-direction: column-reverse
+    flex-direction: column-reverse
 .fdr, .flex-reverse
-	flex-direction: row-reverse
+    flex-direction: row-reverse
 .flex-center
-	display: flex
-	align-items: center
-	justify-content: center
+    display: flex
+    align-items: center
+    justify-content: center
 
 // ------- Grid -------
 .grid-full
-	grid-column: 1 / -1
+    grid-column: 1 / -1
 
 
 
 .float-left
-	float: left
+    float: left
 .float-right
-	float: right
+    float: right
 
 // ------- Text -------
 .text-left, .tal
-	text-align: left
+    text-align: left
 .text-center, .tac
-	text-align: center
+    text-align: center
 .text-right, .tar
-	text-align: right
+    text-align: right
 .ttu
-	text-transform: uppercase
+    text-transform: uppercase
 .tdu
-	text-decoration: underline
+    text-decoration: underline
 .cup
-	cursor: pointer
+    cursor: pointer
 
 
 // ------- Flex-grid -------
 .row
-	padding-left: $indentSizeX
-	padding-right: $indentSizeX
+    padding-left: $indentSizeX
+    padding-right: $indentSizeX
 
 .container, .container-full
-	position: relative
-	padding-left: $indentSizeX
-	padding-right: $indentSizeX
-	margin-left: auto
-	margin-right: auto
-	width: 100%
+    position: relative
+    padding-left: $indentSizeX
+    padding-right: $indentSizeX
+    margin-left: auto
+    margin-right: auto
+    width: 100%
 
 %grid-column
-	width: 100%
-	max-width: 100%
-	flex: 1 0 0
+    width: 100%
+    max-width: 100%
+    flex: 1 0 0
 
 @mixin make-col($col, $columns: 12)
-	@if $col == 0
-		$col: $columns
-	flex: 0 0 math.percentage( math.div($col, $columns) )
-	max-width: math.percentage( math.div($col, $columns) )
+    @if $col == 0
+        $col: $columns
+    flex: 0 0 math.percentage( math.div($col, $columns) )
+    max-width: math.percentage( math.div($col, $columns) )
 
 @mixin make-col-auto()
-	flex: 0 0 auto
-	width: auto
-	max-width: 100%
+    flex: 0 0 auto
+    width: auto
+    max-width: 100%
 
 @function col-infix($col)
-	@return if($col == 0, '', -#{$col})
+    @return if($col == 0, '', -#{$col})
 
 .col-auto
-	+make-col-auto
+    +make-col-auto
 
 @each $col in $columns
-	.col#{col-infix($col)}
-		@extend %grid-column
+    .col#{col-infix($col)}
+        @extend %grid-column
 
 @each $screenW, $containerW, $name in $mediaWidth
-	@each $col in $columns
-		.col-#{$name}#{col-infix($col)}
-			@extend %grid-column
-	@media (min-width: #{$screenW})
-		.container
-			max-width: #{$containerW}
-		.col-#{$name}-auto
-			+make-col-auto
-		@each $col in $columns
-			.col-#{$name}#{col-infix($col)}
-				+make-col($col)
+    @each $col in $columns
+        .col-#{$name}#{col-infix($col)}
+            @extend %grid-column
+    @media (min-width: #{$screenW})
+        .container
+            max-width: #{$containerW}
+        .col-#{$name}-auto
+            +make-col-auto
+        @each $col in $columns
+            .col-#{$name}#{col-infix($col)}
+                +make-col($col)
 
 
 // // ------- Indents -------
 // @each $name in (0, auto)
-// 	.mt-#{$name}, .my-#{$name}
-// 		margin-top: $name !important
-// 	.ml-#{$name}, .mx-#{$name}
-// 		margin-left: $name !important
-// 	.mr-#{$name}, .mx-#{$name}
-// 		margin-right: $name !important
-// 	.mb-#{$name}, .my-#{$name}
-// 		margin-bottom: $name !important
+//     .mt-#{$name}, .my-#{$name}
+//         margin-top: $name !important
+//     .ml-#{$name}, .mx-#{$name}
+//         margin-left: $name !important
+//     .mr-#{$name}, .mx-#{$name}
+//         margin-right: $name !important
+//     .mb-#{$name}, .my-#{$name}
+//         margin-bottom: $name !important
 
 
 // ------- Sizing -------
 .w-100
-	width: 100% !important
+    width: 100% !important
 .w-50
-	width: 50% !important
+    width: 50% !important
 .w-25
-	width: 25% !important
+    width: 25% !important
 .w-0
-	width: 0 !important
+    width: 0 !important
 .w-auto
-	width: auto !important
+    width: auto !important

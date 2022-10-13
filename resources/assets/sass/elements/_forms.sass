@@ -1,144 +1,144 @@
 
 .f-wrap
-	position: relative
-	display: flex
-	align-items: center
-	font-size: 15px
-	.f-placeholder
-		position: absolute
-		top: -20px
-		left: 45px
-		font-size: 11px
-		font-weight: 500
-		text-transform: uppercase
-		+letter-spacing(150)
-		color: #c8c8c8
-		transition: .15s
-		pointer-events: none
-		span
-			display: none
-		i
-			font-style: normal
+    position: relative
+    display: flex
+    align-items: center
+    font-size: 15px
+    .f-placeholder
+        position: absolute
+        top: -20px
+        left: 45px
+        font-size: 11px
+        font-weight: 500
+        text-transform: uppercase
+        +letter-spacing(150)
+        color: #c8c8c8
+        transition: .15s
+        pointer-events: none
+        span
+            display: none
+        i
+            font-style: normal
 
-	input:not([type]),
-	input[type=text],
-	input[type=number],
-	input[type=email],
-	input[type=password],
-	textarea
-		display: block
-		padding: 0 45px
-		height: 70px
-		width: 100%
-		background: #F5F5F5
-		transition: .15s
-		border-radius: 35px 2px
-		&:focus
-			background: #FAF5FF
-			& ~ svg
-				fill: $primary
-		&::placeholder
-			color: transparent
+    input:not([type]),
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    input[type=password],
+    textarea
+        display: block
+        padding: 0 45px
+        height: 70px
+        width: 100%
+        background: #F5F5F5
+        transition: .15s
+        border-radius: 35px 2px
+        &:focus
+            background: #FAF5FF
+            & ~ svg
+                fill: $primary
+        &::placeholder
+            color: transparent
 
-		&.invalid
-			border: 1px solid #F07575
-			& ~ svg
-				fill: #F07575
+        &.invalid
+            border: 1px solid #F07575
+            & ~ svg
+                fill: #F07575
 
-		&:placeholder-shown:not(:focus) ~ .f-placeholder
-			top: 50%
-			font-size: inherit
-			font-weight: 300
-			text-transform: none
-			letter-spacing: normal
-			color: #a4a4a4
-			transform: translateY(-50%)
-			span
-				display: inline
-	textarea
-		padding-top: 27px
-		min-height: 70px
-		height: 100%
-	textarea:placeholder-shown:not(:focus) ~ .f-placeholder,
-	textarea ~ svg
-		top: 36px
+        &:placeholder-shown:not(:focus) ~ .f-placeholder
+            top: 50%
+            font-size: inherit
+            font-weight: 300
+            text-transform: none
+            letter-spacing: normal
+            color: #a4a4a4
+            transform: translateY(-50%)
+            span
+                display: inline
+    textarea
+        padding-top: 27px
+        min-height: 70px
+        height: 100%
+    textarea:placeholder-shown:not(:focus) ~ .f-placeholder,
+    textarea ~ svg
+        top: 36px
 
 
-	& > svg
-		position: absolute
-		top: 50%
-		transform: translateY(-50%)
-		right: 22px
-		transition: .15s
-		+square(14px)
-		fill: #C0C0C0
-		pointer-events: none
-	.btn
-		position: absolute
-		top: 0
-		bottom: 0
-		right: 0
-		padding: 0
-		z-index: 2
-		svg
-			fill: #fff
-			+square(22px)
+    & > svg
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        right: 22px
+        transition: .15s
+        +square(14px)
+        fill: #C0C0C0
+        pointer-events: none
+    .btn
+        position: absolute
+        top: 0
+        bottom: 0
+        right: 0
+        padding: 0
+        z-index: 2
+        svg
+            fill: #fff
+            +square(22px)
 
 .f-wrap-nano
-	font-size: 12px
-	input:not([type]),
-	input[type=text],
-	input[type=number],
-	input[type=email],
-	input[type=password],
-	textarea
-		padding: 0 20px
-		height: 35px
-		border-radius: 20px 2px
-	.f-placeholder
-		top: -17px
-		left: 20px
-		font-size: 10px
+    font-size: 12px
+    input:not([type]),
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    input[type=password],
+    textarea
+        padding: 0 20px
+        height: 35px
+        border-radius: 20px 2px
+    .f-placeholder
+        top: -17px
+        left: 20px
+        font-size: 10px
 
 input[type=checkbox],
 input[type=radio]
-	margin-right: 15px
-	flex-shrink: 0
-	+square(25px)
-	background-color: #fff
-	background: no-repeat 50% 50%
-	background-size: 52%
-	border: 1px solid #E5D8ED
-	border-radius: 2px
-	cursor: pointer
-	outline: 0
-	&:checked
-		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 13 13' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m5.777 0.777h5.445c0.553 0 1 0.448 1 1v5.445c0 2.762-2.238 5-4.999 5h-5.446c-0.552 0-1-0.447-1-1v-5.445c0-2.761 2.239-5 5-5z' fill='%23c790e7' fill-rule='evenodd'/%3E%3C/svg%3E")
-		background-color: #f7f8f8
-		border: none
+    margin-right: 15px
+    flex-shrink: 0
+    +square(25px)
+    background-color: #fff
+    background: no-repeat 50% 50%
+    background-size: 52%
+    border: 1px solid #E5D8ED
+    border-radius: 2px
+    cursor: pointer
+    outline: 0
+    &:checked
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 13 13' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m5.777 0.777h5.445c0.553 0 1 0.448 1 1v5.445c0 2.762-2.238 5-4.999 5h-5.446c-0.552 0-1-0.447-1-1v-5.445c0-2.761 2.239-5 5-5z' fill='%23c790e7' fill-rule='evenodd'/%3E%3C/svg%3E")
+        background-color: #f7f8f8
+        border: none
 
 .agreement
-	display: flex
-	align-items: center
-	font-size: 12px
-	color: #a4a4a4
-	cursor: pointer
+    display: flex
+    align-items: center
+    font-size: 12px
+    color: #a4a4a4
+    cursor: pointer
 
 
 .error-text:not(:empty),
 .information-text:not(:empty)
-	align-self: flex-start
-	padding: 8px 15px
-	font-size: 12px
-	line-height: 1.4
-	font-weight: 500
-	color: #fff
-	border-radius: 5px
+    align-self: flex-start
+    padding: 8px 15px
+    font-size: 12px
+    line-height: 1.4
+    font-weight: 500
+    color: #fff
+    border-radius: 5px
 
 .error-text:not(:empty)
-	background: #D35252
+    background: #D35252
 
 .information-text:not(:empty)
-	background: #74d352
+    background: #74d352
 
 

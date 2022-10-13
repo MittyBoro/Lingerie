@@ -17,14 +17,14 @@ const componentFromFolder = (app, components, prefix) => {
 
     for (const path in components) {
 
-		let componentName = prefix +_.upperFirst(
-			_.camelCase( path.split('/').pop().replace(/\.\w+$/, '') )
-		)
+        let componentName = prefix +_.upperFirst(
+            _.camelCase( path.split('/').pop().replace(/\.\w+$/, '') )
+        )
 
-		app.component(
-			componentName,
-			components[path].default
-		)
+        app.component(
+            componentName,
+            components[path].default
+        )
     }
 
 }

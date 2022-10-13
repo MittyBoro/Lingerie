@@ -1,32 +1,32 @@
 <template>
-	<div class="table-wrapper loading text-sm">
-		<TPagination v-if="(pagination && pagination.total) || sortRoute" :pages="pagination" class="border-t" ref="pagination">
-			<div
-				v-if="sortRoute"
-				@click="sortToggle"
-				class="ml-auto">
-				<div v-if="!sortEnable" class="btn btn-mini">Сортировать</div>
-				<div v-else class="btn-gray btn-mini">Назад</div>
-			</div>
+    <div class="table-wrapper loading text-sm">
+        <TPagination v-if="(pagination && pagination.total) || sortRoute" :pages="pagination" class="border-t" ref="pagination">
+            <div
+                v-if="sortRoute"
+                @click="sortToggle"
+                class="ml-auto">
+                <div v-if="!sortEnable" class="btn btn-mini">Сортировать</div>
+                <div v-else class="btn-gray btn-mini">Назад</div>
+            </div>
 
-		</TPagination>
+        </TPagination>
 
-		<div class="table-overflow">
-			<table v-if="items && items.length > 0" class="border-t table">
+        <div class="table-overflow">
+            <table v-if="items && items.length > 0" class="border-t table">
 
-				<THead v-if="headers" :headers="headers" />
-				<thead v-else-if="$slots.thead">
-					<slot name="thead"></slot>
-				</thead>
+                <THead v-if="headers" :headers="headers" />
+                <thead v-else-if="$slots.thead">
+                    <slot name="thead"></slot>
+                </thead>
 
-				<template v-if="$slots.row" >
-					<tbody v-if="!sortRoute">
-						<tr v-for="element in items" :key="element.id">
-							<slot name="row" :element="element"></slot>
-							<TData v-if="editRoute" class="w-min">
-								<Link :href="route(editRoute, element.id)">
-									<font-awesome-icon icon="pencil" class="text-gray-500 hover-link"/>
-								</Link>
+                <template v-if="$slots.row" >
+                    <tbody v-if="!sortRoute">
+                        <tr v-for="element in items" :key="element.id">
+                            <slot name="row" :element="element"></slot>
+                            <TData v-if="editRoute" class="w-min">
+                                <Link :href="route(editRoute, element.id)">
+                                    <font-awesome-icon icon="pencil" class="text-gray-500 hover-link"/>
+                				</Link>
 							</TData>
 							<TData v-if="destroyRoute" class="w-min">
 								<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
