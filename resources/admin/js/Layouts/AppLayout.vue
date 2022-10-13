@@ -36,7 +36,7 @@
         created() {
             document.title = `${this.title} | TheAdmin`;
             
-            this.$page.title = this.title
+            this.$admin.title = this.title
         },
         
         methods: {

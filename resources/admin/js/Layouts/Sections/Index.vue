@@ -5,7 +5,7 @@
             <div class="grid gap-4 mb-4 md:mb-0">
                 <div class="font-semibold text-2xl">
                     <slot v-if="$slots.title" name="title"></slot>
-                    <template v-else>{{ $page.title }}</template>
+                    <template v-else>{{ $admin.title }}</template>
                 </div>
                 <div v-if="$slots.subtitle" class="grid gap-1">
                     <slot name="subtitle"></slot>

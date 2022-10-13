@@ -6,7 +6,7 @@
                 <div class="font-bold text-xl">
                     <div class="flex items-center">
                         <slot v-if="$slots.title" name="title"></slot>
-                        <template v-else>{{ $page.title }}</template>
+                        <template v-else>{{ $admin.title }}</template>
                         <component
                             v-if="showLink && form.id"
                             :is="internalLink ? 'Link' : 'a'"

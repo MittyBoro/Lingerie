@@ -26,6 +26,8 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
 
         let createdApp = createApp({ render: () => h(app, props) });
+        
+        createdApp.config.globalProperties.$admin = {}
 
         createdApp
             .use(plugin)
