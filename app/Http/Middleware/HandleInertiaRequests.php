@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'config' => fn () => config('admin'),
+            'langs' => fn () => config('app.langs'),
 
             'auth' => [
                 'user' => fn () => $request->user()

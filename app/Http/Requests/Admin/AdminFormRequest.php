@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 
 use App\Http\Requests\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminFormRequest extends FormRequest
 {
@@ -38,6 +39,13 @@ class AdminFormRequest extends FormRequest
             'meta_title'       => 'string|nullable|max:255',
             'meta_description' => 'string|nullable|max:255',
             'meta_keywords'    => 'string|nullable|max:255',
+        ];
+    }
+
+    protected function validationLang(): array
+    {
+        return [
+            'lang'        => ['required', 'string', Rule::in(config('app.langs'))],
         ];
     }
 }

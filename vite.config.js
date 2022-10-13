@@ -18,8 +18,8 @@ export default defineConfig({
                 // 'resources/assets/sass/style.sass',
             ],
             refresh: [
-                'app/**/*.php',
-                'config/**',
+                // 'app/**/*.php',
+                // 'config/**',
                 'public/**/images/*.*',
                 'resources/views/**',
                 'lang/**'

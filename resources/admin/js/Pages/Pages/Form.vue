@@ -49,6 +49,7 @@
                     slug: null,
                     is_hidden: false,
                     route: null,
+                    lang: null,
 
                     description: null,
 

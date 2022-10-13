@@ -7,17 +7,16 @@
         </FNotice>
 
         <FLabel title="Название" :error="form.errors.title">
-            <FInput @change="stopSlugFromTitle" type="text" v-model="form.title" />
+            <FInput @change="stopSlugFromTitle" type="text" v-model="form.title" required/>
+        </FLabel>
+
+        <FLabel title="Язык" :error="form.errors.lang">
+            <FSelect :options="$page.props.langs" v-model="form.lang" required/>
         </FLabel>
 
         <FLabel title="Ярлык" :error="form.errors.slug">
-            <FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
+            <FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" required/>
         </FLabel>
-
-        <!-- <FLabel title="Скрытая страница?" :error="form.errors.is_hidden">
-            <FSwitcher v-model="form.is_hidden" secondary/>
-            <FNotice v-text="'Не будет доступно для просмотра, рекомендуется для шаблонных страниц'" />
-        </FLabel> -->
 
         <FLabel title="Описание" :error="form.errors.description" as="div">
             <FTextareaEditor v-model="form.description" />

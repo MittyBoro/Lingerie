@@ -38,7 +38,7 @@ class PageController extends Controller
     {
         return Inertia::render('Pages/Form', [
             'item' => $page,
-            'props' => $page->properties()->get4Admin(),
+            // 'props' => $page->properties()->get4Admin(),
         ]);
     }
 
