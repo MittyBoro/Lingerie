@@ -1,11 +1,11 @@
 <template>
     <nav class="flex justify-between px-3 md:px-0 pt-0 md:pt-1 items-center h-16 md:h-20 border-b border-gray-300">
         <div class="flex items-center font-bold pr-7 pt-0 text-gray-700 leading-tight">
-            <a :href="route('admin.dashboard')" class="link"><font-awesome-icon icon="house" /></a>
+            <Link :href="route('admin.dashboard')" class="link"><font-awesome-icon icon="house" /></Link>
             <div class="text-sm opacity-50 mx-2">/</div>
             
             <div class="flex items-center" v-for="item in breadCrumbs" v-show="item.name != title" :key="item.route">
-                <a :href="route(item.route)" class="link">{{ item.name }}</a>
+                <Link :href="route(item.route)" class="link" v-text="item.name" />
                 <div class="text-sm opacity-30 mx-2">/</div>
             </div>
             <span class="opacity-70">{{ title }}</span>

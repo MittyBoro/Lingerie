@@ -1,5 +1,5 @@
 <template>
-    <AppLayout title="Все страницы">
+    <AppLayout title="Страницы">
         <IndexSection class="max-w-3xl">
 
             <template #buttons>
