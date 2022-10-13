@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      *
+     * характеристики, описание
      * @return void
      */
     public function up()
@@ -16,14 +17,8 @@ return new class extends Migration
         Schema::create('product_properties', function (Blueprint $table) {
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
 
-
-            // ru
-            $table->string('title_ru');
-            $table->text('description_ru')->nullable();
-
-            // nullable
-            $table->string('title_en');
-            $table->text('description_en')->nullable();
+            $table->string('title');
+            $table->text('description')->nullable();
         });
     }
 

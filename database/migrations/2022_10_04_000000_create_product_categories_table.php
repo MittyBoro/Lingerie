@@ -18,7 +18,8 @@ return new class extends Migration
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
 
-            $table->string('slug')->unique();
+            $table->string('slug');
+            $table->string('lang')->default('ru');
 
             // ru
             $table->string('title_ru');
@@ -27,16 +28,17 @@ return new class extends Migration
             $table->string('meta_description_ru')->nullable();
             $table->string('meta_keywords_ru')->nullable();
             // en
-            $table->string('title_en');
-            $table->text('description_en')->nullable();
-            $table->string('meta_title_en')->nullable();
-            $table->string('meta_description_en')->nullable();
-            $table->string('meta_keywords_en')->nullable();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
 
 
             $table->integer('position')->default(0);
 
             $table->nestedSet();
+            $table->unique('slug', 'lang');
         });
 
     }

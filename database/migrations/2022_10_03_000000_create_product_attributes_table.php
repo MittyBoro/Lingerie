@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name_en')->nullable();
-            $table->string('name_ru')->nullable();
+            $table->string('name')->nullable();
+            $table->string('lang')->default('ru');
 
             $table->foreignId('product_attribute_type_id')->index()
                                     ->constrained()->cascadeOnDelete();

@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('f_a_q_s', function (Blueprint $table) {
             $table->id();
+            
+            $table->string('lang')->default('ru');
 
-            $table->string('title_ru')->nullable();
-            $table->text('description_ru')->nullable();
-
-            $table->string('title_en')->nullable();
-            $table->text('description_en')->nullable();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
         });
     }
 
