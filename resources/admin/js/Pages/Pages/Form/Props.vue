@@ -1,10 +1,10 @@
 <template>
-    <div class="col-span-6 grid grid-cols-6 gap-4">
-        <FNotice class="col-span-6 xl:col-span-4">
+    <div class="col-span-6 xl:col-span-4 grid gap-4">
+        <FNotice>
             <Link class="link" :href="route('admin.props.create', {page_id: page_id} )">Добавить</Link> дополнительный параметр
         </FNotice>
 
-        <props-list class="xl:col-span-4" :list="props" />
+        <PropsList :list="props" />
     </div>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
 
-    <div class="col-span-6 grid grid-cols-6 gap-4">
+    <div class="col-span-6 xl:col-span-4 grid gap-4">
 
-        <FNotice class="col-span-6 xl:col-span-4">
+        <FNotice>
             Укажите <code class="monfont-mono font-semibold">%replace%</code>, для замены на значение из дочернего элемента
         </FNotice>
 

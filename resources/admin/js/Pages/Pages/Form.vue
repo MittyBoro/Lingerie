@@ -3,8 +3,9 @@
 
         <FormSection :submit="submit" :form="form"
         :tabs="isEdit ? ['Основное', 'SEO', 'Дополнительно'] : ['Основное', 'SEO']"
+        v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'"
         :showLink="frontUrl(form.slug)"
-        v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'">
+        >
             <template v-if="isEdit" #buttons>
                 <Link :href="route(routePrefix + 'create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </template>

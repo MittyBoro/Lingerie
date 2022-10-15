@@ -17,7 +17,7 @@
 			},
 			classes: {
 				type: String,
-				default: 'col-span-6 xl:col-span-4 flex flex-col'
+				default: 'flex flex-col'
 			},
 		}
     }
