@@ -1,9 +1,9 @@
 <template>
     <nav class="flex justify-between px-3 md:px-0 pt-0 md:pt-1 items-center h-16 md:h-20 border-b border-gray-300">
         <div class="flex items-center font-bold pr-7 pt-0 text-gray-700 leading-tight">
-            <Link :href="route('admin.dashboard')" class="link"><font-awesome-icon icon="house" /></Link>
+            <Link :href="route('admin.dashboard')" class="link"><Icon icon="house" /></Link>
             <div class="text-sm opacity-50 mx-2">/</div>
-            
+
             <div class="flex items-center" v-for="item in breadCrumbs" v-show="item.name != title" :key="item.route">
                 <Link :href="route(item.route)" class="link" v-text="item.name" />
                 <div class="text-sm opacity-30 mx-2">/</div>
@@ -60,21 +60,21 @@
         props: {
             title: String,
         },
-        
+
         computed: {
             breadCrumbs() {
-                
+
                 let currentRoute = route().current()
                 let routeStart = currentRoute.split('.').slice(0, 2).join('.');
-                
+
                 let menu = this.$page.props.config.menu;
-                
+
                 let breadCrumbsArray = this.findItemInMenu(menu, routeStart);
-                
+
                 return breadCrumbsArray
             },
         },
-        
+
         mounted() {
         },
 
@@ -84,10 +84,10 @@
                 axios.post(route('admin.logout'))
                     .then(() => location.href = route('admin.login'))
             },
-            
+
             findItemInMenu(menu, routeStart) {
                 let breadCrembs = []
-                
+
                 menu.forEach(el => {
                     if (el.route.startsWith(routeStart)) {
                         breadCrembs.push(el)
@@ -96,7 +96,7 @@
                         breadCrembs = [ ...this.findItemInMenu(el.sublinks, routeStart), ...breadCrembs ]
                     }
                 })
-                
+
                 return breadCrembs;
             },
 

@@ -12,12 +12,7 @@ import { ZiggyVue } from 'ziggy';
 import Toast from "vue-toastification";
 import MyMixin from "./Mixins/Mixin.js";
 
-// fortawesome
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(fas, fab)
+import Icon from './Elements/Icon'
 
 
 createInertiaApp({
@@ -26,7 +21,7 @@ createInertiaApp({
     setup({ el, app, props, plugin }) {
 
         let createdApp = createApp({ render: () => h(app, props) });
-        
+
         createdApp.config.globalProperties.$admin = {}
 
         createdApp
@@ -36,7 +31,7 @@ createInertiaApp({
             .mixin({ methods: { route } })
             .mixin(MyMixin)
             .use(Toast)
-            .component('font-awesome-icon', FontAwesomeIcon)
+            .component('Icon', Icon)
             .component('Link', Link)
 
 

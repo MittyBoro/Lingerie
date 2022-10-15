@@ -1,7 +1,7 @@
 <template>
     <div class="save-row fixed z-40 bg-primary-300 bg-opacity-60 p-2 shadow-lg" :style="style">
         <FButton class="btn" :disabled="disabled">
-            <font-awesome-icon icon="floppy-disk" class="text-lg" />
+            <Icon icon="floppy-disk" class="text-lg" />
         </FButton>
     </div>
 </template>

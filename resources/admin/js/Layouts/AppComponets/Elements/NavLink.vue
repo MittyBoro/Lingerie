@@ -6,7 +6,7 @@
             class="flex rounded-full lg:rounded-r-none transition items-center px-5 py-4 font-bold cursor-pointer"
             :class="activeClass">
 
-            <font-awesome-icon :icon="link.icon || 'circle-dot'" class="w-6 text-center mr-2" />
+            <Icon :icon="link.icon || 'circle-dot'" class="w-6 text-center mr-2" />
             <slot></slot>
         </div>
         <Link
@@ -15,7 +15,7 @@
             class="flex rounded-full lg:rounded-r-none transition items-center px-5 py-4 font-bold cursor-pointer"
             :class="activeClass">
 
-            <font-awesome-icon :icon="link.icon || 'circle-dot'" class="w-6 text-center mr-2" />
+            <Icon :icon="link.icon || 'circle-dot'" class="w-6 text-center mr-2" />
             <slot></slot>
         </Link>
 

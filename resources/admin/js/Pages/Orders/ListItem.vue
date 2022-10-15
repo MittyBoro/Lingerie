@@ -38,7 +38,7 @@
             <template v-if="element.user && !user">
                 <div class="ci-title">Покупатель:</div>
                 <div>
-                    <Link class="link" :href="route('admin.users.show', element.user.id)"><font-awesome-icon class="scale-75" icon="user"/> {{ element.user.name }}</Link> <Link class="hover-link text-xs opacity-70" :href="route('admin.product_orders.index', { user_id: element.user.id })">[все заказы]</Link>
+                    <Link class="link" :href="route('admin.users.show', element.user.id)"><Icon class="scale-75" icon="user"/> {{ element.user.name }}</Link> <Link class="hover-link text-xs opacity-70" :href="route('admin.product_orders.index', { user_id: element.user.id })">[все заказы]</Link>
                 </div>
             </template>
 

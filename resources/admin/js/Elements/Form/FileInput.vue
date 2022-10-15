@@ -23,7 +23,7 @@
 							class="flex items-center justify-center bg-red-500 text-white h-3 w-3 rounded-sm shadow-sm text-xs cursor-pointer"
 							:class="[isImage ? 'absolute top-1 right-1' : 'relative']"
 							>
-								<font-awesome-icon icon="xmark" />
+								<Icon icon="xmark" />
 							</span>
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 				<span v-if="multiple">Выберите файлы</span>
 				<span v-else>Выберите файл</span>
 				<span v-if="drop"> или перетащите сюда</span>
-				<font-awesome-icon icon="cloud-arrow-up" class="opacity-60 ml-1" />
+				<Icon icon="cloud-arrow-up" class="opacity-60 ml-1" />
 				<input type="file"
 					@change="addFiles"
 					class="hidden"

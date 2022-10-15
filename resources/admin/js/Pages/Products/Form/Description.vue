@@ -12,7 +12,7 @@
                 <template #item="{ element, index }">
                     <div class="grid gap-3 row-variations characteristics-grid">
                         <div class="col-icon mt-6 pt-0.5">
-                            <font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
+                            <Icon icon="arrows-up-down-left-right" class="drag-handle"/>
                         </div>
                         <div>
                             <FLabel title="Описание">
@@ -25,14 +25,14 @@
                             </FLabel>
                         </div>
                         <div class="col-icon mt-6 pt-0.5">
-                            <font-awesome-icon @click="removeAt(index)" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
+                            <Icon @click="removeAt(index)" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
                         </div>
                     </div>
                 </template>
             </Draggable>
             <div @click="addDetail" class="btn-gray w-full">
                 <span>Добавить</span>
-                <font-awesome-icon icon="plus" class="ml-1" />
+                <Icon icon="plus" class="ml-1" />
             </div>
         </div>
 

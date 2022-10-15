@@ -28,8 +28,8 @@
 
 		<div v-if="type == 'password'" class="pass-eyes absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 hover:text-gray-500 text-base transition"
 			onclick="this.previousElementSibling.type = this.previousElementSibling.type == 'password' ? 'text' : 'password' ">
-			<font-awesome-icon icon="eye" />
-			<font-awesome-icon icon="eye-slash" />
+			<Icon icon="eye" />
+			<Icon icon="eye-slash" />
 		</div>
 	</div>
 </template>

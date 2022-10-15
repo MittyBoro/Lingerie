@@ -33,7 +33,7 @@
                 <FLabel title="Прикрепить к странице" :error="form.errors.model_id">
                     <FSelect :options="pages" :keys="['id','title']" v-model="page_id" />
                     <Link v-if="page_id" :href="route('admin.pages.edit', page_id)" class="link mt-2">
-                        <font-awesome-icon icon="pencil" class="mr-1" />
+                        <Icon icon="pencil" class="mr-1" />
                         <span>Редактировать страницу</span>
                     </Link>
                 </FLabel>
@@ -43,7 +43,7 @@
             <template v-if="isEdit" #actions>
                 <Link @click.prevent :href="route(routePrefix + 'destroy', form.id)" method="delete" as="button" class="ml-3">
                     <div @click="confirm" class="btn-danger btn-square block">
-                        <font-awesome-icon icon="trash-can"/>
+                        <Icon icon="trash-can"/>
                     </div>
                 </Link>
             </template>

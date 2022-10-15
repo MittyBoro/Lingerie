@@ -14,7 +14,7 @@
                             target="_blank"
                             class="text-gray-500 hover-link ml-2 mt-0.5 text-sm"
                             >
-                            <font-awesome-icon icon="eye"/>
+                            <Icon icon="eye"/>
                         </component>
                     </div>
                 </div>

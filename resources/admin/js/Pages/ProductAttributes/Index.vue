@@ -15,7 +15,7 @@
                         <TData v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
                         <TData mini>
                             <a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
-                                <font-awesome-icon icon="eye"/>
+                                <Icon icon="eye"/>
                             </a>
                         </TData>
                     </template>

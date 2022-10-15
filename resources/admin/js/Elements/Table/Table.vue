@@ -25,12 +25,12 @@
                             <slot name="row" :element="element"></slot>
                             <TData v-if="editRoute" class="w-min">
                                 <Link :href="route(editRoute, element.id)">
-                                    <font-awesome-icon icon="pencil" class="text-gray-500 hover-link"/>
+                                    <Icon icon="pencil" class="text-gray-500 hover-link"/>
                 				</Link>
 							</TData>
 							<TData v-if="destroyRoute" class="w-min">
 								<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
-									<font-awesome-icon @click="confirm" icon="trash-can" class="text-gray-500 hover-link block"/>
+									<Icon @click="confirm" icon="trash-can" class="text-gray-500 hover-link block"/>
 								</Link>
 							</TData>
 						</tr>
@@ -39,17 +39,17 @@
 						<template #item="{ element }">
 							<tr class="drag-tr">
 								<TData v-if="sortEnable" class="sort-td w-min">
-									<font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
+									<Icon icon="arrows-up-down-left-right" class="drag-handle"/>
 								</TData>
 								<slot name="row" :element="element"></slot>
 								<TData v-if="editRoute" class="w-min">
 									<Link :href="route(editRoute, element.id)">
-										<font-awesome-icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
+										<Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
 									</Link>
 								</TData>
 								<TData v-if="destroyRoute" class="w-min">
 									<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
-										<font-awesome-icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
+										<Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
 									</Link>
 								</TData>
 							</tr>

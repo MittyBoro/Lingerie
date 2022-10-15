@@ -20,21 +20,21 @@
                     <div class="variations-big flex flex-col">
                         <div class="grid gap-3 variations-row">
                             <div class="col-icon mt-6 pt-0.5">
-                                <font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
+                                <Icon icon="arrows-up-down-left-right" class="drag-handle"/>
                             </div>
                             <FLabel title="Имя вариации" classes="">
                                 <FInput v-model.lazy="element.name" :placeholder="isSingle ? '-' : ''" :required="element.list.length > 1" mini/>
                             </FLabel>
                             <div class="col-icon mt-7 pt-0.5">
                                 <span @click="removeAt(index)">
-                                    <font-awesome-icon icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
+                                    <Icon icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
                                 </span>
                             </div>
                         </div>
                         <variation-row :list="element.list" :name="element.name" @update:element="element.list = $event" :isSingle="isSingle" />
                         <div @click="addVariation(element.name)" class="btn-gray btn-mini ml-auto mt-3">
                             <span>Добавить</span>
-                            <font-awesome-icon icon="plus" class="ml-1" />
+                            <Icon icon="plus" class="ml-1" />
                         </div>
                     </div>
                 </template>
@@ -43,7 +43,7 @@
             <div class="flex">
                 <div @click="addVariation()" class="btn-gray w-full">
                     <span>Добавить</span>
-                    <font-awesome-icon icon="plus" class="ml-1" />
+                    <Icon icon="plus" class="ml-1" />
                 </div>
                 <div class="w-3 flex-shrink-0"></div>
                 <div @click="showText = !showText" class="btn-gray flex-shrink-0">Из текста</div>

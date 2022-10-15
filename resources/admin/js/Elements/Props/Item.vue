@@ -7,9 +7,9 @@
                 <span class="font-semibold">{{ item.title }}</span> <code class="text-xs text-gray-400">[{{ item.key }}]</code>
             </div>
             <div class="flex items-center text-sm text-gray-400">
-                <font-awesome-icon icon="arrows-up-down-left-right" class="mr-2 drag-handle"/>
+                <Icon icon="arrows-up-down-left-right" class="mr-2 drag-handle"/>
                 <Link :href="route('admin.props.edit', item.id)" class="cursor-pointer transition-colors hover:text-primary-600">
-                    <font-awesome-icon icon="gear" class="block"/>
+                    <Icon icon="gear" class="block"/>
                 </Link>
             </div>
         </div>

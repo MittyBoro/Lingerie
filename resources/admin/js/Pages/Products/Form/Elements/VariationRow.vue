@@ -3,7 +3,7 @@
         <template #item="{ element, index }">
             <div class="grid gap-2 variations-row">
                 <div class="pl-1 col-icon mt-6">
-                    <font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle scale-75"/>
+                    <Icon icon="arrows-up-down-left-right" class="drag-handle scale-75"/>
                 </div>
                 <div class="grid gap-2 sm:grid-cols-3">
                     <FLabel title="Значение" classes="text-xs">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-icon mt-7 pl-1">
                     <span @click="removeAt(index)">
-                        <font-awesome-icon icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block scale-75"/>
+                        <Icon icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block scale-75"/>
                     </span>
                 </div>
             </div>

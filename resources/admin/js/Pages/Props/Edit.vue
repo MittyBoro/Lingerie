@@ -15,7 +15,7 @@
                         <TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
                         <TData v-if="sp.element.model_name && route().has('admin.' + sp.element.model_name + '.edit')">
                             <Link class="link inline-flex items-center" :href="route('admin.' + sp.element.model_name + '.edit', sp.element.model_id)">
-                                <font-awesome-icon icon="note-sticky" class="mr-1" />
+                                <Icon icon="note-sticky" class="mr-1" />
                                 <span>{{ sp.element.model.title.substr(0, 6) }}</span>
                             </Link>
                         </TData>

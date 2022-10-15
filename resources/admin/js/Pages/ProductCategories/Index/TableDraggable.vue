@@ -9,24 +9,24 @@
                     <tbody>
                         <tr class="drag-tr">
                             <TData class="sort-td w-min" :class="{'border-l': deep}">
-                                <font-awesome-icon icon="arrows-up-down-left-right" class="drag-handle"/>
+                                <Icon icon="arrows-up-down-left-right" class="drag-handle"/>
                             </TData>
                             <TData title="Название" v-model="element.title" @update:modelValue="update(element)" />
 
                             <TData class="w-min">
                                 <Link :href="route('admin.' + type + '.index', {category: element.id})" class="link font-bold text-xs flex items-center">
-                                    <font-awesome-icon icon="box-open" class="mr-1" />
+                                    <Icon icon="box-open" class="mr-1" />
                                     <span>{{ element.models_count }}</span>
                                 </Link>
                             </TData>
                             <TData class="w-min">
                                 <Link :href="route(routePrefix + 'edit', {category: element.id, type: type})">
-                                    <font-awesome-icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
+                                    <Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
                                 </Link>
                             </TData>
                             <TData class="w-min">
                                 <Link :href="route(routePrefix + 'destroy', {category: element.id, type: type})" method="delete" as="button">
-                                    <font-awesome-icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
+                                    <Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
                                 </Link>
                             </TData>
                         </tr>

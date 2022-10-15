@@ -11,17 +11,17 @@
                     v-if="header.sortable"
                     :href="urlWithSorting(header.key)">
 
-                    <font-awesome-icon v-if="header.fa" :icon="header.fa" class="opacity-60"/>
+                    <Icon v-if="header.fa" :icon="header.fa" class="opacity-60"/>
                     <span v-else v-text="header.text"></span>
 
-                    <font-awesome-icon
+                    <Icon
                         v-if="header.key == orderBy[0]"
                         class="ml-1 scale-90"
                         :icon="orderBy[1] == 'desc' ? 'angle-down' : 'angle-up'"
                         />
                 </Link>
                 <div v-else class="inline-block py-2">
-                    <font-awesome-icon v-if="header.fa" :icon="header.fa"/>
+                    <Icon v-if="header.fa" :icon="header.fa"/>
                     <span v-else-if="header.text" v-text="header.text"></span>
                 </div>
             </th>

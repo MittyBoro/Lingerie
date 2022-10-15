@@ -11,7 +11,7 @@
                 :href="route('admin.dashboard')">
 
 
-                <font-awesome-icon icon="solar-panel" class="w-6 text-2xl -mb-1 mr-2 opacity-80" />
+                <Icon icon="solar-panel" class="w-6 text-2xl -mb-1 mr-2 opacity-80" />
 
                 <div class="hidden sm:block text-2xl pt-1 font-bold leading-none tracking-tight hover:text-gray-100 transition">
                     The Admin<span class="text-white text-opacity-80 ml-0.5">ка</span>

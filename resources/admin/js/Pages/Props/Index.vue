@@ -5,7 +5,7 @@
                 <div class="flex items-center">
                     <span>Настройки</span>
                     <Link :href="route('admin.props.index', {edit: true})" class="ml-2 btn-gray btn-square btn-mini">
-                        <font-awesome-icon icon="gear" />
+                        <Icon icon="gear" />
                     </Link>
                 </div>
             </template>
