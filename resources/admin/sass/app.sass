@@ -8,11 +8,9 @@ body
     @apply bg-secondary-800
 
 ::-webkit-scrollbar-thumb
-    @apply rounded-lg bg-primary-400 border-4 border-secondary-800 border-solid
-
+    @apply rounded-lg bg-primary-400 border-4 border-solid border-white
 ::-webkit-scrollbar-track
-    @apply bg-secondary-800
-
+    @apply bg-white
 ::-webkit-scrollbar
     @apply w-4 h-4
 
@@ -83,12 +81,13 @@ body
 .form-select,
 .form-text
     @apply block w-full bg-white border border-gray-200 px-4 pr-6 rounded-md shadow-sm transition outline-none
+    &:focus,
+    &.focus
+        @apply border-transparent ring-4 ring-primary-200 outline-none bg-white
 .form-input,
 .form-textarea,
 .form-select
     @apply h-10
-    &:focus
-        @apply border-transparent ring-4 ring-primary-200 outline-none bg-white
     &:disabled
         @apply bg-gray-50 text-gray-500
     &.f-mini

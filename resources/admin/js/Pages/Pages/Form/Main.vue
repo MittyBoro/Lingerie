@@ -19,7 +19,7 @@
         </FLabel>
 
         <FLabel title="Описание" :error="form.errors.description" as="div">
-            <FTextareaEditor v-model="form.description" />
+            <FTextareaEditor v-model="form.description" mini/>
         </FLabel>
 
         <FLabel title="Роутер" :error="form.errors.route">
