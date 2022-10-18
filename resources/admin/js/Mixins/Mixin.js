@@ -1,4 +1,7 @@
 import moment from 'moment';
+import 'moment/dist/locale/ru';
+moment.locale('ru');
+
 
 export default {
     data() {
@@ -10,6 +13,11 @@ export default {
 
         frontUrl(url = '') {
             return this.$page.props.config.url + '/' + url;
+        },
+
+        adminRoute(...args) {
+
+            return router(...args);
         },
 
         formatPrice() {
@@ -52,12 +60,10 @@ export default {
         },
 
         formatDateTime(date) {
-            moment.locale('ru');
             return moment(date).format('L LT');
         },
 
         formatDate(date) {
-            moment.locale('ru');
             return moment(date).format('L');
         },
 

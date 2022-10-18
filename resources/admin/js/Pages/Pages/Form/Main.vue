@@ -10,8 +10,14 @@
             <FInput @change="stopSlugFromTitle" type="text" v-model="form.title" required/>
         </FLabel>
 
-        <FLabel title="Язык" :error="form.errors.lang">
+        <FLabel as="div" title="Язык" :error="form.errors.lang">
             <FSelect :options="$page.props.langs" v-model="form.lang" required/>
+            <div v-if="form.alt_langs" class="text-xs mt-2">
+                <span>Другие языки:</span>
+                <span v-for="alt in form.alt_langs" :key="alt.id" class="uppercase ml-1 link font-bold" >
+                    <Link :href="route('admin.pages.edit', alt.id)">{{ alt.lang }}</Link>
+                </span>
+            </div>
         </FLabel>
 
         <FLabel title="Ссылка" :error="form.errors.slug">

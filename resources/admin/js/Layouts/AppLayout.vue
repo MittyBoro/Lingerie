@@ -35,10 +35,12 @@
 
         created() {
             document.title = `${this.title} | TheAdmin`;
-            
+
             this.$admin.title = this.title
+            this.addNotiEvents();
+
         },
-        
+
         methods: {
 
         }

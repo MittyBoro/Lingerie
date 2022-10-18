@@ -2,10 +2,10 @@
 
 namespace App\Models\Admin;
 
-use App\Models\User as ModelsUser;
+use App\Models\User as BaseUser;
 
 
-class User extends ModelsUser
+class User extends BaseUser
 {
 
     public static function roleList()
@@ -17,12 +17,12 @@ class User extends ModelsUser
             self::ROLE_BLOCKED => 'Заблокирован',
         ];
     }
-        
+
     public function getAdminAvatarAttribute()
     {
         return $this->getAdminMedia(self::MEDIA_COLLECTION);
     }
-    
+
     public function scopeUpdateUser($query, $data)
     {
         $this->update($data);

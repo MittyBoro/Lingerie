@@ -10,8 +10,9 @@
 
                 <TTable :table="table">
                     <template #row="sp">
-                        <TData v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
-                        <TData v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
+                        <TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
+                        <TData v-model="sp.element.slug" @update:modelValue="update(sp.element)" />
+                        <TData v-text="sp.element.lang" class="uppercase font-bold opacity-70" />
                         <TData mini>
                             <a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
                                 <Icon icon="eye"/>
@@ -47,6 +48,7 @@
                     headers: [
                         { key: 'title', text: 'Заголовок',  sortable: true },
                         { key: 'slug', text: 'Ярлык',  sortable: true },
+                        { key: 'lang', text: 'Язык',  sortable: true },
                         {},
                     ],
                     items: this.$page.props.list.data,

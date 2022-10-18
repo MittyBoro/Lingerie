@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\PageRequest;
+use App\Models\Admin\Page;
 use Illuminate\Http\Request;
 
-use App\Models\Page;
 
 use Inertia\Inertia;
 
@@ -37,7 +37,7 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         return Inertia::render('Pages/Form', [
-            'item' => $page,
+            'item' => $page->append('alt_langs'),
             // 'props' => $page->properties()->get4Admin(),
         ]);
     }

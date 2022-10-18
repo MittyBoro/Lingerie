@@ -51,7 +51,7 @@ class User extends BaseModel implements
     const ROLE_USER = 'user';
     const ROLE_EDITOR = 'editor';
     const ROLE_ADMIN = 'admin';
-    
+
     const ROLES = [
         self::ROLE_BLOCKED,
         self::ROLE_USER,
@@ -125,7 +125,7 @@ class User extends BaseModel implements
                     ->nonQueued();
             });
     }
-    
+
 
     public function setPhoneAttribute($val)
     {
