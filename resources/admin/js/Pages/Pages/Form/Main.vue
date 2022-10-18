@@ -14,7 +14,7 @@
             <FSelect :options="$page.props.langs" v-model="form.lang" required/>
         </FLabel>
 
-        <FLabel title="Ярлык" :error="form.errors.slug">
+        <FLabel title="Ссылка" :error="form.errors.slug">
             <FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" required/>
         </FLabel>
 
