@@ -38,7 +38,7 @@ return new class extends Migration
             $table->integer('position')->default(0);
 
             $table->nestedSet();
-            $table->unique('slug', 'lang');
+            $table->unique(['slug', 'lang']);
         });
 
     }

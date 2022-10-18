@@ -24,12 +24,12 @@ return new class extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
-            
+
             $table->string('route')->nullable();
 
             $table->timestamps();
-            
-            $table->unique('slug', 'lang');
+
+            $table->unique(['slug', 'lang']);
         });
     }
 

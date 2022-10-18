@@ -34,7 +34,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index(['slug', 'is_published']);
-            $table->unique('slug', 'lang');
+            $table->unique(['slug', 'lang']);
 
             $table->softDeletes();
         });

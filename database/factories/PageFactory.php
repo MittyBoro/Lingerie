@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Page;
 use Illuminate\Support\Arr;
 
 class PageFactory extends Factory
@@ -23,11 +24,25 @@ class PageFactory extends Factory
 
         return [
             'title' => $title,
+            'lang' => 'en',
             'slug' => $this->faker->unique()->word,
-            'route' => Arr::random(['about', 'contact', 'home']),
+            'route' => Arr::random(['about', 'contact', 'home', '']),
             'description' => $this->faker->text,
-            'is_hidden' => !!rand(0, 4),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Page $page) {
+
+            $pageAlt = $page->replicate()->fill([
+                'lang' => 'ru',
+                'title' => latin_to_cyrillic($page['title']),
+                'description' => latin_to_cyrillic($page['description']),
+            ]);
+
+            $pageAlt->save();
+        });
     }
 
 }
