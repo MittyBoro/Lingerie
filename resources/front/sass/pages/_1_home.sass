@@ -1,0 +1,123 @@
+.home-box
+	margin-top: var(--header-height)
+	padding-top: 40px
+	padding-bottom: 40px
+	
+	.title-row
+		display: flex
+		align-items: center
+		margin-bottom: 40px
+		.h1
+			max-width: 440px
+			margin-right: auto
+		.title-images
+			display: flex
+			width: 100%
+		.t-img-wrap
+			position: relative
+			display: flex
+			align-items: center
+			justify-content: center
+			margin-left: 40px
+			border-radius: 20px
+			height: 144px
+			width: 100%
+			overflow: hidden
+		.t-img
+			@extend .cover-image
+			
+			
+	.tabs-row
+		display: flex
+		align-items: center
+		margin-bottom: 40px
+		padding: 8px 38px
+		border: 2px solid #540C6F
+		border-radius: 20px
+		height: 71px
+		.tabs-list
+			display: flex
+			align-items: center
+			margin: 0 26px
+			width: 100%
+		.swiper-slide
+			width: auto
+		.tab-item
+			display: block
+			padding: 15px 32px
+			border-radius: 20px
+			color: #540C6F
+			transition: .2s
+			&.active
+				background: #BA8ACA
+				color: #fff
+			&:hover
+				background: #f9f7f9
+				color: #540C6F
+				text-decoration: none
+				
+	.map-row
+		display: flex
+	.map-col
+		margin-right: 40px
+		max-width: 453px
+		width: 100%
+		min-height: 453px
+		background: #f9f7f9
+		border: 1px solid #540C6F
+		border-radius: 20px
+		overflow: hidden
+	.map-table-col
+		width: 100%
+		
+	.m-table-wrap
+		margin-top: 26px
+		max-height: 401px
+		overflow-y: auto
+		
+	.m-table
+		display: table
+		width: 100%
+		
+	.mt-top
+		display: table-row
+		.mt-col
+			color: $primary
+			font-weight: 600
+			&:first-child
+				text-align: center
+				width: 1%
+	.mt-row
+		display: table-row
+		&:not(:last-child)
+			.mt-col
+				border-bottom: 1px solid #540C6F
+		.mt-col
+			padding-top: 22px
+			padding-bottom: 22px
+	.mt-col
+		display: table-cell
+		padding-left: 18px
+		&:first-child
+			padding-left: 0
+			
+	.mt-int
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 39px
+		height: 39px
+		background: $secondary
+		color: #fff
+		border-radius: 50%
+		
+	.mcs-wrap
+		display: flex
+		align-items: center
+		.star-icon
+			margin-right: 7px
+			padding-right: 7px
+			border-right: 1px solid #BA8ACA
+				
+	.mt-col-btn
+		width: 1%

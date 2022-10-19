@@ -4,13 +4,22 @@ use Illuminate\Support\Facades\Route;
 
 
 
-require __DIR__.'/auth.php';
-
 
 Route::name('front.')
-    ->middleware('guest_or_verified')
     ->namespace('Front')
     ->group(function () {
+
+        Route::view('/', 'pages.home');
+        Route::view('catalog', 'pages.shop.catalog');
+        Route::view('product', 'pages.shop.product');
+        Route::view('cart', 'pages.shop.cart');
+        Route::view('order', 'pages.shop.order');
+        Route::view('page', 'pages.page');
+        Route::view('faq', 'pages.faq');
+        Route::view('success', 'pages.success');
+        Route::view('404', 'pages.404');
+
+        // Route::view('category', 'pages.shop.catalog');
 
     // Route::namespace('Cart')->group(function () {
     //     Route::middleware(['auth'])->get('checkout', 'CheckoutController@index')->name('checkout');
