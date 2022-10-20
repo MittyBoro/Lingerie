@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,17 +31,28 @@ class AppServiceProvider extends ServiceProvider
 
 
         $this->registerBladeSVG();
+        $this->registerBladeViteAssets();
+    }
+
+    private function registerBladeViteAssets()
+    {
+        Blade::directive('vite_assets', function($str) {
+
+            $arguments = $this->strToArgs($str, true);
+
+            $path = 'resources/' . (isset($arguments[1]) ? $arguments[1] : 'front');
+            $totalPath = $path .'/'. $arguments[0];
+
+            return Vite::asset($totalPath);
+        });
     }
 
     private function registerBladeSVG()
     {
-        Blade::directive('svg', function($arguments) {
-            // Funky madness to accept multiple arguments into the directive
-            list($path, $class) = array_pad(explode(',', trim($arguments, "() ")), 2, '');
-            $path = trim($path, "' ");
-            $class = trim($class, "' ");
+        Blade::directive('svg', function($str) {
+            list($path, $class) = array_pad($this->strToArgs($str), 2, '');
 
-            $public_path = public_path('assets/' . $path);
+            $public_path = resource_path('front/' . $path);
 
             // Create the dom document as per the other answers
             $svg = new \DOMDocument();
@@ -58,5 +70,16 @@ class AppServiceProvider extends ServiceProvider
 
             return $output;
         });
+    }
+
+    private function strToArgs($str)
+    {
+        $args = explode(',', trim($str, "() "));
+
+        foreach ($args as $key => $val) {
+            $args[$key] = trim($val, "' ");
+        }
+
+        return $args;
     }
 }

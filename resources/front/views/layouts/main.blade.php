@@ -37,7 +37,6 @@
         @endauth --}}
 
         <div class="wrapper">
-
             <div class="header">
                 <div class="container">
                     <div class="left-menu">
@@ -45,7 +44,9 @@
                         <div class="m-item">Категории</div>
                         <div class="m-item">Доставка</div>
                     </div>
-                    <a href="/" class="logo"><img src="{{}}" alt="Legendary lingerie" class="to-svg"></a>
+                    <a href="/" class="logo">
+                        @svg('images/icons/logo.svg')
+                    </a>
                     <div class="right-menu">
                         <div class="m-item">FAQ</div>
                         <div class="m-item">Корзина (<span>0</span>)</div>
@@ -60,6 +61,47 @@
 
             <div class="footer">
                 <div class="container">
+                    <div class="top-row">
+                        <div class="top-col">
+                            <div class="f-title">Нижнее белье</div>
+                            <ul>
+                                <li><a href="#">Бюстгальтеры</a></li>
+                                <li><a href="#">Трусики</a></li>
+                                <li><a href="#">Пояса</a></li>
+                                <li><a href="#">Комплекты</a></li>
+                            </ul>
+                        </div>
+                        <div class="top-col">
+                            <div class="f-title">для дома</div>
+                            <ul>
+                                <li><a href="#">Пижамы</a></li>
+                                <li><a href="#">Халаты</a></li>
+                            </ul>
+                        </div>
+                        <div class="top-col">
+                            <div class="f-title">Купальники</div>
+                            <ul>
+                                <li><a href="#">Слитные</a></li>
+                                <li><a href="#">Раздельные</a></li>
+                            </ul>
+                        </div>
+                        <div class="top-col">
+                            <div class="f-title">КЛИЕНТам</div>
+                            <ul>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bottom-row">
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#" class="insta">
+                            @svg('images/icons/instagram.svg')
+                            <span>Наш Instagram</span>
+                        </a>
+                        <span>Legendary Lingerie © 2022</span>
+                    </div>
                 </div>
             </div>
 

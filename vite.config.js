@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
@@ -33,18 +32,6 @@ export default defineConfig({
                 },
             },
         }),
-        viteStaticCopy({
-            targets: [
-                {
-                    src: 'resources/admin/images/**/*.*',
-                    dest: 'public/assets/admin/images/',
-                },
-                {
-                    src: 'resources/front/assets/images/**/*.*',
-                    dest: 'public/front/assets/images/',
-                }
-            ]
-        })
     ],
 
     resolve: {
