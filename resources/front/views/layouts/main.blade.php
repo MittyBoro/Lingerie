@@ -22,6 +22,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,300&family=Playfair+Display&display=swap" rel="stylesheet">
 
+        @vite('resources/front/sass/style.sass')
+
+
         {{-- <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css', 'assets') }}"> --}}
 
         @yield('head_end')
@@ -37,6 +40,17 @@
 
             <div class="header">
                 <div class="container">
+                    <div class="left-menu">
+                        <div class="m-item">Каталог</div>
+                        <div class="m-item">Категории</div>
+                        <div class="m-item">Доставка</div>
+                    </div>
+                    <a href="/" class="logo"><img src="{{}}" alt="Legendary lingerie" class="to-svg"></a>
+                    <div class="right-menu">
+                        <div class="m-item">FAQ</div>
+                        <div class="m-item">Корзина (<span>0</span>)</div>
+                        <div class="m-item">Русский</div>
+                    </div>
                 </div>
             </div>
 

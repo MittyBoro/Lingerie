@@ -21,7 +21,7 @@ export default defineConfig({
                 // 'app/**/*.php',
                 // 'config/**',
                 'public/**/images/*.*',
-                'resources/views/**',
+                'resources/**/views/**',
                 'lang/**'
             ],
         }),
@@ -33,18 +33,18 @@ export default defineConfig({
                 },
             },
         }),
-        // viteStaticCopy({
-        //     targets: [
-        //         {
-        //             src: 'resources/admin/images/**/*.*',
-        //             dest: 'public/assets/admin/images/',
-        //         },
-        //         {
-        //             src: 'resources/assets/images/**/*.*',
-        //             dest: 'public/assets/images/',
-        //         }
-        //     ]
-        // })
+        viteStaticCopy({
+            targets: [
+                {
+                    src: 'resources/admin/images/**/*.*',
+                    dest: 'public/assets/admin/images/',
+                },
+                {
+                    src: 'resources/front/assets/images/**/*.*',
+                    dest: 'public/front/assets/images/',
+                }
+            ]
+        })
     ],
 
     resolve: {
