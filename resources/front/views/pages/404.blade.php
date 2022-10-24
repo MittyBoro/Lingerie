@@ -6,9 +6,13 @@
 
 @section('content')
 
-<div class="home-screen">
+<div class="white-box error-box">
     <div class="container">
-
+        <div class="white-item">
+            @svg('/images/icons/404.svg')
+            <div class="wh-subinfo">Упс... Кажется вы потерялись, потому что такой страницы не существует.</div>
+            <a href="#" class="btn">назад к покупкам</a>
+        </div>
     </div>
 </div>
 

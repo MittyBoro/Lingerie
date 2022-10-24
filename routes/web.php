@@ -16,7 +16,7 @@ Route::name('front.')
         Route::view('order', 'pages.shop.order');
         Route::view('page', 'pages.page');
         Route::view('faq', 'pages.faq');
-        Route::view('success', 'pages.success');
+        Route::view('success', 'pages.shop.success');
         Route::view('404', 'pages.404');
 
         // Route::view('category', 'pages.shop.catalog');
