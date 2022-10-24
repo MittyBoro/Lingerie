@@ -31,26 +31,27 @@
         {{-- {!! $props['head_code'] ?? '' !!} --}}
 
     </head>
-    <body class="preload page-{{ $view_name }}">
+    {{-- !!! preloadd --}}
+    <body class="preloaddd page-{{ $view_name }}">
         {{-- @auth
             @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
         @endauth --}}
 
         <div class="wrapper">
-            <div class="header">
+            <div class="header-box">
                 <div class="container">
                     <div class="left-menu">
-                        <div class="m-item">Каталог</div>
-                        <div class="m-item">Категории</div>
-                        <div class="m-item">Доставка</div>
+                        <div class="m-item"><a href="#">Каталог</a></div>
+                        <div class="m-item"><a href="#">Категории</a></div>
+                        <div class="m-item"><a href="#">Доставка</a></div>
                     </div>
                     <a href="/" class="logo">
-                        @svg('images/icons/logo.svg')
+                       @svg('images/icons/logo.svg')
                     </a>
                     <div class="right-menu">
-                        <div class="m-item">FAQ</div>
-                        <div class="m-item">Корзина (<span>0</span>)</div>
-                        <div class="m-item">Русский</div>
+                        <div class="m-item"><a href="#">FAQ</a></div>
+                        <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
+                        <div class="m-item"><a href="#">Русский</a></div>
                     </div>
                 </div>
             </div>
@@ -59,7 +60,7 @@
             @yield('content')
 
 
-            <div class="footer">
+            <div class="footer-box">
                 <div class="container">
                     <div class="top-row">
                         <div class="top-col">

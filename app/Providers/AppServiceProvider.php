@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function registerBladeViteAssets()
     {
-        Blade::directive('vite_assets', function($str) {
+        Blade::directive('vite_asset', function($str) {
 
             $arguments = $this->strToArgs($str, true);
 
