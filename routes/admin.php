@@ -29,10 +29,12 @@ Route::middleware(['admin.role:editor'])
 
 
     Route::resource('pages', 'PageController')->except(['show']);
+    Route::resource('f_a_q_s', 'FAQController')->except(['show']);
 
 
     // Route::resource('product_orders', 'ProductOrderController')->only(['index', 'show', 'update']);
     // Route::resource('feedback_orders', 'FeedbackOrderController')->only(['index', 'destroy']);
+
 
 
     Route::middleware(['admin.role:admin'])->group(function () {
@@ -45,6 +47,7 @@ Route::middleware(['admin.role:editor'])
             return back();
         })->name('optimize');
     });
+
 
 
     // проверка внешнего вида писем

@@ -6,7 +6,7 @@
                 <FTextarea
                     rows="1"
                     @update:modelValue="$emit('update:modelValue', $event)"
-                    v-model.lazy="modelValue"
+                    v-model.lazy="value"
                     :disabled="disabled"
                 />
             </div>
@@ -28,6 +28,17 @@
         },
 
         emits: ['update:modelValue'],
+
+        computed: {
+            value: {
+                get() {
+                    return this.modelValue
+                },
+                set(value) {
+                    this.$emit('update:modelValue', value)
+                },
+            }
+        }
 
     }
 </script>

@@ -16,13 +16,14 @@ export default defineConfig({
                 // 'resources/assets/js/gallery.js',
                 // 'resources/assets/sass/style.sass',
             ],
-            refresh: [
-                // 'app/**/*.php',
-                // 'config/**',
-                'public/**/images/*.*',
-                'resources/**/views/**',
-                'lang/**'
-            ],
+            refresh: true,
+            // refresh: [
+            //     // 'app/**/*.php',
+            //     // 'config/**',
+            //     'public/**/images/*.*',
+            //     'resources/**/views/**',
+            //     'lang/**'
+            // ],
         }),
         vue({
             template: {
