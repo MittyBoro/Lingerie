@@ -4,7 +4,7 @@
 
             <template #title>Категории</template>
             <template #buttons>
-                <Link :href="route(routePrefix + 'create', {type: type})" class="btn">Добавить</Link>
+                <Link :href="currentRoute('create', {type: type})" class="btn">Добавить</Link>
             </template>
 
             <template #content>

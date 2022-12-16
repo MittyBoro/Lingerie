@@ -4,7 +4,7 @@
 
             <template #title>Редактировать настройки</template>
             <template #buttons>
-                <Link :href="route(routePrefix + 'create')" class="btn">Добавить</Link>
+                <Link :href="currentRoute('create')" class="btn">Добавить</Link>
             </template>
 
             <template #content>

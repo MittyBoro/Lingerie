@@ -20,12 +20,12 @@
                                 </Link>
                             </TData>
                             <TData class="w-min">
-                                <Link :href="route(routePrefix + 'edit', {category: element.id, type: type})">
+                                <Link :href="currentRoute('edit', {category: element.id, type: type})">
                                     <Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
                                 </Link>
                             </TData>
                             <TData class="w-min">
-                                <Link :href="route(routePrefix + 'destroy', {category: element.id, type: type})" method="delete" as="button">
+                                <Link :href="currentRoute('destroy', {category: element.id, type: type})" method="delete" as="button">
                                     <Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
                                 </Link>
                             </TData>

@@ -7,7 +7,7 @@
                 <div v-else>Редактировать категорию</div>
             </template>
             <template #buttons>
-                <Link v-if="isEdit" :href="route(routePrefix + 'create', {type: type})" class="btn btn-gray ml-auto">Добавить ещё</Link>
+                <Link v-if="isEdit" :href="currentRoute('create', {type: type})" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </template>
 
             <template #content>

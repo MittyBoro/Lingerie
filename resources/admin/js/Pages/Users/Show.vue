@@ -5,7 +5,7 @@
             <template #title>Пользователь</template>
 
             <template #buttons>
-                <Link :href="route(routePrefix + 'edit', item.id)" class="btn">Редактировать</Link>
+                <Link :href="currentRoute('edit', item.id)" class="btn">Редактировать</Link>
             </template>
 
             <template #content>

@@ -8,7 +8,7 @@
             </template>
 
             <template v-if="isEdit" #buttons>
-                <Link :href="route(routePrefix + 'create')" class="btn">Добавить ещё</Link>
+                <Link :href="currentRoute('create')" class="btn">Добавить ещё</Link>
             </template>
 
             <template #content>
@@ -41,7 +41,7 @@
             </template>
 
             <template v-if="isEdit" #actions>
-                <Link @click.prevent :href="route(routePrefix + 'destroy', form.id)" method="delete" as="button" class="ml-3">
+                <Link @click.prevent :href="currentRoute('destroy', form.id)" method="delete" as="button" class="ml-3">
                     <div @click="confirm" class="btn-danger btn-square block">
                         <Icon icon="trash-can"/>
                     </div>

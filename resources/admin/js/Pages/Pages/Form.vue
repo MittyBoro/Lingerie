@@ -7,7 +7,7 @@
         :showLink="frontUrl(form.slug)"
         >
             <template v-if="isEdit" #buttons>
-                <Link :href="route(routePrefix + 'create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
+                <Link :href="currentRoute('create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </template>
 
             <template #content>
