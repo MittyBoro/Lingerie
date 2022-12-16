@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Arr;
-
-class PageFactory extends Factory
+class FAQFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -20,13 +18,12 @@ class PageFactory extends Factory
     public function definition()
     {
         $title = trim($this->faker->unique()->sentence(rand(2,4)), '.');
+        $description = $this->faker->text();
 
         return [
-            'title' => $title,
             'lang' => 'en',
-            'slug' => $this->faker->unique()->word,
-            'route' => Arr::random(['about', 'contact', 'home', '']),
-            'description' => $this->faker->text,
+            'title' => $title,
+            'description' => $description,
         ];
     }
 

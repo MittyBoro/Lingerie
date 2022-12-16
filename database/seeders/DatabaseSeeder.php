@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Category;
+use App\Models\FAQ;
 use App\Models\FeedbackOrder;
 use App\Models\Page;
 use App\Models\Product\Product;
@@ -20,7 +21,10 @@ class DatabaseSeeder extends Seeder
     {
 		User::factory(8)->create();
 
-		Page::factory(10)
+		Page::factory(5)
+            ->create();
+
+		FAQ::factory(5)
             ->create();
 
 		// Category::factory(15)->create();
