@@ -1,5 +1,5 @@
 <template>
-    <AppLayout :title="!isEdit ? 'Добавить страницу' : 'Редактировать страницу'">
+    <AppLayout :title="editorTitle(isEdit)">
 
         <FormSection :submit="submit" :form="form"
         :tabs="isEdit ? ['Основное', 'SEO', 'Дополнительно'] : ['Основное', 'SEO']"

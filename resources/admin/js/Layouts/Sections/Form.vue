@@ -77,10 +77,7 @@
             showLink: null,
             internalLink: Boolean,
             mini:  Boolean,
-            showTitle: {
-                type: Boolean,
-                default: true,
-            },
+            hiddenTitle:  Boolean,
         },
 
         emits: ['update:activeTab'],
@@ -96,8 +93,8 @@
                 return this.$slots.content || this.$slots.simplecontent;
             },
             hasHeaderSlots() {
-                return this.$slots.title || this.$slots.subtitle ||
-                            this.$slots.buttons || this.showTitle || this.defaultTitle;
+                return (this.$slots.title || this.$slots.subtitle ||
+                            this.$slots.buttons || this.defaultTitle) && !this.hiddenTitle;
             }
         },
 

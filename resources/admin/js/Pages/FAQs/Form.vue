@@ -1,14 +1,14 @@
 <template>
-    <AppLayout title="FAQ">
+    <AppLayout :title="editorTitle(isEdit)">
 
         <FormSection :submit="submit" :form="form"
-        v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'" mini :defaultTitle="isEdit">
-            <template #title>{{ editorText(isEdit) }}</template>
+        v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'" mini
+        >
             <template #buttons>
                 <Link v-if="isEdit" :href="route(routePrefix + 'create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </template>
 
-            <template #content c>
+            <template #content>
                 <div class="col-span-full grid gap-4">
                     <FLabel title="Заголовок" :error="form.errors.title">
                         <FInput type="text" v-model="form.title" />

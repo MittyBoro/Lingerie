@@ -9,7 +9,7 @@ export default {
 
     methods: {
 
-        editorText(isEdit) {
+        editorTitle(isEdit) {
            return isEdit ? 'Редактировать' : 'Добавить'
         },
         confirm(e) {

@@ -9,7 +9,7 @@
             <HeaderNav :title="title" />
 
             <!-- Page Content -->
-            <main class="page-content w-full max-w-7xl mx-auto py-8 md:py-12">
+            <main class="page-content w-full max-w-7xl mx-auto py-8 md:py-10">
                 <slot></slot>
             </main>
         </div>

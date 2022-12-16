@@ -18,7 +18,7 @@ module.exports = {
 
             black: colors.black,
             white: colors.white,
-            gray: colors.stone,
+            gray: colors.zinc,
             red: colors.red,
             orange: colors.orange,
             yellow: colors.yellow,
@@ -30,7 +30,7 @@ module.exports = {
             fuchsia: colors.fuchsia,
             pink: colors.pink,
 
-            secondary: {
+            primary: {
                 50: '#FAF6F5',
                 100: '#EFE1DF',
                 200: '#E4CCC9',
@@ -42,7 +42,18 @@ module.exports = {
                 800: '#534442',
                 900: '#302A29',
             },
-            primary: colors.gray,
+            secondary: {
+                50: '#F6F6F0',
+                100: '#E1E2CD',
+                200: '#CCCDAA',
+                300: '#B7B987',
+                400: '#A2A464',
+                500: '#8D9041',
+                600: '#6F7239',
+                700: '#545530',
+                800: '#393A24',
+                900: '#212117',
+            },
             // secondary: colors.stone,
         },
         extend: {
