@@ -15,7 +15,7 @@ class Page extends BaseModel
         'id', 'title', 'created_at'
     ];
 
-    protected $defaultOrder = ['created_at', 'asc'];
+    protected $orderBy = ['created_at', 'asc'];
 
     public static function boot()
     {

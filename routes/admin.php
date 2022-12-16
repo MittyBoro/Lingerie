@@ -37,6 +37,9 @@ Route::middleware(['admin.role:editor'])
 
 
 
+    Route::post('faqs/sort', 'FAQController@sort')->name('faqs.sort');
+
+
     Route::middleware(['admin.role:admin'])->group(function () {
         Route::resource('props', 'PropController')->except('show');
         Route::post('props/sort', 'PropController@sort')->name('props.sort');

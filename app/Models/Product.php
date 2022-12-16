@@ -29,7 +29,7 @@ class Product extends BaseModel implements HasMedia
         'variations',
     ];
 
-    protected $defaultOrder = ['position', 'asc'];
+    protected $orderBy = ['position', 'asc'];
 
     protected $orderFileds = [
         'id', 'title', 'min_price', 'variations_count', 'variation_groups', 'created_at', 'position', 'is_stock', 'is_published', 'category_id'

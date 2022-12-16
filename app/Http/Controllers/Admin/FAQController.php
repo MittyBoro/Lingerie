@@ -57,6 +57,15 @@ class FAQController extends Controller
         return back();
     }
 
+	public function sort(Request $request, FAQ $item)
+	{
+		$validated = $this->validateSort($request, 'faqs');
+
+		$item->massUpdate($validated);
+
+		return back();
+	}
+
     public function destroy(FAQ $faq)
     {
         $faq->delete();

@@ -17,7 +17,7 @@ class ProductCategory extends BaseModel
 
     public $timestamps = false;
 
-    protected $defaultOrder = ['position', 'asc'];
+    protected $orderBy = ['position', 'asc'];
 
     protected $orderFileds = [
         'position'

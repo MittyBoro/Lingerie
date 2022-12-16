@@ -14,7 +14,7 @@ class BaseModel extends Model
 
     protected $perPage = 20;
 
-    protected $defaultOrder = ['id', 'desc'];
+    protected $orderBy = ['id', 'desc'];
 
     protected $orderFileds = [
         'created_at', 'id',
@@ -39,11 +39,11 @@ class BaseModel extends Model
         {
             $orderBy = explode(',', request('orderby'));
             if ( !in_array($orderBy[0], $this->orderFileds) )
-                $orderBy = $this->defaultOrder;
+                $orderBy = $this->orderBy;
         }
         else
         {
-            $orderBy = $this->defaultOrder;
+            $orderBy = $this->orderBy;
         }
 
         return $orderBy;

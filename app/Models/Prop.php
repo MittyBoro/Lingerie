@@ -49,7 +49,7 @@ class Prop extends BaseModel implements HasMedia
         'value',
     ];
 
-    protected $defaultOrder = ['position', 'asc'];
+    protected $orderBy = ['position', 'asc'];
     protected $orderFileds = [
         'id',
         'tab',
