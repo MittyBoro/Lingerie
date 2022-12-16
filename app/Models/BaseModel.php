@@ -126,6 +126,12 @@ class BaseModel extends Model
         $query->whereDate( 'created_at', '>=', Carbon::now()->subDays(365));
     }
 
+    public function scopeByLang($query, $lang)
+    {
+        if ($lang)
+            $query->whereLang( $lang );
+    }
+
     public function localize($value)
     {
         if ($value)

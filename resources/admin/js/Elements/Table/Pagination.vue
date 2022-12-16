@@ -1,21 +1,22 @@
 <template>
-    <div class="px-6 md:px-10 py-5 flex-col xl:flex-row flex-1 flex items-center justify-between">
-        <div v-if="pages">
-            <p class="text-sm text-center xl:text-left text-gray-700 mb-3 xl:mb-0">
-                Показано с
-                <span class="font-semibold">{{ pages.from }}</span>
-                по
-                <span class="font-semibold">{{ pages.to }}</span>
-                из
-                <span class="font-semibold mr-8">{{ pages.total }}</span>
+    <div>
+    <div class="pagination px-6 md:px-10 py-5 flex-col xl:flex-row flex-1 flex items-center justify-between">
+        <div v-if="pages" class="text-sm text-center xl:text-left text-gray-700 mb-3 xl:mb-0">
+            Показано с
+            <span class="font-semibold">{{ pages.from }}</span>
+            по
+            <span class="font-semibold">{{ pages.to }}</span>
+            из
+            <span class="font-semibold mr-8">{{ pages.total }}</span>
 
-                <span class="perpage">
-                    <span>На странице:</span>
-                    <FInput type="number" @update:modelValue="setPerPage" v-model.lazy="pages.per_page" min="1" />
-                </span>
-            </p>
+            <span class="perpage">
+                <span>На странице:</span>
+                <FInput type="number" @update:modelValue="setPerPage" v-model.lazy="pages.per_page" min="1" />
+            </span>
         </div>
+
         <slot></slot>
+
         <nav v-if="pages && pages.per_page < pages.total" class="relative flex justify-center flex-wrap -space-x-px ml-5">
             <Link
                 :href="link.url || '#'"
@@ -29,6 +30,7 @@
                 <span v-else>{{ link.label }}</span>
             </Link>
         </nav>
+    </div>
     </div>
 </template>
 
@@ -89,15 +91,6 @@
 <style lang="sass" scoped>
     .perpage
         @apply inline-flex items-center
-    :deep(.perpage)
-        input
-            @apply leading-4 text-center ml-2 px-1 w-12 h-7 text-xs rounded appearance-none
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button
-            -webkit-appearance: none
-            margin: 0
-        input[type=number]
-            -moz-appearance: textfield
 
     nav
         @apply rounded-lg

@@ -1,6 +1,9 @@
 <template>
     <div class="table-wrapper loading text-sm">
-        <TPagination v-if="(pagination && pagination.total) || sortRoute" :pages="pagination" class="border-t" ref="pagination">
+        <TPagination v-if="(pagination && pagination.total) || sortRoute || $slots.pagination" :pages="pagination" class="border-t" ref="pagination">
+
+            <slot name="pagination"></slot>
+
             <div
                 v-if="sortRoute"
                 @click="sortToggle"
@@ -8,7 +11,6 @@
                 <div v-if="!sortEnable" class="btn btn-mini">Сортировать</div>
                 <div v-else class="btn-gray btn-mini">Назад</div>
             </div>
-
         </TPagination>
 
         <div class="table-overflow">

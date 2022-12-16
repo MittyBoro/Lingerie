@@ -29,6 +29,7 @@ namespace App\Models\Admin{
  * @property-read mixed $props
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Prop[] $properties
  * @property-read int|null $properties_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|Page bySlug($slug, $abortIfNull = true)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
@@ -86,6 +87,7 @@ namespace App\Models\Admin{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User filter(array $filter)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
@@ -127,6 +129,7 @@ namespace App\Models{
 /**
  * App\Models\BaseModel
  *
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -171,6 +174,7 @@ namespace App\Models{
  * @property string|null $title
  * @property string|null $description
  * @property int $position
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Database\Factories\FAQFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
@@ -267,6 +271,7 @@ namespace App\Models{
  * @property-read mixed $is_paid
  * @property-read mixed $old_amount
  * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Order filter(array $filter)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
@@ -316,6 +321,7 @@ namespace App\Models{
  * @property array|null $variations
  * @property-read mixed $sum_old_price
  * @property-read mixed $sum_price
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -358,6 +364,7 @@ namespace App\Models{
  * @property-read mixed $props
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Prop[] $properties
  * @property-read int|null $properties_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|Page bySlug($slug, $abortIfNull = true)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Database\Factories\PageFactory factory(...$parameters)
@@ -413,6 +420,7 @@ namespace App\Models{
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\App\Models\Media[] $media
  * @property-read int|null $media_count
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Product filter(array $filter)
  * @method static \Illuminate\Database\Eloquent\Builder|Product find4Cart($id)
@@ -462,6 +470,7 @@ namespace App\Models{
  * @property string $lang
  * @property int $product_attribute_type_id
  * @property int $position
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -490,6 +499,7 @@ namespace App\Models{
  * @property int $id
  * @property string|null $name
  * @property string $lang
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -538,6 +548,7 @@ namespace App\Models{
  * @method static \Kalnoy\Nestedset\QueryBuilder|ProductCategory ancestorsAndSelf($id, array $columns = [])
  * @method static \Kalnoy\Nestedset\QueryBuilder|ProductCategory ancestorsOf($id, array $columns = [])
  * @method static \Kalnoy\Nestedset\QueryBuilder|ProductCategory applyNestedSetScope(?string $table = null)
+ * @method static \Kalnoy\Nestedset\QueryBuilder|BaseModel byLang($lang)
  * @method static \Kalnoy\Nestedset\QueryBuilder|ProductCategory countErrors()
  * @method static \Kalnoy\Nestedset\QueryBuilder|ProductCategory d()
  * @method static \Kalnoy\Nestedset\QueryBuilder|ProductCategory defaultOrder(string $dir = 'asc')
@@ -620,6 +631,7 @@ namespace App\Models{
  * @property int $product_id
  * @property string $title
  * @property string|null $description
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -647,6 +659,7 @@ namespace App\Models{
  * @property int $product_id
  * @property string|null $title
  * @property string|null $price
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -672,6 +685,7 @@ namespace App\Models\Product{
  * App\Models\Product\ProductVariation
  *
  * @property-read mixed $for_cart
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel halfYear()
@@ -714,6 +728,7 @@ namespace App\Models{
  * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection|\App\Models\Media[] $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $model
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Database\Factories\PropFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Prop get4Admin($addValues = true)
@@ -772,6 +787,7 @@ namespace App\Models{
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ * @method static \Illuminate\Database\Eloquent\Builder|BaseModel byLang($lang)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel exclude($value = [])
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|BaseModel getOrdered()

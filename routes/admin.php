@@ -11,6 +11,7 @@ Route::middleware(['admin.role:editor'])
     });
 
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::post('list_lang', 'Controller@setListLang')->name('list_lang.set');
 
     Route::resource('users', 'UserController')->except(['create','store']);
     Route::post('users/{user}/verify', 'UserController@verify')->name('users.verify');

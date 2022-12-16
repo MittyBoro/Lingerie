@@ -124,7 +124,7 @@ body
     overflow-x: auto
 
 .table
-    @apply border-collapse w-full leading-4
+    @apply border-collapse w-full leading-4 text-gray-800
     th:not(.no-style)
         @apply font-bold text-sm bg-gray-50 text-gray-600 border-b text-left table-cell
         &.text-center
@@ -148,7 +148,7 @@ body
             & > td:not(.no-style)
                 @apply bg-gray-100
         td:not(.no-style)
-            @apply bg-white w-auto table-cell py-3 text-gray-800 border-b relative transition align-middle
+            @apply bg-white w-auto table-cell py-3 border-b relative transition align-middle
             &.w-min
                 width: 1%
 
@@ -173,3 +173,16 @@ body
             width: 100%
             margin: 0 5px
             border-bottom: 1px dotted #aaa
+
+
+.pagination
+    input, select
+        @apply leading-4 ml-2 px-1 h-7 text-xs rounded appearance-none
+    input
+        @apply w-12 text-center
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button
+        -webkit-appearance: none
+        margin: 0
+    input[type=number]
+        -moz-appearance: textfield

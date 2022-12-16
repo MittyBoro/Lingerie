@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Cookie;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -40,7 +41,9 @@ class HandleInertiaRequests extends Middleware
 
         return array_merge(parent::share($request), [
             'config' => fn () => config('admin'),
-            'langs' => fn () => config('app.langs'),
+
+            'langs' => fn () => $this->langsList(),
+            'list_lang' => fn () => list_lang(),
 
             'auth' => [
                 'user' => fn () => $request->user()
@@ -48,5 +51,15 @@ class HandleInertiaRequests extends Middleware
                         : null,
             ],
         ]);
+    }
+
+    private function langsList()
+    {
+        $list = [];
+        foreach (config('app.langs') as $lang) {
+            $list[$lang] = strtoupper($lang);
+        }
+
+        return $list;
     }
 }

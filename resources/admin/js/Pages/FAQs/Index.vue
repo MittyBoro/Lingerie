@@ -9,9 +9,13 @@
             <template #content>
 
                 <TTable :table="table">
+                    <template #pagination>
+                        <ListLang />
+                    </template>
+
                     <template #row="sp">
-                        <TData v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
-                        <TData v-text="sp.element.lang" :class="{'opacity-70': sp.element.lang}" />
+                        <TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
+                        <TData v-text="sp.element.lang" class="uppercase font-bold text-gray-500" />
                     </template>
                 </TTable>
 
@@ -24,15 +28,15 @@
 
     import AppLayout from '@/Layouts/AppLayout'
     import IndexSection from '@/Layouts/Sections/Index'
+    import ListLang from '@/Elements/Other/ListLang'
 
     export default {
         components: {
-            AppLayout, IndexSection,
+            AppLayout, IndexSection, ListLang,
         },
 
         data() {
             return {
-                routePrefix: 'admin.faqs.',
             }
         },
 
@@ -59,7 +63,7 @@
 
                 let form = this.$inertia.form(item);
 
-                form.put( this.currentRoute('update', item.id), {
+                form.put( this.currentRoute('update', item.id) , {
                     preserveScroll: true,
                 });
             },

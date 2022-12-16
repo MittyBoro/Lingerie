@@ -1,18 +1,22 @@
 <template>
     <AppLayout title="Страницы">
-        <IndexSection class="max-w-3xl">
+        <IndexSection mini>
 
             <template #buttons>
-                <Link :href="route(routePrefix + 'create')" class="btn">Добавить</Link>
+                <Link :href="currentRoute('create')" class="btn">Добавить</Link>
             </template>
 
             <template #content>
 
                 <TTable :table="table">
+                    <template #pagination>
+                        <ListLang />
+                    </template>
+
                     <template #row="sp">
                         <TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
                         <TData v-model="sp.element.slug" @update:modelValue="update(sp.element)" />
-                        <TData v-text="sp.element.lang" class="uppercase font-bold opacity-70" />
+                        <TData v-text="sp.element.lang" class="uppercase font-bold text-gray-500" />
                         <TData mini>
                             <a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
                                 <Icon icon="eye"/>
@@ -30,10 +34,11 @@
 
     import AppLayout from '@/Layouts/AppLayout'
     import IndexSection from '@/Layouts/Sections/Index'
+    import ListLang from '@/Elements/Other/ListLang'
 
     export default {
         components: {
-            AppLayout, IndexSection,
+            AppLayout, IndexSection, ListLang,
         },
 
         data() {
@@ -66,7 +71,7 @@
 
                 let form = this.$inertia.form(item);
 
-                form.put( route(this.routePrefix + 'update', item.id) , {
+                form.put( this.currentRoute('update', item.id) , {
                     preserveScroll: true,
                 });
             },

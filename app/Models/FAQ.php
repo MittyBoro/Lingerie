@@ -13,4 +13,5 @@ class FAQ extends BaseModel
     protected $table = 'faqs';
 
     protected $orderBy = ['position', 'asc'];
+
 }

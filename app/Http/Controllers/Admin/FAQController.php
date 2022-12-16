@@ -12,7 +12,7 @@ class FAQController extends Controller
 
     public function index()
     {
-        $list = FAQ::paginated();
+        $list = FAQ::byLang($this->getListLang())->paginated();
 
         return Inertia::render('FAQs/Index', [
             'list' => $list,
