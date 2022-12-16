@@ -64,7 +64,7 @@
                         value_edit : true,
                         _method : 'PUT',
                     }))
-                    .post( route(this.routePrefix + 'update', this.item.id) , {
+                    .post( this.currentRoute('update', this.item.id) , {
                         preserveScroll: true,
                     });
             },

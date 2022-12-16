@@ -77,7 +77,7 @@
 
             store() {
                 this.form
-                    .post(route(this.routePrefix + 'store'), {
+                    .post(this.currentRoute('store'), {
                         preserveState: (page) => Object.keys(page.props.errors).length,
                     });
             },
@@ -88,7 +88,7 @@
                         ...data,
                         _method : 'PUT',
                     }))
-                    .post(route(this.routePrefix + 'update', this.form.id), {
+                    .post(this.currentRoute('update', this.form.id), {
                         preserveState: (page) => Object.keys(page.props.errors).length,
                         preserveScroll: true,
                     });

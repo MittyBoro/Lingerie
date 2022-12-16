@@ -91,7 +91,7 @@
 
                 let form = this.$inertia.form(item);
 
-                form.put( route(this.routePrefix + 'update', item.id) , {
+                form.put( this.currentRoute('update', item.id) , {
                     preserveScroll: true,
                 });
             },

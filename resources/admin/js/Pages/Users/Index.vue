@@ -45,7 +45,6 @@
 
         data() {
             return {
-                routePrefix: 'admin.users.',
                 roles: this.$page.props.roles,
             }
         },
@@ -64,8 +63,8 @@
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
 
-                    editRoute: this.routePrefix + 'edit',
-                    destroyRoute: this.routePrefix + 'destroy',
+                    editRoute: this.currentRouteStr('edit'),
+                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },
@@ -76,12 +75,12 @@
 
                 let form = this.$inertia.form(item);
 
-                form.put( route(this.routePrefix + 'update', item.id) , {
+                form.put( this.currentRoute('update', item.id) , {
                     preserveScroll: true,
                 });
             },
             verify(id) {
-                this.$inertia.form().post( route(this.routePrefix + 'verify', id) , {
+                this.$inertia.form().post( this.currentRoute('verify', id) , {
                     preserveScroll: true,
                 });
             },

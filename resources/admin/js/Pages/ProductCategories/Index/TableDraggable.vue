@@ -92,7 +92,7 @@
             update(element) {
                 let form = this.$inertia.form(element);
 
-                form.put( route(this.routePrefix + 'update', {category: element.id, type: this.type, index_edit: 1}) , {
+                form.put( this.currentRoute('update', {category: element.id, type: this.type, index_edit: 1}) , {
                     preserveScroll: true,
                 });
             },

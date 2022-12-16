@@ -74,7 +74,7 @@
 
                 let form = this.$inertia.form({sorted: flatten});
 
-                form.post( route(this.routePrefix + 'sort', {type: this.type}), {
+                form.post( this.currentRoute('sort', {type: this.type}), {
                     preserveScroll: true,
                     onSuccess: () => {
                         this.showSaveBtn = false;

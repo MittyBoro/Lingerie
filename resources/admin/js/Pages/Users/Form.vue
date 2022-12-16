@@ -76,8 +76,6 @@
 
         data() {
             return {
-                routePrefix: 'admin.users.',
-
                 form: this.$inertia.form(this.$page.props.item),
                 formP: this.$inertia.form({
                     current_password: '',
@@ -116,7 +114,7 @@
                         ...data,
                         _method : 'PUT',
                     }))
-                    .post(route(this.routePrefix + 'update', this.$page.props.item.id), {
+                    .post(this.currentRoute('update', this.$page.props.item.id), {
                         preserveScroll: true,
                     });
             },
@@ -127,7 +125,7 @@
 
             updatePass() {
                 this.formP
-                    .put(route(this.routePrefix + 'update', this.$page.props.item.id), {
+                    .put(this.currentRoute('update', this.$page.props.item.id), {
                         preserveScroll: true,
                         onSuccess: () => {
                             this.formP.reset('current_password');
