@@ -12,10 +12,10 @@ class FAQController extends Controller
 
     public function index()
     {
-        $faqs = FAQ::paginated();
+        $list = FAQ::paginated();
 
         return Inertia::render('FAQs/Index', [
-            'list' => $faqs,
+            'list' => $list,
         ]);
     }
 
@@ -27,26 +27,29 @@ class FAQController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'lang' => lang_rule(),
         ]);
 
         $created = FAQ::create($data);
 
-        return redirect(route('admin.FAQs.edit', $created->id));
+        return redirect(route('admin.faqs.edit', $created->id));
     }
 
     public function edit(FAQ $faq)
     {
         return Inertia::render('FAQs/Form', [
             'item' => $faq,
-            'props' => $faq->properties()->get4Admin(),
         ]);
     }
 
     public function update(Request $request, FAQ $faq)
     {
         $data = $request->validate([
-            'name' => 'required|string',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'lang' => lang_rule(),
         ]);
 
         $faq->update($data);

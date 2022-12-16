@@ -10,9 +10,12 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from 'ziggy';
 
 import Toast from "vue-toastification";
-import MyMixin from "./Mixins/Mixin.js";
 
 import Icon from './Elements/Icon'
+
+import MixinFormat from "./Mixins/Format.js";
+import MixinMain from "./Mixins/Main.js";
+import MixinRouting from "./Mixins/Routing.js";
 
 
 createInertiaApp({
@@ -29,7 +32,9 @@ createInertiaApp({
             .use(ZiggyVue, Ziggy)
 
             .mixin({ methods: { route } })
-            .mixin(MyMixin)
+            .mixin(MixinFormat)
+            .mixin(MixinMain)
+            .mixin(MixinRouting)
             .use(Toast)
             .component('Icon', Icon)
             .component('Link', Link)

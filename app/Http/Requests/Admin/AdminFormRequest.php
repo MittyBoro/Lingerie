@@ -45,7 +45,7 @@ class AdminFormRequest extends FormRequest
     protected function validationLang(): array
     {
         return [
-            'lang'        => ['required', 'string', Rule::in(config('app.langs'))],
+            'lang' => lang_rule(),
         ];
     }
 }

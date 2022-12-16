@@ -1,10 +1,9 @@
 <template>
-    <AppLayout title="Страницы">
+    <AppLayout title="FAQ">
         <IndexSection class="max-w-3xl">
 
-            <template #title>Все страницы</template>
             <template #buttons>
-                <Link :href="route(routePrefix + 'create')" class="btn">Добавить</Link>
+                <Link :href="currentRoute('create')" class="btn">Добавить</Link>
             </template>
 
             <template #content>
@@ -12,12 +11,7 @@
                 <TTable :table="table">
                     <template #row="sp">
                         <TData v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
-                        <TData v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
-                        <TData mini>
-                            <a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
-                                <Icon icon="eye"/>
-                            </a>
-                        </TData>
+                        <TData v-text="sp.element.lang" :class="{'opacity-70': sp.element.lang}" />
                     </template>
                 </TTable>
 
@@ -38,7 +32,7 @@
 
         data() {
             return {
-                routePrefix: 'admin.pages.',
+                routePrefix: 'admin.faqs.',
             }
         },
 
@@ -47,14 +41,13 @@
                 return {
                     headers: [
                         { key: 'title', text: 'Заголовок',  sortable: true },
-                        { key: 'slug', text: 'Ярлык',  sortable: true },
-                        {},
+                        { key: 'lang', text: 'Язык',  sortable: true },
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
 
-                    editRoute: this.routePrefix + 'edit',
-                    destroyRoute: this.routePrefix + 'destroy',
+                    editRoute: this.currentRouteStr('edit'),
+                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },
@@ -65,7 +58,7 @@
 
                 let form = this.$inertia.form(item);
 
-                form.put( route(this.routePrefix + 'update', item.id) , {
+                form.put( this.currentRoute('update', item.id), {
                     preserveScroll: true,
                 });
             },

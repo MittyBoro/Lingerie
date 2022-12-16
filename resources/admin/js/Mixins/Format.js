@@ -6,19 +6,13 @@ moment.locale('ru');
 export default {
     data() {
         return {
+            routePrefix: this.getPrefix()
         }
     },
 
+
+
     methods: {
-
-        frontUrl(url = '') {
-            return this.$page.props.config.url + '/' + url;
-        },
-
-        adminRoute(...args) {
-
-            return router(...args);
-        },
 
         formatPrice() {
             let price = [...arguments].reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
@@ -84,10 +78,5 @@ export default {
                 return;
             return moment(date).utc().format();
         },
-
-        confirm(e) {
-            if (!confirm('Вы уверены?'))
-                e.preventDefault()
-        }
     }
 }

@@ -29,7 +29,7 @@ Route::middleware(['admin.role:editor'])
 
 
     Route::resource('pages', 'PageController')->except(['show']);
-    Route::resource('f_a_q_s', 'FAQController')->except(['show']);
+    Route::resource('faqs', 'FAQController')->except(['show']);
 
 
     // Route::resource('product_orders', 'ProductOrderController')->only(['index', 'show', 'update']);

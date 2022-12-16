@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white shadow-lg rounded-xl sm:rounded-2xl pb-10 border-gray-200">
+    <div class="bg-white shadow-lg rounded-xl sm:rounded-2xl pb-10 border-gray-200" :class="{'max-w-2xl': mini}">
 
         <div v-if="$slots.title || $slots.buttons && showTitle" class="px-6 md:px-10 pt-10 mb-10 md:flex">
             <div class="grid gap-4 mb-4 md:mb-0">
@@ -30,7 +30,8 @@
                 type: Boolean,
                 default: true,
             },
+            mini: Boolean,
         },
     }
-    
+
 </script>

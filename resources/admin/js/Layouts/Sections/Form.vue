@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" class="bg-white shadow-lg rounded-xl sm:rounded-2xl border-gray-200">
+    <form @submit.prevent="submit" class="bg-white shadow-lg rounded-xl sm:rounded-2xl border-gray-200" :class="{'max-w-2xl': mini}">
 
         <div v-if="hasHeaderSlots" class="px-4 py-6 sm:px-8 md:flex md:items-center border-b border-gray-100">
             <div>
@@ -76,6 +76,7 @@
             hideButtons: Boolean,
             showLink: null,
             internalLink: Boolean,
+            mini:  Boolean,
             showTitle: {
                 type: Boolean,
                 default: true,
@@ -96,7 +97,7 @@
             },
             hasHeaderSlots() {
                 return this.$slots.title || this.$slots.subtitle ||
-                            this.$slots.buttons || this.showTitle;
+                            this.$slots.buttons || this.showTitle || this.defaultTitle;
             }
         },
 

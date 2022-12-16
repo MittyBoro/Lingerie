@@ -67,7 +67,7 @@ return [
                 ],
                 [
                     'name' => 'FAQ',
-                    'route' => 'admin.props.index',
+                    'route' => 'admin.faqs.index',
                 ],
             ],
         ],

@@ -1,19 +1,19 @@
 <template>
-    <Draggable class="col-span-6 loading" :class="{drag: drag}" v-model="list" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
+    <draggable class="col-span-6 loading" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
         <template #item="{ element }">
             <PropsItem :item="element" />
         </template>
-    </Draggable>
+    </draggable>
 </template>
 
 <script>
 
-    import Draggable from "vuedraggable";
+    import draggable  from "vuedraggable";
     import PropsItem from "./Item";
 
     export default {
         components: {
-            Draggable,
+            draggable,
             PropsItem,
         },
 
@@ -26,6 +26,17 @@
                 routePrefix: 'admin.props.',
                 drag: false,
             }
+        },
+
+        computed: {
+            myList: {
+                get() {
+                    return this.list;
+                },
+                set(value) {
+                    this.list = value;
+                }
+            },
         },
 
         methods: {
