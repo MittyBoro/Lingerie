@@ -1,12 +1,12 @@
 <template>
-    <AppLayout title="Редактирование пользователя" >
+    <AppLayout title="Редактировать">
 
         <div class="grid grid-cols-6 gap-4 items-start">
             <FormSection :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix>
                 <template #title>Пользовательские данные</template>
 
                 <template #content>
-                    <div class="col-span-6 grid grid-cols-6 xl:grid-cols-4 gap-5">
+                    <div class="col-span-full grid gap-4">
                         <template v-if="0">
                             <FLabel title="Аватар" :error="form.errors.admin_avatar">
                                 <FFileInput :isImage="true" v-model="form.admin_avatar" />
@@ -40,7 +40,7 @@
                 <template #title>Пароль</template>
 
                 <template #content>
-                    <div class="col-span-6 grid grid-cols-6 xl:grid-cols-4 gap-5">
+                    <div class="col-span-full grid gap-4">
                         <FLabel v-if="isCurrent" title="Текущий пароль" :error="formP.errors.current_password">
                             <FInput type="password" v-model="formP.current_password" />
                         </FLabel>

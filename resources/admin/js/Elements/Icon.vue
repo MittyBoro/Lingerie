@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isDev" v-html="iconHTML"></div>
+    <svg v-if="isDev" v-html="iconHTML"></svg>
     <svg v-else>
         <use :xlink:href="iconUrl" />
     </svg>
@@ -27,9 +27,9 @@
             }
         },
 
-        created() {
+        async created() {
             if (this.isDev)
-                this.setIconHTML()
+                await this.setIconHTML()
             else
                 this.iconUrl = this.getIconUrl()
         },
@@ -41,14 +41,17 @@
                 return iconUrl
             },
 
-            setIconHTML() {
-                fetch(this.getIconUrl())
-                    .then(r => r.text())
-                    .then(str => {
+            async setIconHTML() {
+                let url = this.getIconUrl();
+                let html = localStorage.getItem(url);
 
-                        this.iconHTML = this.getBase64ByStr(str);
-                    })
-                    .catch(console.error.bind(console));
+                if (!html) {
+                    let str = await fetch(url).then(r => r.text())
+                    html = this.getBase64ByStr(str)
+                    localStorage.setItem(url, html);
+                }
+
+                this.iconHTML = html;
             },
 
             getBase64ByStr(str) {
