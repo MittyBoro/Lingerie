@@ -17,10 +17,10 @@
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
         "postcss": "^8.4.20",
-        "sass": "^1.56.2",
+        "sass": "^1.57.0",
         "slugify": "^1.6.5",
         "tailwindcss": "^3.2.4",
-        "vite": "^4.0.1",
+        "vite": "^4.0.2",
         "vue-textarea-autosize": "^1.1.1",
         "vue-toastification": "^2.0.0-rc.5",
         "vuedraggable": "^4.1.0"

@@ -17,6 +17,10 @@ import MixinFormat from "./Mixins/Format.js";
 import MixinMain from "./Mixins/Main.js";
 import MixinRouting from "./Mixins/Routing.js";
 
+import.meta.glob([
+    '../images/favicon.svg',
+  ]);
+
 
 createInertiaApp({
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),

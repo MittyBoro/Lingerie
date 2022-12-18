@@ -7,7 +7,7 @@
 
         <title>TheAdmin</title>
 
-        <link rel="icon" type="image/x-icon" href="/assets/admin/images/favicon.svg">
+        <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/admin/images/favicon.svg') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

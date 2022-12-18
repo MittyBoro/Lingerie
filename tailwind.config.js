@@ -18,7 +18,7 @@ module.exports = {
 
             black: colors.black,
             white: colors.white,
-            gray: colors.zinc,
+            gray: colors.gray,
             red: colors.red,
             orange: colors.orange,
             yellow: colors.yellow,
@@ -31,30 +31,20 @@ module.exports = {
             pink: colors.pink,
 
             primary: {
-                50: '#FAF6F5',
-                100: '#EFE1DF',
-                200: '#E4CCC9',
-                300: '#D8B8B3',
-                400: '#CDA39D',
-                500: '#C28E87',
-                600: '#9C7772',
-                700: '#765E5B',
-                800: '#534442',
-                900: '#302A29',
+                900: '#1D100F',
+                800: '#462723',
+                700: '#703E38',
+                600: '#99554C',
+                500: '#c26c61',
+                400: '#CD877D',
+                300: '#D8A19A',
+                200: '#E3BBB6',
+                100: '#EED6D3',
+                50: '#F9F0EF',
             },
-            secondary: {
-                50: '#F6F6F0',
-                100: '#E1E2CD',
-                200: '#CCCDAA',
-                300: '#B7B987',
-                400: '#A2A464',
-                500: '#8D9041',
-                600: '#6F7239',
-                700: '#545530',
-                800: '#393A24',
-                900: '#212117',
-            },
-            // secondary: colors.stone,
+
+            secondary: colors.gray,
+
         },
         extend: {
             fontFamily: {
