@@ -10,7 +10,7 @@
 
                 <TTable :table="table">
                     <template #pagination>
-                        <ListLang />
+                        <MListLang />
                     </template>
 
                     <template #row="sp">
@@ -34,11 +34,10 @@
 
     import AppLayout from '@/Layouts/AppLayout'
     import IndexSection from '@/Layouts/Sections/Index'
-    import ListLang from '@/Elements/Other/ListLang'
 
     export default {
         components: {
-            AppLayout, IndexSection, ListLang,
+            AppLayout, IndexSection,
         },
 
         data() {
@@ -59,8 +58,8 @@
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
 
-                    editRoute: this.routePrefix + 'edit',
-                    destroyRoute: this.routePrefix + 'destroy',
+                    editRoute: this.currentRouteStr('edit'),
+                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

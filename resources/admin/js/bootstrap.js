@@ -13,7 +13,7 @@ window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
-const componentFromFolder = (app, components, prefix) => {
+const componentFromFolder = (app, components, prefix = '') => {
 
     for (const path in components) {
 

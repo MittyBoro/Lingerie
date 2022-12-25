@@ -78,9 +78,9 @@
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
 
-                    sortRoute: this.routePrefix + 'sort',
-                    editRoute: this.routePrefix + 'edit',
-                    destroyRoute: this.routePrefix + 'destroy',
+                    sortRoute: this.currentRouteStr('sort'),
+                    editRoute: this.currentRouteStr('edit'),
+                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

@@ -46,6 +46,7 @@ createInertiaApp({
 
         componentFromFolder(createdApp, import.meta.globEager('./Elements/Form/*.vue'), 'F')
         componentFromFolder(createdApp, import.meta.globEager('./Elements/Table/*.vue'), 'T')
+        componentFromFolder(createdApp, import.meta.globEager('./Elements/Main/*.vue'), 'M')
 
         return createdApp.mount(el);
     },

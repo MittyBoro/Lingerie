@@ -10,7 +10,7 @@
 
                 <TTable :table="table">
                     <template #pagination>
-                        <ListLang />
+                        <MListLang />
                     </template>
 
                     <template #row="sp">
@@ -28,11 +28,10 @@
 
     import AppLayout from '@/Layouts/AppLayout'
     import IndexSection from '@/Layouts/Sections/Index'
-    import ListLang from '@/Elements/Other/ListLang'
 
     export default {
         components: {
-            AppLayout, IndexSection, ListLang,
+            AppLayout, IndexSection,
         },
 
         data() {
