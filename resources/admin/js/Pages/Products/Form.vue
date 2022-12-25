@@ -50,6 +50,7 @@
                     slug: null,
                     is_stock: false,
                     is_published: false,
+                    lang: null,
                     gallery: null,
                     categories: null,
 

@@ -30,10 +30,6 @@ return [
                     // 'query' => [ 'type' => 'products' ],
                 ],
                 [
-                    'name' => 'Группы атрибутов',
-                    'route' => 'admin.props.index',
-                ],
-                [
                     'name' => 'Атрибуты',
                     'route' => 'admin.props.index',
                 ],
@@ -63,6 +59,10 @@ return [
             'sublinks' => [
                 [
                     'name' => 'Основное',
+                    'route' => 'admin.props.index',
+                ],
+                [
+                    'name' => 'Переводы',
                     'route' => 'admin.props.index',
                 ],
                 [

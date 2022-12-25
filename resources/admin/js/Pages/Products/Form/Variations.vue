@@ -63,12 +63,10 @@
 <script>
 
     import Draggable from "vuedraggable";
-    import VariationRow from "./Elements/VariationRow";
 
     export default {
         components: {
             Draggable,
-            VariationRow,
         },
 
         props: ['form'],

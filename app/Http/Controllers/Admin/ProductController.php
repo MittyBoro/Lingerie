@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\ProductRequest;
 use Illuminate\Http\Request;
 
-use App\Models\Product;
+use App\Models\Admin\Product;
 use App\Models\ProductCategory;
 use Inertia\Inertia;
 
@@ -36,8 +36,6 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        $data['user_id'] = $request->user()->id;
-
         $product = Product::create($data);
         $product->saveRelations($data);
 
@@ -46,15 +44,13 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $product->editing = true;
-
-        $product->setAppends(['gallery']);
-        $product->load(['categories', 'variations']);
+        // $product->setAppends(['gallery']);
+        // $product->load(['categories', 'variations']);
 
         return Inertia::render('Products/Form', [
             'item' => $product,
 
-            ...$this->editorData(),
+            // ...$this->editorData(),
         ]);
     }
 

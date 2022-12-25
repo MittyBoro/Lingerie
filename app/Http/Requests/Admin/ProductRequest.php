@@ -28,59 +28,37 @@ class ProductRequest extends AdminFormRequest
         $rules = [
             'title'        => 'required|string|max:255',
             'is_published' => 'required|boolean',
-            'is_stock'     => 'required|boolean',
+            // 'is_stock'     => 'required|boolean',
         ];
 
         if ( $this->has('index_edit') )
             return $rules;
 
         $rules += [
-            'slug'         => 'required|string|unique:products,slug,'.$id,
-
-            'categories'   => 'nullable|array',
-            'categories.*' => 'exists:categories,id',
+            'slug' => 'required|string|max:255|unique:products,slug,'.$id,
+            'lang' => lang_rule(),
 
             ...$this->validationFiles('gallery', 'dimensions:min_width=400,min_height=400'),
 
+            'attributes'             => 'required|array',
+            'attributes.description' => 'required|string',
+            'attributes.composition' => 'required|string',
+            'attributes.care'        => 'required|string',
 
-            'description'             => 'nullable|string',
+            // 'categories'   => 'nullable|array',
+            // 'categories.*' => 'exists:categories,id',
 
-            'characteristics'         => 'nullable|array',
-            'characteristics.*.name'  => 'required|string',
-            'characteristics.*.value' => 'required|string',
-
-
-            'variations'         => 'array|min:1',
-            'variations.*.id'    => 'nullable|exists:product_variations,id',
-            'variations.*.name'  => 'nullable|string',
-            'variations.*.value' => 'nullable|string',
-            'variations.*.price' => 'required|numeric',
-            'variations.*.bonuses' => 'required|integer',
-
-            'variations.*.promo_code_prices'                 => 'nullable|array',
-            'variations.*.promo_code_prices.*.promo_code_id' => 'exists:promo_codes,id',
-            'variations.*.promo_code_prices.*.price'         => 'numeric',
-
+            // 'variations'         => 'array|min:1',
+            // 'variations.*.id'    => 'nullable|exists:product_variations,id',
+            // 'variations.*.name'  => 'nullable|string',
+            // 'variations.*.value' => 'nullable|string',
+            // 'variations.*.price' => 'required|numeric',
+            // 'variations.*.bonuses' => 'required|integer',
 
             ...$this->validationSEO(),
         ];
 
         return $rules;
-
     }
 
-    public function attributes()
-    {
-        return [
-            'is_published' => '«Опубликовано?»',
-            'category_id'  => 'Категория',
-            'slug'         => 'Ссылка',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-        ];
-    }
 }

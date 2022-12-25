@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_attribute_types', function (Blueprint $table) {
+        Schema::create('translations', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')->nullable();
-            $table->string('lang')->default('ru');
+            $table->string('lang');
+            $table->string('key');
+            $table->text('value');
 
+            $table->timestamps();
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_attribute_types');
+        Schema::dropIfExists('translations');
     }
 };

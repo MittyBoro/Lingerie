@@ -7,7 +7,7 @@
 
     <!-- Slug -->
     <FLabel title="Ярлык" :error="form.errors.slug">
-        <FInput @change="stopSlugFromTitle" type="text" classes="opacity-60 text-xs max-h-9" v-model="form.slug" />
+        <FInput @change="stopSlugFromTitle" type="text" classes="text-xs max-h-9" v-model="form.slug" />
     </FLabel>
 
 </template>

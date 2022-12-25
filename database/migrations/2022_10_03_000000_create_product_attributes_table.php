@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')->nullable();
-            $table->string('lang')->default('ru');
+            $table->string('key');
+            $table->string('value');
 
-            $table->foreignId('product_attribute_type_id')->index()
-                                    ->constrained()->cascadeOnDelete();
+            $table->string('extra')->nullable();
 
             $table->integer('position')->default(0);
         });
