@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
 
             $table->string('lang');
-            $table->string('key');
-            $table->text('value');
-
-            $table->timestamps();
+            $table->string('key')->index();
+            $table->text('value')->nullable();
         });
     }
 

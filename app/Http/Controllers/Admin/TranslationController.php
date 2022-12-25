@@ -6,6 +6,7 @@ use App\Models\Translation;
 use Illuminate\Http\Request;
 
 use Inertia\Inertia;
+use Str;
 
 class TranslationController extends Controller
 {
@@ -21,45 +22,33 @@ class TranslationController extends Controller
 
     public function create()
     {
-        return Inertia::render('Translations/Form');
-    }
+        $data = [
+            'lang' => $this->getListLang() == 'ru' ? 'ru' : 'en',
+            'key' => 'key_' . Str::random(5),
+            'value' => 'value',
+        ];
 
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'lang' => lang_rule(),
-            'key' => 'required|string|max:255',
-            'value' => 'required|string',
-        ]);
-
-        $created = Translation::create($data);
-
-        return redirect(route('admin.faqs.edit', $created->id));
-    }
-
-    public function edit(Translation $faq)
-    {
-        return Inertia::render('Translations/Form', [
-            'item' => $faq,
-        ]);
-    }
-
-    public function update(Request $request, Translation $faq)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'lang' => lang_rule(),
-        ]);
-
-        $faq->update($data);
+        Translation::create($data);
 
         return back();
     }
 
-    public function destroy(Translation $faq)
+    public function update(Request $request, Translation $translation)
     {
-        $faq->delete();
+        $data = $request->validate([
+            'lang' => lang_rule(),
+            'key' => 'required|string|max:255',
+            'value' => 'string|nullable',
+        ]);
+
+        $translation->update($data);
+
+        return back();
+    }
+
+    public function destroy(Translation $translation)
+    {
+        $translation->delete();
 
         return back();
     }

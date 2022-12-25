@@ -1,8 +1,7 @@
 <template>
-    <AppLayout title="Страницы">
+    <AppLayout title="FAQ">
         <IndexSection class="max-w-3xl">
 
-            <template #title>Все страницы</template>
             <template #buttons>
                 <Link :href="currentRoute('create')" class="btn">Добавить</Link>
             </template>
@@ -10,13 +9,15 @@
             <template #content>
 
                 <TTable :table="table">
+                    <template #pagination>
+                        <MListLang />
+                    </template>
+
                     <template #row="sp">
-                        <TData v-text="sp.element.title" :class="{'opacity-70': sp.element.is_hidden}" />
-                        <TData v-text="sp.element.slug" :class="{'opacity-70': sp.element.is_hidden}" />
-                        <TData mini>
-                            <a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
-                                <Icon icon="eye"/>
-                            </a>
+                        <TData v-model="sp.element.key" @update:modelValue="update(sp.element)" />
+                        <TData v-model="sp.element.value" @update:modelValue="update(sp.element)" />
+                        <TData >
+                            <FSelect :options="$page.props.langs" v-model="sp.element.lang" required @update:modelValue="update(sp.element)" mini/>
                         </TData>
                     </template>
                 </TTable>
@@ -38,7 +39,6 @@
 
         data() {
             return {
-                routePrefix: 'admin.pages.',
             }
         },
 
@@ -46,15 +46,14 @@
             table() {
                 return {
                     headers: [
-                        { key: 'title', text: 'Заголовок',  sortable: true },
-                        { key: 'slug', text: 'Ярлык',  sortable: true },
-                        {},
+                        { key: 'key', text: 'Ключ',  sortable: true },
+                        { key: 'value', text: 'Значение',  sortable: true },
+                        { key: 'lang', text: 'Язык',  sortable: true },
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
 
-                    editRoute: this.routePrefix + 'edit',
-                    destroyRoute: this.routePrefix + 'destroy',
+                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

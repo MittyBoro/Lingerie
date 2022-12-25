@@ -63,7 +63,7 @@ return [
                 ],
                 [
                     'name' => 'Переводы',
-                    'route' => 'admin.props.index',
+                    'route' => 'admin.translations.index',
                 ],
                 [
                     'name' => 'FAQ',

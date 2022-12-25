@@ -5,6 +5,7 @@
             <div class="-mx-2">
                 <FTextarea
                     rows="1"
+                    class="max-h-16 focus:max-h-max"
                     @update:modelValue="$emit('update:modelValue', $event)"
                     v-model.lazy="value"
                     :disabled="disabled"
