@@ -26,22 +26,22 @@ return [
                 ],
                 [
                     'name' => 'Категории',
-                    'route' => 'admin.products.index',
+                    'route' => 'admin.props.index',
                     // 'query' => [ 'type' => 'products' ],
                 ],
                 [
                     'name' => 'Группы атрибутов',
-                    'route' => 'admin.products.index',
+                    'route' => 'admin.props.index',
                 ],
                 [
                     'name' => 'Атрибуты',
-                    'route' => 'admin.products.index',
+                    'route' => 'admin.props.index',
                 ],
             ],
         ],
         [
             'name' => 'Заказы',
-            'route' => 'admin.products.index',
+            'route' => 'admin.props.index',
             'icon' => 'cart-shopping',
         ],
         [

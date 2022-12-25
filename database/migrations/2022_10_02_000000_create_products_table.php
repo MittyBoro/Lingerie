@@ -20,9 +20,11 @@ return new class extends Migration
             $table->string('lang')->default('ru');
 
             $table->boolean('is_published')->default(false);
-            // $table->boolean('is_stock')->default(true);
+            $table->boolean('is_stock')->default(true);
 
             $table->decimal('price')->default(0);
+
+			$table->json('attributes')->nullable();
 
             $table->string('title')->nullable();
             $table->string('meta_title')->nullable();

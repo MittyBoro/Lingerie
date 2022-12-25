@@ -1,6 +1,5 @@
 <template>
-    <div class="col-span-6 grid grid-cols-6 gap-5">
-
+    <div class="form-grid">
         <FLabel title="Meta title" :error="form.errors.meta_title">
             <FInput type="text" v-model="form.meta_title" />
         </FLabel>
@@ -12,7 +11,6 @@
         <FLabel title="Meta description" :error="form.errors.meta_description">
             <FTextarea rows="3" v-model="form.meta_description" />
         </FLabel>
-
     </div>
 </template>
 

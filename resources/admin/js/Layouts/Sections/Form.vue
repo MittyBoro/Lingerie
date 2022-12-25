@@ -42,7 +42,7 @@
         </div>
 
         <div v-if="hasContentSlots" class="px-4 py-6 sm:px-8">
-            <div v-if="$slots.content" class="grid grid-cols-6 gap-4">
+            <div v-if="$slots.content" class="form-grid">
                 <slot name="content"></slot>
             </div>
             <slot v-if="$slots.simplecontent" name="simplecontent"></slot>

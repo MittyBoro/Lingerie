@@ -16,19 +16,19 @@ class ProductController extends Controller
     {
         $products = Product::filter($request->all())
                             ->with('media')
-                            ->withPrice('*')
+                            // ->withPrice('*')
                             ->paginated();
 
         return Inertia::render('Products/Index', [
             'list' => $products,
-            'categories' => ProductCategory::get4Admin(Product::class),
+            // 'categories' => ProductCategory::get4Admin(Product::class),
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Products/Form', [
-            ...$this->editorData(),
+            // ...$this->editorData(),
         ]);
     }
 

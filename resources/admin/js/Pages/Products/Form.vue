@@ -1,7 +1,7 @@
 <template>
-    <AppLayout title="Товары" >
+    <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Цена', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)">
+        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Цена', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)" mini>
             <template #title>
                 <div v-if="!isEdit">Добавить</div>
                 <div v-else>Редактировать</div>
@@ -14,8 +14,8 @@
 
                 <TabMain v-show="activeTab == 'Основное'" :form="form" :isEdit="isEdit" />
                 <TabDescription v-show="activeTab == 'Описание'" :form="form" />
-                <TabVariations v-show="activeTab == 'Цена'" :form="form" />
-                <TabSEO v-show="activeTab == 'SEO'" :form="form" />
+                <!-- <TabVariations v-show="activeTab == 'Цена'" :form="form" /> -->
+                <MTabSeo v-show="activeTab == 'SEO'" :form="form" />
 
             </template>
         </FormSection>
@@ -31,7 +31,6 @@
     import TabMain from './Form/Main'
     import TabDescription from './Form/Description'
     import TabVariations from './Form/Variations'
-    import TabSEO from './Form/SEO'
 
     export default {
         components: {
@@ -41,14 +40,11 @@
             TabMain,
             TabDescription,
             TabVariations,
-            TabSEO,
         },
 
 
         data() {
             return {
-                routePrefix: 'admin.products.',
-
                 form: this.$inertia.form(this.$page.props.item || {
                     title: null,
                     slug: null,
@@ -57,10 +53,14 @@
                     gallery: null,
                     categories: null,
 
-                    description: null,
-                    characteristics: null,
+                    attributes: {
+                        description: null,
+                        composition: null,
+                        care: null,
+                    },
+                    size_table: null,
 
-                    variations: null,
+
 
                     meta_title: null,
                     meta_keywords: null,
