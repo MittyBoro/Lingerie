@@ -1,5 +1,5 @@
 <template>
-    <AppLayout title="FAQ">
+    <AppLayout title="Переводы">
         <IndexSection class="max-w-3xl">
 
             <template #buttons>
@@ -16,8 +16,8 @@
                     <template #row="sp">
                         <TData v-model="sp.element.key" @update:modelValue="update(sp.element)" />
                         <TData v-model="sp.element.value" @update:modelValue="update(sp.element)" />
-                        <TData >
-                            <FSelect :options="$page.props.langs" v-model="sp.element.lang" required @update:modelValue="update(sp.element)" mini/>
+                        <TData>
+                            <FSelect class="min-w-max" :options="$page.props.langs" v-model="sp.element.lang" required @update:modelValue="update(sp.element)" mini/>
                         </TData>
                     </template>
                 </TTable>

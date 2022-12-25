@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-use App\Models\Page;
-
+use App\Models\ProductAttribute;
 use Inertia\Inertia;
 
 class ProductAttributeController extends Controller
@@ -13,51 +12,39 @@ class ProductAttributeController extends Controller
 
     public function index()
     {
-        $pages = Page::paginated();
+        $pages = ProductAttribute::paginated();
 
-        return Inertia::render('Pages/Index', [
+        return Inertia::render('ProductAttributes/Index', [
             'list' => $pages,
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Pages/Form');
-    }
-
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|string',
-        ]);
-
-        $created = Page::create($data);
-
-        return redirect(route('admin.pages.edit', $created->id));
-    }
-
-    public function edit(Page $page)
-    {
-        return Inertia::render('Pages/Form', [
-            'item' => $page,
-            'props' => $page->properties()->get4Admin(),
-        ]);
-    }
-
-    public function update(Request $request, Page $page)
-    {
-        $data = $request->validate([
-            'name' => 'required|string',
-        ]);
-
-        $page->update($data);
+        $data = [
+            'type' => 'color',
+            'value' => 'value',
+        ];
+        ProductAttribute::create($data);
 
         return back();
     }
 
-    public function destroy(Page $page)
+    public function update(Request $request, ProductAttribute $productAttribute)
     {
-        $page->delete();
+        $data = $request->validate([
+            'type' => 'required|string',
+            'value' => 'required|string',
+            'extra' => 'string|nullable',
+        ]);
+        $productAttribute->update($data);
+
+        return back();
+    }
+
+    public function destroy(ProductAttribute $productAttribute)
+    {
+        $productAttribute->delete();
 
         return back();
     }

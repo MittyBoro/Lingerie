@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('product_attributes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('key');
+            $table->string('type');
             $table->string('value');
 
             $table->string('extra')->nullable();

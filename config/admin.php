@@ -31,7 +31,7 @@ return [
                 ],
                 [
                     'name' => 'Атрибуты',
-                    'route' => 'admin.props.index',
+                    'route' => 'admin.product_attributes.index',
                 ],
             ],
         ],
