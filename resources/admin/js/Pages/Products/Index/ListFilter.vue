@@ -24,7 +24,8 @@
                 category: urlParams.get('category') || '',
             };
 
-            let categories = [ {id: '', title: 'Все категории'}, ...this.$page.props.categories]
+            // let categories = [ {id: '', title: 'Все категории'}, ...this.$page.props.categories]
+            let categories = []
 
             return {
                 categories: categories,

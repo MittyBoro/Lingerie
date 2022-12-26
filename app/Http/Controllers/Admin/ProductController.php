@@ -75,9 +75,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if ( $product->is_published )
-        {
-            return back()->withErrors(['Запрещено удалять опубликованные товары']);
+        if ( $product->is_published ) {
+            return back()->withErrors(['Запрещено удалять опубликованные элементы']);
         }
 
         $product->delete();

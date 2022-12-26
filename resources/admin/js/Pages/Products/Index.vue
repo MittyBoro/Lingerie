@@ -14,23 +14,15 @@
 
                 <TTable :table="table">
                     <template #row="sp">
-                        <TData :title="sp.element.id" mini>
+                        <TData mini>
                             <div class="min-w-max">
                                 <img :src="sp.element.preview" class="h-8 w-8 rounded borderobject-cover" alt="">
                             </div>
                         </TData>
-                        <TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
-                        <TData>
-                            <span class="whitespace-nowrap">
-                                <span v-if="sp.element.variations_count > 1">от</span>
-                                {{ formatPrice(sp.element.min_price) }}₽
-                            </span>
-                        </TData>
+                        <TData v-text="sp.element.translations[0].title" />
+                        <TData v-text="sp.element.translations[0].price" />
                         <TData mini>
                             <FSwitcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>
-                        </TData>
-                        <TData mini>
-                            <FSwitcher v-model="sp.element.is_stock" @update:modelValue="update(sp.element)" mini secondary/>
                         </TData>
                         <TData mini>
                             <a :href="frontUrl('product/' + sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
@@ -69,10 +61,9 @@
                 return {
                     headers: [
                         {},
-                        { key: 'title', text: 'Название',  sortable: true },
-                        { key: 'price', text: 'Цена',  sortable: true },
+                        { key: 'title', text: 'Название' },
+                        { key: 'price', text: 'Цена' },
                         { key: 'is_published', fa: 'eye', sortable: true, class: 'text-center' },
-                        { key: 'is_stock', fa: 'flag', sortable: true, class: 'text-center' },
                         {},
                     ],
                     items: this.$page.props.list.data,
