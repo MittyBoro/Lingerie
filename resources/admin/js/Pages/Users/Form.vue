@@ -9,7 +9,7 @@
                     <div class="col-span-full grid gap-4">
                         <template v-if="0">
                             <FLabel title="Аватар" :error="form.errors.admin_avatar">
-                                <FFileInput :isImage="true" v-model="form.admin_avatar" />
+                                <FFileInput :imagesOnly="true" v-model="form.admin_avatar" />
                             </FLabel>
                         </template>
 

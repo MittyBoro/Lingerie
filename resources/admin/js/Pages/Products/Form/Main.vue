@@ -1,16 +1,13 @@
 <template>
     <div class="form-grid">
-        <MTitleSlug
-            :form="translation"
-            :errors="{}"
-            />
+        <MTitleSlug :form="translation" />
 
         <FLabel title="Опубликовано?" :error="form.errors.is_published">
             <FSwitcher v-model="form.is_published" />
         </FLabel>
 
         <FLabel title="Фотографии" :error="form.errors.gallery">
-            <FFileInput :isImage="true" v-model="form.gallery" multiple/>
+            <FFileInput v-model="form.gallery" multiple imagesOnly/>
         </FLabel>
 
         <FLabel as="div" title="Категория" :error="form.errors.categories">

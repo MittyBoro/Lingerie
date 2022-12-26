@@ -70,14 +70,17 @@ class Product extends BaseModel implements HasMedia
                     ->addMediaConversion('big')
                     ->fit(Manipulations::FIT_MAX, 1280, 1280);
             });
+
         $this
-            ->addMediaCollection(self::MEDIA_COLLECTION_SIZE_TABLE);
+            ->addMediaCollection(self::MEDIA_COLLECTION_SIZE_TABLE)
+            ->singleFile();
     }
 
     public function registerMediaCollectionsWithDeletingOriginal(): array
     {
         return [
             self::MEDIA_COLLECTION,
+            self::MEDIA_COLLECTION_SIZE_TABLE,
         ];
     }
 

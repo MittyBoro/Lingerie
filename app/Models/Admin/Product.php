@@ -59,10 +59,10 @@ class Product extends BaseModel
 
         if ( isset($data['translations']) ) {
 
-            $this->translations()->saveMany(
-                collect( $data['translations'])
-                        ->map(fn($item) => new ProductTranslation($item) )
-            );
+            $this->translations()
+                 ->saveMany(
+                    array_map(fn($item) => new ProductTranslation($item), $data['translations'])
+                );
 
         }
 

@@ -14,7 +14,7 @@
         </FLabel>
 
         <FLabel title="Таблица размеров" :error="form.errors.size_table">
-            <FFileInput :isImage="true" v-model="form.size_table"/>
+            <FFileInput :imagesOnly="true" v-model="form.size_table"/>
         </FLabel>
 
     </div>

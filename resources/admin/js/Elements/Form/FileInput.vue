@@ -13,15 +13,15 @@
 			<template #item="{element, index}">
 				<div class="drag-preview" v-if="!element.del">
 					<div
-						:class="[isImage ? 'file-image' : 'file-simple']"
+						:class="[imagesOnly ? 'file-image' : 'file-simple']"
 						:style="getStyle(element)"
 						>
 						<div v-if="element.url" @click="openFile(element)" class="absolute inset-0 cursor-pointer transition opacity-10 hover:bg-gray-500"></div>
-						<div v-if="!isImage" class="text-gray-600 text-sm">{{ element.name }}</div>
+						<div v-if="!imagesOnly" class="text-gray-600 text-sm">{{ element.name }}</div>
 						<span
 							@click.prevent="removeAt(element, index)"
 							class="flex items-center justify-center bg-red-500 text-white h-3 w-3 rounded-sm shadow-sm text-xs cursor-pointer"
-							:class="[isImage ? 'absolute top-1 right-1' : 'relative']"
+							:class="[imagesOnly ? 'absolute top-1 right-1' : 'relative']"
 							>
 								<Icon icon="xmark" />
 							</span>
@@ -40,7 +40,7 @@
 				<input type="file"
 					@change="addFiles"
 					class="hidden"
-					:accept="isImage ? 'image/jpeg,image/png' : accept"
+					:accept="imagesOnly ? 'image/jpeg,image/png' : accept"
 					:multiple="multiple"
 					>
 			</div>
@@ -62,7 +62,7 @@
 				type: [Array, Object],
 				default: []
 			},
-			isImage: Boolean,
+			imagesOnly: Boolean,
 			multiple: Boolean,
 			drop: {
 				type: Boolean,
@@ -102,7 +102,7 @@
 			},
 
 			isSingleImage() {
-				return !this.multiple && this.files.length == 1 && this.isImage;
+				return !this.multiple && this.files.length == 1 && this.imagesOnly;
 			},
 
 			showList() {
@@ -111,10 +111,10 @@
 
 			dragClasses() {
 				return [
-                    isImage ? 'gap-3' : 'gap-1 max-w-xs',
+                    this.imagesOnly ? 'gap-3' : 'gap-1 max-w-xs',
                     {
-                        'grid-cols-3 sm:grid-cols-4 md:grid-cols-6': !isSingleImage && isImage,
-                        "w-28 md:w-auto": isSingleImage
+                        'grid-cols-3 sm:grid-cols-4 md:grid-cols-6': !this.isSingleImage && this.imagesOnly,
+                        "w-28 md:w-auto": this.isSingleImage
                     }
                 ]
 			}
@@ -207,7 +207,7 @@
 			},
 
 		 	getStyle(file) {
-				if (!this.isImage)
+				if (!this.imagesOnly)
 					return {};
 
 				return {
@@ -219,7 +219,7 @@
 
 				let rand_id = Math.random();
 
-				if (this.isImage) {
+				if (this.imagesOnly) {
 					let reader = new FileReader();
 					reader.readAsDataURL(file);
 					reader.onload = (e) => {
