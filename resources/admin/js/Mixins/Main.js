@@ -5,7 +5,19 @@ export default {
         }
     },
 
-
+    computed: {
+        adminLang: {
+            get() {
+                return this.$page.props.admin_lang
+            },
+            set(val) {
+                this.$page.props.admin_lang = val;
+            }
+        },
+        validAdminLang() {
+            return this.$page.props.langs[this.adminLang] ? this.adminLang : 'ru';
+        },
+    },
 
     methods: {
 

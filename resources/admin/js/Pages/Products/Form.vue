@@ -12,10 +12,12 @@
 
             <template #content>
 
-                <TabMain v-show="activeTab == 'Основное'" :form="form" :isEdit="isEdit" />
-                <TabDescription v-show="activeTab == 'Описание'" :form="form" />
-                <!-- <TabVariations v-show="activeTab == 'Цена'" :form="form" /> -->
-                <MTabSeo v-show="activeTab == 'SEO'" :form="form" />
+                <MLanguageRow class="mb-2"/>
+
+                <TabMain v-show="activeTab == 'Основное'" :form="form" :translation="translation" :isEdit="isEdit" />
+                <TabDescription v-show="activeTab == 'Описание'" :form="form" :translation="translation" />
+                <!-- <TabVariations v-show="activeTab == 'Цена'" :form="form" :translation="translation" /> -->
+                <MTabSeo v-show="activeTab == 'SEO'" :form="translation" />
 
             </template>
         </FormSection>
@@ -46,26 +48,14 @@
         data() {
             return {
                 form: this.$inertia.form(this.$page.props.item || {
-                    title: null,
-                    slug: null,
-                    is_stock: false,
+                    is_stock: true,
                     is_published: false,
-                    lang: null,
+
                     gallery: null,
                     categories: null,
 
-                    attributes: {
-                        description: null,
-                        composition: null,
-                        care: null,
-                    },
                     size_table: null,
-
-
-
-                    meta_title: null,
-                    meta_keywords: null,
-                    meta_description: null,
+                    translations: this.getDefaultTranslations(),
                 }),
 
                 isEdit: !!this.$page.props.item?.id,
@@ -73,8 +63,42 @@
             }
         },
 
+        computed: {
+            translation: {
+                get() {
+                    return this.form.translations.find(el => el.lang == this.validAdminLang);
+                },
+                set(val) {
+                    this.form.translations = this.form.translations.map(item => {
+                        if (this.validAdminLang == item.lang)
+                            item = val;
+                        return item;
+                    })
+                },
+            }
+        },
 
         methods: {
+            getDefaultTranslations() {
+                let translations = [];
+                Object.keys(this.$page.props.langs).forEach(lang => {
+                    translations.push({
+                        lang: lang,
+                        slug: null,
+                        title: null,
+                        meta_title: null,
+                        meta_keywords: null,
+                        meta_description: null,
+
+                        attributes: {
+                            description: null,
+                            composition: null,
+                            care: null,
+                        },
+                    })
+                })
+                return translations;
+            },
 
             submit() {
                 this.isEdit ?

@@ -1,16 +1,16 @@
 <template>
     <div class="form-grid">
 
-        <FLabel title="Описание" :error="form.errors.attributes?.description">
-            <FTextarea v-model="form.attributes.description" :mini="true"/>
+        <FLabel title="Описание">
+            <FTextarea v-model="translation.attributes.description" :mini="true"/>
         </FLabel>
 
-        <FLabel title="Состав" :error="form.errors.attributes?.composition">
-            <FTextarea v-model="form.attributes.composition" :mini="true"/>
+        <FLabel title="Состав">
+            <FTextarea v-model="translation.attributes.composition" :mini="true"/>
         </FLabel>
 
-        <FLabel title="Уход" :error="form.errors.attributes?.care">
-            <FTextarea v-model="form.attributes.care" :mini="true"/>
+        <FLabel title="Уход">
+            <FTextarea v-model="translation.attributes.care" :mini="true"/>
         </FLabel>
 
         <FLabel title="Таблица размеров" :error="form.errors.size_table">
@@ -24,7 +24,7 @@
 <script>
 
     export default {
-        props: ['form'],
+        props: ['form', 'translation'],
     }
 
 </script>

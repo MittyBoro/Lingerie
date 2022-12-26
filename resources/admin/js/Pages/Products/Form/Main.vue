@@ -1,13 +1,12 @@
 <template>
     <div class="form-grid">
-        <MTitleSlug :form="form" />
+        <MTitleSlug
+            :form="translation"
+            :errors="{}"
+            />
 
         <FLabel title="Опубликовано?" :error="form.errors.is_published">
             <FSwitcher v-model="form.is_published" />
-        </FLabel>
-
-        <FLabel title="Язык" :error="form.errors.lang">
-            <FSelect :options="$page.props.langs" v-model="form.lang" required/>
         </FLabel>
 
         <FLabel title="Фотографии" :error="form.errors.gallery">
@@ -25,7 +24,7 @@
 
     export default {
 
-        props: ['form'],
+        props: ['form', 'translation'],
 
         data() {
             return {
