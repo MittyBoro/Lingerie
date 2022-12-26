@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->string('lang')->default('ru');
-
             $table->boolean('is_published')->default(false);
             $table->boolean('is_stock')->default(true);
 

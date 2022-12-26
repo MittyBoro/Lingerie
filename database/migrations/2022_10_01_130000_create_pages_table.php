@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('route')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->unique(['slug', 'lang']);
         });

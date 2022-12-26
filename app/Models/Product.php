@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Traits\ProductCartTrait;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 use Spatie\Image\Manipulations;
@@ -22,23 +23,15 @@ class Product extends BaseModel implements HasMedia
     const MEDIA_COLLECTION_SIZE_TABLE = 'size';
 
     protected $fillable = [
-        'slug',
-        'lang',
         'is_published',
         'is_stock',
-        'price',
-        'title',
-        'attributes',
-        'meta_title',
-        'meta_description',
-        'meta_keywords',
         'position',
     ];
 
     protected $orderBy = ['position', 'asc'];
 
     protected $orderFileds = [
-        'id', 'title', 'min_price', 'variations_count', 'variation_groups', 'created_at', 'position', 'is_stock', 'is_published', 'category_id'
+        'id', 'created_at', 'is_published'
     ];
 
     protected $casts = [
@@ -88,6 +81,10 @@ class Product extends BaseModel implements HasMedia
         ];
     }
 
+    public function translations()
+    {
+        return $this->hasMany(ProductTranslation::class);
+    }
 
     public function categories()
     {

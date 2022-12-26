@@ -7,8 +7,8 @@ if ( !function_exists('lang_rule') ) {
 }
 
 
-if ( !function_exists('list_lang') ) {
-    function list_lang() {
-        return \Cookie::get('list_lang') ?? 'ru';
+if ( !function_exists('admin_lang') ) {
+    function admin_lang() {
+        return \Cookie::get('admin_lang') ?? 'ru';
     }
 }

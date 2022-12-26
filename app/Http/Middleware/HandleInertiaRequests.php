@@ -43,7 +43,7 @@ class HandleInertiaRequests extends Middleware
             'config' => fn () => config('admin'),
 
             'langs' => fn () => $this->langsList(),
-            'list_lang' => fn () => list_lang(),
+            'admin_lang' => fn () => admin_lang(),
 
             'auth' => [
                 'user' => fn () => $request->user()

@@ -24,7 +24,7 @@ class Controller extends BaseController
     public function setListLang(Request $request)
     {
         Cookie::queue(
-            Cookie::forever('list_lang', $request->lang)
+            Cookie::forever('admin_lang', $request->lang)
         );
 
         return back();
@@ -32,7 +32,7 @@ class Controller extends BaseController
 
     public function getListLang()
     {
-        $lang = list_lang();
+        $lang = admin_lang();
 
         if ( in_array($lang, config('app.langs')) )
             $lang = $lang;

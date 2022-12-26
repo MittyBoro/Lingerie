@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Product as BaseModel;
+use App\Models\ProductTranslation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
@@ -13,10 +14,8 @@ class Product extends BaseModel
     {
         parent::boot();
 
-        static::saving( function($query)
-        {
-            if ( empty($query->meta_title) )
-                $query->meta_title = $query->title;
+        static::addGlobalScope('translations', function (Builder $builder) {
+            $builder->with('translations');
         });
     }
 
@@ -31,11 +30,6 @@ class Product extends BaseModel
         if (isset($filter['q'])) {
             $query->search($filter['q']);
         }
-    }
-
-    public function setSlugAttribute($val)
-    {
-        $this->attributes['slug'] = Str::slug($val);
     }
 
     public function getGalleryAttribute()
@@ -63,9 +57,14 @@ class Product extends BaseModel
         //     $this->categories()->sync($categories);
         // }
 
-        // if ( isset($data['variations']) ) {
-        //     $this->variations()->getRelated()->massSync($data['variations'], $this->id);
-        // }
+        if ( isset($data['translations']) ) {
+
+            $this->translations()->saveMany(
+                collect( $data['translations'])
+                        ->map(fn($item) => new ProductTranslation($item) )
+            );
+
+        }
 
         if ( isset($data['gallery']) ) {
             $this->syncMedia($data['gallery'], self::MEDIA_COLLECTION);

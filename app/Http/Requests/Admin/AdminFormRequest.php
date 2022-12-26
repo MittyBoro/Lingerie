@@ -33,12 +33,12 @@ class AdminFormRequest extends FormRequest
         ];
     }
 
-    protected function validationSEO(): array
+    protected function validationSEO($preffix = ''): array
     {
         return [
-            'meta_title'       => 'string|nullable|max:255',
-            'meta_description' => 'string|nullable|max:255',
-            'meta_keywords'    => 'string|nullable|max:255',
+            $preffix.'meta_title'       => 'string|nullable|max:255',
+            $preffix.'meta_description' => 'string|nullable|max:255',
+            $preffix.'meta_keywords'    => 'string|nullable|max:255',
         ];
     }
 

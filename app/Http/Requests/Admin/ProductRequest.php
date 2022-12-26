@@ -26,7 +26,6 @@ class ProductRequest extends AdminFormRequest
         $id = $this->product ? $this->product->id : '';
 
         $rules = [
-            'title'        => 'required|string|max:255',
             'is_published' => 'required|boolean',
             // 'is_stock'     => 'required|boolean',
         ];
@@ -35,15 +34,21 @@ class ProductRequest extends AdminFormRequest
             return $rules;
 
         $rules += [
-            'slug' => 'required|string|max:255|unique:products,slug,'.$id,
-            'lang' => lang_rule(),
+            'translations' => 'required|array',
+            'translations.*.title' => 'required|string|max:255',
+            'translations.*.slug'  => 'required|string|max:255',
+            'translations.*.lang'  => lang_rule(),
+            'translations.*.attributes'             => 'required|array',
+            'translations.*.attributes.description' => 'required|string',
+            'translations.*.attributes.composition' => 'required|string',
+            'translations.*.attributes.care'        => 'required|string',
+
+            ...$this->validationSEO('translations.*.'),
+
 
             ...$this->validationFiles('gallery', 'dimensions:min_width=400,min_height=400'),
+            ...$this->validationFiles('size_table', 'dimensions:min_width=300,min_height=300'),
 
-            'attributes'             => 'required|array',
-            'attributes.description' => 'required|string',
-            'attributes.composition' => 'required|string',
-            'attributes.care'        => 'required|string',
 
             // 'categories'   => 'nullable|array',
             // 'categories.*' => 'exists:categories,id',
@@ -55,7 +60,6 @@ class ProductRequest extends AdminFormRequest
             // 'variations.*.price' => 'required|numeric',
             // 'variations.*.bonuses' => 'required|integer',
 
-            ...$this->validationSEO(),
         ];
 
         return $rules;
