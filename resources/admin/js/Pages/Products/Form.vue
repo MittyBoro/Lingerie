@@ -66,7 +66,12 @@
         computed: {
             translation: {
                 get() {
-                    return this.form.translations.find(el => el.lang == this.validAdminLang);
+                    let index = this.form.translations.findIndex(el => el.lang == this.validAdminLang);
+                    let translations = this.form.translations[index];
+                        translations.errors =
+                                this.errorKeysToObject(this.form.errors)?.translations?.[index];
+
+                    return translations;
                 },
                 set(val) {
                     this.form.translations = this.form.translations.map(item => {

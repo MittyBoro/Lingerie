@@ -1,12 +1,12 @@
 <template>
 
     <!-- Title -->
-    <FLabel title="Название" :error="errors?.title">
+    <FLabel title="Название" :error="form.errors?.title">
         <FInput @change="setSlugFromTitle" v-model="form.title" />
     </FLabel>
 
     <!-- Slug -->
-    <FLabel title="Ярлык" :error="errors?.slug">
+    <FLabel title="Ярлык" :error="form.errors?.slug">
         <FInput :classes="'text-xs max-h-8 ' + (form.slug ? 'opacity-60' : '')" v-model="form.slug" />
     </FLabel>
 
@@ -17,7 +17,7 @@
     import slugify from 'slugify'
 
     export default {
-        props: ['form', 'errors'],
+        props: ['form'],
 
         watch: {
             'form.slug'(val) {

@@ -1,15 +1,15 @@
 <template>
     <div class="form-grid">
 
-        <FLabel title="Описание">
+        <FLabel title="Описание" :error="translation.errors?.attributes?.description">
             <FTextarea v-model="translation.attributes.description" :mini="true"/>
         </FLabel>
 
-        <FLabel title="Состав">
+        <FLabel title="Состав" :error="translation.errors?.attributes?.composition">
             <FTextarea v-model="translation.attributes.composition" :mini="true"/>
         </FLabel>
 
-        <FLabel title="Уход">
+        <FLabel title="Уход" :error="translation.errors?.attributes?.care">
             <FTextarea v-model="translation.attributes.care" :mini="true"/>
         </FLabel>
 

@@ -28,5 +28,17 @@ export default {
             if (!confirm('Вы уверены?'))
                 e.preventDefault()
         },
+
+        errorKeysToObject(errors) {
+            let object = {};
+
+            Object.entries(errors).forEach(element => {
+                let path = element[0].split('.'),
+                    last = path.pop();
+                path.reduce((o, k) => o[k] = o[k] || {}, object)[last] = element[1];
+            });
+
+            return object
+        },
     }
 }
