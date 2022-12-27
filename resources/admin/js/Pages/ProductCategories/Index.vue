@@ -36,10 +36,6 @@
             let urlParams = new URLSearchParams(window.location.search);
 
             return {
-                routePrefix: 'admin.categories.',
-
-                type: urlParams.get('type'),
-
                 showSaveBtn: false,
             }
         },

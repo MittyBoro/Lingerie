@@ -1,19 +1,34 @@
 <template>
-    <AppLayout title="Категории" >
+    <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'SEO']" v-model:activeTab="activeTab"  class="max-w-xl">
+        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)" mini>
             <template #title>
-                <div v-if="!isEdit">Добавить категорию</div>
-                <div v-else>Редактировать категорию</div>
+                <div v-if="!isEdit">Добавить</div>
+                <div v-else>Редактировать</div>
             </template>
             <template #buttons>
-                <Link v-if="isEdit" :href="currentRoute('create', {type: type})" class="btn btn-gray ml-auto">Добавить ещё</Link>
+                <Link v-if="isEdit" :href="currentRoute('create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </template>
 
             <template #content>
 
-                <TabMain v-show="activeTab == 'Основное'" :form="form" :isEdit="isEdit" />
-                <TabSEO v-show="activeTab == 'SEO'" :form="form" />
+                <MLanguageRow class="mb-2"/>
+
+                <div class="form-grid" v-show="activeTab == 'Основное'">
+
+                    <MTitleSlug :form="translation" />
+
+                    <FLabel title="Родительская категория" :error="form.errors.parent_id">
+                        <FSelect :options="categories" :keys="['id','title']" v-model="form.parent_id" />
+                    </FLabel>
+
+                    <FLabel title="Описание" :error="translation.errors?.description" as="div">
+                        <FTextareaEditor v-model="translation.description" mini/>
+                    </FLabel>
+
+                </div>
+
+                <MTabSeo v-show="activeTab == 'SEO'" :form="translation" />
 
             </template>
         </FormSection>
@@ -26,73 +41,49 @@
     import AppLayout from '@/Layouts/AppLayout'
     import FormSection from '@/Layouts/Sections/Form'
 
-    import TabMain from './Form/Main'
-    import TabSEO from './Form/SEO'
+    import Translation from '@/Mixins/Translation'
+    import Form from '@/Mixins/Form'
+
 
     export default {
+
+        mixins: [
+            Translation,
+            Form,
+        ],
+
         components: {
             AppLayout,
             FormSection,
-
-            TabMain,
-            TabSEO,
         },
 
 
         data() {
-            let urlParams = new URLSearchParams(window.location.search);
-
             return {
-                routePrefix: 'admin.categories.',
-
-                form: this.$inertia.form(this.$page.props.item || {
-                    title: '',
-                    slug: '',
-
+                form: this.setForm({
                     parent_id: null,
 
-                    description: '',
-
-                    meta_title: '',
-                    meta_keywords: '',
-                    meta_description: '',
+                    translations: this.defaultTranslations({
+                        slug: null,
+                        title: null,
+                        description: null,
+                        meta_title: null,
+                        meta_keywords: null,
+                        meta_description: null,
+                    }),
                 }),
-
-                isEdit: !!this.$page.props.item?.id,
-                type: urlParams.get('type'),
-                activeTab: null,
             }
         },
 
+        computed: {
+            categories() {
+                let list = [...this.$page.props.list];
 
-        methods: {
-
-            submit() {
-                this.isEdit ?
-                            this.update() :
-                            this.store()
-            },
-
-            store() {
-                this.form
-                    .post(this.currentRoute('store', {type: this.type}), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                        preserveScroll: true,
-                    });
-            },
-
-            update() {
-                this.form
-                    .transform((data) => ({
-                        ...data,
-                        _method : 'PUT',
-                    }))
-                    .post(this.currentRoute('update', {category: this.form.id, type: this.type}), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                        preserveScroll: true,
-                    });
+                list.unshift({ id: null, title: '---' });
+                return list;
             },
         },
+
     }
 </script>
 

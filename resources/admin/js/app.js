@@ -13,9 +13,9 @@ import Toast from "vue-toastification";
 
 import Icon from './Elements/Icon'
 
-import MixinFormat from "./Mixins/Format.js";
-import MixinMain from "./Mixins/Main.js";
-import MixinRouting from "./Mixins/Routing.js";
+import MixinFormat from "./Mixins/General/Format.js";
+import MixinMain from "./Mixins/General/Main.js";
+import MixinRouting from "./Mixins/General/Routing.js";
 
 import.meta.glob([
     '../images/favicon.svg',

@@ -34,7 +34,16 @@
     import TabDescription from './Form/Description'
     import TabVariations from './Form/Variations'
 
+    import Translation from '@/Mixins/Translation'
+    import Form from '@/Mixins/Form'
+
     export default {
+
+        mixins: [
+            Translation,
+            Form,
+        ],
+
         components: {
             AppLayout,
             FormSection,
@@ -47,7 +56,7 @@
 
         data() {
             return {
-                form: this.$inertia.form(this.$page.props.item || {
+                form: this.setForm({
                     is_stock: true,
                     is_published: false,
 
@@ -55,40 +64,7 @@
                     categories: null,
 
                     size_table: null,
-                    translations: this.getDefaultTranslations(),
-                }),
-
-                isEdit: !!this.$page.props.item?.id,
-                activeTab: null,
-            }
-        },
-
-        computed: {
-            translation: {
-                get() {
-                    let index = this.form.translations.findIndex(el => el.lang == this.validAdminLang);
-                    let translations = this.form.translations[index];
-                        translations.errors =
-                                this.errorKeysToObject(this.form.errors)?.translations?.[index];
-
-                    return translations;
-                },
-                set(val) {
-                    this.form.translations = this.form.translations.map(item => {
-                        if (this.validAdminLang == item.lang)
-                            item = val;
-                        return item;
-                    })
-                },
-            }
-        },
-
-        methods: {
-            getDefaultTranslations() {
-                let translations = [];
-                Object.keys(this.$page.props.langs).forEach(lang => {
-                    translations.push({
-                        lang: lang,
+                    translations: this.defaultTranslations({
                         slug: null,
                         title: null,
                         meta_title: null,
@@ -100,36 +76,9 @@
                             composition: null,
                             care: null,
                         },
-                    })
-                })
-                return translations;
-            },
-
-            submit() {
-                this.isEdit ?
-                            this.update() :
-                            this.store()
-            },
-
-            store() {
-                this.form
-                    .post(this.currentRoute('store'), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                        preserveScroll: true,
-                    });
-            },
-
-            update() {
-                this.form
-                    .transform((data) => ({
-                        ...data,
-                        _method : 'PUT',
-                    }))
-                    .post(this.currentRoute('update', this.form.id), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                        preserveScroll: true,
-                    });
-            },
+                    }),
+                }),
+            }
         },
     }
 </script>
