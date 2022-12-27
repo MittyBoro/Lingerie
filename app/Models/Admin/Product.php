@@ -5,7 +5,6 @@ namespace App\Models\Admin;
 use App\Models\Product as BaseModel;
 use App\Models\ProductTranslation;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
 
 class Product extends BaseModel
 {
@@ -59,10 +58,12 @@ class Product extends BaseModel
 
         if ( isset($data['translations']) ) {
 
-            $this->translations()
-                 ->saveMany(
-                    array_map(fn($item) => new ProductTranslation($item), $data['translations'])
-                );
+            collect($data['translations'])
+                    ->each(fn($item) =>
+                            isset($item['id']) ?
+                                $this->translations()->where('id', $item['id'])->update($item) :
+                                $this->translations()->create($item)
+                    );
 
         }
 
