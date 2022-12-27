@@ -18,8 +18,6 @@ return new class extends Migration
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
 
-            $table->string('slug');
-
             $table->integer('position')->default(0);
 
             $table->nestedSet();

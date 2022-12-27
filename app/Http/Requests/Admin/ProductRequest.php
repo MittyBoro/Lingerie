@@ -40,9 +40,9 @@ class ProductRequest extends AdminFormRequest
             'translations.*.slug'  => 'required|string|max:255',
             'translations.*.lang'  => lang_rule(),
             'translations.*.attributes'             => 'required|array',
-            'translations.*.attributes.description' => 'required|string',
-            'translations.*.attributes.composition' => 'required|string',
-            'translations.*.attributes.care'        => 'required|string',
+            'translations.*.attributes.description' => 'nullable|string',
+            'translations.*.attributes.composition' => 'nullable|string',
+            'translations.*.attributes.care'        => 'nullable|string',
 
             ...$this->validationSEO('translations.*.'),
 

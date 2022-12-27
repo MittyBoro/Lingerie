@@ -3,11 +3,12 @@
 namespace App\Models\Admin;
 
 use App\Models\Product as BaseModel;
-use App\Models\ProductTranslation;
+use App\Models\Admin\Traits\TranslationTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 class Product extends BaseModel
 {
+    use TranslationTrait;
 
     public static function boot()
     {
@@ -57,14 +58,7 @@ class Product extends BaseModel
         // }
 
         if ( isset($data['translations']) ) {
-
-            collect($data['translations'])
-                    ->each(fn($item) =>
-                            isset($item['id']) ?
-                                $this->translations()->where('id', $item['id'])->update($item) :
-                                $this->translations()->create($item)
-                    );
-
+           $this->saveTranslations($data['translations']);
         }
 
         if ( isset($data['gallery']) ) {

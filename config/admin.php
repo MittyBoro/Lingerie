@@ -26,7 +26,7 @@ return [
                 ],
                 [
                     'name' => 'Категории',
-                    'route' => 'admin.props.index',
+                    'route' => 'admin.product_categories.index',
                     // 'query' => [ 'type' => 'products' ],
                 ],
                 [

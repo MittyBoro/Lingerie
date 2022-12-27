@@ -19,23 +19,24 @@ Route::middleware(['admin.role:editor'])
     Route::resource('media', 'MediaController')->only(['store','destroy']);
 
 
-    // Route::middleware(['admin.category'])
-    //     ->group(function () {
-    //         Route::resource('categories', 'CategoryController')->except('show');
-    //         Route::post('categories/sort', 'CategoryController@sort')->name('categories.sort');
-    // });
-
-    Route::resource('products', 'ProductController')->except(['show']);
-    Route::resource('product_attributes', 'ProductAttributeController')
-                            ->only(['index','create','update','destroy']);
-
-    // Route::post('products/sort', 'ProductController@sort')->name('products.sort');
-
 
     Route::resource('pages', 'PageController')->except(['show']);
 
     Route::resource('faqs', 'FAQController')->except(['show']);
     Route::resource('translations', 'TranslationController')->only(['index','create','update','destroy']);
+
+
+
+    Route::resource('products', 'ProductController')->except(['show']);
+    // Route::post('products/sort', 'ProductController@sort')->name('products.sort');
+    Route::resource('product_attributes', 'ProductAttributeController')
+                            ->only(['index','create','update','destroy']);
+
+    Route::resource('product_categories', 'ProductCategoryController')->except('show');
+    Route::post('product_categories/sort', 'ProductCategoryController@sort')->name('categories.sort');
+
+
+
 
 
     // Route::resource('product_orders', 'ProductOrderController')->only(['index', 'show', 'update']);

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\ProductCategory;
-use App\Http\Requests\Admin\CategoryRequest;
+use App\Models\Admin\ProductCategory;
+use App\Http\Requests\Admin\ProductCategoryRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,48 +14,49 @@ class ProductCategoryController extends Controller
     {
         $tree = ProductCategory::getTree($request->model);
 
-        return Inertia::render('Categories/Index', [
+        return Inertia::render('ProductCategories/Index', [
             'tree' => $tree,
         ]);
     }
 
-    public function create(Request $request, ProductCategory $category)
+    public function create()
     {
-        $list = ProductCategory::get4Admin($request->model);
+        $list = ProductCategory::getList();
 
-        return Inertia::render('Categories/Form', [
+        return Inertia::render('ProductCategories/Form', [
             'list' => $list,
         ]);
     }
 
-    public function store(CategoryRequest $request, ProductCategory $category)
+    public function store(ProductCategoryRequest $request)
     {
-        $validated = $request->validated();
+        $data = $request->validated();
 
-        $category = $category->create($validated);
+        $productCategory = ProductCategory::create($data);
+        $productCategory->saveRelations($data);
 
-        return redirect(route('admin.categories.edit', [
-            'category' => $category->id,
-            'type' => $request->get('type'),
+        return redirect(route('admin.product_categories.edit', [
+            'product_category' => $productCategory->id,
         ]));
     }
 
-    public function edit(Request $request, ProductCategory $category)
+    public function edit(ProductCategory $productCategory)
     {
-        $list = ProductCategory::get4Admin($request->model);
+        $list = ProductCategory::getList();
 
-        return Inertia::render('Categories/Form', [
-            'item' => $category,
+        return Inertia::render('ProductCategories/Form', [
+            'item' => $productCategory,
             'list' => $list,
         ]);
     }
 
-    public function update(CategoryRequest $request, ProductCategory $category)
+    public function update(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
         $data = $request->validated();
 
         try {
-            $category->update($data);
+            $productCategory->update($data);
+            $productCategory->saveRelations($data);
         } catch (\Throwable $e) {
             return back()->withErrors(['parent_id' => 'Нарушена последовательность']);
         }
@@ -63,7 +64,7 @@ class ProductCategoryController extends Controller
         return back();
     }
 
-    public function sort(Request $request, ProductCategory $category)
+    public function sort(Request $request, ProductCategory $productCategory)
     {
         $validated = $request->validate([
             'sorted' => 'required|array',
@@ -72,13 +73,13 @@ class ProductCategoryController extends Controller
             'sorted.*.parent_id' => 'nullable|exists:categories,id',
         ]);
 
-        $category->massUpdate($validated['sorted']);
+        $productCategory->massUpdate($validated['sorted']);
         ProductCategory::fixTree();
 
         return back();
     }
 
-    public function resort(Request $request, ProductCategory $category)
+    public function resort(Request $request, ProductCategory $productCategory)
     {
         $validated = $request->validate([
             'sorted' => 'required|array',
@@ -86,20 +87,20 @@ class ProductCategoryController extends Controller
             'sorted.*.parent_id' => 'nullable|present|exists:categories,id',
         ]);
 
-        $isUpd = $category->updateTree($validated['sorted']);
+        $isUpd = $productCategory->updateTree($validated['sorted']);
         if ($isUpd)
             return back();
         else
             return back()->withErrors(['Ошибка обновления']);
     }
 
-    public function destroy(ProductCategory $category)
+    public function destroy(ProductCategory $productCategory)
     {
-        if ($category->children->count()) {
+        if ($productCategory->children->count()) {
             return back()->withErrors(['Невозможно удалить категорию с потомками']);
         }
 
-        $category->delete();
+        $productCategory->delete();
 
         return back();
     }

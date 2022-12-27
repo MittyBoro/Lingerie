@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('lang');
             $table->string('key')->index();
             $table->text('value')->nullable();
+
+            $table->unique(['key', 'lang']);
         });
     }
 

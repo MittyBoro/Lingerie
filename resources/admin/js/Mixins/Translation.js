@@ -10,7 +10,9 @@ export default {
     computed: {
         translation: {
             get() {
-                let index = this.form.translations.findIndex(el => el.lang == this.validAdminLang);
+                let index = this.form.translations?.findIndex(el => el.lang == this.validAdminLang);
+                if (index === undefined)
+                    return {}
                 let translations = this.form.translations[index];
                     translations.errors =
                             this.errorKeysToObject(this.form.errors)?.translations?.[index];
