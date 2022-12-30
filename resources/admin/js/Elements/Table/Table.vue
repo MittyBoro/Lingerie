@@ -25,12 +25,12 @@
                     <tbody v-if="!sortRoute">
                         <tr v-for="element in items" :key="element.id">
                             <slot name="row" :element="element"></slot>
-                            <TData v-if="editRoute" class="w-min">
+                            <TData v-if="editRoute" mini>
                                 <Link :href="route(editRoute, element.id)">
                                     <Icon icon="pencil" class="text-gray-500 hover-link"/>
                 				</Link>
 							</TData>
-							<TData v-if="destroyRoute" class="w-min">
+							<TData v-if="destroyRoute" mini>
 								<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
 									<Icon @click="confirm" icon="trash-can" class="text-gray-500 hover-link block"/>
 								</Link>
@@ -40,16 +40,16 @@
 					<Draggable v-else tag="tbody" v-model="items" item-key="element.id" handle=".drag-handle" :scroll="true" :scroll-sensitivity="500">
 						<template #item="{ element }">
 							<tr class="drag-tr">
-								<TData v-if="sortEnable" class="sort-td w-min">
+								<TData v-if="sortEnable" class="sort-td" mini>
 									<Icon icon="arrows-up-down-left-right" class="drag-handle"/>
 								</TData>
 								<slot name="row" :element="element"></slot>
-								<TData v-if="editRoute" class="w-min">
+								<TData v-if="editRoute" mini>
 									<Link :href="route(editRoute, element.id)">
 										<Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
 									</Link>
 								</TData>
-								<TData v-if="destroyRoute" class="w-min">
+								<TData v-if="destroyRoute" mini>
 									<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
 										<Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
 									</Link>

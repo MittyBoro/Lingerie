@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\ProductRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\ProductRequest;
 
 use App\Models\Admin\Product;
-use App\Models\ProductCategory;
+use App\Models\Admin\ProductCategory;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -21,14 +21,14 @@ class ProductController extends Controller
 
         return Inertia::render('Products/Index', [
             'list' => $products,
-            // 'categories' => ProductCategory::get4Admin(Product::class),
+            'categories' => ProductCategory::getList(),
         ]);
     }
 
     public function create()
     {
         return Inertia::render('Products/Form', [
-            // ...$this->editorData(),
+            'categories' => ProductCategory::getList(),
         ]);
     }
 
@@ -49,8 +49,7 @@ class ProductController extends Controller
 
         return Inertia::render('Products/Form', [
             'item' => $product,
-
-            // ...$this->editorData(),
+            'categories' => ProductCategory::getList(),
         ]);
     }
 
@@ -82,13 +81,5 @@ class ProductController extends Controller
         $product->delete();
 
         return back();
-    }
-
-    private function editorData() : array
-    {
-        return [
-            'categories' => ProductCategory::get4Admin(Product::class),
-            'characteristics_list' => Product::characteristicsList(),
-        ];
     }
 }

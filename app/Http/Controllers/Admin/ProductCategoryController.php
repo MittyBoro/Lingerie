@@ -42,7 +42,7 @@ class ProductCategoryController extends Controller
 
     public function edit(ProductCategory $productCategory)
     {
-        $list = ProductCategory::getList();
+        $list = ProductCategory::whereNot('id', $productCategory->id)->getList();
 
         return Inertia::render('ProductCategories/Form', [
             'item' => $productCategory,
@@ -68,30 +68,15 @@ class ProductCategoryController extends Controller
     {
         $validated = $request->validate([
             'sorted' => 'required|array',
-            'sorted.*.id'        => 'required|exists:categories,id',
+            'sorted.*.id'        => 'required|exists:product_categories,id',
             'sorted.*.position'  => 'required|integer',
-            'sorted.*.parent_id' => 'nullable|exists:categories,id',
+            'sorted.*.parent_id' => 'nullable|exists:product_categories,id',
         ]);
 
         $productCategory->massUpdate($validated['sorted']);
         ProductCategory::fixTree();
 
         return back();
-    }
-
-    public function resort(Request $request, ProductCategory $productCategory)
-    {
-        $validated = $request->validate([
-            'sorted' => 'required|array',
-            'sorted.*.id' => 'exists:categories,id',
-            'sorted.*.parent_id' => 'nullable|present|exists:categories,id',
-        ]);
-
-        $isUpd = $productCategory->updateTree($validated['sorted']);
-        if ($isUpd)
-            return back();
-        else
-            return back()->withErrors(['Ошибка обновления']);
     }
 
     public function destroy(ProductCategory $productCategory)

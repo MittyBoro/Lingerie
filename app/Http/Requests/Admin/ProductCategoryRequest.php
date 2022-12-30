@@ -23,9 +23,9 @@ class ProductCategoryRequest extends AdminFormRequest
     public function rules()
     {
         return [
-            'parent_id' => 'nullable|present|exists:categories,id',
+            'parent_id' => 'nullable|present|exists:product_categories,id',
 
-            'translations' => 'required|array',
+            'translations' => 'required|array|min:1',
             'translations.*.id'    => 'nullable|exists:product_category_translations,id',
             'translations.*.lang'  => lang_rule(),
             'translations.*.title' => 'required|string|max:255',

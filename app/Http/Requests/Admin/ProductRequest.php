@@ -34,7 +34,7 @@ class ProductRequest extends AdminFormRequest
             return $rules;
 
         $rules += [
-            'translations' => 'required|array',
+            'translations' => 'required|array|min:1',
             'translations.*.id'    => 'nullable|exists:product_translations,id',
             'translations.*.title' => 'required|string|max:255',
             'translations.*.slug'  => 'required|string|max:255',

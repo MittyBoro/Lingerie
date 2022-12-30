@@ -12,6 +12,8 @@ class ProductCategory extends BaseModel
 
     use TranslationTrait;
 
+    protected $appends = ['title'];
+
     public static function boot()
     {
         parent::boot();
@@ -25,10 +27,15 @@ class ProductCategory extends BaseModel
             $model->position = self::max('position') + 1;
         });
 
-        static::updated( function($model)
+        static::updated( function()
         {
             static::fixTree();
         });
+    }
+
+    public function getTitleAttribute()
+    {
+        return $this->translations->first()->title;
     }
 
     public function scopeGetList($query)
