@@ -35,7 +35,7 @@ class ProductCategory extends BaseModel
 
     public function getTitleAttribute()
     {
-        return $this->translations->first()->title;
+        return $this->translations->first()?->title;
     }
 
     public function scopeGetList($query)

@@ -14,7 +14,7 @@ trait InteractsWithCustomMedia
 
     private $collectionsWithDeletingOriginal = [];
 
-    public function syncMedia($data, $collectionName = 'default', $diskName = '') : Collection
+    public function syncMedia($data, $collectionName = 'default', $diskName = ''): Collection
     {
         $collect = collect($data)->filter(function ($value) {
             return !isset($value['del']);
@@ -39,7 +39,7 @@ trait InteractsWithCustomMedia
         return $collect;
     }
 
-    public function syncSingleMedia(array $singleMedia, $collectionName = 'default', $diskName = '') : Media
+    public function syncSingleMedia(array $singleMedia, $collectionName = 'default', $diskName = ''): Media
     {
         if (Arr::hasAny($singleMedia, ['file', 'path', 'url'])) {
             $mediaModel = $this->addSingleMedia($singleMedia, $collectionName, $diskName);
@@ -54,7 +54,7 @@ trait InteractsWithCustomMedia
         return $mediaModel;
     }
 
-    public function addSingleMedia($singleMedia, $collectionName = 'default', $diskName = '') : Media
+    public function addSingleMedia($singleMedia, $collectionName = 'default', $diskName = ''): Media
     {
         if ( isset($singleMedia['file']) ) {
             $mediaModel = $this
@@ -65,6 +65,7 @@ trait InteractsWithCustomMedia
                 $mediaModel = $this
                             ->addMediaFromUrl($singleMedia['url']);
             } catch (\Throwable $th) {
+                \Log::error($th);
                 return new Media;
             }
         }
@@ -89,7 +90,7 @@ trait InteractsWithCustomMedia
 
     }
 
-    private function removeOriginalMedia(Media $mediaModel)
+    private function removeOriginalMedia($mediaModel)
     {
         if (!method_exists($this, 'registerMediaCollectionsWithDeletingOriginal'))
             return;

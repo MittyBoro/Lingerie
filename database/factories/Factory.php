@@ -27,13 +27,18 @@ abstract class Factory extends MainFactory
         $data = ['lang' => $to];
 
         foreach ($fields as $field) {
-            $data[ $field ] = $to == 'ru' ?
-                        latin_to_cyrillic( $model[ $field ] ):
-                        cyrillic_to_latin( $model[ $field ] );
+            $data[ $field ] = $this->toLocaleItem( $model[ $field ] );
         }
 
         $modelAlt = $model->replicate()->fill($data);
         $modelAlt->save();
+    }
+
+    protected function toLocaleItem($text, $to = 'ru')
+    {
+        return $to == 'ru' ?
+                latin_to_cyrillic( $text ):
+                cyrillic_to_latin( $text );
     }
 
 }

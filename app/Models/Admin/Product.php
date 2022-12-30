@@ -32,6 +32,11 @@ class Product extends BaseModel
         }
     }
 
+    public function getTitleAttribute()
+    {
+        return $this->translations->first()?->title;
+    }
+
     public function getGalleryAttribute()
     {
         return $this->getAdminMedia(self::MEDIA_COLLECTION, 'thumb');

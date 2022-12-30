@@ -51,7 +51,7 @@ class Product extends BaseModel implements HasMedia
     ];
 
     protected $appends = [
-        'preview',
+        'preview', 'title',
     ];
 
     protected $hidden = ['media'];
