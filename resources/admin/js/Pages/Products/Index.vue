@@ -2,7 +2,6 @@
     <AppLayout title="Товары" >
         <IndexSection class="max-w-5xl">
 
-            <template #title>Товары</template>
             <template #buttons>
                 <Link :href="currentRoute('create')" class="btn">Добавить</Link>
             </template>

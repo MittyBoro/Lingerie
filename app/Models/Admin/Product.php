@@ -42,7 +42,7 @@ class Product extends BaseModel
         return $this->getAdminMedia(self::MEDIA_COLLECTION_SIZE_TABLE);
     }
 
-    public function saveRelations($data)
+    public function saveAfter($data)
     {
         // if ( isset($data['categories']) ) {
         //     $categories = ProductCategory::whereIn('id', $data['categories'])

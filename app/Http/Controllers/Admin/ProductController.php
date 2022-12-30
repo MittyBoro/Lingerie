@@ -37,7 +37,7 @@ class ProductController extends Controller
         $data = $request->validated();
 
         $product = Product::create($data);
-        $product->saveRelations($data);
+        $product->saveAfter($data);
 
         return redirect(route('admin.products.edit', $product->id));
     }
@@ -59,7 +59,7 @@ class ProductController extends Controller
         $data = $request->validated();
 
         $product->update($data);
-        $product->saveRelations($data);
+        $product->saveAfter($data);
 
         return back();
     }

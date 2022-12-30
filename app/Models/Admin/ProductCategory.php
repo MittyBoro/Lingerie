@@ -61,7 +61,7 @@ class ProductCategory extends BaseModel
         return true;
     }
 
-    public function saveRelations($data)
+    public function saveAfter($data)
     {
         if ( isset($data['translations']) ) {
            $this->saveTranslations($data['translations']);

@@ -33,7 +33,7 @@ Route::middleware(['admin.role:editor'])
                             ->only(['index','create','update','destroy']);
 
     Route::resource('product_categories', 'ProductCategoryController')->except('show');
-    Route::post('product_categories/sort', 'ProductCategoryController@sort')->name('categories.sort');
+    Route::post('product_categories/sort', 'ProductCategoryController@sort')->name('product_categories.sort');
 
 
 

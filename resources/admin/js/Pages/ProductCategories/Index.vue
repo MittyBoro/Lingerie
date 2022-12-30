@@ -2,14 +2,13 @@
     <AppLayout title="Категории" >
         <IndexSection class="max-w-3xl">
 
-            <template #title>Категории</template>
             <template #buttons>
-                <Link :href="currentRoute('create', {type: type})" class="btn">Добавить</Link>
+                <Link :href="currentRoute('create')" class="btn">Добавить</Link>
             </template>
 
             <template #content>
                 <div v-if="tree.length" class="table-wrapper loading text-sm">
-                    <table-draggable class="border-t border-gray-500 border-opacity-20" :type="type" :list="tree" @showSaveBtn="showSaveBtn = true" />
+                    <table-draggable class="border-t border-gray-500 border-opacity-20" :list="tree" @showSaveBtn="showSaveBtn = true" />
                     <div v-if="showSaveBtn" class="table-save-row border-b">
                         <div @click="saveSort" class="btn w-full">Сохранить сортировку</div>
                     </div>
@@ -33,8 +32,6 @@
         },
 
         data() {
-            let urlParams = new URLSearchParams(window.location.search);
-
             return {
                 showSaveBtn: false,
             }
@@ -70,7 +67,7 @@
 
                 let form = this.$inertia.form({sorted: flatten});
 
-                form.post( this.currentRoute('sort', {type: this.type}), {
+                form.post( this.currentRoute('sort'), {
                     preserveScroll: true,
                     onSuccess: () => {
                         this.showSaveBtn = false;

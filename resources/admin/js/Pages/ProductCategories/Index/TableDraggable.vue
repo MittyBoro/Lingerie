@@ -14,18 +14,18 @@
                             <TData title="Название" v-model="element.title" @update:modelValue="update(element)" />
 
                             <TData class="w-min">
-                                <Link :href="route('admin.' + type + '.index', {category: element.id})" class="link font-bold text-xs flex items-center">
+                                <Link :href="route('admin.products.index', {category: element.id})" class="link font-bold text-xs flex items-center">
                                     <Icon icon="box-open" class="mr-1" />
                                     <span>{{ element.models_count }}</span>
                                 </Link>
                             </TData>
                             <TData class="w-min">
-                                <Link :href="currentRoute('edit', {category: element.id, type: type})">
+                                <Link :href="currentRoute('edit', element.id)">
                                     <Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
                                 </Link>
                             </TData>
                             <TData class="w-min">
-                                <Link :href="currentRoute('destroy', {category: element.id, type: type})" method="delete" as="button">
+                                <Link :href="currentRoute('destroy', element.id)" method="delete" as="button">
                                     <Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
                                 </Link>
                             </TData>
@@ -60,7 +60,6 @@
                 type: Array,
                 default: []
             },
-            type: String,
             deep: {
                 type: Number,
                 default: 0
@@ -71,7 +70,6 @@
 
         data() {
             return {
-                routePrefix: 'admin.categories.',
             }
         },
 
@@ -92,7 +90,7 @@
             update(element) {
                 let form = this.$inertia.form(element);
 
-                form.put( this.currentRoute('update', {category: element.id, type: this.type, index_edit: 1}) , {
+                form.put( this.currentRoute('update', {category: element.id, index_edit: 1}) , {
                     preserveScroll: true,
                 });
             },

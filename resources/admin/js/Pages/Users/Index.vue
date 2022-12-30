@@ -2,8 +2,6 @@
     <AppLayout title="Пользователи" >
         <IndexSection class="max-w-6xl">
 
-            <template #title>Пользователи</template>
-
             <template #content>
 
                 <ListFilter v-if="table.items.length" class="border-t bg-gray-50" />

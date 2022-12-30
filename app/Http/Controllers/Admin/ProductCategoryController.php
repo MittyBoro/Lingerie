@@ -33,7 +33,7 @@ class ProductCategoryController extends Controller
         $data = $request->validated();
 
         $productCategory = ProductCategory::create($data);
-        $productCategory->saveRelations($data);
+        $productCategory->saveAfter($data);
 
         return redirect(route('admin.product_categories.edit', [
             'product_category' => $productCategory->id,
@@ -56,7 +56,7 @@ class ProductCategoryController extends Controller
 
         try {
             $productCategory->update($data);
-            $productCategory->saveRelations($data);
+            $productCategory->saveAfter($data);
         } catch (\Throwable $e) {
             return back()->withErrors(['parent_id' => 'Нарушена последовательность']);
         }
