@@ -45,6 +45,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $product->setAppends(['gallery', 'size_table']);
+        $product->load(['categories']);
         // $product->load(['categories', 'variations']);
 
         return Inertia::render('Products/Form', [

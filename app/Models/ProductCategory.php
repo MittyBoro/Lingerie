@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Translations\ProductCategoryTranslation;
 use Kalnoy\Nestedset\NodeTrait;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

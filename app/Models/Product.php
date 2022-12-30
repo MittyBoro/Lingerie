@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Models\Traits\ProductCartTrait;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Translations\ProductTranslation;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
+
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 
@@ -91,7 +93,7 @@ class Product extends BaseModel implements HasMedia
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_model', 'model_id')->orderBy('position');
+        return $this->belongsToMany(ProductCategory::class)->orderBy('position');
     }
 
     public function variations()

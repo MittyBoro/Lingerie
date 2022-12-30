@@ -44,6 +44,9 @@ class ProductRequest extends AdminFormRequest
             'translations.*.attributes.composition' => 'nullable|string',
             'translations.*.attributes.care'        => 'nullable|string',
 
+            'categories'   => 'nullable|array',
+            'categories.*' => 'exists:product_categories,id',
+
             ...$this->validationSEO('translations.*.'),
 
 
@@ -51,8 +54,6 @@ class ProductRequest extends AdminFormRequest
             ...$this->validationFiles('size_table', 'dimensions:min_width=300,min_height=300'),
 
 
-            // 'categories'   => 'nullable|array',
-            // 'categories.*' => 'exists:categories,id',
 
             // 'variations'         => 'array|min:1',
             // 'variations.*.id'    => 'nullable|exists:product_variations,id',

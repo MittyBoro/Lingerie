@@ -64,6 +64,7 @@
                     categories: null,
 
                     size_table: null,
+
                     translations: this.defaultTranslations({
                         slug: null,
                         title: null,

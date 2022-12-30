@@ -11,7 +11,7 @@
         </FLabel>
 
         <FLabel as="div" title="Категория" :error="form.errors.categories">
-            <!-- <MCheckboxList v-model="form.categories" :list="categories" /> -->
+            <MCheckboxList v-model="form.categories" :list="categories" />
         </FLabel>
     </div>
 
@@ -25,7 +25,7 @@
 
         data() {
             return {
-                // categories: this.$page.props.categories,
+                categories: this.$page.props.categories,
             }
         },
 

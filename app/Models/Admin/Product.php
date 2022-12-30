@@ -44,18 +44,9 @@ class Product extends BaseModel
 
     public function saveAfter($data)
     {
-        // if ( isset($data['categories']) ) {
-        //     $categories = ProductCategory::whereIn('id', $data['categories'])
-        //                     ->with('ancestors')
-        //                     ->get()
-        //                     ->map(
-        //                         fn ($item) => [ $item->id, $item->ancestors->pluck('id') ]
-        //                     )
-        //                     ->flatten()
-        //                     ->unique();
-
-        //     $this->categories()->sync($categories);
-        // }
+        if ( isset($data['categories']) ) {
+            $this->categories()->sync($data['categories']);
+        }
 
         if ( isset($data['translations']) ) {
            $this->saveTranslations($data['translations']);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Translations;
 
+use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
