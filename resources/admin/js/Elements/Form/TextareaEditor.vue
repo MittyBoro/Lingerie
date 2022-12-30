@@ -45,6 +45,12 @@
             }
         },
 
+        watch: {
+            modelValue(val) {
+                !this.isSource && this.editor.commands.setContent(val)
+            }
+        },
+
         computed: {
             content: {
                 get() {
