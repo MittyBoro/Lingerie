@@ -4,7 +4,7 @@
         <div
             v-for="item in langsList"
             :key="item[0]"
-            class="px-4 py-2 text-xs mr-2 bg-gray-100 rounded-md shadow-lg transition hover:bg-gray-200 cursor-pointer"
+            class="px-4 py-2 text-xs mr-2 last:mr-0 bg-gray-100 rounded-md shadow-lg transition hover:bg-gray-200 cursor-pointer"
             @click="adminLang = item[0]"
             :class=" { 'bg-secondary-500 text-white pointer-events-none': adminLang == item[0] } "
             >{{ item[1] }}</div>
@@ -18,7 +18,7 @@
         emits: ['update:modelValue'],
         props: {
             withAll: Boolean,
-            changeAdminLang: Boolean,
+            globLang: Boolean,
         },
 
         computed: {
@@ -41,7 +41,8 @@
 
         watch: {
             adminLang(val) {
-                if (this.changeAdminLang)
+                console.log(this.globLang)
+                if (this.globLang)
                     this.setLang(val);
             },
         },

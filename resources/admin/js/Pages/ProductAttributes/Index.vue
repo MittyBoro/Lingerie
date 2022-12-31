@@ -9,10 +9,6 @@
             <template #content>
 
                 <TTable :table="table">
-                    <template #pagination>
-                        <MListLang />
-                    </template>
-
                     <template #row="sp">
                         <TData v-model="sp.element.type" @update:modelValue="update(sp.element)" />
                         <TData v-model="sp.element.value" @update:modelValue="update(sp.element)" />

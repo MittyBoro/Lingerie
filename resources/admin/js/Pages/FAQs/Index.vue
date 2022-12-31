@@ -10,7 +10,7 @@
 
                 <TTable :table="table">
                     <template #pagination>
-                        <MListLang />
+                        <MLanguageRow withAll globLang class="ml-auto" />
                     </template>
 
                     <template #row="sp">
