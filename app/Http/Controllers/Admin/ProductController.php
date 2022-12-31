@@ -83,4 +83,12 @@ class ProductController extends Controller
 
         return back();
     }
+
+    private function editorData() : array
+    {
+        return [
+            'categories' => ProductCategory::getList(),
+            'characteristics_list' => Product::characteristicsList(),
+        ];
+    }
 }

@@ -15,11 +15,11 @@
                     <template #row="sp">
                         <TData mini>
                             <div class="min-w-max">
-                                <img :src="sp.element.preview" class="h-8 w-8 rounded borderobject-cover" alt="">
+                                <img :src="sp.element.preview" class="h-8 w-8 rounded borderobject-cover bg-gray-100" alt="">
                             </div>
                         </TData>
-                        <TData v-text="sp.element.translations[0].title" />
-                        <TData v-text="sp.element.translations[0].price" />
+                        <TData v-text="sp.element.translations[0]?.title" />
+                        <TData v-text="sp.element.translations[0]?.price" />
                         <TData mini>
                             <FSwitcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>
                         </TData>

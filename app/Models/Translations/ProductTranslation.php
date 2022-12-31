@@ -18,7 +18,7 @@ class ProductTranslation extends BaseModel
         'title',
         'price',
 
-        'attributes',
+        'texts',
 
         'meta_title',
         'meta_description',
@@ -27,7 +27,7 @@ class ProductTranslation extends BaseModel
     ];
 
     protected $casts = [
-        'attributes'   => 'array',
+        'texts'   => 'array',
         'is_stock'     => 'bool',
     ];
 

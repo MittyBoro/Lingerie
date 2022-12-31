@@ -69,7 +69,7 @@ class ProductFactory extends Factory
             'title' => $this->faker->unique()->sentence(rand(2,4)),
             'lang' => $lang,
             'slug' => $this->faker->unique()->word,
-            'attributes' => [
+            'texts' => [
                 'description' => $this->faker->text,
                 'composition' => $this->faker->text,
                 'care' => $this->faker->text,

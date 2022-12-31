@@ -10,7 +10,7 @@ trait TranslationTrait
         collect($translation)
             ->each(fn($item) =>
                     isset($item['id']) ?
-                        $this->translations()->where('id', $item['id'])->update($item) :
+                        $this->translations()->find($item['id'])->update($item) :
                         $this->translations()->create($item)
             );
     }

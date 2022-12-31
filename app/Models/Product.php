@@ -37,7 +37,6 @@ class Product extends BaseModel implements HasMedia
     ];
 
     protected $casts = [
-        'attributes'   => 'array',
         'is_published' => 'bool',
         'is_stock'     => 'bool',
     ];

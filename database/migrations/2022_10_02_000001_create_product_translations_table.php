@@ -27,7 +27,7 @@ return new class extends Migration
 
             $table->decimal('price')->default(0);
 
-			$table->json('attributes')->nullable();
+			$table->json('texts')->nullable();
 
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();

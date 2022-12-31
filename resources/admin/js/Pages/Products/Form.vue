@@ -72,7 +72,7 @@
                         meta_keywords: null,
                         meta_description: null,
 
-                        attributes: {
+                        texts: {
                             description: null,
                             composition: null,
                             care: null,
