@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\ProductRequest;
 
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
+use App\Models\ProductAttribute;
 use Inertia\Inertia;
 
 class ProductController extends Controller
@@ -28,7 +29,7 @@ class ProductController extends Controller
     public function create()
     {
         return Inertia::render('Products/Form', [
-            'categories' => ProductCategory::getList(),
+            ...$this->editorData(),
         ]);
     }
 
@@ -45,12 +46,11 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $product->setAppends(['gallery', 'size_table']);
-        $product->load(['categories']);
-        // $product->load(['categories', 'variations']);
+        $product->load(['categories', 'attributes']);
 
         return Inertia::render('Products/Form', [
             'item' => $product,
-            'categories' => ProductCategory::getList(),
+            ...$this->editorData(),
         ]);
     }
 
@@ -88,7 +88,7 @@ class ProductController extends Controller
     {
         return [
             'categories' => ProductCategory::getList(),
-            'characteristics_list' => Product::characteristicsList(),
+            'attributes' => ProductAttribute::get(),
         ];
     }
 }

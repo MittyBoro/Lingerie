@@ -38,6 +38,7 @@ class ProductRequest extends AdminFormRequest
             'translations.*.id'    => 'nullable|exists:product_translations,id',
             'translations.*.title' => 'required|string|max:255',
             'translations.*.slug'  => 'required|string|max:255',
+            'translations.*.price'  => 'required|numeric|min:0',
             'translations.*.lang'  => lang_rule(),
             'translations.*.texts'             => 'required|array',
             'translations.*.texts.description' => 'nullable|string',
@@ -46,6 +47,9 @@ class ProductRequest extends AdminFormRequest
 
             'categories'   => 'nullable|array',
             'categories.*' => 'exists:product_categories,id',
+
+            'attributes'   => 'nullable|array',
+            'attributes.*' => 'exists:product_attributes,id',
 
             ...$this->validationSEO('translations.*.'),
 

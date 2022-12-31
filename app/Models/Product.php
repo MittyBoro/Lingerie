@@ -95,6 +95,11 @@ class Product extends BaseModel implements HasMedia
         return $this->belongsToMany(ProductCategory::class)->orderBy('position');
     }
 
+    public function attributes()
+    {
+        return $this->belongsToMany(ProductAttribute::class)->orderBy('position');
+    }
+
     public function variations()
     {
         return $this->hasMany(ProductVariation::class)->with('promo_code_prices');

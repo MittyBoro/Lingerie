@@ -1,7 +1,7 @@
 <template>
     <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Цена', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)" mini>
+        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Дополнительно', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)" mini>
             <template #title>
                 <div v-if="!isEdit">Добавить</div>
                 <div v-else>Редактировать</div>
@@ -16,7 +16,7 @@
 
                 <TabMain v-show="activeTab == 'Основное'" :form="form" :translation="translation" :isEdit="isEdit" />
                 <TabDescription v-show="activeTab == 'Описание'" :form="form" :translation="translation" />
-                <!-- <TabVariations v-show="activeTab == 'Цена'" :form="form" :translation="translation" /> -->
+                <TabAttributes v-show="activeTab == 'Дополнительно'" :form="form" />
                 <MTabSeo v-show="activeTab == 'SEO'" :form="translation" />
 
             </template>
@@ -32,7 +32,7 @@
 
     import TabMain from './Form/Main'
     import TabDescription from './Form/Description'
-    import TabVariations from './Form/Variations'
+    import TabAttributes from './Form/Attributes'
 
     import Translation from '@/Mixins/Translation'
     import Form from '@/Mixins/Form'
@@ -50,7 +50,7 @@
 
             TabMain,
             TabDescription,
-            TabVariations,
+            TabAttributes,
         },
 
 
@@ -65,12 +65,16 @@
 
                     size_table: null,
 
+                    attributes: null,
+
                     translations: this.defaultTranslations({
                         slug: null,
                         title: null,
                         meta_title: null,
                         meta_keywords: null,
                         meta_description: null,
+
+                        price: null,
 
                         texts: {
                             description: null,

@@ -49,6 +49,9 @@ class Product extends BaseModel
 
     public function saveAfter($data)
     {
+        if ( isset($data['attributes']) ) {
+            $this->attributes()->sync($data['attributes']);
+        }
         if ( isset($data['categories']) ) {
             $this->categories()->sync($data['categories']);
         }

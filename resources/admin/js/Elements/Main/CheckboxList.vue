@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-sm rounded-md py-3 border max-h-96">
+    <div class="shadow-sm h-full rounded-md py-3 border max-h-96">
         <div class="px-5 h-full overflow-auto">
             <label
                 class="flex items-center my-1 cursor-pointer select-none"

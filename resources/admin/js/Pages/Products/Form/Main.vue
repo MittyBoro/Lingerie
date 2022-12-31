@@ -2,6 +2,10 @@
     <div class="form-grid">
         <MTitleSlug :form="translation" />
 
+        <FLabel title="Цена" :error="translation.errors?.price">
+            <FInput v-model="translation.price" type="number" step="0.01" />
+        </FLabel>
+
         <FLabel title="Опубликовано?" :error="form.errors.is_published">
             <FSwitcher v-model="form.is_published" />
         </FLabel>
