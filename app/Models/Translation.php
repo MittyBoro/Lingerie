@@ -22,6 +22,6 @@ class Translation extends BaseModel
 
     public function setKeyAttribute($value)
     {
-        $this->attributes['key'] = Str::lower($value);
+        $this->attributes['key'] = Str::snake($value);
     }
 }

@@ -21,7 +21,7 @@ class ProductSeeder extends Seeder
     {
         $this->runAttributes();
         ProductCategory::factory(15)->create();
-		Product::factory(40)->create();
+		Product::factory(30)->create();
     }
 
     private function runAttributes()

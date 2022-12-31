@@ -35,7 +35,9 @@ class ProductCategoryFactory extends Factory
 
             $productCategory->refresh();
 
-            $parent = ProductCategory::whereNot('id', $productCategory->id)->inRandomOrder()->first();
+            $parent = ProductCategory::whereNot('id', $productCategory->id)
+                            ->withDepth()->having('depth', '=', 0)
+                            ->inRandomOrder()->first();
 
             if ($parent->isDescendantOf($productCategory))
                 return;

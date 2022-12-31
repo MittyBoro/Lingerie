@@ -9,7 +9,6 @@ use Illuminate\Support\Arr;
 
 class ProductCategory extends BaseModel
 {
-
     use TranslationTrait;
 
     protected $appends = ['title'];
