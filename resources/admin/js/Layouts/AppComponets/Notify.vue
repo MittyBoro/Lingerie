@@ -78,7 +78,6 @@
             box-shadow: 0 0 10px var(--tw-ring-color)
 
     .loading
-        overflow: hidden
         &::before,
         &::after
             @apply transition

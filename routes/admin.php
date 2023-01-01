@@ -28,7 +28,7 @@ Route::middleware(['admin.role:editor'])
 
 
     Route::resource('products', 'ProductController')->except(['show']);
-    // Route::post('products/sort', 'ProductController@sort')->name('products.sort');
+    Route::post('products/sort', 'ProductController@sort')->name('products.sort');
 
     Route::resource('product_attributes', 'ProductAttributeController')
                             ->only(['index','create','update','destroy']);

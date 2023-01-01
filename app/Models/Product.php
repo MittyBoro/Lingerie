@@ -43,9 +43,11 @@ class Product extends BaseModel implements HasMedia
 
     protected $searchable = [
         'columns' => [
-            'title' => 3,
-            'description' => 2,
-            'attributes' => 1,
+            'product_translations.title' => 3,
+            'product_translations.texts' => 1,
+        ],
+        'joins' => [
+            'product_translations' => ['products.id','product_translations.product_id'],
         ],
     ];
 
