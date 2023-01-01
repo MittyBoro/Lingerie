@@ -13,11 +13,21 @@ class ProductAttribute extends BaseModel
 
     public $perPage = 50;
 
+    protected $orderBy = ['position', 'asc'];
+
     protected $fillable = [
         'type',
         'value',
         'extra',
+        'position',
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('ordered', function ($builder) {
+            $builder->orderBy('position');
+        });
+    }
 
     public function setTypeAttribute($value)
     {

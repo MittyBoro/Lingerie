@@ -28,7 +28,8 @@
 
     export default {
         components: {
-            AppLayout, IndexSection,
+            AppLayout,
+            IndexSection,
         },
 
         data() {
@@ -47,6 +48,7 @@
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
 
+                    sortRoute: this.currentRouteStr('sort'),
                     destroyRoute: this.currentRouteStr('destroy'),
                 }
             }

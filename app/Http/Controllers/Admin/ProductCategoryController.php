@@ -66,14 +66,13 @@ class ProductCategoryController extends Controller
 
     public function sort(Request $request, ProductCategory $productCategory)
     {
-        $validated = $request->validate([
-            'sorted' => 'required|array',
-            'sorted.*.id'        => 'required|exists:product_categories,id',
-            'sorted.*.position'  => 'required|integer',
-            'sorted.*.parent_id' => 'nullable|exists:product_categories,id',
-        ]);
+        $validated = $this->validateSort(
+                                $request,
+                                'product_categories',
+                                ['sorted.*.parent_id' => 'nullable|exists:product_categories,id']
+                            );
 
-        $productCategory->massUpdate($validated['sorted']);
+        $productCategory->massUpdate($validated);
         ProductCategory::fixTree();
 
         return back();

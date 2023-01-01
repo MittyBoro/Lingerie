@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Cookie;
 class Controller extends BaseController
 {
 
-    protected function validateSort(Request $request, $tableName)
+    protected function validateSort(Request $request, $tableName, $addToValidate = [])
     {
         $validated = $request->validate([
             'sorted' => 'required|array',
             'sorted.*.id' => 'required|exists:' . $tableName . ',id',
             'sorted.*.position' => 'required|integer',
+            ...$addToValidate
         ]);
 
         return $validated['sorted'];

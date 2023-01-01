@@ -42,6 +42,15 @@ class ProductAttributeController extends Controller
         return back();
     }
 
+    public function sort(Request $request, ProductAttribute $productAttribute)
+    {
+        $validated = $this->validateSort($request, 'product_attributes');
+
+        $productAttribute->massUpdate($validated);
+
+        return back();
+    }
+
     public function destroy(ProductAttribute $productAttribute)
     {
         $productAttribute->delete();
