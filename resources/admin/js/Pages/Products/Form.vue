@@ -75,6 +75,7 @@
                         meta_description: null,
 
                         price: null,
+                        price_currency: this.$page.props.currencies[0],
 
                         texts: {
                             description: null,

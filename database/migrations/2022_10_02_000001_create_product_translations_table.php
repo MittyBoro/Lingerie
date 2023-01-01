@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('lang')->default('ru');
 
             $table->decimal('price')->default(0);
+            $table->string('price_currency', 5)->default(config('app.currencies')[0]);
 
 			$table->json('texts')->nullable();
 

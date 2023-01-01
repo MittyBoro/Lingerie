@@ -10,6 +10,23 @@ export default {
         }
     },
 
+    computed: {
+        currencies() {
+            let c = {}
+            this.$page.props.currencies.forEach(el => {
+                let val = el;
+                if (el == 'usd')
+                    val = '$'
+                else if (el == 'rub')
+                    val = '₽'
+                else
+                    val = val.toUpperCase()
+
+                c[el] = val
+            })
+            return c;
+        },
+    },
 
 
     methods: {

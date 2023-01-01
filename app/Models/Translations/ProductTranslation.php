@@ -17,6 +17,7 @@ class ProductTranslation extends BaseModel
         'lang',
         'title',
         'price',
+        'price_currency',
 
         'texts',
 
@@ -40,5 +41,10 @@ class ProductTranslation extends BaseModel
     public function setSlugAttribute($val)
     {
         $this->attributes['slug'] = Str::slug($val);
+    }
+
+    public function setPriceCurrencyAttribute($val)
+    {
+        $this->attributes['price_currency'] = Str::slug($val);
     }
 }

@@ -69,6 +69,10 @@ class ProductFactory extends Factory
             'title' => $this->faker->unique()->sentence(rand(2,4)),
             'lang' => $lang,
             'slug' => $this->faker->unique()->word,
+
+            'price' => $lang == 'en' ? rand(50, 500) : rand(500, 3000),
+            'price_currency' => $lang == 'en' ? 'usd' : 'rub',
+
             'texts' => [
                 'description' => $this->faker->text,
                 'composition' => $this->faker->text,
@@ -81,7 +85,7 @@ class ProductFactory extends Factory
 
     private function getGallery()
     {
-        return array_fill(0, 3,
+        return array_fill(0, rand(1, 5),
             // https://lorem.space/
             [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ]
         );

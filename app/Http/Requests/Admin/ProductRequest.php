@@ -35,10 +35,11 @@ class ProductRequest extends AdminFormRequest
 
         $rules += [
             'translations' => 'required|array|min:1',
-            'translations.*.id'    => 'nullable|exists:product_translations,id',
-            'translations.*.title' => 'required|string|max:255',
-            'translations.*.slug'  => 'required|string|max:255',
-            'translations.*.price'  => 'required|numeric|min:0',
+            'translations.*.id'             => 'nullable|exists:product_translations,id',
+            'translations.*.title'          => 'required|string|max:255',
+            'translations.*.slug'           => 'required|string|max:255',
+            'translations.*.price'          => 'required|numeric|min:0',
+            'translations.*.price_currency' => ['required', 'string', Rule::in(config('app.currencies'))],
             'translations.*.lang'  => lang_rule(),
             'translations.*.texts'             => 'required|array',
             'translations.*.texts.description' => 'nullable|string',

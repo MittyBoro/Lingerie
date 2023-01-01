@@ -2,9 +2,14 @@
     <div class="form-grid">
         <MTitleSlug :form="translation" />
 
-        <FLabel title="Цена" :error="translation.errors?.price">
-            <FInput v-model="translation.price" type="number" step="0.01" />
-        </FLabel>
+        <div class="flex">
+            <FLabel title="Цена" :error="translation.errors?.price" class="w-full">
+                <FInput v-model="translation.price" type="number" step="0.01" />
+            </FLabel>
+            <FLabel title="Валюта" :error="translation.errors?.price_currency" class="ml-4 w-24">
+                <FSelect v-model="translation.price_currency" :options="currencies" />
+            </FLabel>
+        </div>
 
         <FLabel title="Опубликовано?" :error="form.errors.is_published">
             <FSwitcher v-model="form.is_published" />
