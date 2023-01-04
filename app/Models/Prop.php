@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use App\Models\Product\Product;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Prop extends BaseModel implements HasMedia
@@ -17,28 +14,9 @@ class Prop extends BaseModel implements HasMedia
     use HasFactory;
     use InteractsWithCustomMedia;
 
-    protected $guarded = ['admin_value', 'value'];
-
     public $timestamps = false;
+
     const MEDIA_COLLECTION = 'main';
-
-    const DEFAULT_TAB = 'Основное';
-
-    const TYPES = [
-        'string'      => 'Строка',
-        'text'        => 'Текст',
-        'format_text' => 'Форматируемый текст',
-        'text_array'  => 'Текстовый массив',
-        'boolean'     => 'Выключатель',
-        'file'        => 'Файл',
-        'files'       => 'Файлы',
-    ];
-
-    const ALLOWED_MODELS = [
-        'pages'    => Page::class,
-        'posts'    => Post::class,
-        'products' => Product::class,
-    ];
 
     protected $hidden = [
         'value_string',
@@ -49,58 +27,17 @@ class Prop extends BaseModel implements HasMedia
         'value',
     ];
 
-    protected $orderBy = ['position', 'asc'];
-    protected $orderFileds = [
-        'id',
-        'tab',
-        'key',
-        'title',
-        'type',
-        'model_type',
+    const ALLOWED_MODELS = [
+        'pages'    => Page::class,
+        'posts'    => Post::class,
+        'products' => Product::class,
     ];
 
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating( function($model)
-        {
-            $model->position = self::max('position') + 1;
-        });
-
-        static::saving( function($model)
-        {
-            if ( $model->model_id == null )
-                $model->model_type = null;
-            elseif ( $model->model_type == null )
-                $model->model_id = null;
-
-            if ( $model->model_id )
-                $model->tab = null;
-
-            if(empty($model->tab))
-                $model->tab = self::DEFAULT_TAB;
-
-
-            Cache::forget('view_props');
-        });
-    }
 
     public function registerMediaCollections(): void
     {
         $this
             ->addMediaCollection(self::MEDIA_COLLECTION);
-    }
-
-    public static function typeKeys()
-    {
-        return array_keys( self::TYPES );
-    }
-
-    public static function allowedModelTypes()
-    {
-        return [...array_keys(Prop::ALLOWED_MODELS), ...Prop::ALLOWED_MODELS];
     }
 
     public function model()
@@ -140,27 +77,6 @@ class Prop extends BaseModel implements HasMedia
             return $this->value_text;
     }
 
-
-    public function getAdminValueAttribute()
-    {
-        if ( $this->attributes['type'] == 'file' )
-            return $this->admin_file;
-        elseif ( $this->attributes['type'] == 'files' )
-            return $this->admin_files;
-        elseif ( $this->attributes['type'] == 'text_array' )
-            return $this->value_text;
-        else
-            return $this->value;
-    }
-
-    public function getAdminFileAttribute()
-    {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION);
-    }
-    public function getAdminFilesAttribute()
-    {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION);
-    }
 
     public function getFileAttribute()
     {
@@ -206,18 +122,6 @@ class Prop extends BaseModel implements HasMedia
         return self::manyByKey($key, $raw)->first() ?? null;
     }
 
-    public function scopeGet4Admin($query, $addValues = true)
-    {
-        $list = $query
-                ->ordered()
-                ->get();
-
-        if ($addValues)
-            $list = $list->map->append('admin_value');
-
-        return $list;
-    }
-
     public function scopeList(Builder $query, $model_type = null, $model_id = null)
     {
         $query
@@ -236,40 +140,6 @@ class Prop extends BaseModel implements HasMedia
                 ->map(function($item) {
                     return $item->value;
                 });
-    }
-
-
-    public function scopeTabs($query)
-    {
-        $tabs = self::select('tab')
-                ->whereNotNull('tab')
-                ->whereNull('model_id')
-                ->groupBy('tab')
-                ->pluck('tab')
-                ->prepend(self::DEFAULT_TAB)
-                ->unique();
-        return $tabs;
-    }
-
-    public function updateItem($data)
-    {
-        if (isset($data['key'])) {
-            return $this->update($data);
-        }
-
-        $value = $data['admin_value'] ?? null;
-
-        if ( in_array( $this->attributes['type'], ['string', 'boolean'] ) ) {
-            $this->value_string = $value;
-        }
-        elseif (in_array($this->attributes['type'], ['file', 'files'])) {
-            $this->syncMedia($value, self::MEDIA_COLLECTION);
-        }
-        else {
-            $this->value_text = $value;
-        }
-
-        return $this->save();
     }
 
 

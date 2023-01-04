@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\PropRequest;
-use App\Models\Page;
-use App\Models\Prop;
+use App\Models\Admin\Page;
+use App\Models\Admin\Prop;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
