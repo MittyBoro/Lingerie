@@ -5,7 +5,6 @@ export default {
     data() {
         return {
             form: {},
-            activeTab: null,
         }
     },
 
@@ -14,6 +13,7 @@ export default {
             return !!this.$page.props.item?.id;
         },
     },
+
 
     methods: {
 

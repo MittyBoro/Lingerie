@@ -8,7 +8,7 @@
                         <slot v-if="$slots.title" name="title"></slot>
                         <template v-else>{{ $admin.title }}</template>
                         <component
-                            v-if="showLink && form.id"
+                            v-if="showLink"
                             :is="internalLink ? 'Link' : 'a'"
                             :href="showLink"
                             target="_blank"
@@ -22,8 +22,9 @@
                     <slot name="subtitle"></slot>
                 </div>
             </div>
-            <div v-if="$slots.buttons" class="ml-auto md:pl-4 self-start flex flex-col">
+            <div v-if="$slots.buttons || !hideAdder" class="ml-auto md:pl-4 self-start flex flex-col">
                 <slot name="buttons"></slot>
+                <Link v-if="form.id && !hideAdder" :href="currentRoute('create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
             </div>
         </div>
 
@@ -43,7 +44,7 @@
 
         <div v-if="hasContentSlots" class="px-4 py-6 sm:px-8">
             <div v-if="$slots.content" class="form-grid">
-                <slot name="content"></slot>
+                <slot name="content" :activeTab="activeTab"></slot>
             </div>
             <slot v-if="$slots.simplecontent" name="simplecontent"></slot>
         </div>
@@ -69,12 +70,14 @@
 
         props: {
             submit: Function,
-            form: Object,
+            form: {
+                type: Object,
+                default: {},
+            },
             tabs: Array,
-            activeTab: String,
             hideFix: Boolean,
             hideButtons: Boolean,
-            showLink: null,
+            hideAdder: Boolean,
             internalLink: Boolean,
             mini:  Boolean,
             hiddenTitle:  Boolean,
@@ -85,6 +88,7 @@
         data() {
             return {
                 localName: route().current(),
+                activeTab: null,
             }
         },
 
@@ -94,7 +98,15 @@
             },
             hasHeaderSlots() {
                 return (this.$slots.title || this.$slots.subtitle ||
-                            this.$slots.buttons || this.defaultTitle) && !this.hiddenTitle;
+                            this.$slots.buttons || this.$admin.title) && !this.hiddenTitle;
+            },
+
+            showLink() {
+                let showRoute = this.currentRouteStr('show');
+
+                if (route().has(showRoute) && this.form.id)
+                    return route(showRoute, this.form.id)
+                return null;
             }
         },
 
@@ -115,12 +127,12 @@
                 else
                     tab = this.tabs[0]
 
-                this.$emit('update:activeTab', tab);
+                this.activeTab = tab;
             },
             setTab(tab) {
                 localStorage.setItem(this.localName, tab);
 
-                this.$emit('update:activeTab', tab);
+                this.activeTab = tab;
             }
         }
     }

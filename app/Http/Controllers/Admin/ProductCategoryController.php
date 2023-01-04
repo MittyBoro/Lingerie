@@ -40,6 +40,12 @@ class ProductCategoryController extends Controller
         ]));
     }
 
+    public function show(ProductCategory $productCategory)
+    {
+        dd($productCategory);
+        return redirect('/');
+    }
+
     public function edit(ProductCategory $productCategory)
     {
         $list = ProductCategory::whereNot('id', $productCategory->id)->getList();

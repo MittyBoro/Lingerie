@@ -6,8 +6,8 @@
     </FLabel>
 
     <!-- Slug -->
-    <FLabel title="Ярлык" :error="form.errors?.slug">
-        <FInput :classes="'text-xs max-h-8 ' + (form.slug ? 'opacity-60' : '')" v-model="form.slug" />
+    <FLabel :title="slugName" :error="form.errors?.[slugKey]">
+        <FInput :classes="'text-xs max-h-8 ' + (slug ? 'opacity-60' : '')" v-model="slug" />
     </FLabel>
 
 </template>
@@ -17,18 +17,33 @@
     import slugify from 'slugify'
 
     export default {
-        props: ['form'],
-
-        watch: {
-            'form.slug'(val) {
-                this.form.slug = slugify(val || '', {lower: true, strict: true});
+        props: {
+            form: Object,
+            slugKey: {
+                type: String,
+                default: 'slug'
             },
+            slugName: {
+                type: String,
+                default: 'Ярлык'
+            },
+        },
+
+        computed: {
+            slug: {
+                get() {
+                    return this.form[this.slugKey];
+                },
+                set(val) {
+                    this.form[this.slugKey] = slugify(val || '', {lower: true, strict: true});
+                }
+            }
         },
 
         methods: {
             setSlugFromTitle() {
-                if (!this.form.slug)
-                    this.form.slug = this.form.title
+                if (!this.slug)
+                    this.slug = this.form.title
             },
         },
     }

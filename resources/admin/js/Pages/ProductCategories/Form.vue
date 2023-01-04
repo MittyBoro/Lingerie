@@ -1,20 +1,11 @@
 <template>
     <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)" mini>
-            <template #title>
-                <div v-if="!isEdit">Добавить</div>
-                <div v-else>Редактировать</div>
-            </template>
-            <template #buttons>
-                <Link v-if="isEdit" :href="currentRoute('create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
-            </template>
-
-            <template #content>
-
+        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'SEO']" mini>
+            <template #content="sb">
                 <MLanguageRow class="mb-2"/>
 
-                <div class="form-grid" v-show="activeTab == 'Основное'">
+                <div class="form-grid" v-show="sb.activeTab == 'Основное'">
 
                     <MTitleSlug :form="translation" />
 
@@ -28,7 +19,7 @@
 
                 </div>
 
-                <MTabSeo v-show="activeTab == 'SEO'" :form="translation" />
+                <MTabSeo v-show="sb.activeTab == 'SEO'" :form="translation" />
 
             </template>
         </FormSection>

@@ -1,25 +1,10 @@
 <template>
-    <AppLayout title="Настройки" >
+    <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form">
-            <template #title>
-                <div v-if="!isEdit">Добавить параметр</div>
-                <div v-else>Редактировать параметр</div>
-            </template>
-
-            <template v-if="isEdit" #buttons>
-                <Link :href="currentRoute('create')" class="btn">Добавить ещё</Link>
-            </template>
-
+        <FormSection :submit="submit" :form="form" mini>
             <template #content>
 
-                <FLabel title="Название" :error="form.errors.title">
-                    <FInput @change="stopKeyFromTitle" v-model="form.title" />
-                </FLabel>
-
-                <FLabel title="Ключ" :error="form.errors.key">
-                    <FInput @change="stopKeyFromTitle" classes="opacity-60" v-model="form.key" mini />
-                </FLabel>
+                <MTitleSlug :form="form" :slugKey="'key'" :slugName="'Ключ'"/>
 
                 <FLabel title="Тип" :error="form.errors.type">
                     <FSelect :options="types" v-model="form.type" />
@@ -32,8 +17,8 @@
                 <!-- можно дополнять -->
                 <FLabel title="Прикрепить к странице" :error="form.errors.model_id">
                     <FSelect :options="pages" :keys="['id','title']" v-model="page_id" />
-                    <Link v-if="page_id" :href="route('admin.pages.edit', page_id)" class="link mt-2">
-                        <Icon icon="pencil" class="mr-1" />
+                    <Link v-if="page_id" :href="route('admin.pages.edit', page_id)" class="link flex text-xs items-center mt-3">
+                        <Icon icon="pencil" class="mr-1.5" />
                         <span>Редактировать страницу</span>
                     </Link>
                 </FLabel>
@@ -53,13 +38,17 @@
 </template>
 
 <script>
-    import slugify from 'slugify'
 
     import AppLayout from '@/Layouts/AppLayout'
     import FormSection from '@/Layouts/Sections/Form'
 
+    import Form from '@/Mixins/Form'
 
     export default {
+        mixins: [
+            Form,
+        ],
+
         components: {
             AppLayout,
             FormSection,
@@ -68,14 +57,10 @@
 
         data() {
 
-            let hasItem = !!this.$page.props.item
-
             let page_id = route().params.page_id;
 
             return {
-                routePrefix: 'admin.props.',
-
-                form: this.$inertia.form(this.$page.props.item || {
+                form: this.setForm({
                     title: null,
                     key: null,
                     type: 'string',
@@ -84,22 +69,9 @@
                     model_type: page_id ? 'pages' : null,
                 }),
 
-                isEdit: hasItem,
-                editSlug: !hasItem,
-
                 types: this.$page.props.types,
                 tabs: this.$page.props.tabs,
             }
-        },
-
-        watch: {
-            'form.title'(val) {
-                if (!this.isEdit && this.editSlug)
-                this.form.key = val
-            },
-            'form.key'(val) {
-                this.form.key = slugify(val, {lower: true, strict: true, replacement: '_'});
-            },
         },
 
         computed: {
@@ -126,41 +98,6 @@
                         this.form.model_type = null
                     }
                 }
-            },
-        },
-
-        methods: {
-            stopKeyFromTitle() {
-                this.editSlug = this.form.key === '';
-            },
-
-            submit() {
-                this.isEdit ?
-                            this.update() :
-                            this.store()
-            },
-
-            store() {
-                this.form
-                    .transform((data) => ({
-                        ...data,
-                    }))
-                    .post(this.currentRoute('store'), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                    });
-            },
-
-            update() {
-
-                this.form
-                    .transform((data) => ({
-                        ...data,
-                        _method : 'PUT',
-                    }))
-                    .post(this.currentRoute('update', this.form.id), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                        preserveScroll: true,
-                    });
             },
         },
     }

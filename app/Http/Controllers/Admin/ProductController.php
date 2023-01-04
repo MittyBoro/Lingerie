@@ -43,6 +43,12 @@ class ProductController extends Controller
         return redirect(route('admin.products.edit', $product->id));
     }
 
+    public function show(Product $product)
+    {
+        dd($product);
+        return redirect('/');
+    }
+
     public function edit(Product $product)
     {
         $product->setAppends(['gallery', 'size_table']);

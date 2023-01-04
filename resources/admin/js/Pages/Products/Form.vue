@@ -1,23 +1,17 @@
 <template>
     <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form" :tabs="['Основное', 'Описание', 'Дополнительно', 'SEO']" v-model:activeTab="activeTab" :showLink="frontUrl('product/' + form.slug)" mini>
-            <template #title>
-                <div v-if="!isEdit">Добавить</div>
-                <div v-else>Редактировать</div>
-            </template>
-            <template #buttons>
-                <Link v-if="isEdit" :href="currentRoute('create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
-            </template>
+        <FormSection :submit="submit" :form="form"
+            :tabs="['Основное', 'Описание', 'Дополнительно', 'SEO']" mini>
 
-            <template #content>
+            <template #content="sb">
 
                 <MLanguageRow class="mb-2"/>
 
-                <TabMain v-show="activeTab == 'Основное'" :form="form" :translation="translation" :isEdit="isEdit" />
-                <TabDescription v-show="activeTab == 'Описание'" :form="form" :translation="translation" />
-                <TabAttributes v-show="activeTab == 'Дополнительно'" :form="form" />
-                <MTabSeo v-show="activeTab == 'SEO'" :form="translation" />
+                <TabMain v-show="sb.activeTab == 'Основное'" :form="form" :translation="translation" :isEdit="isEdit" />
+                <TabDescription v-show="sb.activeTab == 'Описание'" :form="form" :translation="translation" />
+                <TabAttributes v-show="sb.activeTab == 'Дополнительно'" :form="form" />
+                <MTabSeo v-show="sb.activeTab == 'SEO'" :form="translation" />
 
             </template>
         </FormSection>

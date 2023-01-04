@@ -95,6 +95,7 @@
     .nprogress-busy
         .loading
             @apply relative pointer-events-none
+            overflow: hidden
             &::before
                 content: ''
                 opacity: 1

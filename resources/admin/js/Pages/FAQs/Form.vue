@@ -1,12 +1,7 @@
 <template>
     <AppLayout :title="editorTitle(isEdit)">
 
-        <FormSection :submit="submit" :form="form"
-        v-model:activeTab="activeTab" :hideButtons="activeTab == 'Дополнительно'" mini
-        >
-            <template #buttons>
-                <Link v-if="isEdit" :href="currentRoute('create')" class="btn btn-gray ml-auto">Добавить ещё</Link>
-            </template>
+        <FormSection :submit="submit" :form="form" mini>
 
             <template #content>
                 <div class="col-span-full grid gap-4">
@@ -31,7 +26,12 @@
     import AppLayout from '@/Layouts/AppLayout'
     import FormSection from '@/Layouts/Sections/Form'
 
+    import Form from '@/Mixins/Form'
+
     export default {
+        mixins: [
+            Form,
+        ],
         components: {
             AppLayout,
             FormSection,
@@ -39,44 +39,12 @@
 
         data() {
             return {
-                form: this.$inertia.form(this.$page.props.item || {
+                form: this.setForm({
                     title: null,
                     description: null,
                     lang: null,
                 }),
-
-                isEdit: !!this.$page.props.item,
-
-                activeTab: null,
             }
-        },
-
-        methods: {
-
-            submit() {
-                this.isEdit ?
-                            this.update() :
-                            this.store()
-            },
-
-            store() {
-                this.form
-                    .post(this.currentRoute('store'), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                    });
-            },
-
-            update() {
-                this.form
-                    .transform((data) => ({
-                        ...data,
-                        _method : 'PUT',
-                    }))
-                    .post(this.currentRoute('update', this.form.id), {
-                        preserveState: (page) => Object.keys(page.props.errors).length,
-                        preserveScroll: true,
-                    });
-            },
         },
     }
 </script>

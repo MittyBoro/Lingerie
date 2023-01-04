@@ -37,7 +37,7 @@ return [
         ],
         [
             'name' => 'Заказы',
-            'route' => 'admin.props.index',
+            'route' => 'admin.dashboard',
             'icon' => 'cart-shopping',
         ],
         [
@@ -58,7 +58,7 @@ return [
             'route' => 'admin.props.index',
             'sublinks' => [
                 [
-                    'name' => 'Основное',
+                    'name' => 'Параметры',
                     'route' => 'admin.props.index',
                 ],
                 [

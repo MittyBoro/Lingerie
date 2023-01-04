@@ -34,6 +34,12 @@ class PageController extends Controller
         return redirect(route('admin.pages.edit', $created->id));
     }
 
+    public function show(Page $page)
+    {
+        dd($page);
+        return redirect('/');
+    }
+
     public function edit(Page $page)
     {
         return Inertia::render('Pages/Form', [

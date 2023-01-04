@@ -20,14 +20,14 @@ Route::middleware(['admin.role:editor'])
 
 
 
-    Route::resource('pages', 'PageController')->except(['show']);
+    Route::resource('pages', 'PageController');
 
     Route::resource('faqs', 'FAQController')->except(['show']);
     Route::resource('translations', 'TranslationController')->only(['index','create','update','destroy']);
 
 
 
-    Route::resource('products', 'ProductController')->except(['show']);
+    Route::resource('products', 'ProductController');
     Route::post('products/sort', 'ProductController@sort')->name('products.sort');
 
     Route::resource('product_attributes', 'ProductAttributeController')
@@ -35,7 +35,7 @@ Route::middleware(['admin.role:editor'])
     Route::post('product_attributes/sort', 'ProductAttributeController@sort')
                             ->name('product_attributes.sort');
 
-    Route::resource('product_categories', 'ProductCategoryController')->except('show');
+    Route::resource('product_categories', 'ProductCategoryController');
     Route::post('product_categories/sort', 'ProductCategoryController@sort')->name('product_categories.sort');
 
 

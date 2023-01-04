@@ -1,5 +1,5 @@
 <template>
-    <div class="col-span-6 xl:col-span-4 grid gap-4">
+    <div class="form-grid">
         <FNotice>
             <Link class="link" :href="route('admin.props.create', {page_id: page_id} )">Добавить</Link> дополнительный параметр
         </FNotice>
