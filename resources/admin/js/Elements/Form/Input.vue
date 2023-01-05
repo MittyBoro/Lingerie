@@ -42,7 +42,7 @@
                 default: {}
             },
             modelValue: [String, Number],
-            options: Array,
+            options: [Array, Object],
             classes: String,
             placeholder: String,
             autocomplete: String,

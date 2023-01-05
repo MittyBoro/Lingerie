@@ -15,15 +15,8 @@ export default {
     },
 
     created() {
-
-        let formErrors;
-
-        this.$inertia.on('error', (errors) => {
-            formErrors = this.errorKeysToObject(errors.detail.errors)
-        });
-
         this.$inertia.on('finish', (finish) => {
-            this.form.errors = formErrors
+            this.form.errorsObj = this.errorKeysToObject( this.form.errors)
         });
     },
 

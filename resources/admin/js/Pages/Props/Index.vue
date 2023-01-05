@@ -10,7 +10,7 @@
             </template>
 
             <template #content="sp">
-                <PropsList :activeTab="sp.activeTab" :errors="form.errors?.props" :list="form.props" @update="form.props = $event" />
+                <PropsList :activeTab="sp.activeTab" :errors="form.errorsObj?.props" :list="form.props" @update="form.props = $event" />
             </template>
 
         </FormSection>

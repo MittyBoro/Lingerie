@@ -49,9 +49,9 @@ class PropController extends Controller
 
     public function store(PropRequest $request, Prop $prop)
     {
-        $validated = $request->validated();
+        $data = $request->validated();
 
-        $created = $prop->create($validated);
+        $created = $prop->create($data);
 
         return redirect(route('admin.props.edit', [
             'prop' => $created->id,
@@ -69,21 +69,19 @@ class PropController extends Controller
         ]);
     }
 
+    public function update(PropRequest $request, Prop $prop)
+    {
+        $data = $request->validated();
+        $prop->update($data);
+
+        return back();
+    }
+
     public function updateList(PropListRequest $request)
     {
         $data = $request->validated();
         Prop::updateList($data['props']);
 
-        return back();
-    }
-
-    public function update(Request $request, Prop $prop)
-    {
-        $data = $request->validated();
-        dd($data);
-
-
-        $prop->updateItem($request->validated());
         return back();
     }
 
@@ -94,7 +92,7 @@ class PropController extends Controller
         return redirect()->route('admin.props.index', ['edit' => true]);
     }
 
-    private function editorData() : array
+    private function editorData(): array
     {
         return [
             'pages' => Page::get(['id', 'title', 'slug']),
