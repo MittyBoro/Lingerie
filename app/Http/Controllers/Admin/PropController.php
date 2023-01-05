@@ -75,6 +75,7 @@ class PropController extends Controller
     public function sort(Request $request, Prop $prop)
     {
         $validated = $this->validateSort($request, 'props');
+        dd($validated);
         $prop->massUpdate($validated);
 
         return back();

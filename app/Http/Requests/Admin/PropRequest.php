@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Validation\Rule;
-use App\Models\Prop;
+use App\Models\Admin\Prop;
 
 class PropRequest extends AdminFormRequest
 {

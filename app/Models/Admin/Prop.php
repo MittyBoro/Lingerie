@@ -102,7 +102,7 @@ class Prop extends BaseModel
         return $list;
     }
 
-    public function scopeTabs($query)
+    public static function tabs()
     {
         $tabs = self::select('tab')
                 ->whereNotNull('tab')
