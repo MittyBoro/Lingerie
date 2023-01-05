@@ -69,6 +69,11 @@ return [
                     'name' => 'FAQ',
                     'route' => 'admin.faqs.index',
                 ],
+                [
+                    'name' => 'Очистить кэш',
+                    'route' => 'admin.optimize',
+                    'role_except' => [User::ROLE_EDITOR],
+                ],
             ],
         ],
 

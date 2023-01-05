@@ -52,11 +52,15 @@ Route::middleware(['admin.role:editor'])
 
     Route::middleware(['admin.role:admin'])->group(function () {
         Route::resource('props', 'PropController')->except('show');
-        Route::post('props/sort', 'PropController@sort')->name('props.sort');
+        Route::any('props/update_list', 'PropController@updateList')->name('props.update_list');
+
 
         Route::get('optimize', function () {
             Artisan::call('optimize:clear');
-            Artisan::call('optimize');
+
+            if (config('app.environment') == 'production')
+                Artisan::call('optimize');
+
             return back();
         })->name('optimize');
     });

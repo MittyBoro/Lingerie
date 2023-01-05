@@ -18,6 +18,18 @@ class Prop extends BaseModel implements HasMedia
 
     const MEDIA_COLLECTION = 'main';
 
+    protected $fillable = [
+        'tab',
+        'model_type',
+        'model_id',
+        'type',
+        'key',
+        'title',
+        'value_string',
+        'value_text',
+        'position'
+    ];
+
     protected $hidden = [
         'value_string',
         'value_text',
@@ -25,12 +37,6 @@ class Prop extends BaseModel implements HasMedia
 
     protected $appends = [
         'value',
-    ];
-
-    const ALLOWED_MODELS = [
-        'pages'    => Page::class,
-        'posts'    => Post::class,
-        'products' => Product::class,
     ];
 
 
@@ -52,15 +58,6 @@ class Prop extends BaseModel implements HasMedia
         return Str::snake(Str::pluralStudly(class_basename($this->model_type)));
     }
 
-    public function setModelTypeAttribute($val)
-    {
-        if ( !in_array($val, array_keys(self::ALLOWED_MODELS)) ) {
-            $this->attributes['model_type'] = class_exists($val) ? $val : null;
-        } else {
-            $this->attributes['model_type'] = self::ALLOWED_MODELS[$val];
-        }
-    }
-
     public function getValueAttribute()
     {
         if ( $this->attributes['type'] == 'string' )
@@ -72,7 +69,7 @@ class Prop extends BaseModel implements HasMedia
         elseif ( $this->attributes['type'] == 'files' )
             return $this->files;
         elseif ( $this->attributes['type'] == 'text_array' )
-            return text_to_array($this->value_text);
+            return $this->text_array;
         else
             return $this->value_text;
     }
@@ -85,6 +82,10 @@ class Prop extends BaseModel implements HasMedia
     public function getFilesAttribute()
     {
         return $this->getMedia(self::MEDIA_COLLECTION)?->map->getFullUrl();
+    }
+    public function getTextArrayAttribute()
+    {
+        return text_to_array($this->value_text);
     }
 
     public function getFilePathAttribute()

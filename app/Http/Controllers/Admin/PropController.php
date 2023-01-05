@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Admin\PropListRequest;
 use App\Http\Requests\Admin\PropRequest;
 use App\Models\Admin\Page;
 use App\Models\Admin\Prop;
@@ -15,7 +16,9 @@ class PropController extends Controller
     {
         if (!$request->edit) {
             return Inertia::render('Props/Index', [
-                'list' => Prop::whereNull('model_id')->get4Admin(),
+                'item' => [
+                    'props' => Prop::whereNull('model_id')->getList(),
+                ],
                 'tabs' => Prop::tabs(),
             ]);
         }
@@ -66,18 +69,21 @@ class PropController extends Controller
         ]);
     }
 
-    public function update(PropRequest $request, Prop $prop)
+    public function updateList(PropListRequest $request)
     {
-        $prop->updateItem($request->validated());
+        $data = $request->validated();
+        Prop::updateList($data['props']);
+
         return back();
     }
 
-    public function sort(Request $request, Prop $prop)
+    public function update(Request $request, Prop $prop)
     {
-        $validated = $this->validateSort($request, 'props');
-        dd($validated);
-        $prop->massUpdate($validated);
+        $data = $request->validated();
+        dd($data);
 
+
+        $prop->updateItem($request->validated());
         return back();
     }
 

@@ -15,11 +15,6 @@ class PropRequest extends AdminFormRequest
 
     public function rules()
     {
-        if ( $this->has('value_edit') ) {
-
-            return $this->rules4Values();
-        }
-
         $rules = [
             'key'   => 'required|string|max:255',
             'title' => 'required|string|max:255',
@@ -31,7 +26,7 @@ class PropRequest extends AdminFormRequest
 
         return [
             ...$rules,
-            'type'       => ['required', 'string', Rule::in(Prop::typeKeys())],
+            'type'       => ['required', 'string', Rule::in(array_keys(Prop::TYPES))],
             'model_id'   => 'nullable',
             'model_type' => [
                             'nullable',
@@ -39,24 +34,6 @@ class PropRequest extends AdminFormRequest
                             Rule::in( Prop::allowedModelTypes() )
                         ],
         ];
-    }
-
-    private function rules4Values()
-    {
-        $type = $this->prop ? $this->prop->type : null;
-
-        if ($type == 'boolean') {
-            $rules['admin_value'] = 'boolean';
-        }
-        elseif (in_array($type, ['file', 'files'])) {
-            $rules = [
-                ...$this->validationFiles('admin_value', 'file'),
-            ];
-        }
-        else {
-            $rules['admin_value'] = 'nullable|string';
-        }
-        return $rules;
     }
 
 }

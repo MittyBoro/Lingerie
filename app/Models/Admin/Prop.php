@@ -10,6 +10,12 @@ class Prop extends BaseModel
 
     const DEFAULT_TAB = 'Основное';
 
+    const ALLOWED_MODELS = [
+        'pages'    => Page::class,
+        'posts'    => Post::class,
+        'products' => Product::class,
+    ];
+
     const TYPES = [
         'string'      => 'Строка',
         'text'        => 'Текст',
@@ -28,6 +34,10 @@ class Prop extends BaseModel
         'title',
         'type',
         'model_type',
+    ];
+
+    protected $appends = [
+        'value',
     ];
 
 
@@ -58,46 +68,39 @@ class Prop extends BaseModel
         });
     }
 
-    public static function typeKeys()
-    {
-        return array_keys( self::TYPES );
-    }
-
     public static function allowedModelTypes()
     {
         return [...array_keys(self::ALLOWED_MODELS), ...self::ALLOWED_MODELS];
     }
 
-    public function getAdminValueAttribute()
-    {
-        if ( $this->attributes['type'] == 'file' )
-            return $this->admin_file;
-        elseif ( $this->attributes['type'] == 'files' )
-            return $this->admin_files;
-        elseif ( $this->attributes['type'] == 'text_array' )
-            return $this->value_text;
-        else
-            return $this->value;
-    }
-
-    public function getAdminFileAttribute()
+    public function getFileAttribute()
     {
         return $this->getAdminMedia(self::MEDIA_COLLECTION);
     }
-    public function getAdminFilesAttribute()
+    public function getFilesAttribute()
     {
         return $this->getAdminMedia(self::MEDIA_COLLECTION);
     }
+    public function getTextArrayAttribute()
+    {
+        return $this->value_text;
+    }
+
+    public function setModelTypeAttribute($val)
+    {
+        if ( !in_array($val, array_keys(self::ALLOWED_MODELS)) ) {
+            $this->attributes['model_type'] = class_exists($val) ? $val : null;
+        } else {
+            $this->attributes['model_type'] = self::ALLOWED_MODELS[$val];
+        }
+    }
 
 
-    public function scopeGet4Admin($query, $addValues = true)
+    public function scopeGetList($query)
     {
         $list = $query
                 ->ordered()
                 ->get();
-
-        if ($addValues)
-            $list = $list->map->append('admin_value');
 
         return $list;
     }
@@ -114,13 +117,21 @@ class Prop extends BaseModel
         return $tabs;
     }
 
+    public static function updateList($data)
+    {
+        $res = collect($data)->map(function ($item) {
+            $prop = self::find($item['id']);
+            $prop->updateItem($item);
+
+            return $prop->id;
+        });
+
+        return $res;
+    }
+
     public function updateItem($data)
     {
-        if (isset($data['key'])) {
-            return $this->update($data);
-        }
-
-        $value = $data['admin_value'] ?? null;
+        $value = $data['value'] ?? null;
 
         if ( in_array( $this->attributes['type'], ['string', 'boolean'] ) ) {
             $this->value_string = $value;
@@ -131,6 +142,10 @@ class Prop extends BaseModel
         else {
             $this->value_text = $value;
         }
+
+        $this->fill($data);
+
+
 
         return $this->save();
     }
