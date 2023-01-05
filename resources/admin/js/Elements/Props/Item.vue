@@ -1,12 +1,15 @@
 <template>
 
-    <FLabel :error="error">
+    <FLabel as="div" :error="error" class="main-label">
         <template #title>
             <div class="flex justify-between mb-2">
                 <div>
-                    <span class="font-semibold">{{ item.title }}</span> <code class="text-xs text-gray-400">[{{ item.key }}]</code>
+                    <span class="font-semibold" contenteditable @input="item.title = $event.currentTarget.textContent">{{ item.title }}</span>
+                    <code class="text-xs text-gray-400">
+                        [<span contenteditable @input="item.key = $event.currentTarget.textContent">{{ item.key }}</span>]
+                    </code>
                 </div>
-                <div class="flex items-center text-sm text-gray-400">
+                <div class="flex items-center text-sm text-gray-400 right-els transition">
                     <Icon icon="arrows-up-down-left-right" class="mr-2 drag-handle"/>
                     <Link :href="route('admin.props.edit', item.id)" class="cursor-pointer transition-colors hover:text-primary-600">
                         <Icon icon="gear" class="block"/>
@@ -18,25 +21,25 @@
         <template #default>
             <div class="props-item">
                 <template v-if="item.type == 'text'">
-                    <FTextarea v-model.lazy="value" @update:modelValue="update" />
+                    <FTextarea v-model="value" />
                 </template>
                 <template v-if="item.type == 'text_array'">
-                    <FTextarea v-model.lazy="value" @update:modelValue="update" />
+                    <FTextarea v-model="value" />
                 </template>
                 <template v-else-if="item.type == 'format_text'">
-                    <FTextareaEditor v-model.lazy="value" @update:modelValue="update" :name="item.key" type="prop" :id="item.id" :allMedia="form.admin_media"  />
+                    <FTextareaEditor v-model="value" :name="item.key" />
                 </template>
                 <template v-else-if="item.type == 'files'">
-                    <FFileInput multiple v-model="value" @update:modelValue="update" />
+                    <FFileInput multiple v-model="value" />
                 </template>
                 <template v-else-if="item.type == 'file'">
-                    <FFileInput v-model="value" @update:modelValue="update" />
+                    <FFileInput v-model="value" />
                 </template>
                 <template v-else-if="item.type == 'boolean'">
-                    <FSwitcher v-model="value" @update:modelValue="update" />
+                    <FSwitcher v-model="value" />
                 </template>
                 <template v-else>
-                    <FInput v-model.lazy="value" @update:modelValue="update" />
+                    <FInput v-model="value" />
                 </template>
             </div>
         </template>
@@ -69,22 +72,15 @@
             },
         },
 
-        methods: {
-            update()
-            {
-
-                return;
-                this.form
-                    .transform((data) => ({
-                        ...data,
-                        value_edit : true,
-                        _method : 'PUT',
-                    }))
-                    .post( this.currentRoute('update', this.item.id) , {
-                        preserveScroll: true,
-                    });
-            },
-        },
     }
 
 </script>
+
+
+<style lang="sass">
+    .main-label:not(:hover)
+        .right-els
+            opacity: .05
+    [contenteditable]
+        outline: 0
+</style>

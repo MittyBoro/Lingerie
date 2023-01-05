@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Prop as BaseModel;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class Prop extends BaseModel
 {
@@ -84,6 +85,11 @@ class Prop extends BaseModel
     public function getTextArrayAttribute()
     {
         return $this->value_text;
+    }
+
+    public function setKeyAttribute($val)
+    {
+        $this->attributes['key'] = Str::slug($val, '_');
     }
 
     public function setModelTypeAttribute($val)
