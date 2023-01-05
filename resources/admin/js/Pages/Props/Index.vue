@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="Параметры" >
-        <FormSection class="max-w-3xl load-opacity" :tabs="tabs">
+        <FormSection class="max-w-3xl load-opacity" :tabs="tabs" :submit="submit" :form="form" hideAdder>
             <template #buttons>
                 <div class="flex items-center">
                     <Link :href="currentRoute('index', {edit: true})" class="mr-2 btn-gray btn-square">
@@ -11,9 +11,7 @@
             </template>
 
             <template #content="sp">
-                <template v-for="tab in tabs" :key="tab">
-                    <props-list v-show="sp.activeTab == tab" :list="getList(tab)" />
-                </template>
+                <props-list :activeTab="sp.activeTab" :list="form.list" @update="form.list = $event" />
             </template>
 
         </FormSection>
@@ -27,7 +25,15 @@
 
     import PropsList from '@/Elements/Props/List'
 
+    import Form from '@/Mixins/Form'
+
+
     export default {
+
+        mixins: [
+            Form,
+        ],
+
         components: {
             AppLayout,
             FormSection,
@@ -37,15 +43,9 @@
         data() {
             return {
                 tabs: Object.values(this.$page.props.tabs),
+                form: this.setForm({}),
             }
         },
-
-        methods: {
-            getList(tab) {
-                return this.$page.props?.list?.filter(el => el.tab == tab);
-            },
-        }
-
 
     }
 </script>

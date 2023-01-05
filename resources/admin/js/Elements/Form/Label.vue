@@ -1,6 +1,7 @@
 <template>
 	<component :is="as" :class="classes">
-		<div v-if="title" class="font-semibold text-gray-700 mb-1 text-sm">{{ title }}</div>
+        <div v-if="title" class="font-semibold text-gray-700 mb-1 text-sm">{{ title }}</div>
+        <slot name="title"></slot>
 		<slot></slot>
 		<FInputError v-if="error" :message="error" class="mt-2" />
 	</component>

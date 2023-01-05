@@ -1,7 +1,7 @@
 <template>
-    <draggable class="loading" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
+    <draggable class="loading form-grid" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @start="drag=true" @end="drag=false" >
         <template #item="{ element }">
-            <PropsItem :item="element" />
+            <PropsItem :item="element" v-model="element.value" v-show="activeTab == element.tab" />
         </template>
     </draggable>
 </template>
@@ -18,12 +18,13 @@
         },
 
         props: {
-            list: Array,
+            list: [Array, Object],
+            activeTab: String,
         },
+        emits: ['update'],
 
         data() {
             return {
-                routePrefix: 'admin.props.',
                 drag: false,
             }
         },
@@ -34,29 +35,10 @@
                     return this.list;
                 },
                 set(value) {
-                    // this.list = value;
-                    this.saveSort()
+                    this.$emit("update", value);
                 }
             },
         },
-
-        methods: {
-            saveSort() {
-                let sortedList = this.list.map((element, index) => {
-                    return {
-                        id: element.id,
-                        position: index
-                    }
-                });
-
-                let form = this.$inertia.form({sorted: sortedList});
-                form.post( route( this.routePrefix + 'sort' ), {
-                    preserveScroll: true,
-                    preserveState: true,
-                });
-            },
-        }
-
 
     }
 </script>
