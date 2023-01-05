@@ -25,6 +25,8 @@ class Prop extends BaseModel
         'boolean'     => 'Выключатель',
         'file'        => 'Файл',
         'files'       => 'Файлы',
+        'image'        => 'Изображение',
+        'images'       => 'Изображения',
     ];
 
     protected $orderBy = ['position', 'asc'];
@@ -76,11 +78,20 @@ class Prop extends BaseModel
 
     public function getFileAttribute()
     {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION);
+        return $this->getAdminMedia(self::MEDIA_COLLECTION_FILE);
     }
     public function getFilesAttribute()
     {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION);
+        return $this->getAdminMedia(self::MEDIA_COLLECTION_FILE);
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE);
+    }
+    public function getImagesAttribute()
+    {
+        return $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE);
     }
     public function getTextArrayAttribute()
     {
@@ -143,15 +154,16 @@ class Prop extends BaseModel
             $this->value_string = $value;
         }
         elseif (in_array($this->attributes['type'], ['file', 'files'])) {
-            $this->syncMedia($value, self::MEDIA_COLLECTION);
+            $this->syncMedia($value, self::MEDIA_COLLECTION_FILE);
+        }
+        elseif (in_array($this->attributes['type'], ['image', 'images'])) {
+            $this->syncMedia($value, self::MEDIA_COLLECTION_IMAGE);
         }
         else {
             $this->value_text = $value;
         }
 
         $this->fill($data);
-
-
 
         return $this->save();
     }

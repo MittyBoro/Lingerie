@@ -35,6 +35,12 @@
                 <template v-else-if="item.type == 'file'">
                     <FFileInput v-model="value" />
                 </template>
+                <template v-else-if="item.type == 'images'">
+                    <FFileInput multiple v-model="value" imagesOnly/>
+                </template>
+                <template v-else-if="item.type == 'image'">
+                    <FFileInput v-model="value" imagesOnly/>
+                </template>
                 <template v-else-if="item.type == 'boolean'">
                     <FSwitcher v-model="value" />
                 </template>

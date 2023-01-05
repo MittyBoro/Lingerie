@@ -16,7 +16,8 @@ class Prop extends BaseModel implements HasMedia
 
     public $timestamps = false;
 
-    const MEDIA_COLLECTION = 'main';
+    const MEDIA_COLLECTION_FILE = 'file';
+    const MEDIA_COLLECTION_IMAGE = 'image';
 
     protected $fillable = [
         'tab',
@@ -43,7 +44,9 @@ class Prop extends BaseModel implements HasMedia
     public function registerMediaCollections(): void
     {
         $this
-            ->addMediaCollection(self::MEDIA_COLLECTION);
+            ->addMediaCollection(self::MEDIA_COLLECTION_FILE);
+        $this
+            ->addMediaCollection(self::MEDIA_COLLECTION_IMAGE);
     }
 
     public function model()
@@ -68,6 +71,10 @@ class Prop extends BaseModel implements HasMedia
             return $this->file;
         elseif ( $this->attributes['type'] == 'files' )
             return $this->files;
+        elseif ( $this->attributes['type'] == 'image' )
+            return $this->image;
+        elseif ( $this->attributes['type'] == 'images' )
+            return $this->images;
         elseif ( $this->attributes['type'] == 'text_array' )
             return $this->text_array;
         else
@@ -77,24 +84,15 @@ class Prop extends BaseModel implements HasMedia
 
     public function getFileAttribute()
     {
-        return $this->getFirstMediaUrl(self::MEDIA_COLLECTION);
+        return $this->getFirstMediaUrl(self::MEDIA_COLLECTION_FILE);
     }
     public function getFilesAttribute()
     {
-        return $this->getMedia(self::MEDIA_COLLECTION)?->map->getFullUrl();
+        return $this->getMedia(self::MEDIA_COLLECTION_FILE)?->map->getFullUrl();
     }
     public function getTextArrayAttribute()
     {
         return text_to_array($this->value_text);
-    }
-
-    public function getFilePathAttribute()
-    {
-        return $this->getFirstMedia(self::MEDIA_COLLECTION)?->getPath();
-    }
-    public function getFilesPathAttribute()
-    {
-        return $this->getMedia(self::MEDIA_COLLECTION)?->map->getPath();
     }
 
     public static function manyByKey($key, $raw = false)
