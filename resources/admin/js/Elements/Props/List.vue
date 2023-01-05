@@ -1,5 +1,5 @@
 <template>
-    <draggable class="col-span-6 loading" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
+    <draggable class="loading" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="saveSort" @start="drag=true" @end="drag=false" >
         <template #item="{ element }">
             <PropsItem :item="element" />
         </template>
@@ -34,7 +34,8 @@
                     return this.list;
                 },
                 set(value) {
-                    this.list = value;
+                    // this.list = value;
+                    this.saveSort()
                 }
             },
         },

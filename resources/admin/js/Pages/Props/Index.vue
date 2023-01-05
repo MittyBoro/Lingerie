@@ -1,23 +1,19 @@
 <template>
-    <AppLayout title="Настройки" >
-        <FormSection class="max-w-3xl load-opacity" :tabs="tabs" v-model:activeTab="activeTab">
-            <template #title>
+    <AppLayout title="Параметры" >
+        <FormSection class="max-w-3xl load-opacity" :tabs="tabs">
+            <template #buttons>
                 <div class="flex items-center">
-                    <span>Настройки</span>
-                    <Link :href="route('admin.props.index', {edit: true})" class="ml-2 btn-gray btn-square btn-mini">
+                    <Link :href="currentRoute('index', {edit: true})" class="mr-2 btn-gray btn-square">
                         <Icon icon="gear" />
                     </Link>
+                    <Link :href="route('admin.optimize')" class="btn-danger">Кэш</Link>
                 </div>
             </template>
 
-            <template #buttons>
-                <Link :href="route('admin.optimize')" class="btn-danger max-h-8">Кэш</Link>
-            </template>
-
-            <template #content>
-
-                <props-list :list="props" />
-
+            <template #content="sp">
+                <template v-for="tab in tabs" :key="tab">
+                    <props-list v-show="sp.activeTab == tab" :list="getList(tab)" />
+                </template>
             </template>
 
         </FormSection>
@@ -41,20 +37,12 @@
         data() {
             return {
                 tabs: Object.values(this.$page.props.tabs),
-                activeTab: null,
-                props: [],
-            }
-        },
-
-        watch: {
-            activeTab() {
-                this.props = this.getActiveProps();
             }
         },
 
         methods: {
-            getActiveProps() {
-                return this.$page.props?.list?.filter(el => el.tab == this.activeTab);
+            getList(tab) {
+                return this.$page.props?.list?.filter(el => el.tab == tab);
             },
         }
 
