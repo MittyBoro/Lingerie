@@ -1,6 +1,6 @@
 <template>
 
-    <FLabel>
+    <FLabel :error="error">
         <template #title>
             <div class="flex justify-between mb-2">
                 <div>
@@ -49,7 +49,7 @@
 
     export default {
 
-        props: ['item', 'modelValue', ],
+        props: ['item', 'modelValue', 'error'],
         emits: ['update:modelValue'],
 
         data() {

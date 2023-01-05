@@ -33,7 +33,7 @@
     import FormSection from '@/Layouts/Sections/Form'
 
     import Translation from '@/Mixins/Translation'
-    import Form from '@/Mixins/Form'
+    import Form from '@/Mixins/Form/Form'
 
 
     export default {

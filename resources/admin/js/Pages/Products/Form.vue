@@ -28,8 +28,8 @@
     import TabDescription from './Form/Description'
     import TabAttributes from './Form/Attributes'
 
-    import Translation from '@/Mixins/Translation'
-    import Form from '@/Mixins/Form'
+    import Translation from '@/Mixins/Form/Translation'
+    import Form from '@/Mixins/Form/Form'
 
     export default {
 

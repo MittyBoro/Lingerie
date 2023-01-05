@@ -84,8 +84,8 @@
             pointer-events: none
             opacity: 0
         &::before
-            @apply absolute -inset-x-3 -inset-y-1 bg-gray-100 bg-opacity-90 z-30 rounded
-            backdrop-filter: blur(2px)
+            @apply absolute -inset-x-3 -inset-y-1 bg-white bg-opacity-90 z-30 rounded
+            backdrop-filter: blur(4px)
         &::after
             @apply absolute w-10 h-10 -mt-5 -ml-5 border-primary-500 border-4 rounded-full z-40
             top: 50%

@@ -1,7 +1,7 @@
 <template>
-    <draggable class="loading form-grid" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @start="drag=true" @end="drag=false" >
-        <template #item="{ element }">
-            <PropsItem :item="element" v-model="element.value" v-show="activeTab == element.tab" />
+    <draggable  class="loading form-grid" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="changePosition"  @start="drag=true" @end="drag=false" >
+        <template #item="{ element, index }">
+            <PropsItem :item="element" :error="errors?.[index]?.value" v-model="element.value" v-show="activeTab == element.tab" />
         </template>
     </draggable>
 </template>
@@ -18,6 +18,7 @@
         },
 
         props: {
+            errors: [Object],
             list: [Array, Object],
             activeTab: String,
         },
@@ -37,6 +38,15 @@
                 set(value) {
                     this.$emit("update", value);
                 }
+            },
+        },
+
+        methods: {
+            changePosition() {
+                this.myList = this.myList.map((element, index) => {
+                    element.position = index
+                    return element
+                });
             },
         },
 

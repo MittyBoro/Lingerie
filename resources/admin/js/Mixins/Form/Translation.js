@@ -14,8 +14,7 @@ export default {
                 if (index === undefined)
                     return {}
                 let translations = this.form.translations[index];
-                    translations.errors =
-                            this.errorKeysToObject(this.form.errors)?.translations?.[index];
+                    translations.errors = this.form.errors?.translations?.[index];
 
                 return translations;
             },

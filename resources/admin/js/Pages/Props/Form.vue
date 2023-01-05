@@ -42,7 +42,7 @@
     import AppLayout from '@/Layouts/AppLayout'
     import FormSection from '@/Layouts/Sections/Form'
 
-    import Form from '@/Mixins/Form'
+    import Form from '@/Mixins/Form/Form'
 
     export default {
         mixins: [

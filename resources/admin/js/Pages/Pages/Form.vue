@@ -23,7 +23,7 @@
     import TabMain from './Form/Main'
     import TabProps from './Form/Props'
 
-    import Form from '@/Mixins/Form'
+    import Form from '@/Mixins/Form/Form'
 
     export default {
         mixins: [
