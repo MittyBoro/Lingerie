@@ -1,5 +1,5 @@
 <template>
-    <div v-if="editor" class="editor form-text notranslate" :class="{focus: focus}">
+    <div v-if="editor" class="editor form-text notranslate" :class="{focus: focus}" @click="focus || editor.view.dom.focus()">
         <MenuBar class="editor__header" :editor="editor" :mini="mini" :isSource="isSource" :toggleSource="toggleSource" />
 
         <EditorContent v-if="!isSource" class="editor__content" :editor="editor"/>
@@ -142,10 +142,10 @@
             flex: 0 0 auto
 
 
+    .editor__content
+        overflow: hidden
 
-</style>
 
-<style lang="sass">
 
     .ProseMirror
         min-height: 100%
