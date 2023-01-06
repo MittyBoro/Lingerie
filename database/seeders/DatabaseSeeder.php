@@ -11,7 +11,6 @@ use App\Models\Product\ProductOrderItem;
 use App\Models\Prop;
 use App\Models\Translation;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,17 +19,15 @@ class DatabaseSeeder extends Seeder
     {
 		User::factory(8)->create();
 
-		Page::factory(5)->create();
+		Prop::factory(40)->create();
+
+        Page::factory(5)->create();
 
 		FAQ::factory(5)->create();
 
 		Translation::factory(20)->create();
 
-
         $this->call([ ProductSeeder::class ]);
-
-
-		// Prop::factory(15)->create();
     }
 
 

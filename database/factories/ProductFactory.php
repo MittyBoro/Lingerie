@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
+use App\Models\ProductAttribute;
 use Database\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -24,8 +25,8 @@ class ProductFactory extends Factory
             $data = [
                 'categories' => $this->getCategories(),
                 'translations' => $this->getTranslations(),
-                // 'variations' => $this->getVariations(),
-                'gallery' => $this->getGallery(),
+                'attributes' => $this->getAttributes(),
+                'gallery' => $this->getGallery(rand(1, 3)),
             ];
 
             $product->saveAfter($data);
@@ -37,26 +38,9 @@ class ProductFactory extends Factory
         return ProductCategory::limit( rand(1,4) )->inRandomOrder()->pluck('id');
     }
 
-    private function getVariations()
+    private function getAttributes()
     {
-        $list = [];
-
-        $names = $this->faker->words( rand(1, 3) );
-
-        $price = round(rand(300, 5000), -2) / 2;
-
-        foreach($names as $name) {
-            foreach(range(0, rand(0, 3)) as $v) {
-                $list[] = [
-                    'name' => $name,
-                    'value' => $this->faker->word,
-                    'price' => $price,
-                    'promo_code_prices' => $this->getPromoCodePrices($price)
-                ];
-            }
-        }
-
-        return $list;
+        return ProductAttribute::limit( rand(4,20) )->inRandomOrder()->pluck('id');
     }
 
     private function getTranslations()
@@ -83,11 +67,4 @@ class ProductFactory extends Factory
         return $data;
     }
 
-    private function getGallery()
-    {
-        return array_fill(0, rand(1, 5),
-            // https://lorem.space/
-            [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ]
-        );
-    }
 }

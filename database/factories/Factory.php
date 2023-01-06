@@ -41,4 +41,13 @@ abstract class Factory extends MainFactory
                 cyrillic_to_latin( $text );
     }
 
+    protected function getGallery($count)
+    {
+        // return [];
+        return array_fill(0, $count,
+            // https://lorem.space/
+            [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ]
+        );
+    }
+
 }
