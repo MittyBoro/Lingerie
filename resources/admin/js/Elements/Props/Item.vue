@@ -24,7 +24,7 @@
                     <FTextarea v-model="value" />
                 </template>
                 <template v-if="item.type == 'text_array'">
-                    <FTextarea v-model="value" />
+                    <FTextArray v-model="value" />
                 </template>
                 <template v-else-if="item.type == 'format_text'">
                     <FTextareaEditor v-model="value" :name="item.key" />
@@ -60,12 +60,6 @@
 
         props: ['item', 'modelValue', 'error'],
         emits: ['update:modelValue'],
-
-        data() {
-            return {
-                form: this.$inertia.form(this.item)
-            }
-        },
 
         computed: {
             value: {

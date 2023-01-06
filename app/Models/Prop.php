@@ -93,7 +93,7 @@ class Prop extends BaseModel implements HasMedia
     }
     public function getTextArrayAttribute()
     {
-        return text_to_array($this->value_text);
+        return json_decode($this->value_text);
     }
 
     public static function manyByKey($key, $raw = false)

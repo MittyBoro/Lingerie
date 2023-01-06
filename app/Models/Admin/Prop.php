@@ -93,10 +93,6 @@ class Prop extends BaseModel
     {
         return $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE);
     }
-    public function getTextArrayAttribute()
-    {
-        return $this->value_text;
-    }
 
     public function setKeyAttribute($val)
     {
