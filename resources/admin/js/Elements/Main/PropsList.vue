@@ -1,5 +1,5 @@
 <template>
-    <draggable  class="loading form-grid" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="changePosition"  @start="drag=true" @end="drag=false" >
+    <draggable  class="form-grid" :class="{drag: drag}" v-model="myList" item-key="id" handle=".drag-handle" @change="changePosition"  @start="drag=true" @end="drag=false" >
         <template #item="{ element, index }">
             <PropsItem :item="element" :error="errors?.[index]?.value" v-model="element.value" v-show="!activeTab || activeTab == element.tab" />
         </template>

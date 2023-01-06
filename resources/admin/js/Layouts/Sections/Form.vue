@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" class="bg-white shadow-lg rounded-xl sm:rounded-2xl border-gray-200" :class="{'max-w-2xl': mini}">
+    <form @submit.prevent="submit" class="loading bg-white shadow-lg rounded-xl sm:rounded-2xl border-gray-200" :class="{'max-w-2xl': mini}">
 
         <div v-if="hasHeaderSlots" class="px-4 py-6 sm:px-8 md:flex md:items-center border-b border-gray-100">
             <div>
@@ -30,7 +30,7 @@
 
         <div v-if="tabs" class="px-4 py-4 sm:px-8 border-b border-gray-100 flex flex-wrap">
             <div
-                class="px-5 py-2 text-sm mr-3 my-2 bg-gray-100 rounded-md shadow-md shrink-0 transition"
+                class="px-5 py-2 text-sm mr-3 my-2 bg-gray-100 rounded-md shadow-md shrink-0 transition tab"
                 :class="{
                     'bg-primary-500 text-white': tab == activeTab,
                     'hover:bg-gray-200 cursor-pointer': tab != activeTab,
@@ -137,3 +137,12 @@
         }
     }
 </script>
+
+
+<style lang="sass">
+    .tab
+        max-width: 200px
+        text-overflow: ellipsis
+        overflow: hidden
+        white-space: nowrap
+</style>

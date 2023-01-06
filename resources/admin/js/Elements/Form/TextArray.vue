@@ -12,7 +12,7 @@
                 </div>
             </template>
         </Draggable>
-        <div @click="add" class="btn-secondary mt-3 ml-auto" :class="values.length ? 'btn-mini' : 'w-full'">
+        <div @click="add" class="btn-secondary mt-3 mr-auto" :class="values.length ? 'btn-mini' : 'w-full'">
             <span>Добавить</span>
             <Icon icon="plus" class="ml-1" />
         </div>

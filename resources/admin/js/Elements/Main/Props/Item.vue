@@ -1,6 +1,6 @@
 <template>
 
-    <FLabel as="div" :error="error" class="main-label">
+    <FLabel as="div" :error="error" class="main-label pb-2">
         <template #title>
             <div class="flex justify-between mb-2">
                 <div>
@@ -23,7 +23,7 @@
                 <template v-if="item.type == 'text'">
                     <FTextarea v-model="value.text" />
                 </template>
-                <template v-if="item.type == 'text_array'">
+                <template v-else-if="item.type == 'text_array'">
                     <FTextArray v-model="value.text_array" />
                 </template>
                 <template v-else-if="item.type == 'format_text'">

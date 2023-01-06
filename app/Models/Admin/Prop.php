@@ -10,8 +10,6 @@ use Illuminate\Support\Str;
 class Prop extends BaseModel
 {
 
-    const DEFAULT_TAB = 'Основное';
-
     const MODELS = [
         'pages'    => \App\Models\Page::class,
         'products' => \App\Models\Product::class,
@@ -70,6 +68,7 @@ class Prop extends BaseModel
     protected static function booted()
     {
         static::addGlobalScope('ordered', function ($builder) {
+            $builder->orderBy('model_id');
             $builder->orderBy('position');
         });
     }
@@ -107,19 +106,16 @@ class Prop extends BaseModel
         );
     }
 
+    public function getTabAttribute($value)
+    {
+        if ($this->model)
+            return $this->model->title;
+        return $value;
+    }
+
     public function setKeyAttribute($value)
     {
         $this->attributes['key'] = Str::slug($value, '_');
-    }
-
-
-    public function scopeGetList($query)
-    {
-        $list = $query
-                ->ordered()
-                ->get();
-
-        return $list;
     }
 
     public static function tabs()
@@ -149,21 +145,24 @@ class Prop extends BaseModel
 
     public function updateItem($data)
     {
-        $value = $data['value'];
+        $value = $data['value'] ?? [];
         $type = $this->attributes['type'];
 
         if (in_array($type, ['file', 'files']))
-            $this->syncMedia($value['files'], self::MEDIA_COLLECTION_FILE);
+            $this->syncMedia($value['files'] ?? null, self::MEDIA_COLLECTION_FILE);
         elseif (in_array($type, ['image', 'images']))
-            $this->syncMedia($value['images'], self::MEDIA_COLLECTION_IMAGE);
+            $this->syncMedia($value['images'] ?? null, self::MEDIA_COLLECTION_IMAGE);
 
         elseif (in_array($type, ['string', 'boolean']))
-            $this->attributes['value_string'] = $value['string'];
+            $this->attributes['value_string'] = $value['string'] ?? null;
 
         elseif ($type == 'text_array')
-            $this->attributes['value_text'] = json_encode($value['text_array']);
+            $this->attributes['value_text'] = json_encode($value['text_array'] ?? null);
         else
-            $this->attributes['value_text'] = $value['text'];
+            $this->attributes['value_text'] = $value['text'] ?? null;
+
+        // faker...
+        unset($data['value']);
 
         $this->fill($data);
 

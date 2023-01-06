@@ -1,13 +1,6 @@
 <template>
     <AppLayout title="Параметры" >
-        <FormSection class="max-w-3xl load-opacity" :tabs="tabs" :submit="updateList" :form="form" hideAdder>
-            <template #buttons>
-                <div class="flex items-center">
-                    <Link :href="currentRoute('index', {edit: true})" class="mr-2 btn-gray btn-square">
-                        <Icon icon="gear" />
-                    </Link>
-                </div>
-            </template>
+        <FormSection class="max-w-3xl load-opacity" :tabs="tabs" :submit="updateList" :form="form">
 
             <template #content="sp">
                 <MPropsList :activeTab="sp.activeTab" :errors="form.errorsObj?.props" :list="form.props" @update="form.props = $event" />
@@ -38,8 +31,17 @@
 
         data() {
             return {
-                tabs: Object.values(this.$page.props.tabs),
+                // tabs: Object.values(this.$page.props.tabs),
                 form: this.setForm({}),
+            }
+        },
+
+        computed: {
+            tabs() {
+                let tabs = [];
+                this.form.props.forEach(el => tabs.push(el.tab));
+
+                return [...new Set(tabs)];
             }
         },
 

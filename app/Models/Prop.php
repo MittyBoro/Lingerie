@@ -17,6 +17,8 @@ class Prop extends BaseModel implements HasMedia
 
     public $timestamps = false;
 
+    const DEFAULT_TAB = 'Основное';
+
     const MEDIA_COLLECTION_FILE = 'file';
     const MEDIA_COLLECTION_IMAGE = 'image';
 

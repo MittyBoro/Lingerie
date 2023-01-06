@@ -28,5 +28,9 @@ export default {
             if (!confirm('Вы уверены?'))
                 e.preventDefault()
         },
+        
+        truncateString(str, num) {
+            return (str.length > num) ? str.substr(0, num) + '...' : str;
+        }
     }
 }

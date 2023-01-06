@@ -12,33 +12,14 @@ use Inertia\Inertia;
 class PropController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
-        if (!$request->edit) {
-
-            return Inertia::render('Props/Index', [
-                'item' => [
-                    'props' => Prop::whereNull('model_id')->getList(),
-                ],
-                'tabs' => Prop::tabs(),
-            ]);
-        }
-        else {
-            $prop = Prop::with(['media', 'model']);
-
-            if (!$request->orderby)
-                $prop = $prop
-                            ->orderBy('model_type')
-                            ->orderBy('model_id')
-                            ->orderBy('tab')
-                            ->orderBy('position');
-
-            return Inertia::render('Props/Edit', [
-                'list' => $prop->paginated('model_name'),
-                'types' => Prop::TYPES,
-            ]);
-        }
-
+        return Inertia::render('Props/Index', [
+            'item' => [
+                'id' => true,
+                'props' => Prop::with(['model', 'media'])->get(),
+            ],
+        ]);
     }
 
     public function create()
