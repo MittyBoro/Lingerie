@@ -4,7 +4,7 @@
 
         <div v-for="attr in attributes" :key="attr.type">
             <FLabel as="div" :title="toRu(attr.type)" :error="form.errors.attributes">
-                <MCheckboxList v-model="form.attributes" :list="attr.values" />
+                <FCheckboxList v-model="form.attributes" :list="attr.values" />
             </FLabel>
 
             <div class="btn-secondary btn-mini w-full mt-3" @click="setAll(attr.values, type)">Выбрать все</div>

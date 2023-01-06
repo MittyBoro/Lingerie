@@ -10,7 +10,7 @@
             </template>
 
             <template #content="sp">
-                <PropsList :activeTab="sp.activeTab" :errors="form.errorsObj?.props" :list="form.props" @update="form.props = $event" />
+                <MPropsList :activeTab="sp.activeTab" :errors="form.errorsObj?.props" :list="form.props" @update="form.props = $event" />
             </template>
 
         </FormSection>
@@ -21,8 +21,6 @@
 
     import AppLayout from '@/Layouts/AppLayout'
     import FormSection from '@/Layouts/Sections/Form'
-
-    import PropsList from '@/Elements/Props/List'
 
     import Form from '@/Mixins/Form/Form'
 
@@ -36,7 +34,6 @@
         components: {
             AppLayout,
             FormSection,
-            PropsList,
         },
 
         data() {

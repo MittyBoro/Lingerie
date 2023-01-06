@@ -5,7 +5,7 @@
         <!-- <FNotice>
             Укажите <code class="monfont-mono font-semibold">%replace%</code>, для замены на значение из дочернего элемента
         </FNotice> -->
-        <MTitleSlug :form="form" />
+        <FTitleSlug :form="form" />
 
         <FLabel as="div" title="Язык" :error="form.errors.lang">
             <FSelect :options="$page.props.langs" v-model="form.lang" required/>

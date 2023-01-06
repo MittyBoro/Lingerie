@@ -82,7 +82,7 @@ class Prop extends BaseModel
     }
     public function getFilesAttribute()
     {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION_FILE);
+        return $this->file;
     }
 
     public function getImageAttribute()
@@ -91,12 +91,12 @@ class Prop extends BaseModel
     }
     public function getImagesAttribute()
     {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE);
+        return $this->image;
     }
 
-    public function setKeyAttribute($val)
+    public function setKeyAttribute($value)
     {
-        $this->attributes['key'] = Str::slug($val, '_');
+        $this->attributes['key'] = Str::slug($value, '_');
     }
 
     public function setModelTypeAttribute($val)

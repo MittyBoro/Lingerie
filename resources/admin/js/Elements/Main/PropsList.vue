@@ -9,7 +9,7 @@
 <script>
 
     import draggable  from "vuedraggable";
-    import PropsItem from "./Item";
+    import PropsItem from "./Props/Item";
 
     export default {
         components: {

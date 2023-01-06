@@ -7,7 +7,7 @@
 
                 <div class="form-grid" v-show="sb.activeTab == 'Основное'">
 
-                    <MTitleSlug :form="translation" />
+                    <FTitleSlug :form="translation" />
 
                     <FLabel title="Родительская категория" :error="form.errors.parent_id">
                         <FSelect :options="categories" :keys="['id','title']" v-model="form.parent_id" />

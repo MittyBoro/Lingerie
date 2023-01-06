@@ -1,6 +1,6 @@
 <template>
     <div class="form-grid">
-        <MTitleSlug :form="translation" />
+        <FTitleSlug :form="translation" />
 
         <div class="flex">
             <FLabel title="Цена" :error="translation.errors?.price" class="w-full">
@@ -20,7 +20,7 @@
         </FLabel>
 
         <FLabel as="div" title="Категория" :error="form.errors.categories">
-            <MCheckboxList v-model="form.categories" :list="categories" />
+            <FCheckboxList v-model="form.categories" :list="categories" />
         </FLabel>
     </div>
 

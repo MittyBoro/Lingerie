@@ -4,7 +4,7 @@
         <FormSection :submit="submit" :form="form" mini>
             <template #content>
 
-                <MTitleSlug :form="form" :slugKey="'key'" :slugName="'Ключ'"/>
+                <FTitleSlug :form="form" :slugKey="'key'" :slugName="'Ключ'"/>
 
                 <FLabel title="Тип" :error="form.errors.type">
                     <FSelect :options="types" v-model="form.type" />
