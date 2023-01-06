@@ -36,10 +36,8 @@ export default {
         },
 
         setForm(defaultValue) {
-            return this.$inertia.form(
-                    this.$page.props.item ||
-                    JSON.parse(JSON.stringify(defaultValue)),
-                )
+            let value = JSON.parse(JSON.stringify(this.$page.props.item || defaultValue))
+            return this.$inertia.form(value)
         },
 
         submit() {

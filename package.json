@@ -31,7 +31,7 @@
         "@tiptap/extension-image": "^2.0.0-beta.209",
         "@tiptap/starter-kit": "^2.0.0-beta.209",
         "@tiptap/vue-3": "^2.0.0-beta.209",
-        "libphonenumber-js": "^1.10.15",
+        "libphonenumber-js": "^1.10.16",
         "swiper": "^8.4.5",
         "vue": "^3.2.45"
     }

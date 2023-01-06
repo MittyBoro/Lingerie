@@ -50,10 +50,11 @@
             updateList() {
                 this.form
                     .post(this.currentRoute('update_list'), {
+                        forceFormData: true,
                         preserveState: (page) => Object.keys(page.props.errors).length,
                         preserveScroll: true,
                     });
-                }
+            }
         },
 
     }

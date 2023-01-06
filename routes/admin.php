@@ -52,7 +52,7 @@ Route::middleware(['admin.role:editor'])
 
     Route::middleware(['admin.role:admin'])->group(function () {
         Route::resource('props', 'PropController')->except('show');
-        Route::any('props/update_list', 'PropController@updateList')->name('props.update_list');
+        Route::post('props/update_list', 'PropController@updateList')->name('props.update_list');
 
 
         Route::get('optimize', function () {

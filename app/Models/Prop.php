@@ -34,6 +34,7 @@ class Prop extends BaseModel implements HasMedia
     protected $hidden = [
         'value_string',
         'value_text',
+        'media',
     ];
 
     protected $appends = [
