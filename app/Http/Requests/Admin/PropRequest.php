@@ -26,13 +26,9 @@ class PropRequest extends AdminFormRequest
 
         return [
             ...$rules,
-            'type'       => ['required', 'string', Rule::in(array_keys(Prop::TYPES))],
+            'type'       => [ 'required', 'string', Rule::in( array_keys(Prop::TYPES) ) ],
             'model_id'   => 'nullable',
-            'model_type' => [
-                            'nullable',
-                            'string',
-                            Rule::in( Prop::allowedModelTypes() )
-                        ],
+            'model_type_key' => [ 'nullable', 'string', Rule::in( array_keys(Prop::MODELS) ) ],
         ];
     }
 

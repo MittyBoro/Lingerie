@@ -39,10 +39,6 @@ class Prop extends BaseModel
         'model_type',
     ];
 
-    protected $appends = [
-        'value',
-    ];
-
 
     public static function boot()
     {
@@ -78,29 +74,7 @@ class Prop extends BaseModel
         });
     }
 
-    public function getFileAttribute()
-    {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION_FILE);
-    }
-    public function getFilesAttribute()
-    {
-        return $this->file;
-    }
 
-    public function getImageAttribute()
-    {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE);
-    }
-    public function getImagesAttribute()
-    {
-        return $this->image;
-    }
-
-    public function setKeyAttribute($value)
-    {
-        $this->attributes['key'] = Str::slug($value, '_');
-    }
-    
     protected function modelTypeKey(): Attribute
     {
         return Attribute::make(
@@ -110,6 +84,34 @@ class Prop extends BaseModel
             ],
         );
     }
+
+    protected function value(): Attribute
+    {
+        return Attribute::make(
+            get: function($value, $attributes) {
+                $type = $attributes['type'];
+
+                if ( $type == 'string' )
+                    return ['string' => $this->value_string];
+                elseif ( in_array($type, ['file', 'files']) )
+                    return ['files' => $this->getAdminMedia(self::MEDIA_COLLECTION_FILE)];
+
+                elseif ( in_array($type, ['image', 'images']) )
+                    return ['images' => $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE)];
+
+                elseif ( $type == 'text_array' )
+                    return ['text_array' => $this->text_array];
+                else
+                    return ['text' => $this->value_text];
+            },
+        );
+    }
+
+    public function setKeyAttribute($value)
+    {
+        $this->attributes['key'] = Str::slug($value, '_');
+    }
+
 
     public function scopeGetList($query)
     {
@@ -147,20 +149,21 @@ class Prop extends BaseModel
 
     public function updateItem($data)
     {
-        $value = $data['value'] ?? null;
+        $value = $data['value'];
+        $type = $this->attributes['type'];
 
-        if ( in_array( $this->attributes['type'], ['string', 'boolean'] ) ) {
-            $this->value_string = $value;
-        }
-        elseif (in_array($this->attributes['type'], ['file', 'files'])) {
-            $this->syncMedia($value, self::MEDIA_COLLECTION_FILE);
-        }
-        elseif (in_array($this->attributes['type'], ['image', 'images'])) {
-            $this->syncMedia($value, self::MEDIA_COLLECTION_IMAGE);
-        }
-        else {
-            $this->value_text = $value;
-        }
+        if (in_array($type, ['file', 'files']))
+            $this->syncMedia($value['files'], self::MEDIA_COLLECTION_FILE);
+        elseif (in_array($type, ['image', 'images']))
+            $this->syncMedia($value['images'], self::MEDIA_COLLECTION_IMAGE);
+
+        elseif (in_array($type, ['string', 'boolean']))
+            $this->attributes['value_string'] = $value['string'];
+
+        elseif ($type == 'text_array')
+            $this->attributes['value_text'] = json_encode($value['text_array']);
+        else
+            $this->attributes['value_text'] = $value['text'];
 
         $this->fill($data);
 

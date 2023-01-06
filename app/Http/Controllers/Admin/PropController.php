@@ -15,6 +15,7 @@ class PropController extends Controller
     public function index(Request $request)
     {
         if (!$request->edit) {
+
             return Inertia::render('Props/Index', [
                 'item' => [
                     'props' => Prop::whereNull('model_id')->getList(),

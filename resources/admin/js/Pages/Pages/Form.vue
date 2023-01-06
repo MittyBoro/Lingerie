@@ -2,13 +2,13 @@
     <AppLayout :title="editorTitle(isEdit)">
 
         <FormSection :submit="submit" :form="form"
-        :tabs="isEdit ? ['Основное', 'Дополнительно', 'SEO'] : ['Основное', 'SEO']"
+        :tabs="['Основное', 'SEO', ...(isEdit ? ['Дополнительно'] : [])]"
         mini
         >
             <template #content="sb">
                 <TabMain v-show="sb.activeTab == 'Основное'" :form="form" />
-                <TabProps v-show="sb.activeTab == 'Дополнительно'" :form="form" />
                 <MTabSeo v-show="sb.activeTab == 'SEO'" :form="form" />
+                <TabProps v-show="sb.activeTab == 'Дополнительно'" :form="form" />
             </template>
         </FormSection>
 

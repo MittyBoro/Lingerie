@@ -21,31 +21,31 @@
         <template #default>
             <div class="props-item">
                 <template v-if="item.type == 'text'">
-                    <FTextarea v-model="value" />
+                    <FTextarea v-model="value.text" />
                 </template>
                 <template v-if="item.type == 'text_array'">
-                    <FTextArray v-model="value" />
+                    <FTextArray v-model="value.text_array" />
                 </template>
                 <template v-else-if="item.type == 'format_text'">
-                    <FTextareaEditor v-model="value" :name="item.key" />
+                    <FTextareaEditor v-model="value.text" :name="item.key" />
                 </template>
                 <template v-else-if="item.type == 'files'">
-                    <FFileInput multiple v-model="value" />
+                    <FFileInput v-model="value.files" multiple/>
                 </template>
                 <template v-else-if="item.type == 'file'">
-                    <FFileInput v-model="value" />
+                    <FFileInput v-model="value.files" />
                 </template>
                 <template v-else-if="item.type == 'images'">
-                    <FFileInput multiple v-model="value" imagesOnly/>
+                    <FFileInput v-model="value.images" multiple imagesOnly/>
                 </template>
                 <template v-else-if="item.type == 'image'">
-                    <FFileInput v-model="value" imagesOnly/>
+                    <FFileInput v-model="value.images" imagesOnly/>
                 </template>
                 <template v-else-if="item.type == 'boolean'">
-                    <FSwitcher v-model="value" />
+                    <FSwitcher v-model="value.string" />
                 </template>
                 <template v-else>
-                    <FInput v-model="value" />
+                    <FInput v-model="value.string" />
                 </template>
             </div>
         </template>

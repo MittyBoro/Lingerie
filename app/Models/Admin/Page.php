@@ -17,12 +17,25 @@ class Page extends BasePage
         });
     }
 
+    public function props()
+    {
+        return app(BasePage::class)->morphMany(Prop::class, 'model')->with('media');
+    }
+
     public function getAltLangsAttribute()
     {
         $pages = self::where('slug', $this->slug)
                     ->where('lang', '!=', $this->lang)
                     ->get(['lang', 'id']);
         return $pages;
+    }
+
+
+    public function saveAfter($data)
+    {
+        if ( isset($data['props']) ) {
+            Prop::updateList($data['props']);
+        }
     }
 
 }

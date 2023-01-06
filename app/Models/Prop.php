@@ -100,8 +100,8 @@ class Prop extends BaseModel implements HasMedia
     {
         return json_decode($this->value_text);
     }
-    
-    
+
+
     /*
     public static function manyByKey($key, $raw = false)
     {
@@ -127,7 +127,6 @@ class Prop extends BaseModel implements HasMedia
     {
         return self::manyByKey($key, $raw)->first() ?? null;
     }
-    */
 
     public function scopeList(Builder $query, $model_type = null, $model_id = null)
     {
@@ -148,6 +147,7 @@ class Prop extends BaseModel implements HasMedia
                     return $item->value;
                 });
     }
+    */
 
 
 }

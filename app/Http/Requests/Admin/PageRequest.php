@@ -18,18 +18,20 @@ class PageRequest extends AdminFormRequest
 
         $rules = [
             'title'       => 'nullable|string|max:255',
-            'slug'        => ['required', 'string', 'max:255', 
+            'slug'        => ['required', 'string', 'max:255',
                                 Rule::unique('pages')->where(function ($query) {
                                     return $query->where('slug', $this->get('slug'))
                                             ->where('lang', $this->get('lang'));
                                 })->ignore($id)],
-                                
+
             'description' => 'string|nullable',
             'route'       => 'string|nullable',
-            
+
             ...$this->validationLang(),
-            
+
             ...$this->validationSEO(),
+
+            ...(new PropListRequest)->rules()
         ];
 
         return $rules;

@@ -54,8 +54,8 @@ class PageController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         $data = $request->validated();
-        dd( $data);
         $page->update($data);
+        $page->saveAfter($data);
 
         return back();
     }
