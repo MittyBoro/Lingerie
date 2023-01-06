@@ -17,10 +17,6 @@ class ProductCategory extends BaseModel
     {
         parent::boot();
 
-        static::addGlobalScope('translations', function (Builder $builder) {
-            $builder->with('translations');
-        });
-
         static::creating( function($model)
         {
             $model->position = self::max('position') + 1;
@@ -29,6 +25,13 @@ class ProductCategory extends BaseModel
         static::updated( function()
         {
             static::fixTree();
+        });
+    }
+    
+    protected static function booted()
+    {
+        static::addGlobalScope('translations', function (Builder $builder) {
+            $builder->with('translations');
         });
     }
 

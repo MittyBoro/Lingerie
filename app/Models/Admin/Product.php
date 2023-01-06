@@ -10,10 +10,8 @@ class Product extends BaseModel
 {
     use TranslationTrait;
 
-    public static function boot()
+    protected static function booted()
     {
-        parent::boot();
-
         static::addGlobalScope('translations', function (Builder $builder) {
             $builder->with('translations');
         });
