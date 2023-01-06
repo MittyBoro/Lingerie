@@ -8,6 +8,7 @@ use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
+use Spatie\Image\Manipulations;
 
 class Prop extends BaseModel implements HasMedia
 {
@@ -47,19 +48,23 @@ class Prop extends BaseModel implements HasMedia
         $this
             ->addMediaCollection(self::MEDIA_COLLECTION_FILE);
         $this
-            ->addMediaCollection(self::MEDIA_COLLECTION_IMAGE);
+            ->addMediaCollection(self::MEDIA_COLLECTION_IMAGE)
+            ->registerMediaConversions(function () {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->fit(Manipulations::FIT_CROP, 400, 400);
+                $this
+                    ->addMediaConversion('medium')
+                    ->fit(Manipulations::FIT_CROP, 640, 640);
+                $this
+                    ->addMediaConversion('big')
+                    ->fit(Manipulations::FIT_MAX, 1280, 1280);
+            });
     }
 
     public function model()
     {
         return $this->morphTo('model');
-    }
-
-    public function getModelNameAttribute()
-    {
-        if (!$this->model_type)
-            return;
-        return Str::snake(Str::pluralStudly(class_basename($this->model_type)));
     }
 
     public function getValueAttribute()
@@ -95,7 +100,9 @@ class Prop extends BaseModel implements HasMedia
     {
         return json_decode($this->value_text);
     }
-
+    
+    
+    /*
     public static function manyByKey($key, $raw = false)
     {
         if (!is_array($key))
@@ -116,11 +123,11 @@ class Prop extends BaseModel implements HasMedia
                     return $item->value;
                 });
     }
-
     public static function byKey($key, $raw = false)
     {
         return self::manyByKey($key, $raw)->first() ?? null;
     }
+    */
 
     public function scopeList(Builder $query, $model_type = null, $model_id = null)
     {

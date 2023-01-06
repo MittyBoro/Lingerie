@@ -27,18 +27,18 @@ class Page extends BaseModel
         });
     }
 
-    public function properties()
+    public function props()
     {
-        return $this->morphMany(Prop::class, 'model')->with('media');
+        return app(self::class)->morphMany(Prop::class, 'model')->with('media');
     }
 
-    public function getPropsAttribute()
-    {
-        return $this->properties->keyBy('key')
-                                ->map(function($item) {
-                                    return $item->value;
-                                });
-    }
+    // public function getPropsAttribute()
+    // {
+    //     return $this->properties->keyBy('key')
+    //                             ->map(function($item) {
+    //                                 return $item->value;
+    //                             });
+    // }
 
     public function scopeBySlug($query, $slug, $abortIfNull = true)
     {

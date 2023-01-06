@@ -36,8 +36,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-
-            \App\Http\Middleware\ApplyCart::class,
         ],
 
         'inertia' => [
@@ -48,8 +46,6 @@ class Kernel extends HttpKernel
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-
-            \App\Http\Middleware\ApplyCart::class,
         ],
     ];
 
@@ -76,5 +72,6 @@ class Kernel extends HttpKernel
         'admin.category' => \App\Http\Middleware\Admin\Category::class,
 
         'guest_or_verified' => \App\Http\Middleware\GuestOrVerified::class,
+        'apply_cart' => \App\Http\Middleware\ApplyCart::class,
     ];
 }

@@ -60,8 +60,6 @@ class PropController extends Controller
 
     public function edit(Prop $prop)
     {
-        $prop->load(['model']);
-
         return Inertia::render('Props/Form', [
             'item' => $prop,
 

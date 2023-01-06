@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Prop as BaseModel;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
@@ -11,10 +12,9 @@ class Prop extends BaseModel
 
     const DEFAULT_TAB = 'Основное';
 
-    const ALLOWED_MODELS = [
-        'pages'    => Page::class,
-        'posts'    => Post::class,
-        'products' => Product::class,
+    const MODELS = [
+        'pages'    => \App\Models\Page::class,
+        'products' => \App\Models\Product::class,
     ];
 
     const TYPES = [
@@ -71,9 +71,11 @@ class Prop extends BaseModel
         });
     }
 
-    public static function allowedModelTypes()
+    protected static function booted()
     {
-        return [...array_keys(self::ALLOWED_MODELS), ...self::ALLOWED_MODELS];
+        static::addGlobalScope('ordered', function ($builder) {
+            $builder->orderBy('position');
+        });
     }
 
     public function getFileAttribute()
@@ -98,16 +100,16 @@ class Prop extends BaseModel
     {
         $this->attributes['key'] = Str::slug($value, '_');
     }
-
-    public function setModelTypeAttribute($val)
+    
+    protected function modelTypeKey(): Attribute
     {
-        if ( !in_array($val, array_keys(self::ALLOWED_MODELS)) ) {
-            $this->attributes['model_type'] = class_exists($val) ? $val : null;
-        } else {
-            $this->attributes['model_type'] = self::ALLOWED_MODELS[$val];
-        }
+        return Attribute::make(
+            get: fn () => array_search($this->model_type, self::MODELS) ?: null,
+            set: fn ($value) => [
+                'model_type' => self::MODELS[$value] ?? null
+            ],
+        );
     }
-
 
     public function scopeGetList($query)
     {
@@ -121,6 +123,7 @@ class Prop extends BaseModel
     public static function tabs()
     {
         $tabs = self::select('tab')
+                ->withoutGlobalScope('ordered')
                 ->whereNotNull('tab')
                 ->whereNull('model_id')
                 ->groupBy('tab')

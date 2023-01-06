@@ -1,36 +1,27 @@
 <template>
     <div class="form-grid">
-        <FNotice>
-            <Link class="link" :href="route('admin.props.create', {page_id: page_id} )">Добавить</Link> дополнительный параметр
-        </FNotice>
-
-        <PropsList :list="props" />
+        
+        <MPropsList :errors="form.errorsObj?.props" :list="form.props" @update="form.props = $event" />
+        
+        <div class="flex">
+            <a target="_blank" class="btn-secondary btn-mini ml-auto" :href="route('admin.props.create', {page_id: form.id} )">Добавить параметр</a>
+        </div>
+        
     </div>
 </template>
 
 
 <script>
 
-    import PropsList from '@/Elements/Props/List'
-
     export default {
 
-        components: {
-            PropsList,
-        },
-
-        props: ['page_id'],
+        props: ['form'],
 
         data() {
             return {
             }
         },
 
-        computed: {
-            props() {
-                return this.$page.props.props;
-            }
-        }
 
     }
 

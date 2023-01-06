@@ -42,8 +42,11 @@ class PageController extends Controller
 
     public function edit(Page $page)
     {
+        $page->load(['props'])
+             ->setAppends(['alt_langs']);
+
         return Inertia::render('Pages/Form', [
-            'item' => $page->append('alt_langs'),
+            'item' => $page,
             // 'props' => $page->properties()->get4Admin(),
         ]);
     }
@@ -51,6 +54,7 @@ class PageController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         $data = $request->validated();
+        dd( $data);
         $page->update($data);
 
         return back();

@@ -66,7 +66,7 @@
                     type: 'string',
                     tab: null,
                     model_id: page_id,
-                    model_type: page_id ? 'pages' : null,
+                    model_type_key: page_id ? 'pages' : null,
                 }),
 
                 types: this.$page.props.types,
@@ -92,10 +92,10 @@
                 set(val) {
                     if (val) {
                         this.form.model_id = val
-                        this.form.model_type = 'pages'
+                        this.form.model_type_key = 'pages'
                     } else {
                         this.form.model_id = null
-                        this.form.model_type = null
+                        this.form.model_type_key = null
                     }
                 }
             },

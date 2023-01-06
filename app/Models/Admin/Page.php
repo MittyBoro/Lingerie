@@ -11,7 +11,7 @@ class Page extends BasePage
 
     protected static function booted()
     {
-        static::addGlobalScope('ancient', function (Builder $builder) {
+        static::addGlobalScope('ordered', function (Builder $builder) {
             $builder->orderBy('slug');
             $builder->orderBy('lang');
         });

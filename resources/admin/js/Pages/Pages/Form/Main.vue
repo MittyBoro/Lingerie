@@ -34,7 +34,7 @@
 
     export default {
 
-        props: ['form', 'isEdit'],
+        props: ['form'],
 
     }
 </script>
