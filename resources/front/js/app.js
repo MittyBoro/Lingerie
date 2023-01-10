@@ -2,7 +2,7 @@
 
 import './afterLoad.js';
 
-// import './swiper.js';
+import './swiper.js';
 
 // import './popup';
 

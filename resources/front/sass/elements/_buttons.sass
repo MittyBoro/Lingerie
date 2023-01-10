@@ -29,14 +29,17 @@
 
     color: #fff !important
 
-    background: rgba(232, 186, 180, 0.2)
+    background: rgba($primary, 0.2)
     backdrop-filter: blur(7.5px)
 
     border-radius: 40px
 
     &:hover
-        background: rgba(232, 186, 180, 0.35)
+        background: rgba($primary, 0.35)
 
 
 .btn-secondary
-    @extend .btn
+    border-color: $secondary
+    background: rgba($secondary, 0.2)
+    &:hover
+        background: rgba($secondary, 0.35)

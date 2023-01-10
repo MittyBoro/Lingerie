@@ -6,27 +6,24 @@ import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
     plugins: [
-        // require('autoprefixer'),
-        // require('tailwindcss'),
+        require('autoprefixer'),
+        require('tailwindcss'),
         laravel({
             input: [
-                'resources/admin/js/app.js',
+                // 'resources/admin/js/app.js',
                 'resources/front/js/app.js',
-
-                // 'resources/assets/js/app.js',
-                // 'resources/assets/js/gallery.js',
-                // 'resources/assets/sass/style.sass',
+                'resources/assets/sass/style.sass',
             ],
             refresh: true,
         }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
+        // vue({
+        //     template: {
+        //         transformAssetUrls: {
+        //             base: null,
+        //             includeAbsolute: false,
+        //         },
+        //     },
+        // }),
     ],
     server: {
         watch: {

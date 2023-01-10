@@ -1,14 +1,24 @@
 
 .sw-arrow
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
     flex-shrink: 0
-    height: 26px
-    width: 13px
-    background: url('../images/icons/right-arrow.svg') no-repeat 50% 50%
+    height: 61px
+    width: 61px
     cursor: pointer
-    opacity: .8
-    transition: opacity .2s
+    color: $secondary
+    border: 1.5px solid #D6D6D6
+    border-top-width: 2.5px
+    border-bottom-width: 2.5px
+    border-radius: 50%
+    transition: border .2s
+    z-index: 5
+    img
+        visibility: hidden
     &:hover
-        opacity: .8
+        border-color: $primary
 .sw-prev
     transform: scaleX(-1)
 

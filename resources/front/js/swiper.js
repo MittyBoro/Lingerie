@@ -1,29 +1,69 @@
 
 
-import Swiper, {Navigation, Autoplay , Pagination, Thumbs, EffectFade, } from 'swiper'
-Swiper.use([Navigation, Autoplay, Pagination, Thumbs, EffectFade, ]);
+import Swiper, {
+    Navigation,
+    Autoplay ,
+    // Pagination,
+    // Thumbs,
+    Keyboard,
+    EffectFade,
+} from 'swiper'
+
+import 'swiper/css';
+// import 'swiper/css/navigation';
+// import 'swiper/css/autoplay';
+// import 'swiper/css/effect-fade';
+
+
+Swiper.use([
+    Navigation,
+    Autoplay ,
+    // Pagination,
+    // Thumbs,
+    Keyboard,
+    EffectFade,
+]);
 
 
 
 // слайдер 4 товара в каталоге
-let catalogSlider = new Swiper('.catalog-list .swiper-container', {
-    slidesPerView: 2,
-    spaceBetween: 20,
+let catalogSlider = new Swiper('.home-novelties-box .swiper', {
+    // spaceBetween: 0,
+    // centeredSlides: true,
+    // slidesPerView: "auto",
+    // autoplay: {
+    //     delay: 5000,
+    //     disableOnInteraction: false,
+    // },
+
+
+    slidesPerView: 1,
+    centeredSlides: true,
     loop: true,
-    enabled: true,
-    loopAdditionalSlides: 3,
-    speed: 750,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: '.catalog-list .swiper-pagination',
-        clickable: true,
-    },
+    keyboard: true,
+    loopAdditionalSlides: 4,
+    // loopedSlidesLimit: false,
+
     navigation: {
-        nextEl: '.catalog-list .swiper-button-next',
-        prevEl: '.catalog-list .swiper-button-prev',
+        nextEl: '.home-novelties-box .sw-next',
+        prevEl: '.home-novelties-box .sw-prev',
+    },
+
+    on: {
+        init: (swiper) => {
+            return;
+            swiper.$el[0].addEventListener('mouseenter', () => {
+                swiper.autoplay.stop()
+            }, false);
+            swiper.$el[0].addEventListener('mouseleave', () => {
+                swiper.autoplay.start()
+            }, false);
+        },
+        snapIndexChange: (swiper) => {
+            let intEl = document.querySelector('.home-novelties-box .sw-current-int')
+            if (intEl)
+                intEl.innerHTML =  (swiper.realIndex + 1).toString();
+        }
     },
     // breakpoints: {
     //     576: {

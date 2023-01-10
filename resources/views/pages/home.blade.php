@@ -23,20 +23,38 @@
             <div class="handwritten primary">New</div>
             <div class="h2">
                 <span>популярные новинки</span>
-                <div class="ht-ints"><span><span>4</span> / <span>5</span></span></div>
+                <div class="ht-ints"><span><span class="sw-current-int">1</span> / <span>5</span></span></div>
             </div>
         </div>
-        <div class="noventies-list">
-            <div class="nov-item">
-                <div class="nov-image">
-                    <img src="" alt="">
-                    <a href="#" class="nov-btn btn-2">подробнее</a>
-                </div>
-                <div class="nov-info">
-                    <div class="nov-name">Длинный заголовок чудесного товара</div>
-                    <div class="nov-price">4990 ₽</div>
+
+        <div class="n-prod-name">
+            <div class="prod-name">Длинный заголовок чудесного товара</div>
+            <div class="prod-price secondary-alt"><span>4990</span> ₽</div>
+        </div>
+
+        <div class="sw-arrow sw-prev">
+            <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
+        </div>
+
+        <div class="n-slider">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    @foreach (range(1, 7) as $i)
+                    <div class="swiper-slide">
+                        <div class="n-item">
+                            <div class="n-image">
+                                <img src="/storage/tmp/{{ rand(1,2) }}.png" alt="">
+                            </div>
+                            <a href="#" class="btn btn-secondary">подробнее</a>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
+        </div>
+
+        <div class="sw-arrow sw-next">
+            <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
         </div>
     </div>
 </div>
