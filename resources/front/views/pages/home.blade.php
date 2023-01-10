@@ -20,10 +20,10 @@
 <div class="home-novelties-box">
     <div class="container">
         <div class="n-title">
-            <div class="handwritten">New</div>
-            <div class="h-title-row">
-                <div class="h2">популярные новинки</div>
-                <div class="ht-ints"><span>4</span> / <span>5</span></div>
+            <div class="handwritten primary">New</div>
+            <div class="h2">
+                <span>популярные новинки</span>
+                <div class="ht-ints"><span><span>4</span> / <span>5</span></span></div>
             </div>
         </div>
         <div class="noventies-list">

@@ -23,6 +23,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,300&family=Playfair+Display&display=swap" rel="stylesheet">
 
         @vite('resources/front/sass/style.sass')
+        @vite('resources/front/js/app.js')
 
 
         {{-- <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css', 'assets') }}"> --}}
@@ -31,8 +32,7 @@
         {{-- {!! $props['head_code'] ?? '' !!} --}}
 
     </head>
-    {{-- !!! preloadd --}}
-    <body class="preloaddd page-{{ $view_name }}">
+    <body class="preload page-{{ $view_name }}">
         {{-- @auth
             @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
         @endauth --}}

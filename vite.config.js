@@ -11,17 +11,13 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/admin/js/app.js',
+                'resources/front/js/app.js',
 
                 // 'resources/assets/js/app.js',
                 // 'resources/assets/js/gallery.js',
                 // 'resources/assets/sass/style.sass',
             ],
-            refresh: [
-                'app/View/Components/**',
-                'lang/**',
-                'resources/**/views/**',
-                'routes/**',
-            ],
+            refresh: true,
         }),
         vue({
             template: {
@@ -32,6 +28,11 @@ export default defineConfig({
             },
         }),
     ],
+    server: {
+        watch: {
+            usePolling: true,
+        },
+    },
 
     resolve: {
         alias: {
