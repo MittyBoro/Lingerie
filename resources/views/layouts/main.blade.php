@@ -68,7 +68,7 @@
 
             <div class="footer-box">
                 <div class="container">
-                    <div class="top-row">
+                    <div class="top-row grid-12">
                         <div class="top-col">
                             <div class="f-title">Нижнее белье</div>
                             <ul>
@@ -85,15 +85,15 @@
                                 <li><a href="#">Халаты</a></li>
                             </ul>
                         </div>
-                        <div class="top-col">
+                        <div class="top-col tar">
                             <div class="f-title">Купальники</div>
                             <ul>
                                 <li><a href="#">Слитные</a></li>
                                 <li><a href="#">Раздельные</a></li>
                             </ul>
                         </div>
-                        <div class="top-col">
-                            <div class="f-title">КЛИЕНТам</div>
+                        <div class="top-col tar">
+                            <div class="f-title primary">Клиентам</div>
                             <ul>
                                 <li><a href="#">Доставка</a></li>
                                 <li><a href="#">FAQ</a></li>
@@ -102,12 +102,16 @@
                     </div>
 
                     <div class="bottom-row">
-                        <a href="#">Политика конфиденциальности</a>
-                        <a href="#" class="insta">
-                            @svg('images/icons/instagram.svg')
-                            <span>Наш Instagram</span>
-                        </a>
-                        <span>Legendary Lingerie © 2022</span>
+                        <div>
+                            <a href="#" class="politic-link">Политика конфиденциальности</a>
+                        </div>
+                        <div>
+                            <a href="#" class="insta">
+                                @svg('images/icons/instagram.svg')
+                                <span>Наш Instagram</span>
+                            </a>
+                        </div>
+                        <p>Legendary Lingerie © 2022</p>
                     </div>
                 </div>
             </div>

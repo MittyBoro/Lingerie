@@ -18,7 +18,7 @@
 </div>
 
 <div class="home-novelties-box">
-    <div class="container">
+    <div class="container grid-12">
         <div class="n-title">
             <div class="handwritten primary">New</div>
             <div class="h2">
