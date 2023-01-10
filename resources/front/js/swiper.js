@@ -26,23 +26,23 @@ Swiper.use([
 
 
 
-// слайдер 4 товара в каталоге
-let catalogSlider = new Swiper('.home-novelties-box .swiper', {
-    // spaceBetween: 0,
-    // centeredSlides: true,
-    // slidesPerView: "auto",
-    // autoplay: {
-    //     delay: 5000,
-    //     disableOnInteraction: false,
-    // },
-
+// слайдер home ПОПУЛЯРНЫЕ НОВИНКИ
+new Swiper('.home-novelties-box .swiper', {
 
     slidesPerView: 1,
     centeredSlides: true,
+
     loop: true,
+    loopAdditionalSlides: 5,
+
     keyboard: true,
-    loopAdditionalSlides: 4,
-    // loopedSlidesLimit: false,
+    slideToClickedSlide: true,
+
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+
 
     navigation: {
         nextEl: '.home-novelties-box .sw-next',
@@ -51,7 +51,6 @@ let catalogSlider = new Swiper('.home-novelties-box .swiper', {
 
     on: {
         init: (swiper) => {
-            return;
             swiper.$el[0].addEventListener('mouseenter', () => {
                 swiper.autoplay.stop()
             }, false);
