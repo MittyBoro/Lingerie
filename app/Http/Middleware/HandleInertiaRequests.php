@@ -14,7 +14,7 @@ class HandleInertiaRequests extends Middleware
      * @see https://inertiajs.com/server-side-setup#root-template
      * @var string
      */
-    protected $rootView = 'admin';
+    protected $rootView = 'layouts.admin';
 
     /**
      * Determines the current asset version.
