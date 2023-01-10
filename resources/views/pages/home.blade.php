@@ -83,25 +83,27 @@
 
 <div class="home-categories-box">
     <div class="container">
-        <div class="handwritten">Choose</div>
-        <div class="h2">категории товаров</div>
+        <div class="hc-title">
+            <div class="handwritten primary">Choose</div>
+            <div class="h2">категории<i></i> товаров</div>
+        </div>
         <div class="cats-list">
-            <div class="cat-item">
+            <a class="cat-item">
                 <div class="cat-img"><img src="/storage/tmp/cat-1.png" alt=""></div>
                 <div class="cat-name">Нижнее белье</div>
-            </div>
-            <div class="cat-item">
+            </a>
+            <a class="cat-item">
                 <div class="cat-img"><img src="/storage/tmp/cat-2.png" alt=""></div>
                 <div class="cat-name">Купальники</div>
-            </div>
-            <div class="cat-item">
+            </a>
+            <a class="cat-item">
                 <div class="cat-img"><img src="/storage/tmp/cat-3.png" alt=""></div>
                 <div class="cat-name">одежда для дома</div>
-            </div>
-            <div class="cat-item">
+            </a>
+            <a class="cat-item">
                 <div class="cat-img"><img src="/storage/tmp/cat-4.png" alt=""></div>
                 <div class="cat-name">комплекты</div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
