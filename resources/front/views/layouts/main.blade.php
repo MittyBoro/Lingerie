@@ -40,18 +40,24 @@
         <div class="wrapper">
             <div class="header-box">
                 <div class="container">
-                    <div class="left-menu">
+                    <div class="col-menu left-menu">
                         <div class="m-item"><a href="#">Каталог</a></div>
-                        <div class="m-item"><a href="#">Категории</a></div>
+                        <div class="m-item"><a href="#">
+                            <span>Категории</span>
+                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow">
+                        </a></div>
                         <div class="m-item"><a href="#">Доставка</a></div>
                     </div>
                     <a href="/" class="logo">
                        @svg('images/icons/logo.svg')
                     </a>
-                    <div class="right-menu">
+                    <div class="col-menu right-menu">
                         <div class="m-item"><a href="#">FAQ</a></div>
                         <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
-                        <div class="m-item"><a href="#">Русский</a></div>
+                        <div class="m-item"><a href="#">
+                            <span>Русский</span>
+                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow">
+                        </a></div>
                     </div>
                 </div>
             </div>

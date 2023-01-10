@@ -11,7 +11,7 @@
 <div class="home-first-box">
     <div class="container">
         <div class="middle-row">
-            <div class="h1">Нижнее белье для девушек, любящих своё тело</div>
+            <div class="h1">Нижнее<span></span> белье<span></span> для девушек,<span></span> любящих своё<span></span> тело</div>
             <a href="/catalog" class="btn">в каталог</a>
         </div>
     </div>
