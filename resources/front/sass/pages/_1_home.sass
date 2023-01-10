@@ -12,8 +12,6 @@
     .h1
         text-transform: uppercase
         margin-bottom: 34px
-        span
-            margin-right: -0.25em
 
 
 .home-novelties-box
@@ -96,5 +94,44 @@
                 visibility: hidden
                 opacity: 0
 
+
 .home-about-box
-    padding: 140px 0 0
+    padding-top: 141px
+    .hab-wrap
+        display: flex
+        justify-content: space-between
+        max-width: 1047px
+        margin: auto
+    .about-circle
+        position: relative
+        display: flex
+        align-items: center
+        justify-content: center
+        flex-shrink: 0
+        width: 403px
+        height: 403px
+        background: $secondary_alt
+        border: 2px solid $secondary
+        border-left-width: 4px
+        border-right-width: 4px
+        border-radius: 50%
+        color: $primary
+        &:hover
+            color: #FFC2BA
+        .logo-wrap
+            svg
+                width: 100%
+                height: 70px
+        .ac-bottom
+            position: absolute
+            bottom: 27px
+    .right-side
+        padding-top: 30px
+        max-width: 504px
+        .h2
+            margin-bottom: 70px
+        .a-text
+            line-height: 150%
+
+.home-categories-box
+    padding-top: 126px

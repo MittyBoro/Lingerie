@@ -11,7 +11,7 @@
 <div class="home-first-box">
     <div class="container">
         <div class="middle-row">
-            <div class="h1">Нижнее<span></span> белье<span></span> для девушек,<span></span> любящих своё<span></span> тело</div>
+            <div class="h1">Нижнее<i></i> белье<i></i> для девушек,<i></i> любящих своё<i></i> тело</div>
             <a href="/catalog" class="btn">в каталог</a>
         </div>
     </div>
@@ -61,17 +61,21 @@
 
 <div class="home-about-box">
     <div class="container">
-        <a href="#" class="about-circle">
-            @svg('images/icons/logo.svg')
-            <div class="ac-bottom">
-             @svg('images/icons/instagram.svg')
-            </div>
-        </a>
-        <div class="right-side">
-            <div class="handwritten">About</div>
-            <div class="h2">о бренде</div>
-            <div class="a-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis sit orci viverra nunc, vivamus vitae. In tincidunt morbi vulputate sit felis. Posuere nibh odio pellentesque porttitor convallis phasellus tristique. Tortor, diam duis pellent esque amet orci sed ornare consectetur nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit sit orci viverra nunc, vivamus vitae. In tincidunt morbi vulputate.
+        <div class="hab-wrap">
+            <a href="#" class="about-circle">
+                <div class="logo-wrap">
+                    @svg('images/icons/logo.svg')
+                </div>
+                <div class="ac-bottom">
+                @svg('images/icons/instagram.svg')
+                </div>
+            </a>
+            <div class="right-side">
+                <div class="handwritten secondary">About</div>
+                <div class="h2">о<i></i> бренде</div>
+                <div class="a-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis sit orci viverra nunc, vivamus vitae. In tincidunt morbi vulputate sit felis. Posuere nibh odio pellentesque porttitor convallis phasellus tristique. Tortor, diam duis pellent esque amet orci sed ornare consectetur nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit sit orci viverra nunc, vivamus vitae. In tincidunt morbi vulputate.
+                </div>
             </div>
         </div>
     </div>
