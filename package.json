@@ -9,7 +9,7 @@
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/progress": "^0.2.7",
         "@tailwindcss/forms": "^0.5.3",
-        "@tailwindcss/typography": "^0.5.8",
+        "@tailwindcss/typography": "^0.5.9",
         "@vitejs/plugin-vue": "^4.0.0",
         "autoprefixer": "^10.4.13",
         "axios": "^1.2",
@@ -31,7 +31,8 @@
         "@tiptap/extension-image": "^2.0.0-beta.209",
         "@tiptap/starter-kit": "^2.0.0-beta.209",
         "@tiptap/vue-3": "^2.0.0-beta.209",
-        "libphonenumber-js": "^1.10.17",
+        "libphonenumber-js": "^1.10.18",
+        "nouislider": "^15.6.1",
         "swiper": "^8.4.5",
         "vue": "^3.2.45"
     }

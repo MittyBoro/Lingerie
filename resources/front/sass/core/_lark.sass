@@ -122,6 +122,8 @@ p, .p
 
 img, svg
     pointer-events: none
+img.to-svg
+    opacity: 0
 
 .cover-image
     position: absolute
@@ -129,6 +131,30 @@ img, svg
     height: 100%
     object-fit: cover
     pointer-events: none
+
+
+
+.grid-12,
+.grid-6,
+.grid-4,
+.grid-3,
+.grid-2
+    display: grid
+    gap: 40px
+
+.grid-12
+    grid-template-columns: repeat(12, 1fr)
+.grid-6
+    grid-template-columns: repeat(6, 1fr)
+.grid-4
+    grid-template-columns: repeat(4, 1fr)
+.grid-3
+    grid-template-columns: repeat(3, 1fr)
+.grid-2
+    grid-template-columns: repeat(2, 1fr)
+.col-full
+    grid-column: 1 / -1
+
 
 // ------- Flex-grid -------
 .row

@@ -27,7 +27,7 @@
     border-left-width: 3px
     border-right-width: 3px
 
-    color: #fff !important
+    color: inherit !important
 
     background: rgba($primary, 0.2)
     backdrop-filter: blur(7.5px)
@@ -43,3 +43,16 @@
     background: rgba($secondary, 0.2)
     &:hover
         background: rgba($secondary, 0.35)
+
+.btn-mini
+    max-height: 59px
+    padding: 0 63px
+    font-size: 12px
+    background: transparent
+    border: 1px solid $secondary
+    &:not(:hover)
+        color: $body-color-alt !important
+    &:hover
+        background: rgba($primary, 0.35)
+        background: transparent
+        border-color: $secondary-alt

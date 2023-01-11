@@ -33,7 +33,7 @@
         width: 42px
         flex-shrink: 0
         text-align: center
-        color: $secondary_alt
+        color: $secondary-alt
         span
             font: 400 12px $font-family, sans-serif
 
@@ -61,11 +61,11 @@
         .n-image
             +absfull
             background: $primary
-            transition: all .3s ease-out
+            transition: all .35s ease-out
             overflow: hidden
             img
                 @extend .cover-image
-                transition: opacity .2s
+                transition: opacity .3s
         .btn
             position: absolute
             bottom: 68px
@@ -73,6 +73,10 @@
     .swiper
         max-width: 201px
         overflow: visible
+        transition: .4s
+        &:not(&-initialized)
+            visibility: hidden
+            opacity: 0
     .swiper-wrapper
         margin-left: -203px
     .swiper-slide
@@ -111,7 +115,7 @@
         flex-shrink: 0
         width: 403px
         height: 403px
-        background: $secondary_alt
+        background: $secondary-alt
         border: 2px solid $secondary
         border-left-width: 4px
         border-right-width: 4px
@@ -136,7 +140,7 @@
 
 
 .home-categories-box
-    padding: 126px 0 140px
+    padding: 126px 0 5px
     .hc-title
         text-align: center
         margin-bottom: 68px

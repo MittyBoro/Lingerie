@@ -1,4 +1,5 @@
-import {setScrollbarWidth} from './libs/methods';
+// import {setScrollbarWidth} from './libs/methods';
+import { slideToggle } from './libs/slideToggle';
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -78,6 +79,20 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+
+    document.querySelectorAll('[toggle-parent] [toggle-click]').forEach(element => {
+        let parent = element.closest('[toggle-parent]'),
+            list   = parent.querySelector('[toggle-el]')
+
+        element.addEventListener('click', () => {
+            parent.classList.toggle('active');
+
+            if (list)
+                slideToggle(list, 300)
+        })
+    });
+
 
 
     // document.addEventListener('scroll', e => {

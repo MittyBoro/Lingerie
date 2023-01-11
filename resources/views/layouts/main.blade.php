@@ -44,7 +44,7 @@
                         <div class="m-item"><a href="#">Каталог</a></div>
                         <div class="m-item"><a href="#">
                             <span>Категории</span>
-                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow">
+                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow to-svg">
                         </a></div>
                         <div class="m-item"><a href="#">Доставка</a></div>
                     </div>
@@ -56,7 +56,7 @@
                         <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
                         <div class="m-item"><a href="#">
                             <span>Русский</span>
-                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow">
+                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow to-svg">
                         </a></div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                 <div class="container">
                     <div class="top-row grid-12">
                         <div class="top-col">
-                            <div class="f-title">Нижнее белье</div>
+                            <div class="f-title mini-title">Нижнее белье</div>
                             <ul>
                                 <li><a href="#">Бюстгальтеры</a></li>
                                 <li><a href="#">Трусики</a></li>
@@ -79,21 +79,21 @@
                             </ul>
                         </div>
                         <div class="top-col">
-                            <div class="f-title">для дома</div>
+                            <div class="f-title mini-title">для дома</div>
                             <ul>
                                 <li><a href="#">Пижамы</a></li>
                                 <li><a href="#">Халаты</a></li>
                             </ul>
                         </div>
                         <div class="top-col tar">
-                            <div class="f-title">Купальники</div>
+                            <div class="f-title mini-title">Купальники</div>
                             <ul>
                                 <li><a href="#">Слитные</a></li>
                                 <li><a href="#">Раздельные</a></li>
                             </ul>
                         </div>
                         <div class="top-col tar">
-                            <div class="f-title primary">Клиентам</div>
+                            <div class="f-title mini-title primary">Клиентам</div>
                             <ul>
                                 <li><a href="#">Доставка</a></li>
                                 <li><a href="#">FAQ</a></li>

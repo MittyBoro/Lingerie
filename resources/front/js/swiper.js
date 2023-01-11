@@ -39,7 +39,7 @@ new Swiper('.home-novelties-box .swiper', {
     slideToClickedSlide: true,
 
     autoplay: {
-        delay: 5000,
+        delay: 7000,
         disableOnInteraction: false,
     },
 
