@@ -130,6 +130,30 @@ input[type=radio]
     &:hover
         border-color: $body-color-alt
 
+.form-radio
+    color: $body-color-alt
+    input
+        display: none
+        &:checked ~ .fr-item
+            color: $body-color
+            border-color: $secondary-alt
+    .fr-item
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 2.222em
+        height: 2.222em
+        letter-spacing: 0.05em
+        font-size: 18px
+        border: 1px solid #fff
+        border-radius: 50%
+        cursor: pointer
+        transition: border .2s, color .2s
+        &:hover
+            border-color: $secondary
+
+
+
 
 form
     &.loading,
