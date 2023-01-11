@@ -50,15 +50,15 @@ a, .a
     text-transform: uppercase
     i
         margin-right: -0.25em
-.h1, h1
+.h1
     font-size: 96px
     line-height: 1.104166
-.h2, h2
+.h2
     font-size: 60px
     line-height: 1.1
-.h3, h3
+.h3
     font-size: 24px
-.h4, h4
+.h4
     font-size: 22px
 .h5
     font-size: 20px
@@ -100,3 +100,26 @@ p, .p
     &::-webkit-scrollbar-corner
         background: tranparent
 
+
+.pagination
+    display: flex
+    margin-top: 46px
+    margin-bottom: 6px
+    li
+        margin: 0 6px
+        letter-spacing: 0.05em
+        font-size: 14px
+        color: $body-color-alt
+        &.disabled
+            display: none
+        &.prev
+            svg
+                transform: scaleX(-1)
+        &.active
+            margin: 0 7px
+            color: $secondary-alt
+            font-weight: 700
+        svg
+            margin: 0 2px
+            width: 11px
+            height: 9px

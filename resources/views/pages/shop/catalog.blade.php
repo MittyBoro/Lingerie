@@ -173,22 +173,43 @@
 
             <div class="catalog-list grid-3">
                 @foreach (range(1, 6) as $i)
-                    <div class="catalog-item">
+                    <a href="#" class="catalog-item">
                         <div class="catalog-images">
-                            <img src="/storage/tmp/1.png" alt="">
+                            <div class="catalog-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></div>
                         </div>
-                        <a href="#">Длинный заголовок чудесного товара</a>
+                        <div class="ci-name">Длинный заголовок чудесного товара</div>
                         <div class="ci-price"><span>4990</span> ₽</div>
-                    </div>
+                    </a>
                 @endforeach
                 <div class="catalog-bottom-row col-full">
                     <div class="btn btn-show-more">показать еще</div>
-                    <div class="pagintaion">
-                        <span>1</span>
-                        <span>2</span>
-                        <span>3</span>
-                        <span>Следующая</span>
-                    </div>
+                    <ul class="pagination">
+                        <li class="prev disabled">
+                            <a href="">
+                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
+                                <span>Назад</span>
+                            </a>
+                        </li>
+                        <li class="  page-1">
+                            <a href="?page=1">1</a>
+                        </li>
+                        <li class=" page-2 active">
+                            <a href="?page=2">2</a>
+                        </li>
+                        <li class=" page-3">
+                            <a href="?page=3">3</a>
+                        </li>
+                        <li class="dots" aria-disabled="true"><span>...</span></li>
+                        <li class=" page-11">
+                            <a href="?page=11">9</a>
+                        </li>
+                        <li class="next ">
+                            <a href="?page=2">
+                                <span>Следующая</span>
+                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
