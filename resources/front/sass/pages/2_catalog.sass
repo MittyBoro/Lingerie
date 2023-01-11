@@ -133,8 +133,8 @@
             &:not(&-initialized)
                 padding-bottom: 133.08%
                 background: $primary
-                img
-                    opacity: 0
+                .swiper-wrapper
+                    display: none
         .sw-arrow
             position: absolute
             border: none
@@ -167,7 +167,7 @@
                     transform: scale(1.05)
             img
                 @extend .cover-image
-                transition: opacity .2s, transform .2s
+                transition: transform .2s
         .ci-name
             line-height: 125%
             text-align: center
