@@ -173,13 +173,27 @@
 
             <div class="catalog-list grid-3">
                 @foreach (range(1, 6) as $i)
-                    <a href="#" class="catalog-item">
-                        <div class="catalog-images">
-                            <div class="catalog-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></div>
+                    <div class="catalog-item">
+                        <div class="catalog-images-wrapper">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    @foreach (range(1, 3) as $i)
+                                        <div class="swiper-slide">
+                                            <a href="#" class="catalog-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div class="sw-arrow sw-prev">
+                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
+                            </div>
+                            <div class="sw-arrow sw-next">
+                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
+                            </div>
                         </div>
-                        <div class="ci-name">Длинный заголовок чудесного товара</div>
+                        <a href="#" class="ci-name">Длинный заголовок чудесного товара</a>
                         <div class="ci-price"><span>4990</span> ₽</div>
-                    </a>
+                    </div>
                 @endforeach
                 <div class="catalog-bottom-row col-full">
                     <div class="btn btn-show-more">показать еще</div>

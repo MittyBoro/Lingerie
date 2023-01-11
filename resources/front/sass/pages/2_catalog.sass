@@ -112,18 +112,62 @@
         display: flex
         flex-direction: column
         align-items: center
+        min-width: 1px
         &:hover
             color: $primary_alt
+            .sw-arrow
+                opacity: 1
+                pointer-events: auto
             .ci-name
                 font-weight: 700
-        .catalog-images
+        .catalog-images-wrapper
+            position: relative
+            display: flex
+            align-items: center
             margin-bottom: 31px
             width: 100%
-            .catalog-image
-                position: relative
+            min-width: 1px
+        .swiper
+            min-width: 1px
+            width: 100%
+            &:not(&-initialized)
                 padding-bottom: 133.08%
+                background: $primary
                 img
-                    @extend .cover-image
+                    opacity: 0
+        .sw-arrow
+            position: absolute
+            border: none
+            width: 50px
+            height: 50px
+            background: #FFF2F0
+            color: $secondary-alt
+            opacity: 0
+            pointer-events: none
+            &:hover
+                color: $primary-alt
+            svg
+                margin-left: -12px
+                height: 13px
+                width: 13px
+        .sw-prev
+            left: -25px
+        .sw-next
+            right: -25px
+
+        .catalog-image
+            position: relative
+            display: block
+            padding-bottom: 133.08%
+            width: 100%
+            background: $primary
+            overflow: hidden
+            &:hover
+                img
+                    transform: scale(1.05)
+            img
+                @extend .cover-image
+                transition: opacity .2s, transform .2s
         .ci-name
             line-height: 125%
             text-align: center

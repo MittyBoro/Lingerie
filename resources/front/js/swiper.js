@@ -10,9 +10,9 @@ import Swiper, {
 } from 'swiper'
 
 import 'swiper/css';
+import 'swiper/css/effect-fade';
 // import 'swiper/css/navigation';
 // import 'swiper/css/autoplay';
-// import 'swiper/css/effect-fade';
 
 
 Swiper.use([
@@ -86,3 +86,42 @@ new Swiper('.home-novelties-box .swiper', {
     //     }
     // }
 });
+
+
+document.querySelectorAll('.catalog-item .swiper').forEach(el => {
+    // слайдер home ПОПУЛЯРНЫЕ НОВИНКИ
+
+    let parent = el.closest('.catalog-item')
+    new Swiper(el, {
+
+        slidesPerView: 1,
+        loop: true,
+        effect: 'fade',
+        navigation: {
+            nextEl: parent.querySelector('.sw-next'),
+            prevEl: parent.querySelector('.sw-prev'),
+        },
+
+        // breakpoints: {
+        //     576: {
+        //     },
+        //     768: {
+        //         spaceBetween: 30,
+        //         slidesPerView: 3,
+        //     },
+        //     992: {
+        //         enabled: false,
+        //         spaceBetween: 45,
+        //         autoplay: false,
+        //         enabled: false,
+        //         loop: false,
+        //         slidesPerView: 4,
+        //     },
+        //     1250: {
+        //         enabled: false,
+        //         spaceBetween: 60,
+        //         slidesPerView: 4,
+        //     }
+        // }
+    });
+})
