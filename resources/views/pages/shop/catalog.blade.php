@@ -12,7 +12,7 @@
 
         <div class="grid-grid grid-12">
             <div class="sidebar">
-                <div class="sb-sort sb-element" toggle-parent>
+                <div class="sb-sort sb-element" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>сначала новое</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="sb-menu sb-element active" toggle-parent>
+                <div class="sb-menu sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>категория</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <div class="sb-color sb-element active" toggle-parent>
+                <div class="sb-color sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>выбор цвета</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <div class="sb-price sb-element active" toggle-parent>
+                <div class="sb-price sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>Цена, ₽</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
@@ -110,7 +110,7 @@
                     </div>
                 </div>
 
-                <div class="sb-size sb-element active" toggle-parent>
+                <div class="sb-size sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>размер</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">

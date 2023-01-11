@@ -9,7 +9,7 @@
 <div class="product-box">
     <div class="container">
         <div class="prod-grid grid-12">
-            <div class="prod-main-col">
+            <div class="prod-main-col left-col">
                 <div class="breadcrumbs">
                     <a href="#">Главная</a>
                     <span class="delimeter">/</span>
@@ -81,11 +81,11 @@
                 <div class="btn">добавить в корзину</div>
             </div>
 
-            <div class="gallery-col">
+            <div class="gallery-col right-col">
                 <div class="full-row">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            @foreach ([1, 2, 1, 2, 1, 2] as $i)
+                            @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
                                 <div class="swiper-slide">
                                     <div class="gallery-image zoom-image" style="background-image: url('/storage/tmp/{{ $i }}.png')"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
                                 </div>
@@ -104,7 +104,7 @@
                     <div class="swiper-container">
                         <div class="swiper">
                             <div class="swiper-wrapper">
-                                @foreach ([1, 2, 1, 2, 1, 2] as $i)
+                                @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
                                     <div class="swiper-slide">
                                         <div class="gallery-image"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
                                     </div>
@@ -115,32 +115,46 @@
                 </div>
             </div>
 
-            {{-- <div class="bottom-info-col">
-                <div class="bi-item">
-                    <div class="b-title">Описание</div>
-                    <div class="bi-text">Этот пояс для чулок из лаконичной и в то же время чувственной коллекции Henrieta выполнен из розового тюля. Передняя панель украшена вышивкой с растительным мотивом. Края обрамлены эластичными лентами. </div>
+            <div class="bottom-info-col left-col">
+                <div class="bi-item active" toggling>
+                    <div class="b-title" toggle-click>
+                        <span>Описание</span>
+                        <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
+                    </div>
+                    <div class="bi-text text-el" toggle-el>Этот пояс для чулок из лаконичной и в то же время чувственной коллекции Henrieta выполнен из розового тюля. Передняя панель украшена вышивкой с растительным мотивом. Края обрамлены эластичными лентами. </div>
                 </div>
-                <div class="bi-item">
-                    <div class="b-title">Состав</div>
-                    <div class="bi-text">Верхний слой с вышивкой: Основа: 100% полиамид, Вышивка: 100% полиэстер, Сетчатый верхний слой: 100% полиамид. </div>
+                <div class="bi-item active" style="max-width: 263px" toggling>
+                    <div class="b-title" toggle-click>
+                        <span>Состав</span>
+                        <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
+                    </div>
+                    <div class="bi-text text-el" toggle-el>Верхний слой с вышивкой: Основа: 100% полиамид, Вышивка: 100% полиэстер, Сетчатый верхний слой: 100% полиамид. </div>
                 </div>
-                <div class="bi-item">
-                    <div class="b-title">уход</div>
-                    <div class="bi-text">Рекомендована раздельная ручная стирка и бережная сушка.</div>
+                <div class="bi-item active" style="max-width: 263px" toggling>
+                    <div class="b-title text-el" toggle-click>
+                        <span>уход</span>
+                        <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
+                    </div>
+                    <div class="bi-text" toggle-el>Рекомендована раздельная ручная стирка и бережная сушка.</div>
                 </div>
             </div>
-            <div class="bottom-table-col">
-                <div class="b-title">таблица размеров</div>
-                <img src="/storage/tmp/table.png" alt="">
-            </div> --}}
+            <div class="bottom-table-col right-col active" toggling>
+                <div class="b-title" toggle-click>
+                    <span>таблица размеров</span>
+                    <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
+                </div>
+                <div class="table-el" toggle-el>
+                    <img src="/storage/tmp/table.png" alt="">
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="catalog-box product-catalog-box">
     <div class="container">
-        <div class="handwritten">Look</div>
-        <div class="h2">вам может понравиться</div>
+        <div class="handwritten secondary">Look</div>
+        <div class="h2">вам<i></i> может понравиться</div>
         <div class="catalog-list grid-4">
             @foreach (range(1, 4) as $i)
                 <div class="catalog-item">

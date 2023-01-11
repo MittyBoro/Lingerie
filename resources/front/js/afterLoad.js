@@ -81,15 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    document.querySelectorAll('[toggle-parent] [toggle-click]').forEach(element => {
-        let parent = element.closest('[toggle-parent]'),
-            list   = parent.querySelector('[toggle-el]')
+    document.querySelectorAll('[toggling] [toggle-click]').forEach(element => {
+        let toggling = element.closest('[toggling]'),
+            toggleEl   = toggling.querySelector('[toggle-el]')
 
         element.addEventListener('click', () => {
-            parent.classList.toggle('active');
+            toggling.classList.toggle('active');
 
-            if (list)
-                slideToggle(list, 300)
+            if (toggleEl)
+                slideToggle(toggleEl, 300)
         })
     });
 

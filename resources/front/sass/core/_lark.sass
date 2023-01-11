@@ -90,7 +90,7 @@ p, .p
 .preload *
     transition: none !important
 
-.text-box
+.text-el
     h1,h2,h3,h4,h5,h6
         margin: 25px 0 15px
 
@@ -211,3 +211,15 @@ img.to-svg
         &:not(.tab-active)
             display: none
 
+
+// toggling
+[toggling]
+    [toggle-click]
+        cursor: pointer
+        .icon
+            flex-shrink: 0
+            transition: transform .2s
+    &.active
+        [toggle-click]
+            .icon
+                transform: rotate(180deg)

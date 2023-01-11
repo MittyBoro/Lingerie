@@ -2,10 +2,13 @@
     padding-top: 6px
 
     .prod-grid
-        row-gap: 54px
+        row-gap: 56px
+    .left-col
+        grid-column: span 5
+    .right-col
+        grid-column: span 7
 
     .prod-main-col
-        grid-column: span 5
         .prod-title
             font-size: 35px
             line-height: 1.2285
@@ -32,7 +35,6 @@
 
     .gallery-col
         display: flex
-        grid-column: span 7
         .swiper
             width: 100%
             &:not(&-initialized)
@@ -112,3 +114,38 @@
                 &:hover
                     img
                         transform: scale(1.05)
+
+
+    .b-title
+        display: flex
+        align-items: center
+        margin-bottom: 10px
+        font-size: 15px
+        font-weight: 700
+        color: $body-color-alt
+        letter-spacing: 0.1em
+        text-transform: uppercase
+        cursor: pointer
+        .icon
+            margin-left: 10px
+            width: 15px
+            height: 15px
+
+    .bottom-info-col
+        color: $body-color-alt
+        .bi-item
+            margin-bottom: 28px
+            max-width: 436px
+        .bi-text
+            font-size: 14px
+            line-height: 1.25
+
+    .bottom-table-col
+        .table-el
+            padding-top: 5px
+
+
+.product-catalog-box
+    padding-top: 35px
+    .h2
+        max-width: 7em
