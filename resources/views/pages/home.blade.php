@@ -89,19 +89,19 @@
         </div>
         <div class="cats-list">
             <a class="cat-item">
-                <div class="cat-img"><img src="/storage/tmp/cat-1.png" alt=""></div>
+                <div class="prod-image"><img src="/storage/tmp/cat-1.png" alt=""></div>
                 <div class="cat-name">Нижнее белье</div>
             </a>
             <a class="cat-item">
-                <div class="cat-img"><img src="/storage/tmp/cat-2.png" alt=""></div>
+                <div class="prod-image"><img src="/storage/tmp/cat-2.png" alt=""></div>
                 <div class="cat-name">Купальники</div>
             </a>
             <a class="cat-item">
-                <div class="cat-img"><img src="/storage/tmp/cat-3.png" alt=""></div>
+                <div class="prod-image"><img src="/storage/tmp/cat-3.png" alt=""></div>
                 <div class="cat-name">одежда для дома</div>
             </a>
             <a class="cat-item">
-                <div class="cat-img"><img src="/storage/tmp/cat-4.png" alt=""></div>
+                <div class="prod-image"><img src="/storage/tmp/cat-4.png" alt=""></div>
                 <div class="cat-name">комплекты</div>
             </a>
         </div>

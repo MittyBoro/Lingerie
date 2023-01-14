@@ -1,0 +1,72 @@
+.cart-box
+
+    .h2
+        margin-bottom: 68px
+
+    .cart-item
+        padding-bottom: 30px
+        margin-bottom: 31px
+        border-bottom: 1px solid $primary
+        .cart-image-col
+            grid-column: span 2
+        .cart-name-col
+            grid-column: span 5
+            .cart-name
+                max-width: 240px
+                font-size: 20px
+                line-height: 125%
+        .cart-count-col
+            grid-column: span 3
+            .c-ints-row
+                display: flex
+                align-items: center
+                padding-left: 6px
+                .int
+                    margin: 0 11px
+                    min-width: 10px
+                .circle
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    flex-shrink: 0
+                    width: 19px
+                    height: 19px
+                    background: no-repeat 50% 50%
+                    border: 1px solid $secondary
+                    border-radius: 50%
+                    cursor: pointer
+                    transition: border .2s
+                    &:hover
+                        border-color: $secondary-alt
+                    &.minus
+                        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%227%22%20height%3D%221%22%20fill%3D%22none%22%20viewBox%3D%220%200%207%201%22%3E%3Cpath%20fill%3D%22%23858585%22%20d%3D%22M7%201V0H0v1h7Z%22%2F%3E%3C%2Fsvg%3E")
+                    &.plus
+                        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%227%22%20height%3D%227%22%20fill%3D%22none%22%20viewBox%3D%220%200%207%207%22%3E%3Cg%20fill%3D%22%23858585%22%3E%3Cpath%20d%3D%22M7%204V3H0v1h7Z%22%2F%3E%3Cpath%20d%3D%22M4%200H3v7h1V0Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+
+        .cart-price-col
+            align-items: flex-end
+            grid-column: span 2
+            .cart-price
+                font-size: 20px
+                font-weight: 700
+            .cart-remove
+                &:hover
+                    color: $red
+        .c-text-col
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            padding: 25px 0 27px
+
+    .cart-subtotal-row
+        padding-top: 50px
+        padding-bottom: 10px
+        align-items: center
+        font-size: 30px
+        .cart-sb-name
+            grid-column: 3 / span 4
+        .cart-price
+            grid-column: span 3
+            text-align: center
+        .btn
+            grid-column: span 3

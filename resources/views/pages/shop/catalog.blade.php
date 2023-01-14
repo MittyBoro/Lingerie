@@ -179,7 +179,7 @@
                                 <div class="swiper-wrapper">
                                     @foreach (range(1, 3) as $i)
                                         <div class="swiper-slide">
-                                            <a href="#" class="catalog-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></a>
+                                            <a href="#" class="prod-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></a>
                                         </div>
                                     @endforeach
                                 </div>

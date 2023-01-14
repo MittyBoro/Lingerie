@@ -39,16 +39,6 @@
             width: 100%
             &:not(&-initialized)
                 display: none
-        .gallery-image
-            position: relative
-            display: block
-            padding-bottom: 133.08%
-            width: 100%
-            background: $primary
-            overflow: hidden
-            img
-                @extend .cover-image
-                transition: transform .2s, opacity .5s
         .full-row
             position: relative
             display: flex
@@ -109,11 +99,6 @@
             .swiper-slide-thumb-active
                 img
                     opacity: .5
-            .gallery-image
-                cursor: pointer
-                &:hover
-                    img
-                        transform: scale(1.05)
 
 
     .b-title

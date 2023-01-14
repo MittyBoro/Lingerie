@@ -87,7 +87,7 @@
                         <div class="swiper-wrapper">
                             @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
                                 <div class="swiper-slide">
-                                    <div class="gallery-image zoom-image" style="background-image: url('/storage/tmp/{{ $i }}.png')"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
+                                    <div class="prod-image zoom-image" style="background-image: url('/storage/tmp/{{ $i }}.png')"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
                                 </div>
                             @endforeach
                         </div>
@@ -106,7 +106,7 @@
                             <div class="swiper-wrapper">
                                 @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
                                     <div class="swiper-slide">
-                                        <div class="gallery-image"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
+                                        <div class="prod-image"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
                                     </div>
                                 @endforeach
                             </div>

@@ -35,6 +35,8 @@ a, .a
     color: $primary-alt
 .secondary-alt
     color: $secondary-alt
+.gray
+    color: $body-color-alt
 
 
 .text-box
@@ -132,3 +134,16 @@ p, .p
         display: inline-block
         margin: 0 3px
 
+.prod-image
+    position: relative
+    display: block
+    padding-bottom: 133.08%
+    width: 100%
+    background: $primary
+    overflow: hidden
+    &:not(.wa-hover):hover
+        img
+            transform: scale(1.05)
+    img
+        @extend .cover-image
+        transition: transform .2s, opacity .2s
