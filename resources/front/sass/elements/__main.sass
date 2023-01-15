@@ -146,3 +146,39 @@ p, .p
     img
         @extend .cover-image
         transition: transform .2s, opacity .2s
+
+
+
+.text-el
+    letter-spacing: 0.05em
+    h1,h2,h3,h4,h5,h6
+        margin: 2em 0 1.75em
+        font-weight: 700
+        letter-spacing: 0
+
+    h2,h3, h4
+        color: $secondary-alt
+
+    h2
+        font-size: 20px
+    h3
+        font-size: 16px
+    h4
+        font-size: 13px
+
+    ul, ol
+        margin: 10px 0 20px
+    li
+        margin: 8px 0
+    ul li
+        list-style: disc inside
+    ol li
+        list-style: decimal inside
+    p
+        margin: 0 0 1.2em
+
+
+    & > *:first-child
+        margin-top: 0
+    & > *:last-child
+        margin-bottom: 0
