@@ -219,6 +219,9 @@ img.to-svg
         .icon
             flex-shrink: 0
             transition: transform .2s
+    &:not(.initialized):not(.active)
+        [toggle-el]
+            display: none
     &.active
         [toggle-click]
             .icon

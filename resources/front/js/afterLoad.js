@@ -1,5 +1,5 @@
 // import {setScrollbarWidth} from './libs/methods';
-import { slideToggle } from './libs/slideToggle';
+import { slideDown, slideUp } from './libs/slideToggle';
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -85,11 +85,20 @@ document.addEventListener('DOMContentLoaded', function() {
         let toggling = element.closest('[toggling]'),
             toggleEl   = toggling.querySelector('[toggle-el]')
 
-        element.addEventListener('click', () => {
-            toggling.classList.toggle('active');
+        toggling.classList.add('initialized')
+        if ( !toggling.classList.contains('active') ) {
+            toggleEl.style.display = 'none'
+        }
 
-            if (toggleEl)
-                slideToggle(toggleEl, 300)
+        element.addEventListener('click', () => {
+
+            if ( toggling.classList.contains('active') ) {
+                toggling.classList.remove('active');
+                slideUp(toggleEl, 300)
+            } else {
+                toggling.classList.add('active');
+                slideDown(toggleEl, 300)
+            }
         })
     });
 

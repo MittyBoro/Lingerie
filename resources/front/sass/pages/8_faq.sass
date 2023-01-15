@@ -1,0 +1,27 @@
+.faq-box
+    .faq-list
+        display: grid
+        gap: 30px
+        max-width: 968px
+    .faq-item
+        &.active
+            .faq-title
+                font-weight: 700
+                color: $secondary-alt
+        .faq-title
+            display: flex
+            align-items: center
+            justify-content: space-between
+            .icon
+                margin-top: 5px
+                margin-right: -6px
+                width: 22px
+                height: 23px
+                color: #858585
+        .faq-title,
+        .faq-value
+            font-size: 20px
+            padding: 26px 36px
+            background: #fff
+        .faq-value
+            padding-top: 10px
