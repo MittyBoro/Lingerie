@@ -23,13 +23,17 @@
             <div class="handwritten primary">New</div>
             <div class="h2">
                 <span>популярные новинки</span>
-                <div class="ht-ints"><span><span class="sw-current-int">1</span> / <span>5</span></span></div>
+                <div class="ht-ints">
+                    <span class="sw-current-int">1</span>
+                    <span> / </span>
+                    <span>5</span>
+                </div>
             </div>
         </div>
 
         <div class="n-prod-name">
             <div class="prod-name">Длинный заголовок чудесного товара</div>
-            <div class="prod-price secondary-alt"><span>4990</span> ₽</div>
+            <div class="prod-price secondary-alt"><span class="prod-price-value">4990</span> ₽</div>
         </div>
 
         <div class="sw-arrow sw-prev">
@@ -40,7 +44,7 @@
             <div class="swiper">
                 <div class="swiper-wrapper">
                     @foreach (range(1, 7) as $i)
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" data-name="Товар #{{ $i }}" data-price="{{ $i }}000">
                         <div class="n-item">
                             <div class="n-image">
                                 <img src="/storage/tmp/{{ rand(1,2) }}.png" alt="">

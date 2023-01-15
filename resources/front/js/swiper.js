@@ -63,7 +63,16 @@ new Swiper('.home-novelties-box .swiper', {
             let intEl = document.querySelector('.home-novelties-box .sw-current-int')
             if (intEl)
                 intEl.innerHTML =  (swiper.realIndex + 1).toString();
-        }
+        },
+        slideChange: (swiper) => {
+            let current = swiper.slides[swiper.activeIndex]
+
+            let name = current.dataset.name
+            let price = current.dataset.price
+
+            document.querySelector('.home-novelties-box .prod-name').innerHTML = name
+            document.querySelector('.home-novelties-box .prod-price-value').innerHTML = price
+        },
     },
     // breakpoints: {
     //     576: {
@@ -90,7 +99,7 @@ new Swiper('.home-novelties-box .swiper', {
 
 
 
-// слайдер home ПОПУЛЯРНЫЕ НОВИНКИ
+// слайдер картинок в товаре
 document.querySelectorAll('.catalog-item .swiper').forEach(el => {
 
     let parent = el.closest('.catalog-item')
