@@ -42,10 +42,19 @@
                 <div class="container">
                     <div class="col-menu left-menu">
                         <div class="m-item"><a href="#">Каталог</a></div>
-                        <div class="m-item"><a href="#">
-                            <span>Категории</span>
-                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow to-svg">
-                        </a></div>
+                        <div class="m-item">
+                            <a href="#">
+                                <span>Категории</span>
+                                <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
+                            </a>
+                            <div class="m-item-list">
+                                <a href="#">Категория</a>
+                                <a href="#">Категория</a>
+                                <a href="#">Категория</a>
+                                <a href="#">Категория</a>
+                                <a href="#">Категория</a>
+                            </div>
+                        </div>
                         <div class="m-item"><a href="#">Доставка</a></div>
                     </div>
                     <a href="/" class="logo">
@@ -54,10 +63,16 @@
                     <div class="col-menu right-menu">
                         <div class="m-item"><a href="#">FAQ</a></div>
                         <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
-                        <div class="m-item"><a href="#">
-                            <span>Русский</span>
-                            <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon-arrow to-svg">
-                        </a></div>
+                        <div class="m-item">
+                            <a href="#">
+                                <span>Русский</span>
+                                <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
+                            </a>
+                            <div class="m-item-list">
+                                <a href="#">Русский</a>
+                                <a href="#">English</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -20,8 +20,30 @@
         justify-content: flex-end
         .m-item
             margin-left: 85px
-    .icon-arrow
+    .icon
         margin-left: 3px
+        transition: transform .2s
+
+    .m-item
+        position: relative
+        &:hover
+            .icon
+                transform: rotate(180deg)
+            .m-item-list
+                visibility: visible
+                opacity: 1
+
+        .m-item-list
+            position: absolute
+            padding: 10px 0
+            top: 99%
+            display: grid
+            gap: 3px
+            visibility: hidden
+            opacity: 0
+            transition: .2s
+
+
 
 
 .page-home
