@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleEl   = toggling.querySelector('[toggle-el]')
 
         toggling.classList.add('initialized')
-        if ( !toggling.classList.contains('active') ) {
+        if ( !toggling.classList.contains('active') && toggleEl ) {
             toggleEl.style.display = 'none'
         }
 
@@ -94,10 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if ( toggling.classList.contains('active') ) {
                 toggling.classList.remove('active');
-                slideUp(toggleEl, 300)
+                if (toggleEl)
+                    slideUp(toggleEl, 300)
             } else {
                 toggling.classList.add('active');
-                slideDown(toggleEl, 300)
+                if (toggleEl)
+                    slideDown(toggleEl, 300)
             }
         })
     });

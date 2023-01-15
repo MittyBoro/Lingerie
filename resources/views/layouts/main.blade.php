@@ -38,8 +38,11 @@
         @endauth --}}
 
         <div class="wrapper">
-            <div class="header-box">
+            <div class="header-box" toggling>
                 <div class="container">
+                    <div class="hamb-wrap">
+                        <div class="hamburger" toggle-click></div>
+                    </div>
                     <div class="col-menu left-menu">
                         <div class="m-item"><a href="#">Каталог</a></div>
                         <div class="m-item">
@@ -65,6 +68,67 @@
                         <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
                         <div class="m-item">
                             <span class="a">
+                                <span>Русский</span>
+                                <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
+                            </span>
+                            <div class="m-item-list">
+                                <a href="#">Русский</a>
+                                <a href="#">English</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-wrap">
+                        <div class="cart-icon a">
+                            <span class="int">3</span>
+                            @svg('images/icons/shopping-bag.svg')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-box">
+                <div class="container">
+                    <div class="grid-row grid-2">
+                        <div class="top-col">
+                            <div class="f-title mini-title secondary">Нижнее белье</div>
+                            <ul>
+                                <li><a href="#">Бюстгальтеры</a></li>
+                                <li><a href="#">Трусики</a></li>
+                                <li><a href="#">Пояса</a></li>
+                                <li><a href="#">Комплекты</a></li>
+                            </ul>
+                        </div>
+                        <div class="top-col">
+                            <div class="f-title mini-title secondary">Купальники</div>
+                            <ul>
+                                <li><a href="#">Слитные</a></li>
+                                <li><a href="#">Раздельные</a></li>
+                            </ul>
+                        </div>
+                        <div class="top-col">
+                            <div class="f-title mini-title secondary">для дома</div>
+                            <ul>
+                                <li><a href="#">Пижамы</a></li>
+                                <li><a href="#">Халаты</a></li>
+                            </ul>
+                        </div>
+                        <div class="top-col">
+                            <div class="f-title mini-title primary">Клиентам</div>
+                            <ul>
+                                <li><a href="#">Доставка</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bottom-row">
+                        <div class="gray">
+                            <a href="#" class="insta">
+                                @svg('images/icons/instagram.svg')
+                                <span>Наш Instagram</span>
+                            </a>
+                        </div>
+                        <div class="m-item">
+                            <span class="a tar">
                                 <span>Русский</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
