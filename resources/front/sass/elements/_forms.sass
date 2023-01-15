@@ -6,36 +6,34 @@
 //     letter-spacing: 0.06em
 //     text-transform: uppercase
 
-// .form-input
-//     position: relative
-//     display: flex
-//     align-items: center
-//     margin-bottom: 22px
-//     width: 100%
-//     input, textarea, select
-//         display: block
-//         padding: 0 40px
-//         height: 40px
-//         width: 100%
-//         background: transparent
-//         font-weight: 500
-//         line-height: 1
-//         color: currentColor
-//         background: #fff
-//         transition: .2s
-//         border-radius: 20px
-//         border: 2px solid #BA8ACA
-//         &::placeholder
-//             color: #777
-//         &:focus
-//             border-color: $primary
-//         &.valid::-webkit-calendar-picker-indicator
-//             opacity: 1
-//         &.invalid
-//             box-shadow: inset 0 0 0 1px #E37A74
-//             color: #E37A74
-//         &.valid ~ .valid-icon
-//             display: block
+.form-input
+    position: relative
+    display: flex
+    align-items: center
+    width: 100%
+
+    input, textarea, select
+        display: block
+        padding: 0
+        height: 34px
+        width: 100%
+
+        color: $body-color-alt
+        font-weight: 700
+        font-size: 12px
+        line-height: 1
+        letter-spacing: 0.05em
+
+        border-bottom: 1px solid currentColor
+        &::placeholder
+            color: $body-color-alt
+        &:focus,
+        &.valid
+            color: $body-color
+        &.invalid
+            color: #E37A74
+            // &.valid::-webkit-calendar-picker-indicator
+            //     opacity: 1
 //         // &:not(:placeholder-shown)
 //         //     border-bottom: 1px solid #fff
 

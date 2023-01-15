@@ -8,89 +8,107 @@
 
 <div class="order-box">
     <div class="container">
-        <div class="order-list-col">
-            <div class="ordet-title">Ваш заказ</div>
-            <div class="order-list">
-                @foreach (range(1, 3) as $i)
-                    <div class="order-item">
-                        <div class="order-image-col">
-                            <img src="/storage/tmp/1.png" alt="">
-                        </div>
-                        <div class="order-info-col">
-                            <div class="oi-top">
-                                <div class="order-name">Длинный заголовок чудесного товара</div>
-                                <div class="order-price"><span>6900</span> ₽</div>
+        <div class="h2">Оформление<i></i> заказа</div>
+        <div class="order-middle grid-2">
+            <div class="order-list-col">
+                <div class="order-list-white">
+                    <div class="ow-title just-title">Ваш заказ</div>
+                    <div class="order-list">
+                        @foreach (range(1, 3) as $i)
+                            <div class="order-item">
+                                <div class="col-image-col">
+                                    <div class="prod-image wa-hover">
+                                        <img src="/storage/tmp/1.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-name col-info">
+                                    <div class="order-name">Длинный заголовок чудесного товара</div>
+                                    <div class="order-attr o-mini"><span>Размер: XL</span></div>
+                                </div>
+                                <div class="col-price col-info">
+                                    <div class="order-price"><b><span>6900</span> ₽</b></div>
+                                    <div class="order-quantity o-mini">Количество: <span>1</span></div>
+                                </div>
                             </div>
-                            <div class="oi-bottom">
-                                <div class="order-attr"><span>Размер: XL</span></div>
-                                <div class="order-quantity">Количество: <span>1</span></div>
-                            </div>
+                        @endforeach
+                    </div>
+                    <div class="order-subtotal">
+                        <div class="ot-row">
+                            <div class="ot-name">Подытог</div>
+                            <div class="ot-value">17 790 ₽</div>
+                        </div>
+                        <div class="ot-row">
+                            <div class="ot-name">Скидка</div>
+                            <div class="ot-value">1500 ₽</div>
+                        </div>
+                        <div class="ot-row">
+                            <div class="ot-name">Доставка</div>
+                            <div class="ot-value">1500 ₽</div>
                         </div>
                     </div>
-                @endforeach
-            </div>
-            <div class="order-subtotal">
-                <div class="os-row">
-                    <div class="os-name">Подытог</div>
-                    <div class="os-value">17 790 ₽</div>
-                </div>
-                <div class="os-row">
-                    <div class="os-name">Доставка</div>
-                    <div class="os-value">1500 ₽</div>
-                </div>
-            </div>
-            <div class="order-total">
-                <div class="os-name">Итог</div>
-                <div class="os-value">19 290 ₽</div>
-            </div>
-        </div>
-        <div class="order-contact-col">
-            <div class="order-form-element">
-                <div class="ordet-title">Контактная информация</div>
-                <div class="order-inputs">
-                    <div class="form-input">
-                        <div class="form-title">Имя и фамилия</div>
-                        <input type="text">
-                    </div>
-                    <div class="form-input">
-                        <div class="form-title">Телефон</div>
-                        <input type="text">
-                    </div>
-                    <div class="form-input">
-                        <div class="form-title">E-Mail</div>
-                        <input type="text">
+                    <div class="order-total ot-row just-title">
+                        <div class="ot-name">Итог</div>
+                        <div class="ot-value">19 290 ₽</div>
                     </div>
                 </div>
+                <div class="order-botom-row">
+                    <a href="/cart" class="btn btn-mini">вернуться в корзину</a>
+                    <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg icon">
+                </div>
             </div>
-            <div class="order-form-element">
-                <div class="ordet-title">Адрес доставки</div>
-                <div class="order-inputs">
-                    <div class="form-input">
-                        <div class="form-title">Улица, дом, квартира</div>
-                        <input type="text">
+            <div class="order-contact-col">
+                <div class="order-form-element">
+                    <div class="just-title">Контактная информация</div>
+                    <div class="order-inputs grid-2">
+                        <div class="form-input">
+                            <input type="text" placeholder="Имя и фамилия" required>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" placeholder="Телефон" required>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" placeholder="E-Mail" required>
+                        </div>
                     </div>
-                    <div class="form-input">
-                        <div class="form-title">Населенный пункт</div>
-                        <input type="text">
+                </div>
+                <div class="order-form-element">
+                    <div class="just-title">Адрес доставки</div>
+                    <div class="order-inputs grid-2">
+                        <div class="form-input">
+                            <input type="text" placeholder="Улица, дом, квартира" required>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" placeholder="Населенный пункт" required>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" placeholder="Область / регион" required>
+                        </div>
+                        <div class="form-input">
+                            <input type="text" placeholder="Почтовый индекс" required>
+                        </div>
                     </div>
-                    <div class="form-input">
-                        <div class="form-title">Область / регион</div>
-                        <input type="text">
+                </div>
+                <div class="order-form-element">
+                    <div class="just-title">Способ оплаты</div>
+                    <div class="payment-method grid-2">
+                        <label class="pm-item">
+                            <input type="radio" name="pm" value="1">
+                            <span>Банковская карта</span>
+                        </label>
+                        <label class="pm-item">
+                            <input type="radio" name="pm" value="2">
+                            <span>При получении</span>
+                        </label>
                     </div>
-                    <div class="form-input">
-                        <div class="form-title">Почтовый индекс</div>
-                        <input type="text">
+                    <div class="ofe-bottom grid-2">
+                        <div class="btn">Оформить заказ</div>
+                        <label class="pm-item">
+                            <input type="checkbox" name="pc" required checked>
+                            <span>Нажимая эту кнопку я соглашаюсь с <a href="#" class="primary"><b>Политикой конфиденциальности</b></a></span>
+                        </label>
                     </div>
                 </div>
             </div>
-            <div class="order-form-element">
-                <div class="btn">перейти к оплате</div>
-                <div class="of-info">Нажимая эту кнопку я соглашаюсь с <a href="#">Политикой конфиденциальности</a></div>
-            </div>
-        </div>
-        <div class="order-botom-row">
-            @svg('images/icons/alt-arrow.svg')
-            <div class="btn btn-alt">вернуться в корзину</div>
         </div>
     </div>
 </div>
