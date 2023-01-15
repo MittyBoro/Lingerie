@@ -43,10 +43,10 @@
                     <div class="col-menu left-menu">
                         <div class="m-item"><a href="#">Каталог</a></div>
                         <div class="m-item">
-                            <a href="#">
+                            <span class="a">
                                 <span>Категории</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
-                            </a>
+                            </span>
                             <div class="m-item-list">
                                 <a href="#">Категория</a>
                                 <a href="#">Категория</a>
@@ -64,10 +64,10 @@
                         <div class="m-item"><a href="#">FAQ</a></div>
                         <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
                         <div class="m-item">
-                            <a href="#">
+                            <span class="a">
                                 <span>Русский</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
-                            </a>
+                            </span>
                             <div class="m-item-list">
                                 <a href="#">Русский</a>
                                 <a href="#">English</a>
@@ -143,5 +143,18 @@
         @yield('body_end')
 
         {{-- {!! $props['body_code'] ?? '' !!} --}}
+
+        <div class="bottom-box" style="display: grid; text-align: center; gap: 2px; padding: 30px">
+            <a href="http://lingerie.bo/">home</a>
+            <a href="http://lingerie.bo/catalog">catalog</a>
+            <a href="http://lingerie.bo/product">product</a>
+            <a href="http://lingerie.bo/cart">cart</a>
+            <a href="http://lingerie.bo/order">order</a>
+            <a href="http://lingerie.bo/page">page</a>
+            <a href="http://lingerie.bo/faq">faq</a>
+            <a href="http://lingerie.bo/success">success</a>
+            <a href="http://lingerie.bo/404">404</a>
+        </div>
+
     </body>
 </html>

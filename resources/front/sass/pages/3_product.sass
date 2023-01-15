@@ -3,6 +3,7 @@
 
     .prod-grid
         row-gap: 56px
+        align-items: start
     .left-col
         grid-column: span 5
     .right-col
@@ -96,6 +97,8 @@
                 overflow-y: hidden
                 .swiper
                     max-height: 100%
+            .swiper-slide
+                height: auto !important
             .swiper-slide-thumb-active
                 img
                     opacity: .5

@@ -44,6 +44,8 @@ new Swiper('.home-novelties-box .swiper', {
         disableOnInteraction: false,
     },
 
+    autoplay: false,
+
 
     navigation: {
         nextEl: '.home-novelties-box .sw-next',
@@ -52,12 +54,14 @@ new Swiper('.home-novelties-box .swiper', {
 
     on: {
         init: (swiper) => {
-            swiper.$el[0].addEventListener('mouseenter', () => {
-                swiper.autoplay.stop()
-            }, false);
-            swiper.$el[0].addEventListener('mouseleave', () => {
-                swiper.autoplay.start()
-            }, false);
+            if (swiper.autoplay.running) {
+                swiper.$el[0].addEventListener('mouseenter', () => {
+                    swiper.autoplay.stop()
+                }, false);
+                swiper.$el[0].addEventListener('mouseleave', () => {
+                    swiper.autoplay.start()
+                }, false);
+            }
         },
         snapIndexChange: (swiper) => {
             let intEl = document.querySelector('.home-novelties-box .sw-current-int')
@@ -169,8 +173,6 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
             768: {
             },
             992: {
-                spaceBetween: 25,
-                slidesPerView: 4,
             },
             1240: {
             }
