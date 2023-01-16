@@ -104,8 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     });
 
-
-
     // document.addEventListener('scroll', e => {
     // 	// переменная ширины кастомного скролла
     // 	setScrollbarWidth('--scrollbar-width', 'custom-scroll');
@@ -144,6 +142,21 @@ document.addEventListener('DOMContentLoaded', function() {
         el.addEventListener('click', (e) => {
             e.preventDefault();
         });
+    });
+
+    // закрыть меню
+    document.querySelectorAll('.menu-box').forEach(element => {
+        element.addEventListener('click', (e) => {
+
+            if (
+                e.target.classList.contains('prevent') ||
+                e.target.closest('.prevent')
+            ) {
+                return;
+            }
+
+            document.querySelector('.header-box').classList.remove('active');
+        })
     });
 
 });

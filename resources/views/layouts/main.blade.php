@@ -128,7 +128,7 @@
                             </a>
                         </div>
                         <div class="m-item">
-                            <span class="a tar">
+                            <span class="a tar prevent">
                                 <span>Русский</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
