@@ -2,3 +2,104 @@
 @media (max-width: 767.98px)
     :root
         --scrollbar-width: 0px
+
+    .grid-12,
+    .grid-6,
+    .grid-4,
+    .grid-3,
+    .grid-2,
+    .grid
+        gap: 20px
+
+    .h1
+        font-size: 49px
+    .h2
+        font-size: 40px
+
+    .handwritten
+        font-size: 55px
+
+    .header-box
+        top: 17px
+        .logo svg
+            max-width: 132px
+
+    .home-first-box
+        padding: 250px 0 232px
+        min-height: 100vh
+
+    .home-novelties-box
+        padding-top: 80px
+        .n-title
+            margin-bottom: 40px
+        .container
+            display: block
+        .n-prod-name
+            display: none
+        .n-slider
+            max-width: 214px
+            padding-bottom: 64px
+        .n-item
+            color: $body-color
+            &:hover
+                color: $primary
+            .btn
+                display: none
+            .n-info
+                display: block
+
+    .home-about-box
+        .hab-wrap
+            display: block
+        .about-circle
+            display: none
+        .right-side
+            .handwritten,
+            .h2
+                text-align: center
+            .about-circle
+                display: flex
+                margin: 0 auto 51px
+                width: 240px
+                height: 240px
+
+    .home-categories-box
+        padding-top: 85px
+        .hc-title
+            margin-bottom: 39px
+            text-align: left
+        .cats-list
+            grid-template-columns: repeat(2, 1fr)
+        .cat-name
+            margin-top: 13px
+            font-size: 10px
+
+
+    .footer-box
+        padding: 50px 0
+        .top-row
+            grid-template-columns: repeat(6, 1fr)
+            row-gap: 49px
+        .top-col:nth-child(1)
+            order: 1
+        .top-col:nth-child(2)
+            order: 3
+        .top-col:nth-child(3)
+            order: 2
+        .top-col:nth-child(4)
+            order: 4
+        .top-col
+            .f-title
+                margin-bottom: 35px
+
+        .bottom-row
+            display: flex
+            flex-direction: column
+            align-items: center
+            margin-top: 56px
+            font-size: 12px
+            .insta-col
+                order: -1
+                font-size: 14px
+            .politic-col
+                margin: 33px 0 8px

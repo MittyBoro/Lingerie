@@ -181,10 +181,10 @@
                     </div>
 
                     <div class="bottom-row">
-                        <div>
+                        <div class="politic-col">
                             <a href="#" class="politic-link">Политика конфиденциальности</a>
                         </div>
-                        <div>
+                        <div class="insta-col">
                             <a href="#" class="insta">
                                 @svg('images/icons/instagram.svg')
                                 <span>Наш Instagram</span>

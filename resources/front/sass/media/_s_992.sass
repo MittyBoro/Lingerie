@@ -15,3 +15,80 @@
 
     .home-first-box
         padding-top: 200px
+
+
+    .home-novelties-box
+        .container
+            // display: block
+            grid-template-columns: auto auto
+            align-items: end
+
+        .h2
+            max-width: 7em
+            .ht-ints
+                position: relative
+                left: -1em
+
+        .sw-arrow-big
+            display: none
+        .n-title
+            grid-column: span 1
+            margin: 0
+        .n-prod-name
+            margin: 0 0 15px
+            grid-column: span 1
+            .prod-name
+                margin-bottom: 15px
+
+        // .n-prod-name
+        //     display: none
+        .n-slider
+            grid-column: 1 / -1
+            grid-row: auto
+            position: relative
+            display: flex
+            align-items: center
+            max-width: 214px
+            max-width: 314px
+            margin: 0 auto
+            .sw-arrow
+                position: absolute
+                display: flex
+                &.sw-prev
+                    left: -18px
+                &.sw-next
+                    right: -18px
+        .swiper
+            max-width: 100%
+        .swiper-wrapper
+            margin: 0
+        .swiper-slide-active
+            margin: 0 0
+            .n-image
+                transform: none
+        .swiper-slide
+            padding: 0 7px
+            margin: 0
+            transition: transform .2s
+            &:not(&-active)
+                transform: scale(0.695)
+
+
+    .home-about-box
+        .hab-wrap
+            align-items: center
+        .about-circle
+            margin-right: 30px
+            width: 300px
+            height: 300px
+            .logo-wrap
+                max-width: 80%
+
+        .right-side
+            padding: 0
+            .h2
+                margin-bottom: 42px
+
+
+    .footer-box
+        margin-top: 100px

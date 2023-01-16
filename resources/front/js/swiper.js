@@ -71,8 +71,8 @@ new Swiper('.home-novelties-box .swiper', {
         slideChange: (swiper) => {
             let current = swiper.slides[swiper.activeIndex]
 
-            let name = current.dataset.name
-            let price = current.dataset.price
+            let name = current.querySelector('.n-name').innerText
+            let price = current.querySelector('.n-price-value').innerText
 
             document.querySelector('.home-novelties-box .prod-name').innerHTML = name
             document.querySelector('.home-novelties-box .prod-price-value').innerHTML = price
