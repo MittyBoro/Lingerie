@@ -95,10 +95,10 @@
                         <div class="hamburger" toggle-click></div>
                     </div>
                     <div class="col-menu left-menu">
-                        <div class="m-item"><a href="#">Каталог</a></div>
+                        <div class="m-item"><a href="#">@lang('front.catalog')</a></div>
                         <div class="m-item">
                             <span class="a">
-                                <span>Категории</span>
+                                <span>@lang('front.categories')</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
                             <div class="m-item-list">
@@ -109,14 +109,14 @@
                                 <a href="#">Категория</a>
                             </div>
                         </div>
-                        <div class="m-item"><a href="#">Доставка</a></div>
+                        <div class="m-item"><a href="#">@lang('front.delivery')</a></div>
                     </div>
                     <a href="/" class="logo">
                        @svg('images/icons/logo.svg')
                     </a>
                     <div class="col-menu right-menu">
                         <div class="m-item"><a href="#">FAQ</a></div>
-                        <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
+                        <div class="m-item"><a href="#">@lang('front.cart') (<span>0</span>)</a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.current_lang')</span>
@@ -141,7 +141,7 @@
                 <div class="container">
                     <div class="grid-row grid-2">
                         <div class="top-col">
-                            <div class="f-title mini-title secondary">Нижнее белье</div>
+                            <div class="f-title mini-title secondary">@lang('front.footer.lingerie')</div>
                             <ul>
                                 <li><a href="#">Бюстгальтеры</a></li>
                                 <li><a href="#">Трусики</a></li>
@@ -150,21 +150,21 @@
                             </ul>
                         </div>
                         <div class="top-col">
-                            <div class="f-title mini-title secondary">Купальники</div>
+                            <div class="f-title mini-title secondary">@lang('front.footer.swimwear')</div>
                             <ul>
                                 <li><a href="#">Слитные</a></li>
                                 <li><a href="#">Раздельные</a></li>
                             </ul>
                         </div>
                         <div class="top-col">
-                            <div class="f-title mini-title secondary">для дома</div>
+                            <div class="f-title mini-title secondary">@lang('front.footer.for_house')</div>
                             <ul>
                                 <li><a href="#">Пижамы</a></li>
                                 <li><a href="#">Халаты</a></li>
                             </ul>
                         </div>
                         <div class="top-col">
-                            <div class="f-title mini-title primary">Клиентам</div>
+                            <div class="f-title mini-title primary">@lang('front.footer.for_lients')</div>
                             <ul>
                                 <li><a href="#">Доставка</a></li>
                                 <li><a href="#">FAQ</a></li>
@@ -175,7 +175,7 @@
                         <div class="gray">
                             <a href="#" class="insta">
                                 @svg('images/icons/instagram.svg')
-                                <span>Наш Instagram</span>
+                                <span>@lang('front.our_instagram')</span>
                             </a>
                         </div>
                         <div class="m-item">
@@ -200,7 +200,7 @@
                 <div class="container">
                     <div class="top-row grid-12">
                         <div class="top-col">
-                            <div class="f-title mini-title">Нижнее белье</div>
+                            <div class="f-title mini-title">@lang('front.footer.lingerie')</div>
                             <ul>
                                 <li><a href="#">Бюстгальтеры</a></li>
                                 <li><a href="#">Трусики</a></li>
@@ -209,21 +209,21 @@
                             </ul>
                         </div>
                         <div class="top-col">
-                            <div class="f-title mini-title">для дома</div>
+                            <div class="f-title mini-title">@lang('front.footer.for_house')</div>
                             <ul>
                                 <li><a href="#">Пижамы</a></li>
                                 <li><a href="#">Халаты</a></li>
                             </ul>
                         </div>
                         <div class="top-col tar">
-                            <div class="f-title mini-title">Купальники</div>
+                            <div class="f-title mini-title">@lang('front.footer.swimwear')</div>
                             <ul>
                                 <li><a href="#">Слитные</a></li>
                                 <li><a href="#">Раздельные</a></li>
                             </ul>
                         </div>
                         <div class="top-col tar">
-                            <div class="f-title mini-title primary">Клиентам</div>
+                            <div class="f-title mini-title primary">@lang('front.footer.for_clients')</div>
                             <ul>
                                 <li><a href="#">Доставка</a></li>
                                 <li><a href="#">FAQ</a></li>
@@ -233,12 +233,12 @@
 
                     <div class="bottom-row">
                         <div class="politic-col">
-                            <a href="#" class="politic-link">Политика конфиденциальности</a>
+                            <a href="#" class="politic-link">@lang('front.footer.policy')</a>
                         </div>
                         <div class="insta-col">
                             <a href="#" class="insta">
                                 @svg('images/icons/instagram.svg')
-                                <span>Наш Instagram</span>
+                                <span>@lang('front.our_instagram')</span>
                             </a>
                         </div>
                         <p>Legendary Lingerie © 2022</p>

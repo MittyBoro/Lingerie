@@ -17,7 +17,7 @@
     <div class="container">
         <div class="middle-row">
             <div class="h1">Нижнее<i></i> белье<i></i> для девушек,<i></i> любящих своё<i></i> тело</div>
-            <a href="/catalog" class="btn">в каталог</a>
+            <a href="/catalog" class="btn">@lang('front.to_catalog')</a>
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
         <div class="n-title">
             <div class="handwritten primary">New</div>
             <div class="h2">
-                <span>популярные новинки</span>
+                <span>@lang('front.home.popular_new')</span>
                 <div class="ht-ints">
                     <span class="sw-current-int">1</span>
                     <span> / </span>
@@ -37,8 +37,8 @@
         </div>
 
         <div class="n-prod-name">
-            <div class="prod-name">Длинный заголовок чудесного товара</div>
-            <div class="prod-price secondary-alt"><span class="prod-price-value">4990</span> ₽</div>
+            <div class="prod-name"></div>
+            <div class="prod-price secondary-alt"><span class="prod-price-value"></span> ₽</div>
         </div>
 
         <div class="sw-arrow sw-prev sw-arrow-big">
@@ -57,7 +57,7 @@
                             <div class="n-image">
                                 <img data-src="/storage/tmp/{{ rand(1,2) }}.png" alt="" class="swiper-lazy">
                             </div>
-                            <div class="btn btn-secondary">подробнее</div>
+                            <div class="btn btn-secondary">@lang('front.more')</div>
                             <div class="n-info">
                                 <div class="n-name">Длинный заголовок чудесного товара #{{ $i }}</div>
                                 <div class="n-price"><span class="n-price-value">{{ $i }}000</span> ₽</div>
@@ -91,7 +91,7 @@
             </a>
             <div class="right-side">
                 <div class="handwritten secondary">About</div>
-                <div class="h2">о<i></i> бренде</div>
+                <div class="h2">@lang('front.home.about')</div>
 
                 <a href="#" class="about-circle">
                     <div class="logo-wrap">
@@ -114,7 +114,7 @@
     <div class="container">
         <div class="hc-title">
             <div class="handwritten primary">Choose</div>
-            <div class="h2">категории<i></i> товаров</div>
+            <div class="h2">@lang('front.home.categories')</div>
         </div>
         <div class="cats-list grid-4">
             <a class="cat-item">
