@@ -11,10 +11,10 @@
     <div class="container">
         <div class="white-item">
             <div class="h1">
-                <div><span class="secondary">спасибо</span> за заказ!</div>
+                <div><span class="secondary">@lang('front.success_page.thanks')</span> @lang('front.success_page.for_order')</div>
             </div>
-            <div class="wh-subinfo">Мы вышлем на ваш E-mail детали заказа и трек номер для отслеживания.</div>
-            <a href="#" class="btn">назад к покупкам</a>
+            <div class="wh-subinfo">@lang('front.success_page.information')</div>
+            <a href="#" class="btn">@lang('front.back_to_shopping')</a>
         </div>
     </div>
 </div>

@@ -8,7 +8,7 @@
 
 <div class="cart-box">
     <div class="container">
-        <div class="h2">ваша<i></i> корзина</div>
+        <div class="h2">@lang('front.cart_page.cart_title')</div>
         <div class="cart-list">
             @foreach (range(1, 3) as $i)
                 <div class="cart-item grid-12">
@@ -36,9 +36,9 @@
                 </div>
             @endforeach
             <div class="cart-subtotal-row grid-12">
-                <div class="cart-sb-name">Подытог</div>
+                <div class="cart-sb-name">@lang('front.cart_page.subtotal')</div>
                 <div class="cart-price"><span>17 790</span> ₽</div>
-                <div class="btn">оформить заказ</div>
+                <div class="btn">@lang('front.cart_page.checkout')</div>
             </div>
         </div>
     </div>

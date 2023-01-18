@@ -15,7 +15,7 @@
         <div class="prod-grid grid-12">
             <div class="prod-main-col prod-main-col-mini">
                 <div class="breadcrumbs">
-                    <a href="#">Главная</a>
+                    <a href="#">@lang('front.home')</a>
                     <span class="delimeter">/</span>
                     <a href="#">Нижнее белье</a>
                     <span class="delimeter">/</span>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="prod-price">4990 ₽</div>
-                <div class="btn">добавить в корзину</div>
+                <div class="btn">@lang('front.add_to_cart')</div>
             </div>
 
             <div class="gallery-col right-col">
@@ -156,7 +156,7 @@
             </div>
             <div class="bottom-table-col right-col active" toggling>
                 <div class="b-title" toggle-click>
-                    <span>таблица размеров</span>
+                    <span>@lang('front.product_page.table_of_sizes')</span>
                     <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                 </div>
                 <div class="table-el" toggle-el>
@@ -170,7 +170,7 @@
 <div class="catalog-box product-catalog-box">
     <div class="container">
         <div class="handwritten secondary">Look</div>
-        <div class="h2">вам<i></i> может понравиться</div>
+        <div class="h2">@lang('front.product_page.may_like')</div>
         <div class="catalog-list grid-4">
             @foreach (range(1, 4) as $i)
                 <div class="catalog-item">
