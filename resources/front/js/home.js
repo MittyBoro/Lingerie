@@ -4,19 +4,18 @@ import Swiper, {
     Navigation,
     Autoplay ,
     Keyboard,
-    Scrollbar,
+    Lazy,
 } from 'swiper'
 
 Swiper.use([
     Navigation,
     Autoplay ,
     Keyboard,
-    Scrollbar,
+    Lazy,
 ]);
 
 
 import 'swiper/css';
-import 'swiper/css/scrollbar';
 
 
 // слайдер home ПОПУЛЯРНЫЕ НОВИНКИ
@@ -37,6 +36,12 @@ new Swiper('.home-novelties-box .swiper', {
     },
 
     autoplay: false,
+
+    lazy: {
+        checkInView: true,
+        loadPrevNext: true,
+        loadPrevNextAmount: 5,
+    },
 
 
     navigation: {

@@ -2,16 +2,15 @@
 
 import Swiper, {
     Navigation,
-    Autoplay ,
-    Thumbs,
     EffectFade,
+    Lazy,
 } from 'swiper'
 
 Swiper.use([
     Navigation,
-    Autoplay ,
-    Thumbs,
     EffectFade,
+    EffectFade,
+    Lazy,
 ]);
 
 
@@ -28,6 +27,12 @@ document.querySelectorAll('.catalog-item .swiper').forEach(el => {
         slidesPerView: 1,
         loop: true,
         effect: 'fade',
+
+        lazy: {
+            checkInView: true,
+            loadPrevNext: true,
+        },
+
         navigation: {
             nextEl: parent.querySelector('.sw-next'),
             prevEl: parent.querySelector('.sw-prev'),

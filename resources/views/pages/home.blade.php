@@ -55,7 +55,7 @@
                     <div class="swiper-slide">
                         <a href="#" class="n-item">
                             <div class="n-image">
-                                <img src="/storage/tmp/{{ rand(1,2) }}.png" alt="">
+                                <img data-src="/storage/tmp/{{ rand(1,2) }}.png" alt="" class="swiper-lazy">
                             </div>
                             <div class="btn btn-secondary">подробнее</div>
                             <div class="n-info">
