@@ -4,6 +4,11 @@
 @section('meta_description', $page['meta_description'] ?? '')
 @section('meta_keywords', $page['meta_keywords'] ?? '')
 
+@section('head_end')
+    @vite('resources/front/js/catalog.js')
+@endsection
+
+
 @section('content')
 
 <div class="catalog-box">

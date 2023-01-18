@@ -4,6 +4,10 @@
 @section('meta_description', $page['meta_description'] ?? '')
 @section('meta_keywords', $page['meta_keywords'] ?? '')
 
+@section('head_end')
+    @vite('resources/front/js/product.js')
+@endsection
+
 @section('content')
 
 <div class="product-box">
@@ -96,11 +100,11 @@
             <div class="gallery-col right-col">
                 <div class="full-row">
                     <div class="swiper">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper lightgallery">
                             @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
-                                <div class="swiper-slide">
+                                <a class="swiper-slide" href="/storage/tmp/{{ $i }}.png">
                                     <div class="prod-image zoom-image" style="background-image: url('/storage/tmp/{{ $i }}.png')"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                     </div>

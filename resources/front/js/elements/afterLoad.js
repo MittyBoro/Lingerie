@@ -1,5 +1,5 @@
 // import {setScrollbarWidth} from './libs/methods';
-import { slideDown, slideUp } from './libs/slideToggle';
+import { slideDown, slideUp } from '../libs/slideToggle';
 
 document.addEventListener('DOMContentLoaded', function() {
 

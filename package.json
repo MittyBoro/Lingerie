@@ -32,6 +32,7 @@
         "@tiptap/starter-kit": "^2.0.0-beta.209",
         "@tiptap/vue-3": "^2.0.0-beta.209",
         "libphonenumber-js": "^1.10.18",
+        "lightgallery": "^2.7.1",
         "nouislider": "^15.6.1",
         "swiper": "^8.4.5",
         "vue": "^3.2.45"

@@ -1,9 +1,8 @@
 
 
-import './afterLoad';
+import './elements/afterLoad';
 
-import './swiper';
-import './catalog';
+import './elements/swiper';
 
 // import './popup';
 
