@@ -16,7 +16,7 @@
                     <div class="order-list">
                         @foreach (range(1, 3) as $i)
                             <div class="order-item">
-                                <div class="col-image-col">
+                                <div class="col-image">
                                     <div class="prod-image wa-hover">
                                         <img src="/storage/tmp/1.png" alt="">
                                     </div>
@@ -56,7 +56,7 @@
                     <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg icon">
                 </div>
             </div>
-            <div class="order-contact-col">
+            <div class="order-contact-col order-form-col">
                 <div class="order-form-element">
                     <div class="just-title">Контактная информация</div>
                     <div class="order-inputs grid-2">
@@ -100,6 +100,10 @@
                             <span>При получении</span>
                         </label>
                     </div>
+                </div>
+            </div>
+            <div class="order-contact-col col-bottom">
+                <div class="order-form-element">
                     <div class="ofe-bottom grid-2">
                         <div class="btn">Оформить заказ</div>
                         <label class="pm-item">

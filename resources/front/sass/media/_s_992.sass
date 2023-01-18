@@ -144,3 +144,38 @@
         justify-content: space-between
         align-items: center
         gap: 0
+
+
+    .order-box .h2
+        margin-bottom: 40px
+    .order-box .order-list-white
+        padding: 35px 25px
+    .order-box .order-list-white .ow-title
+        margin-bottom: 44px
+    .order-box .order-list-white .order-item
+        grid-template-columns: 80px 1fr
+        gap: 0 20px
+        &:not(:last-child)
+            padding-bottom: 20px
+            margin-bottom: 20px
+        .col-image
+            grid-row: 1 / 3
+        .col-info
+            padding: 0
+        .col-name
+            margin-bottom: -9px
+        .col-price
+            margin-bottom: -9px
+            display: flex
+            flex-direction: row-reverse
+            align-items: center
+            line-height: 0
+    .order-box .order-form-element .grid-2
+        grid-template-columns: 1fr
+    .order-box .order-form-element .just-title
+        margin-bottom: 20px
+    .order-box .order-form-element
+        padding-top: 35px
+
+    .order-box .payment-method
+        gap: 0
