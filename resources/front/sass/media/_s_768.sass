@@ -103,3 +103,45 @@
                 font-size: 14px
             .politic-col
                 margin: 33px 0 8px
+
+    .catalog-box
+        .sidebar
+            margin: 0 -900px -100px
+            padding: 31px 900px 100px
+            background: #fff
+            display: none
+            .sb-sort
+                display: none
+            .sb-title
+                .icon
+                    display: none
+                .btn
+                    display: flex
+        .catalog-grid
+            grid-template-columns: 1fr
+
+        .catalog-mobile-sort
+            display: flex
+            &.active
+                display: none
+                & ~ .catalog-grid
+                    .sidebar
+                        display: block
+                    .catalog-list
+                        display: none
+
+    .catalog-box .sidebar .sb-list .sb-sub-list
+        gap: 10px
+    .catalog-box .sidebar .sb-list
+        margin-top: 5px
+    .noUi-target .noUi-handle .noUi-tooltip
+        background: #fff
+        box-shadow: 0 0 5px 5px #fff
+    .catalog-box .sidebar .btns-row
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        gap: 20px
+        max-width: 100%
+        .btn
+            padding: 0
+            display: flex

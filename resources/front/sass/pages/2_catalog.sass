@@ -3,7 +3,31 @@
     .h2
         margin-bottom: 68px
 
-    .grid-grid
+    .catalog-mobile-sort
+        display: none
+        justify-content: space-between
+        padding: 30px 900px 50px
+        margin: 0 -900px
+        border-top: 2px solid $primary
+        .cm-sort
+            .mini-title
+                padding-top: 14px
+                display: flex
+                align-items: center
+                transition: color .2s
+                font-weight: 400
+                &:hover
+                    color: $secondary
+                .icon
+                    margin-left: 4px
+                    width: 14px
+                    height: 15px
+            .cs-list
+                display: grid
+                gap: 8px
+                margin-top: 15px
+
+    .catalog-grid
         align-items: start
 
     .sidebar
@@ -25,6 +49,8 @@
             .icon
                 width: 14px
                 height: 15px
+            .btn
+                display: none
         .sb-list
             margin: 13px 10px 0
             color: $body-color-alt
@@ -93,9 +119,10 @@
                 span
                     min-width: 22px
 
-        .btn
+        .btns-row
             margin-top: 15px
-
+            .btn-gray
+                display: none
 
     .catalog-list
         grid-column: span 9

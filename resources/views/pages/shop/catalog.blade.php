@@ -10,7 +10,22 @@
     <div class="container">
         <div class="h2">Каталог</div>
 
-        <div class="grid-grid grid-12">
+        <div class="catalog-mobile-sort">
+            <div class="cm-sort" toggling>
+                <div class="mini-title" toggle-click>
+                    <span>Сортировка</span>
+                    <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
+                </div>
+                <div class="cs-list" toggle-el data-display="grid">
+                    <div class="cs-item">Сначала новое</div>
+                    <div class="cs-item active">Цены по убыванию</div>
+                    <div class="cs-item">Цены по возрастанию</div>
+                </div>
+            </div>
+            <div class="btn btn-mini" filter-toggle>фильтр</div>
+        </div>
+
+        <div class="catalog-grid grid-12">
             <div class="sidebar">
                 <div class="sb-sort sb-element" toggling>
                     <div class="sb-title mini-title" toggle-click>
@@ -28,6 +43,7 @@
                     <div class="sb-title mini-title" toggle-click>
                         <span>категория</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
+                        <div class="btn btn-mini btn-gray prevent" filter-toggle>Закрыть</div>
                     </div>
                     <div toggle-el>
                         <div class="sb-list">
@@ -167,8 +183,10 @@
                         <div class="show-more primary a col-full">Показать все</div>
                     </div>
                 </div>
-
-                <div class="btn btn-mini">сбросить</div>
+                <div class="btns-row">
+                    <div class="btn btn-mini">сбросить</div>
+                    <div class="btn btn-mini btn-gray" filter-toggle>Закрыть</div>
+                </div>
             </div>
 
             <div class="catalog-list grid-3">

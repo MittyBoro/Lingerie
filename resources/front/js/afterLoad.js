@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+    // slidetoggle
     document.querySelectorAll('[toggling] [toggle-click]').forEach(element => {
         let toggling = element.closest('[toggling]'),
             toggleEl   = toggling.querySelector('[toggle-el]')
@@ -90,7 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleEl.style.display = 'none'
         }
 
-        element.addEventListener('click', () => {
+        element.addEventListener('click', (e) => {
+
+            if (
+                e.target.classList.contains('prevent') ||
+                e.target.closest('.prevent')
+            ) {
+                return;
+            }
 
             if ( toggling.classList.contains('active') ) {
                 toggling.classList.remove('active');
