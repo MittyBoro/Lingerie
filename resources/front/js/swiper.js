@@ -150,16 +150,15 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
     let thumbContainer = el.querySelector('.thumbs-row .swiper');
 
     let galleryThumbs = new Swiper(thumbContainer, {
-        spaceBetween: 10,
-        slidesPerView: 'auto',
-        direction: 'vertical',
+        spaceBetween: 6,
+        slidesPerView: 5,
+        scrollbar: false,
         mousewheel: true,
         scrollbar: {
             el: ".swiper-scrollbar",
             hide: false,
             draggable: true,
         },
-
         on: {
             init: (swiper) => {
                 if (swiper.slides.length < 2) {
@@ -168,14 +167,15 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
             },
         },
         breakpoints: {
-            576: {
-            },
-            768: {
-            },
+            // 576: {
+            // },
+            // 768: {
+            // },
             992: {
+                spaceBetween: 10,
+                slidesPerView: 'auto',
+                direction: 'vertical',
             },
-            1240: {
-            }
         }
     });
 

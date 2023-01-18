@@ -116,3 +116,21 @@
         row-gap: 40px
     .catalog-box .catalog-item .catalog-images-wrapper
         margin-bottom: 15px
+
+
+    .product-box .prod-grid
+        grid-template-columns: 1fr 1fr
+    .product-box .left-col,
+    .product-box .right-col
+        grid-column: auto
+        min-width: 1px
+    .product-box .gallery-col
+        display: grid
+        gap: 10px
+    .product-box .gallery-col .thumbs-row
+        display: block
+        max-width: 100%
+        margin: 0
+        padding: 0
+    .product-box .gallery-col .thumbs-row .swiper-scrollbar
+        display: none

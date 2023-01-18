@@ -9,7 +9,7 @@
 <div class="product-box">
     <div class="container">
         <div class="prod-grid grid-12">
-            <div class="prod-main-col left-col">
+            <div class="prod-main-col prod-main-col-mini">
                 <div class="breadcrumbs">
                     <a href="#">Главная</a>
                     <span class="delimeter">/</span>
@@ -17,8 +17,20 @@
                     <span class="delimeter">/</span>
                     <a href="#">Пояса</a>
                 </div>
-                <div class="prod-title"><h1>Длинный заголовок чудесного товара</h1></div>
+                <div class="prod-title">Длинный заголовок чудесного товара</div>
+            </div>
 
+            <div class="prod-main-col left-col">
+                <div class="pmc-top">
+                    <div class="breadcrumbs">
+                        <a href="#">Главная</a>
+                        <span class="delimeter">/</span>
+                        <a href="#">Нижнее белье</a>
+                        <span class="delimeter">/</span>
+                        <a href="#">Пояса</a>
+                    </div>
+                    <div class="prod-title"><h1>Длинный заголовок чудесного товара</h1></div>
+                </div>
                 <div class="prod-attr-wrap">
                     <div class="pm-title">Размер</div>
                     <div class="pm-list pm-size">
