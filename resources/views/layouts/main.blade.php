@@ -82,7 +82,7 @@
                 @svg('images/icons/logo.svg')
             </div>
             <div class="loading-circle"></div>
-            <div class="loading-text">Загрузка...</div>
+            <div class="loading-text">@lang('front.loading')...</div>
         </div>
         {{-- @auth
             @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
@@ -119,12 +119,12 @@
                         <div class="m-item"><a href="#">Корзина (<span>0</span>)</a></div>
                         <div class="m-item">
                             <span class="a">
-                                <span>Русский</span>
+                                <span>@lang('front.current_lang')</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
                             <div class="m-item-list">
-                                <a href="#">Русский</a>
-                                <a href="#">English</a>
+                                <a href="/locale/ru">Русский</a>
+                                <a href="/locale/en">English</a>
                             </div>
                         </div>
                     </div>
@@ -180,12 +180,12 @@
                         </div>
                         <div class="m-item">
                             <span class="a tar prevent">
-                                <span>Русский</span>
+                                <span>@lang('front.current_lang')</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
                             <div class="m-item-list">
-                                <a href="#">Русский</a>
-                                <a href="#">English</a>
+                                <a href="/locale/ru">Русский</a>
+                                <a href="/locale/en">English</a>
                             </div>
                         </div>
                     </div>

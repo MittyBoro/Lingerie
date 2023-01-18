@@ -31,4 +31,6 @@ Route::name('front.')
     // Route::get('search', 'SearchController@index')->name('search');
 
     // Route::get('{any?}/{any2?}/{any3?}', 'PageController@index')->name('pages');
+
+    Route::get('/locale/{locale}', fn () => back())->name('locale');
 });

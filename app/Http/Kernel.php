@@ -71,6 +71,8 @@ class Kernel extends HttpKernel
         'admin.role' => \App\Http\Middleware\Admin\Role::class,
         'admin.category' => \App\Http\Middleware\Admin\Category::class,
 
+        'locale' => \App\Http\Middleware\Locale::class,
+
         'guest_or_verified' => \App\Http\Middleware\GuestOrVerified::class,
         'apply_cart' => \App\Http\Middleware\ApplyCart::class,
     ];

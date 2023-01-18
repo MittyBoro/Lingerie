@@ -26,9 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        setlocale(LC_ALL, 'ru_RU.utf8');
-        Carbon::setLocale(config('app.locale'));
-
+        // setlocale(LC_ALL, 'ru_RU.utf8');
+        // Carbon::setLocale(config('app.locale'));
 
         $this->registerBladeSVG();
         $this->registerBladeViteAssets();
