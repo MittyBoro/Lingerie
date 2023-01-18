@@ -32,7 +32,7 @@
         {{-- {!! $props['head_code'] ?? '' !!} --}}
 
     </head>
-    <body class="preload page-{{ $view_name }}">
+    <body class="preload page-{{ $view_name }} @yield('body_class')">
         {{-- @auth
             @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
         @endauth --}}
