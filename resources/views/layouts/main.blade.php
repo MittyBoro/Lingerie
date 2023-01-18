@@ -26,6 +26,49 @@
         @vite('resources/front/js/app.js')
 
 
+        <style>
+            .preload-box {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                background: #FFF2F0;
+                z-index: 999;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                color: #DEA19A;
+            }
+            .preload-box .loading-logo {
+                max-width: 90%;
+                animation: blink 1s infinite linear alternate;
+            }
+            .preload-box .loading-logo svg {
+                width: 300px;
+                height: auto;
+            }
+            .preload-box .loading-circle {
+                margin: 30px 0;
+                width: 40px;
+                height: 40px;
+                border: 1px solid #CACC9C;
+                border-left-width: 3px;
+                border-right-width: 3px;
+                animation: round 1s infinite linear;
+                border-radius: 50%;
+            }
+            .preload-box .loading-text {
+                color: #858585;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                font-size: 16px;
+            }
+        </style>
+
+
         {{-- <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css', 'assets') }}"> --}}
 
         @yield('head_end')
@@ -33,6 +76,14 @@
 
     </head>
     <body class="preload page-{{ $view_name }} @yield('body_class')">
+
+        <div class="preload-box">
+            <div class="loading-logo">
+                @svg('images/icons/logo.svg')
+            </div>
+            <div class="loading-circle"></div>
+            <div class="loading-text">Загрузка...</div>
+        </div>
         {{-- @auth
             @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
         @endauth --}}
