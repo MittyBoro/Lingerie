@@ -28,7 +28,10 @@
                     </div>
                     <div class="cart-price-col c-text-col">
                         <div class="cart-price"><span>6900</span> ₽</div>
-                        <div class="cart-remove gray a">Удалить</div>
+                        <div class="cart-remove gray a">
+                            <span>Удалить</span>
+                            <img src="@vite_asset('images/icons/mini-close.svg')" alt="" class="to-svg icon">
+                        </div>
                     </div>
                 </div>
             @endforeach
