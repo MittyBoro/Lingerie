@@ -13,18 +13,18 @@
 
 <div class="catalog-box">
     <div class="container">
-        <div class="h2">Каталог</div>
+        <div class="h2">@lang('front.catalog_page.catalog')</div>
 
         <div class="catalog-mobile-sort">
             <div class="cm-sort" toggling>
                 <div class="mini-title" toggle-click>
-                    <span>Сортировка</span>
+                    <span>@lang('front.catalog_page.sort')</span>
                     <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                 </div>
                 <div class="cs-list" toggle-el data-display="grid">
-                    <div class="cs-item">Сначала новое</div>
-                    <div class="cs-item active">Цены по убыванию</div>
-                    <div class="cs-item">Цены по возрастанию</div>
+                    <div class="cs-item">@lang('front.catalog_page.sort_new')</div>
+                    <div class="cs-item active">@lang('front.catalog_page.sort_price_desc')</div>
+                    <div class="cs-item">@lang('front.catalog_page.sort_price_asc')</div>
                 </div>
             </div>
             <div class="btn btn-mini" filter-toggle>фильтр</div>
@@ -34,21 +34,21 @@
             <div class="sidebar">
                 <div class="sb-sort sb-element" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>сначала новое</span>
+                        <span>@lang('front.catalog_page.sort_new')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div class="sb-list" toggle-el style="display: none;" data-display="grid">
-                        <div class="sb-item">Сначала новое</div>
-                        <div class="sb-item active">Цены по убыванию</div>
-                        <div class="sb-item">Цены по возрастанию</div>
+                        <div class="sb-item">@lang('front.catalog_page.sort_new')</div>
+                        <div class="sb-item active">@lang('front.catalog_page.sort_price_desc')</div>
+                        <div class="sb-item">@lang('front.catalog_page.sort_price_asc')</div>
                     </div>
                 </div>
 
                 <div class="sb-menu sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>категория</span>
+                        <span>@lang('front.catalog_page.category')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
-                        <div class="btn btn-mini btn-gray prevent" filter-toggle>Закрыть</div>
+                        <div class="btn btn-mini btn-gray prevent" filter-toggle>@lang('front.close')</div>
                     </div>
                     <div toggle-el>
                         <div class="sb-list">
@@ -79,7 +79,7 @@
 
                 <div class="sb-color sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>выбор цвета</span>
+                        <span>@lang('front.catalog_page.color')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div class="sb-list" toggle-el>
@@ -113,13 +113,13 @@
                             <div class="sbi-color" style="background-color: #fff"></div>
                             <span>Белый</span>
                         </label>
-                        <div class="show-more primary a">Показать все</div>
+                        <div class="show-more primary a">@lang('front.show_all')</div>
                     </div>
                 </div>
 
                 <div class="sb-price sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>Цена, ₽</span>
+                        <span>@lang('front.price'), ₽</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div toggle-el>
@@ -133,7 +133,7 @@
 
                 <div class="sb-size sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>размер</span>
+                        <span>@lang('front.size')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div class="sb-list" toggle-el>
@@ -185,12 +185,12 @@
                             <input type="checkbox" name="size">
                             <span>L</span>
                         </label>
-                        <div class="show-more primary a col-full">Показать все</div>
+                        <div class="show-more primary a col-full">@lang('front.show_all')</div>
                     </div>
                 </div>
                 <div class="btns-row">
-                    <div class="btn btn-mini">сбросить</div>
-                    <div class="btn btn-mini btn-gray" filter-toggle>Закрыть</div>
+                    <div class="btn btn-mini">@lang('front.reset')</div>
+                    <div class="btn btn-mini btn-gray" filter-toggle>@lang('front.close')</div>
                 </div>
             </div>
 
@@ -219,7 +219,7 @@
                     </div>
                 @endforeach
                 <div class="catalog-bottom-row col-full">
-                    <div class="btn btn-show-more">показать еще</div>
+                    <div class="btn btn-show-more">@lang('front.show_more')</div>
                     <ul class="pagination">
                         <li class="prev disabled">
                             <a href="">

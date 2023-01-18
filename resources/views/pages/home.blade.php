@@ -27,7 +27,7 @@
         <div class="n-title">
             <div class="handwritten primary">New</div>
             <div class="h2">
-                <span>@lang('front.home.popular_new')</span>
+                <span>@lang('front.home_page.popular_new')</span>
                 <div class="ht-ints">
                     <span class="sw-current-int">1</span>
                     <span> / </span>
@@ -91,7 +91,7 @@
             </a>
             <div class="right-side">
                 <div class="handwritten secondary">About</div>
-                <div class="h2">@lang('front.home.about')</div>
+                <div class="h2">@lang('front.home_page.about')</div>
 
                 <a href="#" class="about-circle">
                     <div class="logo-wrap">
@@ -114,7 +114,7 @@
     <div class="container">
         <div class="hc-title">
             <div class="handwritten primary">Choose</div>
-            <div class="h2">@lang('front.home.categories')</div>
+            <div class="h2">@lang('front.home_page.categories')</div>
         </div>
         <div class="cats-list grid-4">
             <a class="cat-item">

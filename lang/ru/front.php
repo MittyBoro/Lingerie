@@ -22,6 +22,13 @@ return [
 
     'to_catalog' => 'В каталог',
     'more' => 'подробнее',
+    'show_all' => 'Показать все',
+    'show_more' => 'Показать ещё',
+    'close' => 'Закрыть',
+    'reset' => 'Сбросить',
+
+    'price' => 'Цена',
+    'size' => 'Размер',
 
     'our_instagram' => 'Наш Instagram',
 
@@ -33,10 +40,20 @@ return [
         'policy' => 'Политика конфиденциальности',
     ],
 
-    'home' => [
+    'home_page' => [
         'popular_new' => 'Популярные новинки',
         'about' => 'О бренде',
         'categories' => 'Категории товаров',
+    ],
+
+    'catalog_page' => [
+        'catalog' => 'Каталог',
+        'sort' => 'Сортировка',
+        'sort_new' => 'Сначала новое',
+        'sort_price_desc' => 'Цены по убыванию',
+        'sort_price_asc' => 'Цены по возрастанию',
+        'category' => 'Категория',
+        'color' => 'Выбор цвета',
     ],
 
     'about_brand' => 'ddddddddddd',

@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Authentication Language Lines
-|--------------------------------------------------------------------------
-|
-| The following language lines are used during authentication for various
-| messages that we need to display to the user. You are free to modify
-| these language lines according to your application's requirements.
-|
-*/
-
 return [
     'current_lang' => 'English',
     'loading' => 'Loading',
@@ -20,22 +9,39 @@ return [
     'delivery' => 'Delivery',
     'cart' => 'Cart',
 
-    'to_catalog' => 'To catalog',
+    'to_catalog' => 'To Catalog',
     'more' => 'more',
+    'show_all' => 'Show All',
+    'show_more' => 'Show More',
+    'close' => 'Close',
+    'reset' => 'Reset',
+
+    'price' => 'Price',
+    'size' => 'Size',
 
     'our_instagram' => 'Our Instagram',
 
     'footer' => [
-        'lingerie' => 'lingerie',
-        'for_house' => 'for house',
-        'swimwear' => 'swimwear',
-        'for_clients' => 'for clients',
+        'lingerie' => 'LINGERIE',
+        'for_house' => 'FOR HOUSE',
+        'swimwear' => 'SWIMWEAR',
+        'for_clients' => 'FOR CLIENTS',
         'policy' => 'Privacy Policy',
     ],
 
-    'home' => [
-        'popular_new' => 'popular new goods',
-        'about' => 'About us',
-        'categories' => 'Categories',
+    'home_page' => [
+        'popular_new' => 'Popular New',
+        'about' => 'About Brand',
+        'categories' => 'Product Categories',
+    ],
+
+    'catalog_page' => [
+        'catalog' => 'Catalog',
+        'sort' => 'Sort',
+        'sort_new' => 'Newest First',
+        'sort_price_desc' => 'Price: High to Low',
+        'sort_price_asc' => 'Price: Low to High',
+        'category' => 'Category',
+        'color' => 'Color Selection',
     ],
 ];
