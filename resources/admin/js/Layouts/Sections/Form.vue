@@ -30,10 +30,10 @@
 
         <div v-if="tabs" class="px-4 py-4 sm:px-8 border-b border-gray-100 flex flex-wrap">
             <div
-                class="px-5 py-2 text-sm mr-3 my-2 bg-gray-100 rounded-md shadow-md shrink-0 transition tab"
+                class="px-5 py-2 text-sm mr-3 my-2 rounded-md shadow-md shrink-0 transition tab"
                 :class="{
                     'bg-primary-500 text-white': tab == activeTab,
-                    'hover:bg-gray-200 cursor-pointer': tab != activeTab,
+                    'bg-gray-100 hover:bg-gray-200 cursor-pointer': tab != activeTab,
                 }"
                 @click="setTab(tab)"
                 v-for="tab in tabs"
