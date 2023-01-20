@@ -64,7 +64,7 @@ return [
         'total' => 'Итог',
         'delivery' => 'Доставка',
         'back_to_cart' => 'Вернуться в корзину',
-        'your_order' => 'Ваш заказ',
+        'your_checkout' => 'Ваш заказ',
 
         'payment_type' => 'Способ оплаты',
         'card_payment' => 'Банковская карта',

@@ -264,7 +264,7 @@
             <a href="http://lingerie.bo/catalog">catalog</a>
             <a href="http://lingerie.bo/product">product</a>
             <a href="http://lingerie.bo/cart">cart</a>
-            <a href="http://lingerie.bo/order">order</a>
+            <a href="http://lingerie.bo/checkout">checkout</a>
             <a href="http://lingerie.bo/page">page</a>
             <a href="http://lingerie.bo/faq">faq</a>
             <a href="http://lingerie.bo/success">success</a>

@@ -13,7 +13,7 @@ Route::name('front.')
         Route::view('catalog', 'pages.shop.catalog');
         Route::view('product', 'pages.shop.product');
         Route::view('cart', 'pages.shop.cart');
-        Route::view('order', 'pages.shop.order');
+        Route::view('checkout', 'pages.shop.checkout');
         Route::view('page', 'pages.page');
         Route::view('faq', 'pages.faq');
         Route::view('success', 'pages.shop.success');

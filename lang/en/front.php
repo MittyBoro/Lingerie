@@ -64,7 +64,7 @@ return [
         'total' => 'Total',
         'delivery' => 'Delivery',
         'back_to_cart' => 'Back to Cart',
-        'your_order' => 'Your Order',
+        'your_checkout' => 'Your Order',
 
         'payment_type' => 'Payment Type',
         'card_payment' => 'Card Payment',

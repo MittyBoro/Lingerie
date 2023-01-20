@@ -6,60 +6,60 @@
 
 @section('content')
 
-<div class="order-box">
+<div class="checkout-box">
     <div class="container">
         <div class="h2">@lang('front.cart_page.checkout_title')</div>
-        <div class="order-middle grid-2">
-            <div class="order-list-col">
-                <div class="order-list-white">
-                    <div class="ow-title just-title">@lang('front.cart_page.your_order')</div>
-                    <div class="order-list">
+        <div class="checkout-middle grid-2">
+            <div class="checkout-list-col">
+                <div class="checkout-list-white">
+                    <div class="ow-title just-title">@lang('front.cart_page.your_checkout')</div>
+                    <div class="checkout-list">
                         @foreach (range(1, 3) as $i)
-                            <div class="order-item">
+                            <div class="checkout-item">
                                 <div class="col-image">
                                     <div class="prod-image wa-hover">
                                         <img src="/storage/tmp/1.png" alt="">
                                     </div>
                                 </div>
                                 <div class="col-name col-info">
-                                    <div class="order-name">Длинный заголовок чудесного товара</div>
-                                    <div class="order-attr o-mini"><span>Размер: XL</span></div>
+                                    <div class="checkout-name">Длинный заголовок чудесного товара</div>
+                                    <div class="checkout-attr ch-mini"><span>Размер: XL</span></div>
                                 </div>
                                 <div class="col-price col-info">
-                                    <div class="order-price"><b><span>6900</span> ₽</b></div>
-                                    <div class="order-quantity o-mini">@lang('front.count'): <span>1</span></div>
+                                    <div class="checkout-price"><b><span>6900</span> ₽</b></div>
+                                    <div class="checkout-quantity ch-mini">@lang('front.count'): <span>1</span></div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <div class="order-subtotal">
-                        <div class="ot-row">
-                            <div class="ot-name">@lang('front.cart_page.subtotal')</div>
-                            <div class="ot-value">17 790 ₽</div>
+                    <div class="checkout-subtotal">
+                        <div class="ct-row">
+                            <div class="ct-name">@lang('front.cart_page.subtotal')</div>
+                            <div class="ct-value">17 790 ₽</div>
                         </div>
-                        {{-- <div class="ot-row">
-                            <div class="ot-name">Скидка</div>
-                            <div class="ot-value">1500 ₽</div>
+                        {{-- <div class="ct-row">
+                            <div class="ct-name">Скидка</div>
+                            <div class="ct-value">1500 ₽</div>
                         </div> --}}
-                        <div class="ot-row">
-                            <div class="ot-name">@lang('front.cart_page.delivery')</div>
-                            <div class="ot-value">1500 ₽</div>
+                        <div class="ct-row">
+                            <div class="ct-name">@lang('front.cart_page.delivery')</div>
+                            <div class="ct-value">1500 ₽</div>
                         </div>
                     </div>
-                    <div class="order-total ot-row just-title">
-                        <div class="ot-name">@lang('front.cart_page.total')</div>
-                        <div class="ot-value">19 290 ₽</div>
+                    <div class="checkout-total ct-row just-title">
+                        <div class="ct-name">@lang('front.cart_page.total')</div>
+                        <div class="ct-value">19 290 ₽</div>
                     </div>
                 </div>
-                <div class="order-botom-row">
+                <div class="checkout-botom-row">
                     <a href="/cart" class="btn btn-mini">@lang('front.cart_page.back_to_cart')</a>
                     <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg icon">
                 </div>
             </div>
-            <div class="order-contact-col order-form-col">
-                <div class="order-form-element">
+            <div class="checkout-contact-col checkout-form-col">
+                <div class="checkout-form-element">
                     <div class="just-title">@lang('front.contact.contact_title')</div>
-                    <div class="order-inputs grid-2">
+                    <div class="checkout-inputs grid-2">
                         <div class="form-input">
                             <input type="text" placeholder="@lang('front.contact.first_last_name')" required>
                         </div>
@@ -71,9 +71,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="order-form-element">
+                <div class="checkout-form-element">
                     <div class="just-title">@lang('front.contact.contact_title')</div>
-                    <div class="order-inputs grid-2">
+                    <div class="checkout-inputs grid-2">
                         <div class="form-input">
                             <input type="text" placeholder="@lang('front.contact.street_house_flat')" required>
                         </div>
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="order-form-element">
+                <div class="checkout-form-element">
                     <div class="just-title">@lang('front.cart_page.payment_type')</div>
                     <div class="payment-method grid-2">
                         <label class="pm-item">
@@ -102,8 +102,8 @@
                     </div>
                 </div>
             </div>
-            <div class="order-contact-col col-bottom">
-                <div class="order-form-element">
+            <div class="checkout-contact-col col-bottom">
+                <div class="checkout-form-element">
                     <div class="ofe-bottom grid-2">
                         <div class="btn">@lang('front.cart_page.done_btn')</div>
                         <label class="pm-item">
