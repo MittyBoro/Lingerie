@@ -2,12 +2,12 @@
 
 namespace App\Models\Admin;
 
-use App\Models\ProductCategory as BaseModel;
-use App\Models\Admin\Traits\TranslationTrait;
+use App\Models\ProductCategory as Model;
+use App\Models\Traits\Admin\TranslationTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
-class ProductCategory extends BaseModel
+class ProductCategory extends Model
 {
     use TranslationTrait;
 
@@ -27,7 +27,7 @@ class ProductCategory extends BaseModel
             static::fixTree();
         });
     }
-    
+
     protected static function booted()
     {
         static::addGlobalScope('translations', function (Builder $builder) {

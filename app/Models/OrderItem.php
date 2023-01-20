@@ -4,7 +4,10 @@ namespace App\Models;
 
 use App\Models\Product\Product;
 
-class OrderItem extends BaseModel
+use Illuminate\Database\Eloquent\Model;
+
+
+class OrderItem extends Model
 {
     public $timestamps = false;
 

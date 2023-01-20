@@ -1,15 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Traits;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Illuminate\Support\Facades\DB;
-
-class BaseModel extends Model
+trait PaginateTrait
 {
-    protected $guarded = false;
-
     protected $perPage = 20;
 
     protected $orderBy = ['id', 'desc'];
@@ -18,8 +12,9 @@ class BaseModel extends Model
         'created_at', 'id',
     ];
 
+
     // получить ключ/направление сортировки
-    protected function getOrderBy()
+    public function getOrderBy()
     {
         if (request('orderby'))
         {
@@ -35,7 +30,7 @@ class BaseModel extends Model
         return $orderBy;
     }
 
-    protected function perPage(): int
+    public function perPage(): int
     {
         $perPage = request('count') ?: request('perPage', $this->perPage);
 
@@ -76,31 +71,6 @@ class BaseModel extends Model
     public function scopeGetOrdered($query)
     {
         return $query->ordered()->get();
-    }
-
-    public function massUpdate($data)
-    {
-        DB::transaction(function() use ($data) {
-            foreach($data as $v) {
-                static::where('id', $v['id'])->update($v);
-            }
-        });
-    }
-
-    public function scopeExclude($query, $value = [])
-    {
-        return $query->select(array_diff($this->columns, (array) $value));
-    }
-
-    public function scopeByLang($query, $lang)
-    {
-        if ($lang)
-            $query->whereLang( $lang );
-    }
-
-    public function hasAttribute($key)
-    {
-        return array_key_exists($key, $this->attributes);
     }
 
 }

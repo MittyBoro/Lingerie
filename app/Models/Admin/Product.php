@@ -2,11 +2,11 @@
 
 namespace App\Models\Admin;
 
-use App\Models\Product as BaseModel;
-use App\Models\Admin\Traits\TranslationTrait;
+use App\Models\Product as Model;
+use App\Models\Traits\Admin\TranslationTrait;
 use Illuminate\Database\Eloquent\Builder;
 
-class Product extends BaseModel
+class Product extends Model
 {
     use TranslationTrait;
 

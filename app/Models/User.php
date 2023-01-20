@@ -3,22 +3,16 @@
 namespace App\Models;
 
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Contracts\Auth\MustVerifyEmail as AuthMustVerifyEmail;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-use Laravel\Sanctum\HasApiTokens;
 
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\Image\Manipulations;
@@ -26,21 +20,12 @@ use Spatie\Image\Manipulations;
 use Propaganistas\LaravelPhone\Casts\RawPhoneNumberCast;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
-
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 
-class User extends BaseModel implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract,
-    HasMedia,
-    AuthMustVerifyEmail
-{
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
-    use HasApiTokens;
-    use HasFactory;
-    use Notifiable;
+class User extends Authenticatable implements HasMedia {
+    use HasApiTokens, HasFactory, Notifiable;
+
     use SoftDeletes;
     use InteractsWithCustomMedia;
     use SearchableTrait;

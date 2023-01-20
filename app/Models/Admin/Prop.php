@@ -2,12 +2,12 @@
 
 namespace App\Models\Admin;
 
-use App\Models\Prop as BaseModel;
+use App\Models\Prop as Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
-class Prop extends BaseModel
+class Prop extends Model
 {
 
     const MODELS = [

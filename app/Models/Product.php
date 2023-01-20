@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\Models\Traits\ProductCartTrait;
-use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use App\Models\Translations\ProductTranslation;
+use App\Services\SpatieMedia\InteractsWithCustomMedia;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,7 @@ use Spatie\MediaLibrary\HasMedia;
 
 use Nicolaslopezj\Searchable\SearchableTrait;
 
-class Product extends BaseModel implements HasMedia
+class Product extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithCustomMedia;

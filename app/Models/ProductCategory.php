@@ -5,9 +5,10 @@ namespace App\Models;
 use App\Models\Translations\ProductCategoryTranslation;
 use Kalnoy\Nestedset\NodeTrait;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProductCategory extends BaseModel
+class ProductCategory extends Model
 {
     use HasFactory;
     use NodeTrait;

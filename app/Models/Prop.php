@@ -6,11 +6,11 @@ use App\Models\Product\Product;
 use Spatie\MediaLibrary\HasMedia;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 
-class Prop extends BaseModel implements HasMedia
+class Prop extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithCustomMedia;

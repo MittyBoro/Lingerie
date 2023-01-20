@@ -2,11 +2,11 @@
 
 namespace App\Models\Translations;
 
-use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
-class ProductCategoryTranslation extends BaseModel
+class ProductCategoryTranslation extends Model
 {
     use HasFactory;
 
