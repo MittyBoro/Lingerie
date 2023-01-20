@@ -4,11 +4,17 @@ namespace App\Models\Admin;
 
 use App\Models\Product as Model;
 use App\Models\Traits\Admin\TranslationTrait;
+use App\Models\Traits\RetrievingTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
     use TranslationTrait;
+    use RetrievingTrait;
+
+
+    protected $sortable = ['position', 'id', 'created_at', 'is_published'];
+
 
     protected static function booted()
     {

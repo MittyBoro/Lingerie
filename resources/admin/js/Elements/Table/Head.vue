@@ -15,9 +15,9 @@
                     <span v-else v-text="header.text"></span>
 
                     <Icon
-                        v-if="header.key == orderBy[0]"
+                        v-if="header.key == sort[0]"
                         class="ml-1 scale-90"
-                        :icon="orderBy[1] == 'desc' ? 'angle-down' : 'angle-up'"
+                        :icon="sort[1] == 'desc' ? 'angle-down' : 'angle-up'"
                         />
                 </Link>
                 <div v-else class="inline-block py-2">
@@ -36,8 +36,8 @@
 
         data() {
             return {
-                ordSeparator: ',',
-                orderBy: []
+                orderSeparator: '-',
+                sort: []
             };
         },
 
@@ -51,23 +51,23 @@
             getOrderFromUrl() {
                 let url = new URL(location.href);
 
-                let currentOrder = url.searchParams.get('orderby');
+                let currentOrder = url.searchParams.get('sort');
 
-                this.orderBy = currentOrder ? currentOrder.split(this.ordSeparator) : '';
+                this.sort = currentOrder ? currentOrder.split(this.orderSeparator) : '';
             },
 
             urlWithSorting(key) {
                 let url = new URL(location.href);
 
-                let currentOrder = url.searchParams.get('orderby');
+                let currentOrder = url.searchParams.get('sort');
 
                 if ( currentOrder )
                 {
-                    let asc = currentOrder.split(this.ordSeparator).pop();
-                    url.searchParams.set('orderby', key + this.ordSeparator + (asc == 'asc' ? 'desc' : 'asc') );
+                    let asc = currentOrder.split(this.orderSeparator).pop();
+                    url.searchParams.set('sort', key + this.orderSeparator + (asc == 'asc' ? 'desc' : 'asc') );
                 }
                 else
-                    url.searchParams.append('orderby', key + this.ordSeparator + 'desc');
+                    url.searchParams.append('sort', key + this.orderSeparator + 'desc');
                 return url.href;
             }
         },
