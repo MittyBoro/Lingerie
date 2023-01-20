@@ -13,7 +13,7 @@ class TranslationController extends Controller
 
     public function index()
     {
-        $list = Translation::byLang($this->getListLang())->paginated();
+        $list = Translation::whereLang($this->getListLang())->paginated();
 
         return Inertia::render('Translations/Index', [
             'list' => $list,

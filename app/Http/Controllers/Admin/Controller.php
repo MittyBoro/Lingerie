@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller as BaseController;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cookie;
@@ -10,8 +11,9 @@ use Illuminate\Support\Facades\Cookie;
 class Controller extends BaseController
 {
 
-    protected function validateSort(Request $request, $tableName, $addToValidate = [])
+    protected function updateSort(Request $request, $model, $addToValidate = [])
     {
+        $tableName = $model->getTable();
         $validated = $request->validate([
             'sorted' => 'required|array',
             'sorted.*.id' => 'required|exists:' . $tableName . ',id',
@@ -19,7 +21,14 @@ class Controller extends BaseController
             ...$addToValidate
         ]);
 
-        return $validated['sorted'];
+        $data = $validated['sorted'];
+
+        DB::transaction(function() use ($model, $data) {
+            foreach($data as $v) {
+                $model::where('id', $v['id'])->update($v);
+            }
+        });
+
     }
 
     public function setListLang(Request $request)

@@ -70,19 +70,19 @@ class ProductCategoryController extends Controller
         return back();
     }
 
-    public function sort(Request $request, ProductCategory $productCategory)
+    public function sort(Request $request)
     {
-        $validated = $this->validateSort(
+        $this->updateSort(
                                 $request,
-                                'product_categories',
+                                new ProductCategory,
                                 ['sorted.*.parent_id' => 'nullable|exists:product_categories,id']
                             );
 
-        $productCategory->massUpdate($validated);
         ProductCategory::fixTree();
 
         return back();
     }
+
 
     public function destroy(ProductCategory $productCategory)
     {

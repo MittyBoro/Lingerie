@@ -12,7 +12,7 @@ class FAQController extends Controller
 
     public function index()
     {
-        $list = FAQ::byLang($this->getListLang())->paginated();
+        $list = FAQ::whereLang($this->getListLang())->paginated();
 
         return Inertia::render('FAQs/Index', [
             'list' => $list,
@@ -57,11 +57,9 @@ class FAQController extends Controller
         return back();
     }
 
-	public function sort(Request $request, FAQ $item)
+	public function sort(Request $request)
 	{
-		$validated = $this->validateSort($request, 'faqs');
-
-		$item->massUpdate($validated);
+		$this->updateSort($request, new FAQ);
 
 		return back();
 	}

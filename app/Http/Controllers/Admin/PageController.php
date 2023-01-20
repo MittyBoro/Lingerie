@@ -14,7 +14,7 @@ class PageController extends Controller
 
     public function index()
     {
-        $pages = Page::byLang($this->getListLang())->paginated();
+        $pages = Page::whereLang($this->getListLang())->paginated();
 
         return Inertia::render('Pages/Index', [
             'list' => $pages,

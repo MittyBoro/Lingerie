@@ -70,14 +70,12 @@ class ProductController extends Controller
         return back();
     }
 
-    public function sort(Request $request, Product $product)
-    {
-        $validated = $this->validateSort($request, 'products');
+	public function sort(Request $request)
+	{
+		$this->updateSort($request, new Product);
 
-        $product->massUpdate($validated);
-
-        return back();
-    }
+		return back();
+	}
 
     public function destroy(Product $product)
     {
