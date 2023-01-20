@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
 
-            $table->string('route')->nullable();
+            $table->string('view')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

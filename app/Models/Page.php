@@ -25,12 +25,11 @@ class Page extends BaseModel
         'view',
     ];
 
-    protected $orderBy = ['created_at', 'asc'];
+    protected $orderBy = ['slug', 'asc'];
 
     protected static function boot()
     {
         parent::boot();
-
         static::saving( function($query)
         {
             if ( empty($query->meta_title) )
@@ -38,10 +37,10 @@ class Page extends BaseModel
         });
     }
 
-    // public function props()
-    // {
-    //     return app(self::class)->morphMany(Prop::class, 'model')->with('media');
-    // }
+    public function props()
+    {
+        return app(self::class)->morphMany(Prop::class, 'model')->with('media');
+    }
 
     // public function getPropsAttribute()
     // {

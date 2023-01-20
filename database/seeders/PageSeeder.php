@@ -2,17 +2,40 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Admin\Page;
+use App\Models\Admin\Prop;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 
 class PageSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
+    {
+        $pages = $this->getData();
+
+        foreach ($pages as $page) {
+            $this->createPage($page);
+        }
+    }
+
+    private function createPage($pageItem)
+    {
+        $props = $pageItem['props'] ?? [];
+
+        $pageItem = Arr::except($pageItem, 'props');
+
+        $page = Page::create($pageItem);
+
+        foreach ($props as $prop) {
+            $prop += [
+                'model_type' => \App\Models\Page::class,
+                'model_id' => $page->id,
+            ];
+            Prop::create($prop);
+        }
+    }
+
+    private function getData()
     {
         /**
          * home
@@ -39,13 +62,13 @@ class PageSeeder extends Seeder
                     'type' => 'text',
                     'title' => 'Заголовок на главной',
                     'key' => 'home_title',
-                    'value' => 'Нижнее белье для девушек, любящих своё тело',
+                    'value_text' => 'Нижнее белье для девушек, любящих своё тело',
                 ],
                 [
                     'type' => 'text',
                     'title' => 'О бренде - текст',
                     'key' => 'about_text',
-                    'value' => 'Лорем',
+                    'value_text' => 'Лорем',
                 ],
             ],
         ];
@@ -59,13 +82,13 @@ class PageSeeder extends Seeder
                     'type' => 'text',
                     'title' => 'Заголовок на главной',
                     'key' => 'home_title',
-                    'value' => 'Underwear for girls who love their body',
+                    'value_text' => 'Underwear for girls who love their body',
                 ],
                 [
                     'type' => 'text',
                     'title' => 'О бренде - текст',
                     'key' => 'about_text',
-                    'value' => 'Lorem',
+                    'value_text' => 'Lorem',
                 ],
             ],
         ];
@@ -195,7 +218,6 @@ class PageSeeder extends Seeder
             'lang' => 'en',
         ];
 
-
-
+        return $pages;
     }
 }
