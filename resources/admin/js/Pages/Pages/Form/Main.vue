@@ -21,8 +21,8 @@
             <FTextareaEditor v-model="form.description" mini/>
         </FLabel>
 
-        <FLabel title="Роутер" :error="form.errors.route">
-            <FInput type="text" v-model="form.route" />
+        <FLabel title="Имя шаблона" :error="form.errors.view">
+            <FInput type="text" v-model="form.view" />
         </FLabel>
 
     </div>

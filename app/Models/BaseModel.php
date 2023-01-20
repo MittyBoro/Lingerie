@@ -3,10 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Validation\ValidationException;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Carbon;
 
 class BaseModel extends Model
 {
@@ -19,18 +17,6 @@ class BaseModel extends Model
     protected $orderFileds = [
         'created_at', 'id',
     ];
-
-    // выкинуть ошиботьку
-    public function throwArray($errors)
-    {
-        $messages = [];
-        foreach ($errors as $k => $v)
-        {
-            $messages[$k] = [$v];
-        }
-
-        throw ValidationException::withMessages($messages);
-    }
 
     // получить ключ/направление сортировки
     protected function getOrderBy()
@@ -106,36 +92,10 @@ class BaseModel extends Model
         return $query->select(array_diff($this->columns, (array) $value));
     }
 
-    public function scopeWeek($query)
-    {
-        $query->whereDate( 'created_at', '>=', Carbon::now()->subDays(7));
-    }
-
-    public function scopeMonth($query)
-    {
-        $query->whereDate( 'created_at', '>=', Carbon::now()->subDays(30));
-    }
-
-    public function scopeHalfYear($query)
-    {
-        $query->whereDate( 'created_at', '>=', Carbon::now()->subDays(183));
-    }
-
-    public function scopeYear($query)
-    {
-        $query->whereDate( 'created_at', '>=', Carbon::now()->subDays(365));
-    }
-
     public function scopeByLang($query, $lang)
     {
         if ($lang)
             $query->whereLang( $lang );
-    }
-
-    public function localize($value)
-    {
-        if ($value)
-            return Carbon::parse($value, config('app.timezone'))->timezone(config('app.local_timezone'));
     }
 
     public function hasAttribute($key)

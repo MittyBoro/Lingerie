@@ -25,7 +25,7 @@ class PageRequest extends AdminFormRequest
                                 })->ignore($id)],
 
             'description' => 'string|nullable',
-            'route'       => 'string|nullable',
+            'view'        => 'string|nullable',
 
             ...$this->validationLang(),
 

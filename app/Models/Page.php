@@ -9,17 +9,28 @@ class Page extends BaseModel
     use HasFactory;
 
     protected $perPage = 30;
-    protected $guarded = ['props'];
 
     protected $orderFileds = [
         'id', 'title', 'created_at'
     ];
 
+    protected $fillable = [
+        'slug',
+        'lang',
+        'title',
+        'description',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'view',
+    ];
+
     protected $orderBy = ['created_at', 'asc'];
 
-    public static function boot()
+    protected static function boot()
     {
         parent::boot();
+
         static::saving( function($query)
         {
             if ( empty($query->meta_title) )
@@ -27,10 +38,10 @@ class Page extends BaseModel
         });
     }
 
-    public function props()
-    {
-        return app(self::class)->morphMany(Prop::class, 'model')->with('media');
-    }
+    // public function props()
+    // {
+    //     return app(self::class)->morphMany(Prop::class, 'model')->with('media');
+    // }
 
     // public function getPropsAttribute()
     // {

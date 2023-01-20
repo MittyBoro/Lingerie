@@ -44,7 +44,7 @@
                     title: null,
                     slug: null,
                     is_hidden: false,
-                    route: null,
+                    view: null,
                     lang: null,
 
                     description: null,
