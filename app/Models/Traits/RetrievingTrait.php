@@ -7,17 +7,20 @@ use Illuminate\Database\Eloquent\Builder;
 trait RetrievingTrait
 {
 
-    public function scopeCustomOrder(Builder $query, $orderBy = [])
+    public function scopeWhereLang(Builder $query, $lang)
     {
-        $column = $orderBy[0];
-        $direction = $orderBy[1] ?? 'asc';
+        if ($lang)
+            $query->where('lang', $lang);
+    }
 
+    public function scopeCustomOrder(Builder $query, $column = 'id', $direction = 'asc')
+    {
         $sortableColumns = $this->sortable ?: ['id'];
 
-        $column = in_array($column, $sortableColumns) ? $column : $sortableColumns[0];
-        $direction = $direction == 'asc' ? 'asc' : 'desc';
-
-        $query->orderBy($column, $direction);
+        $query->orderBy(
+            in_array($column, $sortableColumns) ? $column : $sortableColumns[0],
+            $direction == 'asc' ? 'asc' : 'desc'
+        );
     }
 
     public function scopeCustomPaginate($query, $perPage = null, $append = null)

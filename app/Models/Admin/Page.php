@@ -2,20 +2,16 @@
 
 namespace App\Models\Admin;
 
-use App\Models\Page as BasePage;
+use App\Models\Page as Model;
+use App\Models\Traits\RetrievingTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 
-class Page extends BasePage
+class Page extends Model
 {
+    use RetrievingTrait;
 
-    protected static function booted()
-    {
-        static::addGlobalScope('ordered', function (Builder $builder) {
-            $builder->orderBy('slug');
-            $builder->orderBy('lang');
-        });
-    }
+    protected $sortable = ['slug', 'lang', 'title'];
 
     public function props()
     {

@@ -11,9 +11,10 @@ use Str;
 class TranslationController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $list = Translation::whereLang($this->getListLang())->paginated();
+        $list = Translation::whereLang($this->getListLang())
+                            ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('Translations/Index', [
             'list' => $list,

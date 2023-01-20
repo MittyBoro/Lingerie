@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\RetrievingTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
@@ -9,10 +10,9 @@ use Illuminate\Support\Str;
 class Translation extends Model
 {
     use HasFactory;
+    use RetrievingTrait;
 
     public $timestamps = false;
-
-    public $perPage = 50;
 
     protected $fillable = [
         'lang',

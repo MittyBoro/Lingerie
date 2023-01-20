@@ -10,9 +10,10 @@ use Inertia\Inertia;
 class ProductAttributeController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $pages = ProductAttribute::paginated();
+        $pages = ProductAttribute::customOrder(...$this->getSort($request))
+                                 ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('ProductAttributes/Index', [
             'list' => $pages,

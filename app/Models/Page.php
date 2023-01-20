@@ -9,12 +9,6 @@ class Page extends Model
 {
     use HasFactory;
 
-    protected $perPage = 30;
-
-    protected $orderFileds = [
-        'id', 'title', 'created_at'
-    ];
-
     protected $fillable = [
         'slug',
         'lang',
@@ -25,8 +19,6 @@ class Page extends Model
         'meta_keywords',
         'view',
     ];
-
-    protected $orderBy = ['slug', 'asc'];
 
     protected static function boot()
     {

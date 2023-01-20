@@ -12,9 +12,11 @@ use Inertia\Inertia;
 class PageController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $pages = Page::whereLang($this->getListLang())->paginated();
+        $pages = Page::whereLang($this->getListLang())
+                     ->customOrder(...$this->getSort($request))
+                     ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('Pages/Index', [
             'list' => $pages,

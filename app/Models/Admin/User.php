@@ -2,11 +2,14 @@
 
 namespace App\Models\Admin;
 
+use App\Models\Traits\RetrievingTrait;
 use App\Models\User as BaseUser;
 
 
 class User extends BaseUser
 {
+    use RetrievingTrait;
+
 
     public static function roleList()
     {

@@ -10,9 +10,10 @@ use Inertia\Inertia;
 class FAQController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $list = FAQ::whereLang($this->getListLang())->paginated();
+        $list = FAQ::whereLang($this->getListLang())
+                   ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('FAQs/Index', [
             'list' => $list,

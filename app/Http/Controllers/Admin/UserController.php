@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $users = User::filter($request->all())
                             ->with(['media'])
-                            ->paginated();
+                            ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('Users/Index', [
             'roles' => User::roleList(),
