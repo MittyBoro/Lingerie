@@ -65,7 +65,7 @@ class PageSeeder extends Seeder
                     'value_text' => 'Нижнее белье для девушек, любящих своё тело',
                 ],
                 [
-                    'type' => 'text',
+                    'type' => 'format_text',
                     'title' => 'О бренде - текст',
                     'key' => 'about_text',
                     'value_text' => 'Лорем',
@@ -85,7 +85,7 @@ class PageSeeder extends Seeder
                     'value_text' => 'Underwear for girls who love their body',
                 ],
                 [
-                    'type' => 'text',
+                    'type' => 'format_text',
                     'title' => 'О бренде - текст',
                     'key' => 'about_text',
                     'value_text' => 'Lorem',
@@ -216,6 +216,22 @@ class PageSeeder extends Seeder
             'slug' => 'success',
             'view' => 'success',
             'lang' => 'en',
+        ];
+
+
+        // politic
+        $pages[] = [
+            'title' => 'Политика конфиденциальности',
+            'slug' => 'politic',
+            'view' => 'politic',
+            'lang' => 'ru',
+            'description' => 'Политика конфиденциальности',
+        ];
+        $pages[] = [
+            'title' => 'Privacy Policy',
+            'slug' => 'politic',
+            'view' => 'politic',
+            'lang' => 'Privacy Policy',
         ];
 
         return $pages;

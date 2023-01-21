@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
-        // $this->factories();
+        $this->factories();
 
         $this->call([
             ProductSeeder::class,
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
     private function factories() {
 
 		User::factory(8)->create();
-		Prop::factory(40)->create();
+		// Prop::factory(40)->create();
         // Page::factory(5)->create();
 		FAQ::factory(5)->create();
 		Translation::factory(20)->create();
