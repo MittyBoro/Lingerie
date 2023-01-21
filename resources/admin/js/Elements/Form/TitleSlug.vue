@@ -1,12 +1,12 @@
 <template>
 
     <!-- Title -->
-    <FLabel title="Название" :error="form.errors?.title">
-        <FInput @change="setSlugFromTitle" v-model="form.title" />
+    <FLabel title="Название" :error="currentFormTitle.errors?.title">
+        <FInput @change="setSlugFromTitle" v-model="currentFormTitle.title" />
     </FLabel>
 
     <!-- Slug -->
-    <FLabel :title="slugName" :error="form.errors?.[slugKey]">
+    <FLabel :title="slugName" :error="currentFormSlug.errors?.[slugKey]">
         <FInput :classes="'text-xs max-h-8 ' + (slug ? 'opacity-60' : '')" v-model="slug" />
     </FLabel>
 
@@ -18,6 +18,8 @@
 
     export default {
         props: {
+            formTitle: Object,
+            formSlug: Object,
             form: Object,
             slugKey: {
                 type: String,
@@ -29,13 +31,23 @@
             },
         },
 
+        emits: ['update:slug'],
+
         computed: {
+            currentFormTitle() {
+                return this.formTitle || this.form
+            },
+            currentFormSlug() {
+                return this.formSlug || this.form
+            },
             slug: {
                 get() {
-                    return this.form[this.slugKey];
+                    return this.currentFormSlug[this.slugKey];
                 },
                 set(val) {
-                    this.form[this.slugKey] = slugify(val || '', {lower: true, strict: true});
+                    let slugVal = slugify(val || '', {lower: true, strict: true})
+                    this.currentFormSlug[this.slugKey] = slugVal;
+				    this.$emit('update:slug', slugVal);
                 }
             }
         },
@@ -43,7 +55,7 @@
         methods: {
             setSlugFromTitle() {
                 if (!this.slug)
-                    this.slug = this.form.title
+                    this.slug = this.currentFormTitle.title
             },
         },
     }

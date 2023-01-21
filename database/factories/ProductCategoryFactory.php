@@ -16,7 +16,8 @@ class ProductCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'position' => 0
+            'position' => 0,
+            'slug' => $this->faker->unique()->word,
         ];
     }
 
@@ -58,7 +59,6 @@ class ProductCategoryFactory extends Factory
         $data = [
             'title' => $this->faker->unique()->sentence(rand(2,4)),
             'lang' => $lang,
-            'slug' => $this->faker->unique()->word,
             'description' => $this->faker->text,
         ];
 

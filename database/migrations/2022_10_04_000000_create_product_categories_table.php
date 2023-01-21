@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
 
             $table->integer('position')->default(0);
+            $table->string('slug')->index()->unique();
 
             $table->nestedSet();
         });

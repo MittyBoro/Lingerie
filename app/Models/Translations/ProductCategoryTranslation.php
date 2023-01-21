@@ -15,7 +15,6 @@ class ProductCategoryTranslation extends Model
     protected $fillable = [
         'lang',
         'title',
-        'slug',
 
         'description',
 

@@ -21,6 +21,7 @@ class ProductCategory extends Model
     protected $fillable = [
         'parent_id', // мб пофиксить
         'position',
+        'slug',
         '_lft',
         '_rgt'
     ];

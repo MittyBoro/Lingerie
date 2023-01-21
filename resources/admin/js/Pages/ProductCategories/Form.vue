@@ -7,7 +7,7 @@
 
                 <div class="form-grid" v-show="sb.activeTab == 'Основное'">
 
-                    <FTitleSlug :form="translation" />
+                    <FTitleSlug :formTitle="translation" :formSlug="form"  />
 
                     <FLabel title="Родительская категория" :error="form.errors.parent_id">
                         <FSelect :options="categories" :keys="['id','title']" v-model="form.parent_id" />
@@ -32,7 +32,7 @@
     import AppLayout from '@/Layouts/AppLayout'
     import FormSection from '@/Layouts/Sections/Form'
 
-    import Translation from '@/Mixins/Translation'
+    import Translation from '@/Mixins/Form/Translation'
     import Form from '@/Mixins/Form/Form'
 
 
@@ -53,9 +53,9 @@
             return {
                 form: this.setForm({
                     parent_id: null,
+                    slug: null,
 
                     translations: this.defaultTranslations({
-                        slug: null,
                         title: null,
                         description: null,
                         meta_title: null,

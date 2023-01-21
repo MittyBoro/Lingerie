@@ -22,7 +22,6 @@ return new class extends Migration
                   ->constrained('product_categories')
                   ->cascadeOnDelete();
 
-            $table->string('slug');
             $table->string('lang')->default('ru');
 
             $table->string('title');
