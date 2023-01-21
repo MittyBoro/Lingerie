@@ -35,27 +35,23 @@ class Page extends Model
         return app(self::class)->morphMany(Prop::class, 'model')->with('media');
     }
 
-    // public function getPropsAttribute()
-    // {
-    //     return $this->properties->keyBy('key')
-    //                             ->map(function($item) {
-    //                                 return $item->value;
-    //                             });
-    // }
+    public function getPropsAttribute()
+    {
+        return $this->props()->get()->keyBy('key')
+                                ->map(function($item) {
+                                    return $item->value;
+                                });
+    }
 
-    public function scopeBySlug($query, $slug, $abortIfNull = true)
+    public function scopeFindBySlug($query, $slug, $abortIfNull = true)
     {
         $page = $query
                 ->where('slug', $slug)
-                // ->where('is_hidden', true)
-                ->with('properties')
+                ->with('props')
                 ->firstOr(
-                    ['id','route','slug','title','description','meta_title','meta_description','meta_keywords'],
-                    function() use ($abortIfNull) {
-                        if ($abortIfNull)
-                            return abort(404);
-                        return null;
-                    }
+                    ['id','view','slug','title','description','meta_title','meta_description','meta_keywords'],
+
+                    fn () => $abortIfNull ? abort(404) : null,
                 );
 
         if ($page)

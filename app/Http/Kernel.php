@@ -75,5 +75,7 @@ class Kernel extends HttpKernel
 
         'guest_or_verified' => \App\Http\Middleware\GuestOrVerified::class,
         'apply_cart' => \App\Http\Middleware\ApplyCart::class,
+
+        'only_page' => \App\Http\Middleware\OnlyPage::class,
     ];
 }

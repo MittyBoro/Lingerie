@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Page;
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        dd($request->page);
+
     }
 }
