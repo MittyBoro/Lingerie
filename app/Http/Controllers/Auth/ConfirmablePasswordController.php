@@ -18,7 +18,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(Request $request)
     {
-        if ($request->is_inertia) {
+        if ($request->header('Is-Inertia')) {
             return Inertia::render('Auth/ConfirmPassword');
         } else {
             return view('auth.confirm-password');

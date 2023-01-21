@@ -66,7 +66,7 @@ class RouteServiceProvider extends ServiceProvider
     }
     public static function home(Request $request)
     {
-        return $request->is_inertia ?
+        return $request->header('Is-Inertia') ?
                     self::HOME_ADMIN :
                     self::HOME;
     }

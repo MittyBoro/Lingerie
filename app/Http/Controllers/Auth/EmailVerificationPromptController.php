@@ -17,7 +17,7 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request)
     {
-        if ($request->is_inertia) {
+        if ($request->header('Is-Inertia')) {
             return  Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
         } else {
             return $request->user()->hasVerifiedEmail()

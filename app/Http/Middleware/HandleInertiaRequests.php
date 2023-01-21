@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $request->merge(['is_inertia' => true]);
+        $request->headers->set('Is-Inertia', true);
 
         return array_merge(parent::share($request), [
             'config' => fn () => config('admin'),

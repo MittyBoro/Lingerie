@@ -32,7 +32,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return !$request->is_inertia ?
+            return !$request->header('Is-Inertia') ?
                         route('login') :
                         route('admin.login');
         }

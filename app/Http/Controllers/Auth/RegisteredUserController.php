@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(Request $request)
     {
-        if ($request->is_inertia) {
+        if ($request->header('Is-Inertia')) {
             return Inertia::render('Auth/Register');
         } else {
             return view('auth.register');
