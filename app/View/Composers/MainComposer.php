@@ -29,21 +29,12 @@ class MainComposer
             return $props;
         });
 
-        $cart_count = \Cart::getContent()->count();
-
-        if ($view->__isset('map_addresses')) {
-            if ($viewName == 'home')
-                $props['map_addresses'] = array_merge($view->__get('map_addresses'), $props['map_addresses']);
-            else
-                $props['map_addresses'] = $view->__get('map_addresses');
-        }
-
-
+        // $cart_count = \Cart::getContent()->count();
 
         $view->with([
             'view_name'  => $viewName,
             'props'     => $props,
-            'cart_count' => $cart_count,
+            // 'cart_count' => $cart_count,
         ]);
     }
 }

@@ -16,7 +16,7 @@
 <div class="home-first-box">
     <div class="container">
         <div class="middle-row">
-            <div class="h1">Нижнее<i></i> белье<i></i> для девушек,<i></i> любящих своё<i></i> тело</div>
+            <div class="h1">{{ $page['props']['home_title'] }}</div>
             <a href="/catalog" class="btn">@lang('front.to_catalog')</a>
         </div>
     </div>
@@ -103,7 +103,7 @@
                 </a>
 
                 <div class="a-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis sit orci viverra nunc, vivamus vitae. In tincidunt morbi vulputate sit felis. Posuere nibh odio pellentesque porttitor convallis phasellus tristique. Tortor, diam duis pellent esque amet orci sed ornare consectetur nibh. Lorem ipsum dolor sit amet, consectetur adipiscing elit sit orci viverra nunc, vivamus vitae. In tincidunt morbi vulputate.
+                    {{ $page['props']['about_text'] }}
                 </div>
             </div>
         </div>

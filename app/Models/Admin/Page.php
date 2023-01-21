@@ -13,9 +13,19 @@ class Page extends Model
 
     protected $sortable = ['slug', 'lang', 'title'];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving( function($query)
+        {
+            if ( empty($query->meta_title) )
+                $query->meta_title = $query->title;
+        });
+    }
+
     public function props()
     {
-        return app(BasePage::class)->morphMany(Prop::class, 'model')->with('media');
+        return app(Model::class)->morphMany(Prop::class, 'model')->with('media');
     }
 
     public function getAltLangsAttribute()
