@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 use App\Models\Product;
 use App\Models\ProductAttribute;
-use App\Models\ProductCategory;
 
 
 class ProductSeeder extends Seeder
@@ -20,7 +19,6 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $this->runAttributes();
-        ProductCategory::factory(15)->create();
 		Product::factory(25)->create();
     }
 
