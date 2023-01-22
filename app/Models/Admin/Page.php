@@ -38,7 +38,7 @@ class Page extends Model
 
     public function saveAfter($data)
     {
-        if ( isset($data['props']) ) {
+        if (array_key_exists('props', $data)) {
             Prop::updateList($data['props']);
         }
     }

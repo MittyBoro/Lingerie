@@ -71,24 +71,25 @@ class Prop extends Model implements HasMedia
 
     public function getValueAttribute()
     {
-        if ( $this->attributes['type'] == 'string' )
+        $type = $this->attributes['type'];
+
+        if ( $type == 'string' )
             return $this->value_string;
-        elseif ( $this->attributes['type'] == 'boolean' )
+        elseif ( $type == 'boolean' )
             return (bool)$this->value_string;
-        elseif ( $this->attributes['type'] == 'file' )
+        elseif ( $type == 'file' )
             return $this->file;
-        elseif ( $this->attributes['type'] == 'files' )
+        elseif ( $type == 'files' )
             return $this->files;
-        elseif ( $this->attributes['type'] == 'image' )
+        elseif ( $type == 'image' )
             return $this->image;
-        elseif ( $this->attributes['type'] == 'images' )
+        elseif ( $type == 'images' )
             return $this->images;
-        elseif ( $this->attributes['type'] == 'text_array' )
+        elseif ( $type == 'text_array' )
             return $this->text_array;
         else
             return $this->value_text;
     }
-
 
     public function getFileAttribute()
     {
@@ -97,6 +98,15 @@ class Prop extends Model implements HasMedia
     public function getFilesAttribute()
     {
         return $this->getMedia(self::MEDIA_COLLECTION_FILE)?->map->getFullUrl();
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl(self::MEDIA_COLLECTION_IMAGE);
+    }
+    public function getImagesAttribute()
+    {
+        return $this->getMedia(self::MEDIA_COLLECTION_IMAGE)?->map->getFullUrl();
     }
     public function getTextArrayAttribute()
     {

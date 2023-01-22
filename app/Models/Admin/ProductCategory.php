@@ -72,7 +72,7 @@ class ProductCategory extends Model
 
     public function saveAfter($data)
     {
-        if ( isset($data['translations']) ) {
+        if (array_key_exists('translations', $data)) {
            $this->saveTranslations($data['translations']);
         }
     }

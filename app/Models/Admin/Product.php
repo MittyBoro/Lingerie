@@ -53,21 +53,19 @@ class Product extends Model
 
     public function saveAfter($data)
     {
-        if ( isset($data['attributes']) ) {
+        if (array_key_exists('attributes', $data)) {
             $this->attributes()->sync($data['attributes']);
         }
-        if ( isset($data['categories']) ) {
+        if (array_key_exists('categories', $data)) {
             $this->categories()->sync($data['categories']);
         }
-
-        if ( isset($data['translations']) ) {
-           $this->saveTranslations($data['translations']);
+        if (array_key_exists('translations', $data)) {
+            $this->saveTranslations($data['translations']);
         }
-
-        if ( isset($data['gallery']) ) {
+        if (array_key_exists('gallery', $data)) {
             $this->syncMedia($data['gallery'], self::MEDIA_COLLECTION);
         }
-        if ( isset($data['size_table']) ) {
+        if (array_key_exists('size_table', $data)) {
             $this->syncMedia($data['size_table'], self::MEDIA_COLLECTION_SIZE_TABLE);
         }
     }

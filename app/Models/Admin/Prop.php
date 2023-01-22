@@ -39,19 +39,20 @@ class Prop extends Model
             $model->position = self::max('position') + 1;
         });
 
-        static::saving( function($model)
-        {
-            if ( $model->model_id == null )
+        static::saving(function ($model) {
+            if (!$model->model_id) {
                 $model->model_type = null;
-            elseif ( $model->model_type == null )
+            } elseif (!$model->model_type) {
                 $model->model_id = null;
+            }
 
-            if ( $model->model_id )
+            if ($model->model_id) {
                 $model->tab = null;
+            }
 
-            if(empty($model->tab))
+            if (!$model->tab) {
                 $model->tab = self::DEFAULT_TAB;
-
+            }
 
             Cache::forget('view_props');
         });
@@ -78,30 +79,29 @@ class Prop extends Model
 
     protected function value(): Attribute
     {
-        return Attribute::make(
-            get: function($value, $attributes) {
-                $type = $attributes['type'];
-
-                if ( $type == 'string' )
-                    return ['string' => $this->value_string];
-                elseif ( in_array($type, ['file', 'files']) )
-                    return ['files' => $this->getAdminMedia(self::MEDIA_COLLECTION_FILE)];
-
-                elseif ( in_array($type, ['image', 'images']) )
-                    return ['images' => $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE)];
-
-                elseif ( $type == 'text_array' )
-                    return ['text_array' => $this->text_array];
-                else
-                    return ['text' => $this->value_text];
-            },
-        );
+        $type = $this->attributes['type'];
+        switch ($type) {
+            case 'string':
+                return Attribute::make(['string' => $this->value_string]);
+            case 'file':
+            case 'files':
+                return Attribute::make(['files' => $this->getAdminMedia(self::MEDIA_COLLECTION_FILE)]);
+            case 'image':
+            case 'images':
+                return Attribute::make(['images' => $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE)]);
+            case 'text_array':
+                return Attribute::make(['text_array' => $this->text_array]);
+            default:
+                return Attribute::make(['text' => $this->value_text]);
+        }
     }
 
     public function getTabAttribute($value)
     {
-        if ($this->model)
-            return $this->model->title;
+        $model = $this->model;
+        if ($model)
+            return $model->title . ($model->lang ? "[$model->lang]" : "");
+
         return $value;
     }
 
@@ -140,18 +140,25 @@ class Prop extends Model
         $value = $data['value'] ?? [];
         $type = $this->attributes['type'];
 
-        if (in_array($type, ['file', 'files']))
-            $this->syncMedia($value['files'] ?? null, self::MEDIA_COLLECTION_FILE);
-        elseif (in_array($type, ['image', 'images']))
-            $this->syncMedia($value['images'] ?? null, self::MEDIA_COLLECTION_IMAGE);
-
-        elseif (in_array($type, ['string', 'boolean']))
-            $this->attributes['value_string'] = $value['string'] ?? null;
-
-        elseif ($type == 'text_array')
-            $this->attributes['value_text'] = json_encode($value['text_array'] ?? null);
-        else
-            $this->attributes['value_text'] = $value['text'] ?? null;
+        switch ($type) {
+            case 'file':
+            case 'files':
+                $this->syncMedia($value['files'] ?? null, self::MEDIA_COLLECTION_FILE);
+                break;
+            case 'image':
+            case 'images':
+                $this->syncMedia($value['images'] ?? null, self::MEDIA_COLLECTION_IMAGE);
+                break;
+            case 'string':
+            case 'boolean':
+                $this->attributes['value_string'] = $value['string'] ?? null;
+                break;
+            case 'text_array':
+                $this->attributes['value_text'] = json_encode($value['text_array'] ?? null);
+                break;
+            default:
+                $this->attributes['value_text'] = $value['text'] ?? null;
+        }
 
         // faker...
         unset($data['value']);
