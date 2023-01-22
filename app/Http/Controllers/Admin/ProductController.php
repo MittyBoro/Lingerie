@@ -18,7 +18,7 @@ class ProductController extends Controller
         $products = Product::filter($request->all())
                             ->with('media')
                             // ->withPrice('*')
-                            ->customOrder(...$this->getSort($request))
+                            ->orderByStr($request->get('sort'))
                             ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('Products/Index', [

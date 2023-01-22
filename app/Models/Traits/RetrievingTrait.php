@@ -13,13 +13,17 @@ trait RetrievingTrait
             $query->where('lang', $lang);
     }
 
-    public function scopeCustomOrder(Builder $query, $column = 'id', $direction = 'asc')
+    public function scopeOrderByStr(Builder $query, $sort = 'id-desc')
     {
+        $sort = empty($column) ? ($this->defaultSort ?: $sort) : $sort;
+
+        [$column, $direction] = array_pad(explode('-', $sort, 2), 2, 'asc');
+
         $sortableColumns = $this->sortable ?: ['id'];
 
         $query->orderBy(
             in_array($column, $sortableColumns) ? $column : $sortableColumns[0],
-            $direction == 'asc' ? 'asc' : 'desc'
+            $direction
         );
     }
 

@@ -12,7 +12,7 @@ class ProductAttributeController extends Controller
 
     public function index(Request $request)
     {
-        $pages = ProductAttribute::customOrder(...$this->getSort($request))
+        $pages = ProductAttribute::orderByStr($request->get('sort'))
                                  ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('ProductAttributes/Index', [

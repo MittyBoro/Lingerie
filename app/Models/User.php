@@ -73,10 +73,6 @@ class User extends Authenticatable implements HasMedia {
         'avatar',
     ];
 
-    protected $orderFileds = [
-        'created_at', 'id', 'username', 'email', 'name', 'role',
-    ];
-
     protected $searchable = [
         'columns' => [
             'name' => 1,

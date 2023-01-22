@@ -20,6 +20,10 @@ class Translation extends Model
         'value',
     ];
 
+    protected $sortable = [
+        'key', 'value', 'lang',
+    ];
+
 
     public function setKeyAttribute($value)
     {

@@ -16,6 +16,6 @@ class FAQ extends Model
 
     protected $table = 'faqs';
 
-    protected $orderBy = ['position', 'asc'];
+    protected $sortable = ['position', 'title', 'lang'];
 
 }

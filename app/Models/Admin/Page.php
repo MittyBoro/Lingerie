@@ -4,7 +4,6 @@ namespace App\Models\Admin;
 
 use App\Models\Page as Model;
 use App\Models\Traits\RetrievingTrait;
-use Illuminate\Database\Eloquent\Builder;
 
 
 class Page extends Model

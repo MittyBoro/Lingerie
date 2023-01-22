@@ -14,7 +14,8 @@ class TranslationController extends Controller
     public function index(Request $request)
     {
         $list = Translation::whereLang($this->getListLang())
-                            ->customPaginate($request->get('perPage', 20));
+                           ->orderByStr($request->get('sort'))
+                           ->customPaginate($request->get('perPage', 50));
 
         return Inertia::render('Translations/Index', [
             'list' => $list,

@@ -10,6 +10,10 @@ class User extends BaseUser
 {
     use RetrievingTrait;
 
+    protected $sortable = [
+        'created_at', 'id', 'username', 'email', 'name', 'role',
+    ];
+    protected $defaultSort = 'id-desc';
 
     public static function roleList()
     {

@@ -13,6 +13,7 @@ class FAQController extends Controller
     public function index(Request $request)
     {
         $list = FAQ::whereLang($this->getListLang())
+                   ->orderByStr($request->get('sort'))
                    ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('FAQs/Index', [

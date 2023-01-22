@@ -27,15 +27,7 @@ class Prop extends Model
         'images'       => 'Изображения',
     ];
 
-    protected $orderBy = ['position', 'asc'];
-    protected $orderFileds = [
-        'id',
-        'tab',
-        'key',
-        'title',
-        'type',
-        'model_type',
-    ];
+    protected $sortable = ['position'];
 
 
     public static function boot()

@@ -15,7 +15,7 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $pages = Page::whereLang($this->getListLang())
-                     ->customOrder(...$this->getSort($request))
+                     ->orderByStr($request->get('sort'))
                      ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('Pages/Index', [

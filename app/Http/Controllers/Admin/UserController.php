@@ -21,6 +21,7 @@ class UserController extends Controller
     {
         $users = User::filter($request->all())
                             ->with(['media'])
+                            ->orderByStr($request->get('sort'))
                             ->customPaginate($request->get('perPage', 20));
 
         return Inertia::render('Users/Index', [

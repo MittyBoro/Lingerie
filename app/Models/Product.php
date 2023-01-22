@@ -31,12 +31,6 @@ class Product extends Model implements HasMedia
         'position',
     ];
 
-    protected $orderBy = ['position', 'asc'];
-
-    protected $orderFileds = [
-        'id', 'created_at', 'is_published'
-    ];
-
     protected $casts = [
         'is_published' => 'bool',
         'is_stock'     => 'bool',

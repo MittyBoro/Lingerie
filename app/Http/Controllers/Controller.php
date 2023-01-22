@@ -12,8 +12,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function getSort(Request $request)
-    {
-        return explode('-', $request->get('sort', ''), 2);
-    }
 }
