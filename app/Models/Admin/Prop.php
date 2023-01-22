@@ -82,17 +82,17 @@ class Prop extends Model
         $type = $this->attributes['type'];
         switch ($type) {
             case 'string':
-                return Attribute::make(['string' => $this->value_string]);
+                return Attribute::make(get: fn() => ['string' => $this->value_string]);
             case 'file':
             case 'files':
-                return Attribute::make(['files' => $this->getAdminMedia(self::MEDIA_COLLECTION_FILE)]);
+                return Attribute::make(get: fn() => ['files' => $this->getAdminMedia(self::MEDIA_COLLECTION_FILE)]);
             case 'image':
             case 'images':
-                return Attribute::make(['images' => $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE)]);
+                return Attribute::make(get: fn() => ['images' => $this->getAdminMedia(self::MEDIA_COLLECTION_IMAGE)]);
             case 'text_array':
-                return Attribute::make(['text_array' => $this->text_array]);
+                return Attribute::make(get: fn() => ['text_array' => $this->text_array]);
             default:
-                return Attribute::make(['text' => $this->value_text]);
+                return Attribute::make(get: fn() => ['text' => $this->value_text]);
         }
     }
 

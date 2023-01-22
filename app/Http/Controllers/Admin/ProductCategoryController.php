@@ -73,10 +73,10 @@ class ProductCategoryController extends Controller
     public function sort(Request $request)
     {
         $this->updateSort(
-                                $request,
-                                new ProductCategory,
-                                ['sorted.*.parent_id' => 'nullable|exists:product_categories,id']
-                            );
+                    $request,
+                    new ProductCategory,
+                    ['sorted.*.parent_id' => 'nullable|exists:product_categories,id']
+               );
 
         ProductCategory::fixTree();
 

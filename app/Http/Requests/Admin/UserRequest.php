@@ -14,23 +14,27 @@ class UserRequest extends AdminFormRequest
 
     public function authorize()
     {
+        $user = $this->user;
+        $role = $this->get('role');
+        $isAdmin = Auth::user()->is_admin;
+
         // первого редактирует только первый
-        if ( $this->user->id == 1 && Auth::id() != $this->user->id ) {
+        if ($user->id === 1 && Auth::id() !== $user->id) {
             return false;
         }
 
         // нельзя менять свои права
-        if ( $this->user->id == Auth::id() && ( $this->get('role') && $this->get('role') !== User::ROLE_ADMIN ) ) {
+        if ($user->id === Auth::id() && $role && $role !== User::ROLE_ADMIN) {
             return false;
         }
 
         // нельзя  «неадмину» повышатьдо админа
-        if ( !Auth::user()->is_admin && $this->user->role == User::ROLE_ADMIN  ) {
+        if (!$isAdmin && $user->role === User::ROLE_ADMIN) {
             return false;
         }
 
         // нельзя «неадмину» редактировать других
-        if ( $this->user->id != Auth::id() && !Auth::user()->is_admin  ) {
+        if ($user->id !== Auth::id() && !$isAdmin) {
             return false;
         }
 

@@ -6,8 +6,8 @@ use App\Http\Requests\Admin\PageRequest;
 use App\Models\Admin\Page;
 use Illuminate\Http\Request;
 
-
 use Inertia\Inertia;
+
 
 class PageController extends Controller
 {
@@ -44,12 +44,10 @@ class PageController extends Controller
 
     public function edit(Page $page)
     {
-        $page->load(['props'])
-             ->setAppends(['alt_langs']);
+        $page->load(['props'])->setAppends(['alt_langs']);
 
         return Inertia::render('Pages/Form', [
             'item' => $page,
-            // 'props' => $page->properties()->get4Admin(),
         ]);
     }
 
