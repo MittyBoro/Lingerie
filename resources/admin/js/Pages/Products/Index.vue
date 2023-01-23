@@ -21,7 +21,7 @@
                         <TData v-text="sp.element.translations[0]?.title" />
                         <TData>
                             {{ formatPrice(sp.element.translations[0]?.price) }}
-                            {{ currencies[sp.element.translations[0]?.price_currency] }}
+                            {{ currencyByLang([sp.element.translations[0]?.lang]) }}
                         </TData>
                         <TData mini>
                             <FSwitcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>

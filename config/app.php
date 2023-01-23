@@ -18,7 +18,10 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
 
     'langs' => ['ru', 'en'],
-    'currencies' => ['rub', 'usd'],
+    'currencies' => [
+        'ru' => 'rub',
+        'en' => 'usd',
+    ],
 
 
     /*

@@ -55,7 +55,6 @@ class ProductFactory extends Factory
             'slug' => $this->faker->unique()->word,
 
             'price' => $lang == 'en' ? rand(50, 500) : rand(500, 3000),
-            'price_currency' => $lang == 'en' ? 'usd' : 'rub',
 
             'texts' => [
                 'description' => $this->faker->text,

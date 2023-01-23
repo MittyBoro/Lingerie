@@ -17,7 +17,6 @@ class ProductTranslation extends Model
         'lang',
         'title',
         'price',
-        'price_currency',
 
         'texts',
 
@@ -41,10 +40,5 @@ class ProductTranslation extends Model
     public function setSlugAttribute($val)
     {
         $this->attributes['slug'] = Str::slug($val);
-    }
-
-    public function setPriceCurrencyAttribute($val)
-    {
-        $this->attributes['price_currency'] = Str::slug($val);
     }
 }

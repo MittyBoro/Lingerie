@@ -127,11 +127,6 @@ class Product extends Model implements HasMedia
         return $preivew;
     }
 
-    public function getJsonAttribute()
-    {
-        return $this->only(['id', 'price', 'is_stock', 'slug', 'variations']);
-    }
-
     public function getCurrentPriceAttribute()
     {
         return (int)$this->variations->min('price');
@@ -164,14 +159,6 @@ class Product extends Model implements HasMedia
                     )
                 )
                 ->select('id', 'title', 'slug', 'is_stock');
-    }
-
-    public function scopePriorityIds($query, $ids = null)
-    {
-        $query->when($ids, function ($q) use ($ids) {
-            $placeholders = implode(', ', array_fill(0, count($ids), '?'));
-            $q->orderByRaw("FIELD(id, {$placeholders}) DESC", $ids->sortDesc());
-        });
     }
 
     public function scopeWithPrice($query, $select = null)
