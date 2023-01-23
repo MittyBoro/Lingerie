@@ -21,7 +21,7 @@ return new class extends Migration
                   ->cascadeOnDelete();
 
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->index();
 
             $table->string('lang')->default('ru');
 
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('meta_keywords')->nullable();
 
             $table->unique(['product_id', 'lang']);
+            $table->unique(['slug', 'lang']);
         });
     }
 

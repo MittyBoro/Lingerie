@@ -2,15 +2,15 @@
     <AppLayout :title="editorTitle(isEdit)">
 
         <FormSection :submit="submit" :form="form"
-            :tabs="['Основное', 'Описание', 'Дополнительно', 'SEO']" mini>
+            :tabs="['Основное', 'Описание', 'Варианты', 'SEO']" mini>
 
             <template #content="sb">
 
-                <MLanguageRow class="mb-2"/>
+                <MLanguageRow v-if="sb.activeTab != 'Варианты'" class="mb-2"/>
 
                 <TabMain v-show="sb.activeTab == 'Основное'" :form="form" :translation="translation" :isEdit="isEdit" />
                 <TabDescription v-show="sb.activeTab == 'Описание'" :form="form" :translation="translation" />
-                <TabAttributes v-show="sb.activeTab == 'Дополнительно'" :form="form" />
+                <TabAttributes v-show="sb.activeTab == 'Варианты'" :form="form" />
                 <MTabSeo v-show="sb.activeTab == 'SEO'" :form="translation" />
 
             </template>

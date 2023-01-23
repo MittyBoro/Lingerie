@@ -47,7 +47,7 @@ class Product extends Model implements HasMedia
     ];
 
     protected $appends = [
-        'preview', 'title',
+        'preview',
     ];
 
     protected $hidden = ['media'];
@@ -161,21 +161,28 @@ class Product extends Model implements HasMedia
                 ->select('id', 'title', 'slug', 'is_stock');
     }
 
-    public function scopeWithPrice($query, $select = null)
+    public function scopeLocalizedData($query, $lang = 'ru', $fullData = false)
     {
-        if ($select)
-            $query->select($select);
-
+        if (!$lang)
+            $lang = 'ru';
         $query
-            ->addSelect('variations_count', 'min_price', 'variation_groups')
-            ->leftJoin(
-                DB::Raw('
-                        ( SELECT `product_id`,
-                                COUNT(*) AS `variations_count`,
-                                COUNT( DISTINCT `name` ) AS `variation_groups`,
-                                MIN(NULLIF(`price`, 0)) AS `min_price`
-                        FROM `product_variations`
-                        GROUP BY `product_id` ) as `prod_v`'
-                    ), 'id' , '=', 'prod_v.product_id');
+            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
+            ->where('product_translations.lang', $lang)
+            ->addSelect(
+                'products.id',
+                'product_translations.title',
+                'product_translations.slug',
+                'product_translations.price',
+            );
+
+        if ($fullData) {
+            $query
+                ->addSelect(
+                    'product_translations.texts',
+                    'product_translations.meta_title',
+                    'product_translations.meta_description',
+                    'product_translations.meta_keywords',
+                );
+        }
     }
 }

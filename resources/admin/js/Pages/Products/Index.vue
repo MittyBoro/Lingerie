@@ -12,16 +12,21 @@
                 <ListFilter v-if="table.items.length" class="border-t bg-gray-50" />
 
                 <TTable :table="table">
+
+                    <template #pagination>
+                        <MLanguageRow globLang class="ml-auto" />
+                    </template>
+
                     <template #row="sp">
                         <TData mini>
                             <div class="min-w-max">
                                 <img :src="sp.element.preview" class="h-8 w-8 rounded borderobject-cover bg-gray-100" alt="">
                             </div>
                         </TData>
-                        <TData v-text="sp.element.translations[0]?.title" />
+                        <TData v-text="sp.element.title" />
                         <TData>
-                            {{ formatPrice(sp.element.translations[0]?.price) }}
-                            {{ currencyByLang([sp.element.translations[0]?.lang]) }}
+                            {{ formatPrice(sp.element.price) }}
+                            {{ currencyByLang(sp.element.lang) }}
                         </TData>
                         <TData mini>
                             <FSwitcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>
@@ -63,8 +68,8 @@
                 return {
                     headers: [
                         {},
-                        { key: 'title', text: 'Название' },
-                        { key: 'price', text: 'Цена' },
+                        { key: 'title', text: 'Название', sortable: true },
+                        { key: 'price', text: 'Цена', sortable: true },
                         { key: 'is_published', fa: 'eye', sortable: true, class: 'text-center' },
                         {},
                     ],

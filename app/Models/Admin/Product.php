@@ -13,15 +13,8 @@ class Product extends Model
     use RetrievingTrait;
 
 
-    protected $sortable = ['position', 'id', 'created_at', 'is_published'];
+    protected $sortable = ['position', 'id', 'created_at', 'is_published', 'price', 'title'];
 
-
-    protected static function booted()
-    {
-        static::addGlobalScope('translations', function (Builder $builder) {
-            $builder->with('translations');
-        });
-    }
 
     public function scopeFilter($query, array $filter)
     {
@@ -36,9 +29,12 @@ class Product extends Model
         }
     }
 
-    public function getTitleAttribute()
+    public function scopeLocalizedData($query, $lang = 'ru', $fullData = false)
     {
-        return $this->translations->first()?->title;
+        $query->select('products.*');
+        $query->addSelect('product_translations.lang');
+
+        parent::scopeLocalizedData($query, $lang, $fullData);
     }
 
     public function getGalleryAttribute()

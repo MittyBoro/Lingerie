@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::filter($request->all())
                             ->with('media')
-                            // ->withPrice('*')
+                            ->localizedData($this->getListLang())
                             ->orderByStr($request->get('sort'))
                             ->customPaginate($request->get('perPage', 20));
 
@@ -53,7 +53,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $product->setAppends(['gallery', 'size_table']);
-        $product->load(['categories', 'attributes']);
+        $product->load(['categories', 'attributes', 'translations']);
 
         return Inertia::render('Products/Form', [
             'item' => $product,
