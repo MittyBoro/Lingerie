@@ -161,10 +161,12 @@ class Product extends Model implements HasMedia
                 ->select('id', 'title', 'slug', 'is_stock');
     }
 
-    public function scopeLocalizedData($query, $lang = 'ru', $fullData = false)
+    public function scopeLocalizedData($query, $lang = null, $fullData = false)
     {
-        if (!$lang)
+        if (!$lang) {
             $lang = 'ru';
+        }
+
         $query
             ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
             ->where('product_translations.lang', $lang)

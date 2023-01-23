@@ -63,4 +63,30 @@ class ProductCategory extends Model
         return $data;
     }
 
+    public function scopeLocalizedData($query, $lang = null, $fullData = false)
+    {
+        if (!$lang) {
+            $lang = 'ru';
+        }
+
+        $query
+            ->join('product_category_translations', 'product_categories.id', '=', 'product_category_translations.category_id ')
+            ->where('product_category_translations.lang', $lang)
+            ->addSelect(
+                'product_categories.id',
+                'product_categories.slug',
+                'product_category_translations.title',
+            );
+
+        if ($fullData) {
+            $query
+                ->addSelect(
+                    'product_category_translations.description',
+                    'product_category_translations.meta_title',
+                    'product_category_translations.meta_description',
+                    'product_category_translations.meta_keywords',
+                );
+        }
+    }
+
 }
