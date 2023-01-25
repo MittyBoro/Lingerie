@@ -87,17 +87,20 @@ class ProductCategory extends Model implements HasMedia
         return $data;
     }
 
-    public function scopeLocalizedData($query, $lang = null, $fullData = false)
+    public function scopelocalized($query, $lang = null, $fullData = false)
     {
         if (!$lang) {
             $lang = 'ru';
         }
 
         $query
-            ->join('product_category_translations', 'product_categories.id', '=', 'product_category_translations.category_id ')
+            ->join('product_category_translations', 'product_categories.id', '=', 'product_category_translations.category_id')
             ->where('product_category_translations.lang', $lang)
             ->addSelect(
                 'product_categories.id',
+                'product_categories._lft',
+                'product_categories._rgt',
+                'product_categories.parent_id',
                 'product_categories.slug',
                 'product_category_translations.title',
             );
@@ -111,6 +114,17 @@ class ProductCategory extends Model implements HasMedia
                     'product_category_translations.meta_keywords',
                 );
         }
+    }
+
+    public function scopeGetFrontList($query, $lang = null)
+    {
+        $result = $query
+                    ->localized($this->lang)
+                    ->withDepth()
+                    ->get()
+                    ->toTree();
+
+        return $result;
     }
 
 }

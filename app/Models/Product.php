@@ -161,7 +161,7 @@ class Product extends Model implements HasMedia
                 ->select('id', 'title', 'slug', 'is_stock');
     }
 
-    public function scopeLocalizedData($query, $lang = null, $fullData = false)
+    public function scopelocalized($query, $lang = null, $fullData = false)
     {
         if (!$lang) {
             $lang = 'ru';

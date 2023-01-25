@@ -17,7 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::filter($request->all())
                             ->with('media')
-                            ->localizedData($this->getListLang())
+                            ->localized($this->getListLang())
                             ->orderByStr($request->get('sort'))
                             ->customPaginate($request->get('perPage', 20));
 

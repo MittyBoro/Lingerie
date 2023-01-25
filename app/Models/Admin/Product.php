@@ -29,12 +29,12 @@ class Product extends Model
         }
     }
 
-    public function scopeLocalizedData($query, $lang = 'ru', $fullData = false)
+    public function scopelocalized($query, $lang = 'ru', $fullData = false)
     {
         $query->select('products.*');
         $query->addSelect('product_translations.lang');
 
-        parent::scopeLocalizedData($query, $lang, $fullData);
+        parent::scopelocalized($query, $lang, $fullData);
     }
 
     public function getGalleryAttribute()

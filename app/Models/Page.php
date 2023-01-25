@@ -58,5 +58,24 @@ class Page extends Model
         return $page;
     }
 
+    public function scopeGetFrontList($query, $lang)
+    {
+        $result = $query
+                    ->whereLang($this->lang)
+                    ->whereIn('slug', [
+                        'catalog',
+                        'categories',
+                        'delivery',
+                        'faq',
+                        'cart',
+                        'policy',
+                    ])
+                    ->get('title', 'slug')
+                    ->keyBy('slug')
+                    ->map(fn($v) => $v->title);
+
+        return $result;
+    }
+
 
 }
