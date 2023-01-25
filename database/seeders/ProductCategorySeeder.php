@@ -37,6 +37,9 @@ class ProductCategorySeeder extends Seeder
                                 Arr::except($catItem, ['children', 'translations'])
                             );
 
+        if (!empty($children))
+            $catItem['preview'] = [ [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ] ];
+
         $productCategory->saveAfter($catItem);
 
         foreach ($children as $cat) {

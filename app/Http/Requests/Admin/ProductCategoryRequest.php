@@ -35,6 +35,8 @@ class ProductCategoryRequest extends AdminFormRequest
             'translations.*.description'  => 'nullable|string',
 
             ...$this->validationSEO('translations.*.'),
+
+            ...$this->validationFiles('preview', 'dimensions:min_width=400,min_height=400'),
         ];
     }
 

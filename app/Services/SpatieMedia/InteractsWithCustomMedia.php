@@ -92,10 +92,10 @@ trait InteractsWithCustomMedia
 
     private function removeOriginalMedia($mediaModel)
     {
-        if (!method_exists($this, 'registerMediaCollectionsWithDeletingOriginal'))
+        if (!method_exists($this, 'mediaCollectionsWithDeletingOriginal'))
             return;
 
-        $collections = $this->registerMediaCollectionsWithDeletingOriginal();
+        $collections = $this->mediaCollectionsWithDeletingOriginal();
 
         foreach($collections as $collection_name) {
 

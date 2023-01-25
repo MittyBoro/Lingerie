@@ -74,7 +74,7 @@ class Product extends Model implements HasMedia
             ->singleFile();
     }
 
-    public function registerMediaCollectionsWithDeletingOriginal(): array
+    public function mediaCollectionsWithDeletingOriginal(): array
     {
         return [
             self::MEDIA_COLLECTION,

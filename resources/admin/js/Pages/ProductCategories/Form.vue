@@ -13,6 +13,10 @@
                         <FSelect :options="categories" :keys="['id','title']" v-model="form.parent_id" />
                     </FLabel>
 
+                    <FLabel title="Первью" :error="form.errors.preview">
+                        <FFileInput v-model="form.preview" imagesOnly/>
+                    </FLabel>
+
                     <FLabel title="Описание" :error="translation.errors?.description" as="div">
                         <FTextareaEditor v-model="translation.description" mini/>
                     </FLabel>
@@ -57,6 +61,7 @@
 
                     translations: this.defaultTranslations({
                         title: null,
+                        preview: null,
                         description: null,
                         meta_title: null,
                         meta_keywords: null,

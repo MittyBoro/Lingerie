@@ -11,7 +11,10 @@ class ProductCategory extends Model
 {
     use TranslationTrait;
 
-    protected $appends = ['title'];
+    protected $appends = [
+        'title',
+        'preview',
+    ];
 
     public static function boot()
     {
@@ -38,6 +41,11 @@ class ProductCategory extends Model
     public function getTitleAttribute()
     {
         return $this->translations->first()?->title;
+    }
+
+    public function getPreviewAttribute()
+    {
+        return $this->getAdminMedia(self::MEDIA_COLLECTION, 'thumb');
     }
 
     public function scopeGetList($query)
@@ -74,6 +82,9 @@ class ProductCategory extends Model
     {
         if (array_key_exists('translations', $data)) {
            $this->saveTranslations($data['translations']);
+        }
+        if (array_key_exists('preview', $data)) {
+            $this->syncMedia($data['preview'], self::MEDIA_COLLECTION);
         }
     }
 

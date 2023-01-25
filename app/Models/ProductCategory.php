@@ -3,16 +3,21 @@
 namespace App\Models;
 
 use App\Models\Translations\ProductCategoryTranslation;
+use App\Services\SpatieMedia\InteractsWithCustomMedia;
 use Kalnoy\Nestedset\NodeTrait;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
 
-class ProductCategory extends Model
+class ProductCategory extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithCustomMedia;
     use NodeTrait;
 
+    const MEDIA_COLLECTION = 'categories';
 
     public $timestamps = false;
 
@@ -31,6 +36,25 @@ class ProductCategory extends Model
         static::addGlobalScope('ordered', function ($builder) {
             $builder->orderBy('position');
         });
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection(self::MEDIA_COLLECTION)
+            ->singleFile()
+            ->registerMediaConversions(function () {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->fit(Manipulations::FIT_CROP, 400, 400);
+            });
+    }
+
+    public function mediaCollectionsWithDeletingOriginal(): array
+    {
+        return [
+            self::MEDIA_COLLECTION,
+        ];
     }
 
     public function translations()
