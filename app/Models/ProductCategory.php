@@ -116,10 +116,10 @@ class ProductCategory extends Model implements HasMedia
         }
     }
 
-    public function scopeGetFrontList($query, $lang = null)
+    public function scopeGetFrontList($query, $lang)
     {
         $result = $query
-                    ->localized($this->lang)
+                    ->localized($lang)
                     ->withDepth()
                     ->get()
                     ->toTree();

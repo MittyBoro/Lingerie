@@ -75,7 +75,7 @@
         {{-- {!! $props['head_code'] ?? '' !!} --}}
 
     </head>
-    <body class="preload page-{{ $view_name }} @yield('body_class')">
+    <body class="preload page-{{ $viewName }} @yield('body_class')">
 
         <div class="preload-box">
             <div class="loading-logo">
@@ -95,28 +95,27 @@
                         <div class="hamburger" toggle-click></div>
                     </div>
                     <div class="col-menu left-menu">
-                        <div class="m-item"><a href="#">@lang('front.catalog')</a></div>
+
+                        <div class="m-item"><a href="/catalog">{{ $pages['catalog'] ?? '' }}</a></div>
                         <div class="m-item">
                             <span class="a">
-                                <span>@lang('front.categories')</span>
+                                <span>{{ $pages['categories'] ?? '' }}</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
                             <div class="m-item-list">
-                                <a href="#">Категория</a>
-                                <a href="#">Категория</a>
-                                <a href="#">Категория</a>
-                                <a href="#">Категория</a>
-                                <a href="#">Категория</a>
+                                @foreach ($categories as $cat)
+                                    <a href="{{ $cat['slug'] }}">{{ $cat['title'] }}</a>
+                                @endforeach
                             </div>
                         </div>
-                        <div class="m-item"><a href="#">@lang('front.delivery')</a></div>
+                        <div class="m-item"><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></div>
                     </div>
                     <a href="/" class="logo">
                        @svg('images/icons/logo.svg')
                     </a>
                     <div class="col-menu right-menu">
-                        <div class="m-item"><a href="#">FAQ</a></div>
-                        <div class="m-item"><a href="#">@lang('front.cart') (<span>0</span>)</a></div>
+                        <div class="m-item"><a href="/faq">{{ $pages['faq'] ?? '' }}</a></div>
+                        <div class="m-item"><a href="/cart">{{ $pages['cart'] ?? '' }}</a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.current_lang')</span>
@@ -140,34 +139,14 @@
             <div class="menu-box">
                 <div class="container">
                     <div class="grid-row grid-2">
-                        <div class="top-col">
-                            <div class="f-title mini-title secondary">@lang('front.footer.lingerie')</div>
-                            <ul>
-                                <li><a href="#">Бюстгальтеры</a></li>
-                                <li><a href="#">Трусики</a></li>
-                                <li><a href="#">Пояса</a></li>
-                                <li><a href="#">Комплекты</a></li>
-                            </ul>
-                        </div>
-                        <div class="top-col">
-                            <div class="f-title mini-title secondary">@lang('front.footer.swimwear')</div>
-                            <ul>
-                                <li><a href="#">Слитные</a></li>
-                                <li><a href="#">Раздельные</a></li>
-                            </ul>
-                        </div>
-                        <div class="top-col">
-                            <div class="f-title mini-title secondary">@lang('front.footer.for_house')</div>
-                            <ul>
-                                <li><a href="#">Пижамы</a></li>
-                                <li><a href="#">Халаты</a></li>
-                            </ul>
-                        </div>
+
+                       @include('elements.footer_category')
+
                         <div class="top-col">
                             <div class="f-title mini-title primary">@lang('front.footer.for_lients')</div>
                             <ul>
-                                <li><a href="#">Доставка</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></li>
+                                <li><a href="/faq">{{ $pages['faq'] ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -199,41 +178,20 @@
             <div class="footer-box">
                 <div class="container">
                     <div class="top-row grid-12">
+                        @include('elements.footer_category')
+
                         <div class="top-col">
-                            <div class="f-title mini-title">@lang('front.footer.lingerie')</div>
-                            <ul>
-                                <li><a href="#">Бюстгальтеры</a></li>
-                                <li><a href="#">Трусики</a></li>
-                                <li><a href="#">Пояса</a></li>
-                                <li><a href="#">Комплекты</a></li>
-                            </ul>
-                        </div>
-                        <div class="top-col">
-                            <div class="f-title mini-title">@lang('front.footer.for_house')</div>
-                            <ul>
-                                <li><a href="#">Пижамы</a></li>
-                                <li><a href="#">Халаты</a></li>
-                            </ul>
-                        </div>
-                        <div class="top-col tar">
-                            <div class="f-title mini-title">@lang('front.footer.swimwear')</div>
-                            <ul>
-                                <li><a href="#">Слитные</a></li>
-                                <li><a href="#">Раздельные</a></li>
-                            </ul>
-                        </div>
-                        <div class="top-col tar">
                             <div class="f-title mini-title primary">@lang('front.footer.for_clients')</div>
                             <ul>
-                                <li><a href="#">Доставка</a></li>
-                                <li><a href="#">FAQ</a></li>
+                                <li><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></li>
+                                <li><a href="/faq">{{ $pages['faq'] ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="bottom-row">
                         <div class="politic-col">
-                            <a href="#" class="politic-link">@lang('front.footer.policy')</a>
+                            <a href="/policy" class="politic-link">{{ $pages['policy'] ?? '' }}</a>
                         </div>
                         <div class="insta-col">
                             <a href="#" class="insta">

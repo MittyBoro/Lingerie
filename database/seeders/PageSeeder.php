@@ -236,7 +236,7 @@ class PageSeeder extends Seeder
         ];
 
 
-        // politic
+        // policy
         $pages[] = [
             'title' => 'Политика конфиденциальности',
             'slug' => 'policy',
@@ -246,7 +246,8 @@ class PageSeeder extends Seeder
         $pages[] = [
             'title' => 'Privacy Policy',
             'slug' => 'policy',
-            'lang' => 'Privacy Policy',
+            'lang' => 'en',
+            'description' => 'Privacy Policy',
         ];
 
         return $pages;

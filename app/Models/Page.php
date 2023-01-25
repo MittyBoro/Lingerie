@@ -61,7 +61,7 @@ class Page extends Model
     public function scopeGetFrontList($query, $lang)
     {
         $result = $query
-                    ->whereLang($this->lang)
+                    ->whereLang($lang)
                     ->whereIn('slug', [
                         'catalog',
                         'categories',
@@ -70,7 +70,7 @@ class Page extends Model
                         'cart',
                         'policy',
                     ])
-                    ->get('title', 'slug')
+                    ->get(['title', 'slug'])
                     ->keyBy('slug')
                     ->map(fn($v) => $v->title);
 
