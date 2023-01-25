@@ -30,9 +30,16 @@ class AppServiceProvider extends ServiceProvider
         // Carbon::setLocale(config('app.locale'));
 
         $this->registerBladeSVG();
+        $this->registerPrice();
         $this->registerBladeViteAssets();
     }
 
+    private function registerPrice()
+    {
+        Blade::directive('price', function ($int) {
+            return "<?php echo number_format($int, 0, '.', ' '); ?>";
+        });
+    }
     private function registerBladeViteAssets()
     {
         Blade::directive('vite_asset', function($str) {

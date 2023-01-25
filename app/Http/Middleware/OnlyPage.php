@@ -17,7 +17,7 @@ class OnlyPage {
 
         $page = Page::findForFront($slug, $lang);
 
-        $request->merge(['page' => $page,]);
+        $request->attributes->add(['page' => $page,]);
 
         View::share('page', $page);
 

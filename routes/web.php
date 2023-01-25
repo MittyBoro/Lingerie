@@ -44,12 +44,13 @@ Route::name('front.')->namespace('Front')->group(function () {
 
     Route::middleware('only_page')->group(function () {
 
-        Route::get('catalog',     'CatalogController@index');
-        Route::get('categories/{product_categories:slug}',     'CatalogController@categories');
+        Route::get('catalog', 'CatalogController@index')->name('catalog');
+        Route::get('categories/{product_categories:slug}', 'CatalogController@categories')
+                            ->name('categories');
 
-        Route::get('product',     'ProductController@index');
-        Route::get('faq',         'FAQController@index');
-        Route::get('{path}', 'PageController@index')->where('path', '.*');
+        Route::get('product/{slug}', 'ProductController@index')->name('product');
+        Route::get('faq', 'FAQController@index')->name('faq');
+        Route::get('{path}',  'PageController@index')->where('path', '.*');
 
     });
 

@@ -29,7 +29,7 @@ trait RetrievingTrait
 
     public function scopeCustomPaginate($query, $perPage = null, $append = null)
     {
-        $paginated = $query->paginate( $perPage );
+        $paginated = $query->paginate( $perPage, ['*'], 'p' );
 
         $result = $paginated
                         ->withQueryString()

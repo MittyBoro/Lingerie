@@ -28,6 +28,7 @@ class MainComposer
         // $props = Prop::list();
 
         $this->layoutValues();
+        $this->currencies();
 
 
         $this->view->with([
@@ -47,6 +48,23 @@ class MainComposer
             'pages'      => $pages->toArray(),
             'categories' => $categories->toArray(),
             'footerCategories' => $footerCategories->toArray(),
+        ]);
+    }
+
+    private function currencies()
+    {
+        $cy = config('app.currencies.' . $this->lang);
+
+        $cySymb = $cy;
+
+        if ($cy == 'rub')
+            $cySymb = '₽';
+        elseif ($cy == 'usd')
+            $cySymb = '$';
+
+        $this->view->with([
+            'cy' => $cy,
+            'cySymb' => $cySymb,
         ]);
     }
 

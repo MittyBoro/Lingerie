@@ -28,11 +28,7 @@ return [
     'our_instagram' => 'Наш Instagram',
 
     'footer' => [
-        'lingerie' => 'НИЖНЕЕ БЕЛЬЕ',
-        'for_house' => 'ДЛЯ ДОМА',
-        'swimwear' => 'КУПАЛЬНИКИ',
         'for_clients' => 'КЛИЕНТАМ',
-        'policy' => 'Политика конфиденциальности',
     ],
 
     'home_page' => [
@@ -49,6 +45,11 @@ return [
         'sort_price_asc' => 'Цены по возрастанию',
         'category' => 'Категория',
         'color' => 'Выбор цвета',
+    ],
+
+    'pagination' => [
+        'prev' => 'Назад',
+        'next' => 'Далее',
     ],
 
     'product_page' => [

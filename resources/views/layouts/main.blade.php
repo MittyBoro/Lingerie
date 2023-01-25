@@ -104,7 +104,7 @@
                             </span>
                             <div class="m-item-list">
                                 @foreach ($categories as $cat)
-                                    <a href="{{ $cat['slug'] }}">{{ $cat['title'] }}</a>
+                                    <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
                                 @endforeach
                             </div>
                         </div>

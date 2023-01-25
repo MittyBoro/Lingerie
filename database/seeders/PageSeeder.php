@@ -53,7 +53,8 @@ class PageSeeder extends Seeder
 
         // home
         $pages[] = [
-            'title' => 'Legendary Lingerie',
+            'title' => 'Главная',
+            'meta_title' => 'Legendary Lingerie',
             'slug' => 'home',
             'view' => 'home',
             'lang' => 'ru',
@@ -73,7 +74,8 @@ class PageSeeder extends Seeder
             ],
         ];
         $pages[] = [
-            'title' => 'Legendary Lingerie',
+            'title' => 'Home',
+            'meta_title' => 'Legendary Lingerie',
             'slug' => 'home',
             'view' => 'home',
             'lang' => 'en',

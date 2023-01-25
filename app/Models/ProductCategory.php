@@ -87,7 +87,7 @@ class ProductCategory extends Model implements HasMedia
         return $data;
     }
 
-    public function scopelocalized($query, $lang = null, $fullData = false)
+    public function scopeLocalized($query, $lang = null, $fullData = false)
     {
         if (!$lang) {
             $lang = 'ru';

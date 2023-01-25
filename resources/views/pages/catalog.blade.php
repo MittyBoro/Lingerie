@@ -13,7 +13,7 @@
 
 <div class="catalog-box">
     <div class="container">
-        <div class="h2">@lang('front.catalog_page.catalog')</div>
+        <div class="h2">{{ $page['title'] }}</div>
 
         <div class="catalog-mobile-sort">
             <div class="cm-sort" toggling>
@@ -51,29 +51,16 @@
                         <div class="btn btn-mini btn-gray prevent" filter-toggle>@lang('front.close')</div>
                     </div>
                     <div toggle-el>
+                        @foreach ($categories as $pCat)
                         <div class="sb-list">
-                            <a href="#" class="sb-parent-item">Нижнее белье</a>
+                            <a href="{{ route('front.categories', $pCat['slug']) }}" class="sb-parent-item">{{ $pCat['title'] }}</a>
                             <div class="sb-sub-list">
-                                <a href="#" class="sb-item">Бюстгальтеры</a>
-                                <a href="#" class="sb-item">Трусики</a>
-                                <a href="#" class="sb-item active">Пояса</a>
-                                <a href="#" class="sb-item">Комплекты</a>
+                                @foreach ($pCat['children'] as $cat)
+                                    <a href="{{ route('front.categories', $cat['slug']) }}" class="sb-item">{{ $cat['title'] }}</a>
+                                @endforeach
                             </div>
                         </div>
-                        <div class="sb-list">
-                            <a href="#" class="sb-parent-item">Купальники</a>
-                            <div class="sb-sub-list">
-                                <a href="#" class="sb-item">Слитные</a>
-                                <a href="#" class="sb-item">Раздельные</a>
-                            </div>
-                        </div>
-                        <div class="sb-list">
-                            <a href="#" class="sb-parent-item">Одежда для дома</a>
-                            <div class="sb-sub-list">
-                                <a href="#" class="sb-item">Пижамы</a>
-                                <a href="#" class="sb-item">Халаты</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -119,7 +106,7 @@
 
                 <div class="sb-price sb-element active" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>@lang('front.price'), ₽</span>
+                        <span>@lang('front.price'), {{ $cySymb }}</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div toggle-el>
@@ -195,58 +182,12 @@
             </div>
 
             <div class="catalog-list grid-3">
-                @foreach (range(1, 6) as $i)
-                    <div class="catalog-item">
-                        <div class="catalog-images-wrapper">
-                            <div class="swiper">
-                                <div class="swiper-wrapper">
-                                    @foreach (range(1, 3) as $i)
-                                        <div class="swiper-slide">
-                                            <a href="#" class="prod-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></a>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="sw-arrow sw-prev">
-                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
-                            </div>
-                            <div class="sw-arrow sw-next">
-                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
-                            </div>
-                        </div>
-                        <a href="#" class="ci-name">Длинный заголовок чудесного товара</a>
-                        <div class="ci-price"><span>4990</span> ₽</div>
-                    </div>
+                @foreach ($products as $prod)
+                    @include('elements.catalog_item')
                 @endforeach
                 <div class="catalog-bottom-row col-full">
                     <div class="btn btn-show-more">@lang('front.show_more')</div>
-                    <ul class="pagination">
-                        <li class="prev disabled">
-                            <a href="">
-                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
-                                <span>Назад</span>
-                            </a>
-                        </li>
-                        <li class="  page-1">
-                            <a href="?page=1">1</a>
-                        </li>
-                        <li class=" page-2 active">
-                            <a href="?page=2">2</a>
-                        </li>
-                        <li class=" page-3">
-                            <a href="?page=3">3</a>
-                        </li>
-                        <li class="dots" aria-disabled="true"><span>...</span></li>
-                        <li class=" page-11">
-                            <a href="?page=11">9</a>
-                        </li>
-                        <li class="next ">
-                            <a href="?page=2">
-                                <span>Следующая</span>
-                                <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
-                            </a>
-                        </li>
-                    </ul>
+                    {{ $products->links('elements.pagination') }}
                 </div>
             </div>
         </div>

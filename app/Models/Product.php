@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Models\Traits\ProductCartTrait;
+use App\Models\Traits\RetrievingTrait;
 use App\Models\Translations\ProductTranslation;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\DB;
 
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -19,8 +19,9 @@ class Product extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithCustomMedia;
-    use SearchableTrait;
-    use ProductCartTrait;
+    // use SearchableTrait;
+    // use ProductCartTrait;
+    use RetrievingTrait;
 
     const MEDIA_COLLECTION            = 'images';
     const MEDIA_COLLECTION_SIZE_TABLE = 'size';
@@ -46,10 +47,6 @@ class Product extends Model implements HasMedia
         ],
     ];
 
-    protected $appends = [
-        'preview',
-    ];
-
     protected $hidden = ['media'];
 
 
@@ -60,13 +57,13 @@ class Product extends Model implements HasMedia
             ->registerMediaConversions(function () {
                 $this
                     ->addMediaConversion('thumb')
-                    ->fit(Manipulations::FIT_CROP, 400, 400);
+                    ->fit(Manipulations::FIT_CROP, 394, 525);
                 $this
                     ->addMediaConversion('medium')
-                    ->fit(Manipulations::FIT_CROP, 640, 640);
+                    ->fit(Manipulations::FIT_MAX, 700, 700);
                 $this
                     ->addMediaConversion('big')
-                    ->fit(Manipulations::FIT_MAX, 1280, 1280);
+                    ->fit(Manipulations::FIT_MAX, 1500, 1500);
             });
 
         $this
@@ -127,11 +124,6 @@ class Product extends Model implements HasMedia
         return $preivew;
     }
 
-    public function getCurrentPriceAttribute()
-    {
-        return (int)$this->variations->min('price');
-    }
-
 
     public function scopeIsPublished($query)
     {
@@ -149,19 +141,7 @@ class Product extends Model implements HasMedia
     }
 
 
-    public function scopePublicCatalog($query, $category = null)
-    {
-        $query->isPublished()
-                ->orderStock()
-                ->when($category,
-                    fn($q) => $q->whereHas('categories',
-                        fn($b) => $b->where('id', $category->id)
-                    )
-                )
-                ->select('id', 'title', 'slug', 'is_stock');
-    }
-
-    public function scopelocalized($query, $lang = null, $fullData = false)
+    public function scopeLocalized($query, $lang = null, $fullData = false)
     {
         if (!$lang) {
             $lang = 'ru';
@@ -186,5 +166,20 @@ class Product extends Model implements HasMedia
                     'product_translations.meta_keywords',
                 );
         }
+    }
+
+
+
+    public function scopeGetFrontList($query, $lang)
+    {
+        $result = $query
+                    ->isPublished()
+                    ->localized($lang)
+                    ->with('media')
+                    ->customPaginate(6, ['gallery'])
+                    ;
+
+        // dd($result->toArray());
+        return $result;
     }
 }
