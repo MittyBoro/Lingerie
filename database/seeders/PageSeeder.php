@@ -100,13 +100,30 @@ class PageSeeder extends Seeder
             'slug' => 'catalog',
             'view' => 'catalog',
             'lang' => 'ru',
+            'meta_title' => 'Каталог | Legendary Lingerie',
+        ];
+        $pages[] = [
+            'title' => 'Catalog',
+            'slug' => 'catalog',
+            'view' => 'catalog',
+            'lang' => 'en',
+            'meta_title' => 'Catalog | Legendary Lingerie',
+        ];
+
+
+        // categories
+        $pages[] = [
+            'title' => 'Категории',
+            'slug' => 'categories',
+            'view' => 'catalog',
+            'lang' => 'ru',
             'meta_title' => '%replace% | Legendary Lingerie',
             'meta_keywords' => '%replace%',
             'meta_description' => '%replace%',
         ];
         $pages[] = [
-            'title' => 'Catalog',
-            'slug' => 'catalog',
+            'title' => 'Categories',
+            'slug' => 'categories',
             'view' => 'catalog',
             'lang' => 'en',
             'meta_title' => '%replace% | Legendary Lingerie',

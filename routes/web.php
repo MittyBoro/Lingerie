@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Route;
 Route::name('front.')->namespace('Front')->group(function () {
 
         // Route::view('/', 'pages.home');
-        // Route::view('catalog', 'pages.shop.catalog');
-        // Route::view('product', 'pages.shop.product');
-        // Route::view('cart', 'pages.shop.cart');
-        // Route::view('checkout', 'pages.shop.checkout');
+        // Route::view('catalog', 'pages.catalog');
+        // Route::view('product', 'pages.product');
+        // Route::view('cart', 'pages.cart');
+        // Route::view('checkout', 'pages.checkout');
         // Route::view('page', 'pages.page');
         // Route::view('faq', 'pages.faq');
-        // Route::view('success', 'pages.shop.success');
+        // Route::view('success', 'pages.success');
         // Route::view('404', 'pages.404');
 
         // Route::view('category', 'pages.shop.catalog');
@@ -45,6 +45,8 @@ Route::name('front.')->namespace('Front')->group(function () {
     Route::middleware('only_page')->group(function () {
 
         Route::get('catalog',     'CatalogController@index');
+        Route::get('categories/{product_categories:slug}',     'CatalogController@categories');
+
         Route::get('product',     'ProductController@index');
         Route::get('faq',         'FAQController@index');
         Route::get('{path}', 'PageController@index')->where('path', '.*');
