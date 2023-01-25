@@ -24,7 +24,12 @@ class Page extends Model
 
     public function props()
     {
-        return app(Model::class)->morphMany(Prop::class, 'model')->with('media');
+        return $this->morphMany(Prop::class, 'model')->with('media');
+    }
+
+    public function getMorphClass()
+    {
+        return Model::class;
     }
 
     public function getAltLangsAttribute()

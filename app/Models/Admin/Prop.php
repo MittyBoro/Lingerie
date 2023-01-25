@@ -66,6 +66,10 @@ class Prop extends Model
         });
     }
 
+    public function getMorphClass()
+    {
+        return Model::class;
+    }
 
     protected function modelTypeKey(): Attribute
     {

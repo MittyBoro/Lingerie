@@ -38,6 +38,11 @@ class ProductCategory extends Model
         });
     }
 
+    public function getMorphClass()
+    {
+        return Model::class;
+    }
+
     public function getTitleAttribute()
     {
         return $this->translations->first()?->title;

@@ -4,17 +4,23 @@ namespace App\Models\Admin;
 
 use App\Models\Product as Model;
 use App\Models\Traits\Admin\TranslationTrait;
-use App\Models\Traits\RetrievingTrait;
 use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
     use TranslationTrait;
-    use RetrievingTrait;
 
 
     protected $sortable = ['position', 'id', 'created_at', 'is_published', 'price', 'title'];
 
+    protected $appends = [
+        'preview',
+    ];
+
+    public function getMorphClass()
+    {
+        return Model::class;
+    }
 
     public function scopeFilter($query, array $filter)
     {
@@ -29,12 +35,12 @@ class Product extends Model
         }
     }
 
-    public function scopelocalized($query, $lang = 'ru', $fullData = false)
+    public function scopeLocalized($query, $lang = 'ru', $fullData = false)
     {
         $query->select('products.*');
         $query->addSelect('product_translations.lang');
 
-        parent::scopelocalized($query, $lang, $fullData);
+        parent::scopeLocalized($query, $lang, $fullData);
     }
 
     public function getGalleryAttribute()

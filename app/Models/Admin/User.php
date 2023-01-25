@@ -5,7 +5,6 @@ namespace App\Models\Admin;
 use App\Models\Traits\RetrievingTrait;
 use App\Models\User as BaseUser;
 
-
 class User extends BaseUser
 {
     use RetrievingTrait;
@@ -23,6 +22,11 @@ class User extends BaseUser
             self::ROLE_USER => 'Пользователь',
             self::ROLE_BLOCKED => 'Заблокирован',
         ];
+    }
+
+    public function getMorphClass()
+    {
+        return Model::class;
     }
 
     public function getAdminAvatarAttribute()
