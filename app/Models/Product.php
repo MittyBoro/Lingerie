@@ -174,6 +174,12 @@ class Product extends Model implements HasMedia
     }
 
 
+    public function scopeWhereCategory($query, $categoryId)
+    {
+        $query
+            ->whereHas('categories', fn($q) => $q->where('id', $categoryId));
+    }
+
 
     public function scopeGetFrontList($query, $lang)
     {
@@ -184,9 +190,9 @@ class Product extends Model implements HasMedia
                     ->customPaginate(6, ['gallery'])
                     ;
 
-        // dd($result->toArray());
         return $result;
     }
+
     public function scopeMinMaxPrice($query, $lang)
     {
         $result = $query

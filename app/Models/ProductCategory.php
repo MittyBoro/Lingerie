@@ -127,4 +127,17 @@ class ProductCategory extends Model implements HasMedia
         return $result;
     }
 
+    public function scopeFindForFront($query, $slug, $lang)
+    {
+        $result = $query
+                    ->whereSlug($slug)
+                    ->localized($lang, true)
+                    ->firstOrFail();
+
+        return $result;
+    }
+
+
+
+
 }

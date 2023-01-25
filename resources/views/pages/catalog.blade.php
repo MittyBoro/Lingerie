@@ -56,7 +56,7 @@
                             <a href="{{ route('front.categories', $pCat['slug']) }}" class="sb-parent-item">{{ $pCat['title'] }}</a>
                             <div class="sb-sub-list">
                                 @foreach ($pCat['children'] as $cat)
-                                    <a href="{{ route('front.categories', $cat['slug']) }}" class="sb-item">{{ $cat['title'] }}</a>
+                                    <a href="{{ route('front.categories', $cat['slug']) }}" class="sb-item {{ $cat['slug'] == $slug ? 'active' : '' }}">{{ $cat['title'] }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -121,10 +121,12 @@
                 @foreach ($products as $prod)
                     @include('elements.catalog_item')
                 @endforeach
-                <div class="catalog-bottom-row col-full">
-                    <div class="btn btn-show-more">@lang('front.show_more')</div>
-                    {{ $products->links('elements.pagination') }}
-                </div>
+                @if ($products->hasPages())
+                    <div class="catalog-bottom-row col-full">
+                        <div class="btn btn-show-more">@lang('front.show_more')</div>
+                        {{ $products->links('elements.pagination') }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

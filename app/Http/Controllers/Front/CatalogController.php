@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Models\Product;
 use App\Models\ProductAttribute;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -17,15 +18,24 @@ class CatalogController extends Controller
 
         return view('pages.catalog', [
             'products' => $products,
+            'slug' => '',
             ...$this->sidebarData(),
         ]);
     }
 
-    public function categories(Request $request)
+    public function categories(Request $request, $slug)
     {
-        $page = $request->page;
+        $category = ProductCategory::findForFront($slug, $this->getLang());
+        $products = Product::whereCategory($category->id)->getFrontList($this->getLang());
 
-        return view('pages.catalog');
+        $page = $this->replacePageData($request->get('page'), $category);
+
+        return view('pages.catalog', [
+            'products' => $products,
+            'page' => $page,
+            'slug' => $slug,
+            ...$this->sidebarData(),
+        ]);
     }
 
 
