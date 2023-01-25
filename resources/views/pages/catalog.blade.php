@@ -22,9 +22,9 @@
                     <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                 </div>
                 <div class="cs-list" toggle-el data-display="grid">
-                    <div class="cs-item">@lang('front.catalog_page.sort_new')</div>
-                    <div class="cs-item active">@lang('front.catalog_page.sort_price_desc')</div>
-                    <div class="cs-item">@lang('front.catalog_page.sort_price_asc')</div>
+                    <a href="?" class="cs-item">@lang('front.catalog_page.sort_new')</a>
+                    <a href="?sort=price-desc'" class="cs-item active">@lang('front.catalog_page.sort_price_desc')</a>
+                    <a href="?sort=price-asc" class="cs-item">@lang('front.catalog_page.sort_price_asc')</a>
                 </div>
             </div>
             <div class="btn btn-mini" filter-toggle>фильтр</div>
@@ -34,13 +34,21 @@
             <div class="sidebar">
                 <div class="sb-sort sb-element" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>@lang('front.catalog_page.sort_new')</span>
+                        <span>
+                            @if ($sort == 'price-desc')
+                                @lang('front.catalog_page.sort_price_desc')
+                            @elseif ($sort == 'price-asc')
+                                @lang('front.catalog_page.sort_price_asc')
+                            @else
+                                @lang('front.catalog_page.sort_new')
+                            @endif
+                        </span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div class="sb-list" toggle-el style="display: none;" data-display="grid">
-                        <div class="sb-item">@lang('front.catalog_page.sort_new')</div>
-                        <div class="sb-item active">@lang('front.catalog_page.sort_price_desc')</div>
-                        <div class="sb-item">@lang('front.catalog_page.sort_price_asc')</div>
+                        <a href="?" class="sb-item">@lang('front.catalog_page.sort_new')</a>
+                        <a href="?sort=price-desc" class="sb-item">@lang('front.catalog_page.sort_price_desc')</a>
+                        <a href="?sort=price-asc" class="sb-item">@lang('front.catalog_page.sort_price_asc')</a>
                     </div>
                 </div>
 

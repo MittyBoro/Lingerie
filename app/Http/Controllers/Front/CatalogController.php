@@ -13,12 +13,14 @@ class CatalogController extends Controller
 
     public function index(Request $request)
     {
-        $products = Product::getFrontList($this->getLang());
+        $products = Product::orderByStr($request->get('sort'))
+                           ->getFrontList($this->getLang());
 
 
         return view('pages.catalog', [
             'products' => $products,
             'slug' => '',
+            'sort' => $request->get('sort'),
             ...$this->sidebarData(),
         ]);
     }
@@ -26,14 +28,20 @@ class CatalogController extends Controller
     public function categories(Request $request, $slug)
     {
         $category = ProductCategory::findForFront($slug, $this->getLang());
-        $products = Product::whereCategory($category->id)->getFrontList($this->getLang());
+
+        $products = Product::whereCategory($category->id)
+                           ->orderByStr($request->get('sort'))
+                           ->getFrontList($this->getLang());
 
         $page = $this->replacePageData($request->get('page'), $category);
+        $page->title = $category->title;
+
 
         return view('pages.catalog', [
             'products' => $products,
             'page' => $page,
             'slug' => $slug,
+            'sort' => $request->get('sort'),
             ...$this->sidebarData(),
         ]);
     }

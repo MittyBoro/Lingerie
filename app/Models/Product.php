@@ -47,6 +47,9 @@ class Product extends Model implements HasMedia
         ],
     ];
 
+    protected $sortable = ['position', 'created_at', 'price', 'title'];
+
+
     protected $hidden = ['media'];
 
 
