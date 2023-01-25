@@ -157,14 +157,14 @@ class PageSeeder extends Seeder
 
         // cart
         $pages[] = [
-            'title' => 'Ваша корзина',
+            'title' => 'Корзина',
             'slug' => 'cart',
             'view' => 'cart',
             'lang' => 'ru',
             'meta_title' => 'Cart | Legendary Lingerie',
         ];
         $pages[] = [
-            'title' => 'Your cart',
+            'title' => 'Cart',
             'slug' => 'cart',
             'view' => 'cart',
             'lang' => 'en',

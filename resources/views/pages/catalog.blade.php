@@ -70,36 +70,14 @@
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div class="sb-list" toggle-el>
+                        @foreach ($colors as $color)
                         <label class="sb-item">
-                            <input type="checkbox" name="color">
-                            <div class="sbi-color" style="background-color: #fff; border: 1px solid #D9D9D9;"></div>
-                            <span>Белый</span>
+                            <input type="checkbox" name="color" value="{{ $color['value'] }}">
+                            <div class="sbi-color" style="background-color: {{ $color['extra'] ?: '#eee' }}"></div>
+                            <span>@lang('front.colors.'.$color['value'])</span>
                         </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="color">
-                            <div class="sbi-color" style="background-color: #676767"></div>
-                            <span>Черный</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="color">
-                            <div class="sbi-color" style="background-color: #EA5D5D"></div>
-                            <span>Красный</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="color">
-                            <div class="sbi-color" style="background-color: #F67FC6"></div>
-                            <span>Розовый</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="color">
-                            <div class="sbi-color" style="background-color: #88DD61"></div>
-                            <span>Зеленый</span>
-                        </label>
-                        <label class="sb-item" style="display:none">
-                            <input type="checkbox" name="color">
-                            <div class="sbi-color" style="background-color: #fff"></div>
-                            <span>Белый</span>
-                        </label>
+                        @endforeach
+
                         <div class="show-more primary a">@lang('front.show_all')</div>
                     </div>
                 </div>
@@ -113,7 +91,7 @@
                         <input class="range-end" type="hidden" v-model="filter.price.maxRange" @change="updateSlider('price')">
                         <input class="range-start" type="hidden" v-model="filter.price.minRange" @change="updateSlider('price')">
                         <div class="sb-list sb-range">
-                            <div class="sb-range-price" ref="priceSlider" data-min="0" data-max="30000" data-step="100"></div>
+                            <div class="sb-range-price" ref="priceSlider" data-min="{{ $min_price }}" data-max="{{ $max_price }}" data-step="1"></div>
                         </div>
                     </div>
                 </div>
@@ -124,54 +102,12 @@
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div class="sb-list" toggle-el>
+                        @foreach ($sizes as $size)
                         <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>L</span>
+                            <input type="checkbox" name="size" value="{{ $size['value'] }}">
+                            <span>{{ $size['value'] }}</span>
                         </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>L</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>М</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>М</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>S</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>S</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>XL</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>XL</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>XS</span>
-                        </label>
-                        <label class="sb-item">
-                            <input type="checkbox" name="size">
-                            <span>XS</span>
-                        </label>
-                        <label class="sb-item" style="display: none">
-                            <input type="checkbox" name="size">
-                            <span>L</span>
-                        </label>
-                        <label class="sb-item" style="display: none">
-                            <input type="checkbox" name="size">
-                            <span>L</span>
-                        </label>
+                        @endforeach
                         <div class="show-more primary a col-full">@lang('front.show_all')</div>
                     </div>
                 </div>

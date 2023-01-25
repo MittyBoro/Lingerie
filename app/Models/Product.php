@@ -140,16 +140,21 @@ class Product extends Model implements HasMedia
         $query->orderByDesc('is_stock');
     }
 
-
-    public function scopeLocalized($query, $lang = null, $fullData = false)
+    public function scopeJoinTranslations($query, $lang = null)
     {
         if (!$lang) {
             $lang = 'ru';
         }
-
         $query
             ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
-            ->where('product_translations.lang', $lang)
+            ->where('product_translations.lang', $lang);
+    }
+
+    public function scopeLocalized($query, $lang = null, $fullData = false)
+    {
+
+        $query
+            ->joinTranslations($lang)
             ->addSelect(
                 'products.id',
                 'product_translations.title',
@@ -180,6 +185,16 @@ class Product extends Model implements HasMedia
                     ;
 
         // dd($result->toArray());
+        return $result;
+    }
+    public function scopeMinMaxPrice($query, $lang)
+    {
+        $result = $query
+                    ->isPublished()
+                    ->joinTranslations($lang)
+                    ->selectRaw('min(price) as min_price, max(price) as max_price')
+                    ->first();
+
         return $result;
     }
 }

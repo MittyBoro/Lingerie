@@ -34,7 +34,7 @@ class ProductSeeder extends Seeder
             ['red', '#f00'],
             ['green', '#0f0'],
             ['blue', '#00f'],
-            ['white', '#fff'],
+            ['white', '#fff; border: 1px solid #D9D9D9;'],
             ['black', '#000'],
             ['gray', '#888'],
         ];

@@ -23,6 +23,11 @@ class ProductAttribute extends Model
         'position',
     ];
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
     public function setTypeAttribute($value)
     {
         $this->attributes['type'] = Str::lower($value);
@@ -31,6 +36,20 @@ class ProductAttribute extends Model
     public function setValueAttribute($value)
     {
         $this->attributes['value'] = Str::lower($value);
+    }
+
+    public function scopeGetPublic($query)
+    {
+        $result = $query
+                        ->whereHas('products', function($prodQ) {
+                            $prodQ->isPublished();
+                        })
+                        ->orderBy('position')
+                        ->get(['id', 'type', 'value', 'extra'])
+                        ->groupBy('type')
+                        ;
+
+        return $result;
     }
 
 }
