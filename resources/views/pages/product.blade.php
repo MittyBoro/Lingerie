@@ -21,7 +21,7 @@
                     <span class="delimeter">/</span>
                     <a href="#">Пояса</a>
                 </div>
-                <div class="prod-title">Длинный заголовок чудесного товара</div>
+                <div class="prod-title">{{ $product['title'] }}</div>
             </div>
 
             <div class="prod-main-col left-col">
@@ -33,7 +33,7 @@
                         <span class="delimeter">/</span>
                         <a href="#">Пояса</a>
                     </div>
-                    <div class="prod-title"><h1>Длинный заголовок чудесного товара</h1></div>
+                    <div class="prod-title"><h1>{{ $product['title'] }}</h1></div>
                 </div>
                 <div class="prod-attr-wrap">
                     <div class="pm-title">Размер</div>
@@ -93,7 +93,13 @@
                         </label>
                     </div>
                 </div>
-                <div class="prod-price">4990 ₽</div>
+                <div class="prod-price">
+                    @if ($cy == 'rub')
+                        <span>@price($product['price'])</span> {{ $cySymb }}
+                    @else
+                        {{ $cySymb }}<span>@price($product['price'])</span>
+                    @endif
+                </div>
                 <div class="btn">@lang('front.add_to_cart')</div>
             </div>
 

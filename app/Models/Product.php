@@ -35,6 +35,7 @@ class Product extends Model implements HasMedia
     protected $casts = [
         'is_published' => 'bool',
         'is_stock'     => 'bool',
+        'texts'        => 'array',
     ];
 
     protected $searchable = [
@@ -89,12 +90,13 @@ class Product extends Model implements HasMedia
 
     public function categories()
     {
-        return $this->belongsToMany(ProductCategory::class)->orderBy('position');
+        return $this->belongsToMany(ProductCategory::class)->orderBy('position')->localized($this->lang);
     }
 
     public function attributes()
     {
-        return $this->belongsToMany(ProductAttribute::class)->orderBy('position');
+        return $this->belongsToMany(ProductAttribute::class)->orderBy('position')
+                        ->select('id', 'type', 'value', 'extra');
     }
 
     public function variations()
@@ -183,7 +185,7 @@ class Product extends Model implements HasMedia
             ->whereHas('categories', fn($q) => $q->where('id', $categoryId));
     }
 
-
+    // catalog
     public function scopeGetFrontList($query, $lang)
     {
         $result = $query
@@ -203,6 +205,25 @@ class Product extends Model implements HasMedia
                     ->joinTranslations($lang)
                     ->selectRaw('min(price) as min_price, max(price) as max_price')
                     ->first();
+
+        return $result;
+    }
+
+
+    // single
+    public function scopeFrontBySlug($query, $slug, $lang)
+    {
+        $result = $query
+                    ->isPublished()
+                    ->whereSlug($slug)
+                    ->localized($lang, true)
+                    ->with(['media', 'attributes'])
+                    ->with('categories', fn ($q) =>
+                            $q->with('ancestors', fn ($aQ) => $aQ->localized($lang))
+                          )
+                    ->firstOrFail();
+
+        $result->append('gallery');
 
         return $result;
     }

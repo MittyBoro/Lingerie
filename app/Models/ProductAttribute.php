@@ -23,6 +23,9 @@ class ProductAttribute extends Model
         'position',
     ];
 
+    protected $hidden = ['pivot'];
+
+
     public function products()
     {
         return $this->belongsToMany(Product::class);

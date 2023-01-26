@@ -21,7 +21,7 @@ class ProductCategory extends Model implements HasMedia
 
     public $timestamps = false;
 
-    protected $hidden = ['_lft', '_rgt'];
+    protected $hidden = ['_lft', '_rgt', 'pivot'];
 
     protected $fillable = [
         'parent_id', // мб пофиксить
