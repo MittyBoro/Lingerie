@@ -4,18 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-use App\Models\ProductAttribute;
+use App\Models\ProductOption;
 use Inertia\Inertia;
 
-class ProductAttributeController extends Controller
+class ProductOptionController extends Controller
 {
 
     public function index(Request $request)
     {
-        $pages = ProductAttribute::orderByStr($request->get('sort'))
+        $pages = ProductOption::orderByStr($request->get('sort'))
                                  ->customPaginate($request->get('perPage', 20));
 
-        return Inertia::render('ProductAttributes/Index', [
+        return Inertia::render('ProductOptions/Index', [
             'list' => $pages,
         ]);
     }
@@ -26,33 +26,33 @@ class ProductAttributeController extends Controller
             'type' => 'color',
             'value' => 'value',
         ];
-        ProductAttribute::create($data);
+        ProductOption::create($data);
 
         return back();
     }
 
-    public function update(Request $request, ProductAttribute $productAttribute)
+    public function update(Request $request, ProductOption $productOption)
     {
         $data = $request->validate([
             'type' => 'required|string',
             'value' => 'required|string',
             'extra' => 'string|nullable',
         ]);
-        $productAttribute->update($data);
+        $productOption->update($data);
 
         return back();
     }
 
 	public function sort(Request $request)
 	{
-		$this->updateSort($request, new ProductAttribute);
+		$this->updateSort($request, new ProductOption);
 
 		return back();
 	}
 
-    public function destroy(ProductAttribute $productAttribute)
+    public function destroy(ProductOption $productOption)
     {
-        $productAttribute->delete();
+        $productOption->delete();
 
         return back();
     }

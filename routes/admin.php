@@ -30,10 +30,10 @@ Route::middleware(['admin.role:editor'])
     Route::resource('products', 'ProductController');
     Route::post('products/sort', 'ProductController@sort')->name('products.sort');
 
-    Route::resource('product_attributes', 'ProductAttributeController')
+    Route::resource('product_options', 'ProductOptionController')
                             ->only(['index','create','update','destroy']);
-    Route::post('product_attributes/sort', 'ProductAttributeController@sort')
-                            ->name('product_attributes.sort');
+    Route::post('product_options/sort', 'ProductOptionController@sort')
+                            ->name('product_options.sort');
 
     Route::resource('product_categories', 'ProductCategoryController');
     Route::post('product_categories/sort', 'ProductCategoryController@sort')->name('product_categories.sort');

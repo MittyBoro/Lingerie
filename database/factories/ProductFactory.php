@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Admin\Product;
 use App\Models\Admin\ProductCategory;
-use App\Models\ProductAttribute;
+use App\Models\ProductOption;
 use Database\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             $data = [
                 'categories' => $this->getCategories(),
                 'translations' => $this->getTranslations(),
-                'attributes' => $this->getAttributes(),
+                'options' => $this->getOptions(),
                 'gallery' => $this->getGallery(rand(1, 3)),
             ];
 
@@ -39,9 +39,9 @@ class ProductFactory extends Factory
         return ProductCategory::limit( rand(1,4) )->inRandomOrder()->pluck('id');
     }
 
-    private function getAttributes()
+    private function getOptions()
     {
-        return ProductAttribute::limit( rand(4,20) )->inRandomOrder()->pluck('id');
+        return ProductOption::limit( rand(4,20) )->inRandomOrder()->pluck('id');
     }
 
     private function getTranslations()

@@ -2,9 +2,9 @@
     <div class="form-grid lg:grid-cols-2">
         <FNotice class="col-span-full mb-4" v-text="'Выберите варианты, которые есть в наличии'" />
 
-        <div v-for="attr in attributes" :key="attr.type">
-            <FLabel as="div" :title="toRu(attr.type)" :error="form.errors.attributes">
-                <FCheckboxList v-model="form.attributes" :list="attr.values" />
+        <div v-for="attr in options" :key="attr.type">
+            <FLabel as="div" :title="toRu(attr.type)" :error="form.errors.options">
+                <FCheckboxList v-model="form.options" :list="attr.values" />
             </FLabel>
 
             <div class="btn-secondary btn-mini w-full mt-3" @click="setAll(attr.values, type)">Выбрать все</div>
@@ -26,10 +26,10 @@
         },
 
         computed: {
-            attributes() {
+            options() {
                 let attrs = []
 
-                this.$page.props.attributes.forEach(el => {
+                this.$page.props.options.forEach(el => {
                     let value = {
                         id: el.id,
                         title: el.value,
@@ -65,10 +65,10 @@
                 let ids = values.map(v => v.id);
 
                 if (this.removeAll[type]) {
-                    this.form.attributes = this.form.attributes.filter(item => !ids.includes(item));
+                    this.form.options = this.form.options.filter(item => !ids.includes(item));
                 } else {
-                    this.form.attributes.push(...ids)
-                    this.form.attributes = [...new Set(this.form.attributes)]
+                    this.form.options.push(...ids)
+                    this.form.options = [...new Set(this.form.options)]
                 }
 
                 this.removeAll[type] = !this.removeAll[type];

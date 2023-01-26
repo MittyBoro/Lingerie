@@ -94,9 +94,9 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany(ProductCategory::class)->orderBy('position')->localized($this->lang);
     }
 
-    public function attributes()
+    public function options()
     {
-        return $this->belongsToMany(ProductAttribute::class)->orderBy('position')
+        return $this->belongsToMany(ProductOption::class)->orderBy('position')
                         ->select('id', 'type', 'value', 'extra');
     }
 
@@ -218,7 +218,7 @@ class Product extends Model implements HasMedia
                     ->isPublished()
                     ->whereSlug($slug)
                     ->localized($lang, true)
-                    ->with(['media', 'attributes'])
+                    ->with(['media', 'options'])
                     ->with('categories', fn ($q) =>
                             $q->with('ancestors', fn ($aQ) => $aQ->localized($lang))
                           )

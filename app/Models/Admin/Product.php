@@ -55,8 +55,8 @@ class Product extends Model
 
     public function saveAfter($data)
     {
-        if (array_key_exists('attributes', $data)) {
-            $this->attributes()->sync($data['attributes']);
+        if (array_key_exists('options', $data)) {
+            $this->options()->sync($data['options']);
         }
         if (array_key_exists('categories', $data)) {
             $this->categories()->sync($data['categories']);

@@ -10,7 +10,7 @@
 
                 <TabMain v-show="sb.activeTab == 'Основное'" :form="form" :translation="translation" :isEdit="isEdit" />
                 <TabDescription v-show="sb.activeTab == 'Описание'" :form="form" :translation="translation" />
-                <TabAttributes v-show="sb.activeTab == 'Варианты'" :form="form" />
+                <TabOptions v-show="sb.activeTab == 'Варианты'" :form="form" />
                 <MTabSeo v-show="sb.activeTab == 'SEO'" :form="translation" />
 
             </template>
@@ -26,7 +26,7 @@
 
     import TabMain from './Form/Main'
     import TabDescription from './Form/Description'
-    import TabAttributes from './Form/Attributes'
+    import TabOptions from './Form/Options'
 
     import Translation from '@/Mixins/Form/Translation'
     import Form from '@/Mixins/Form/Form'
@@ -44,7 +44,7 @@
 
             TabMain,
             TabDescription,
-            TabAttributes,
+            TabOptions,
         },
 
 
@@ -60,7 +60,7 @@
 
                     size_table: null,
 
-                    attributes: null,
+                    options: null,
 
                     translations: this.defaultTranslations({
                         title: null,

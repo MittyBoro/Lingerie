@@ -1,5 +1,5 @@
 <template>
-    <AppLayout title="Атрибуты">
+    <AppLayout title="Варианты">
         <IndexSection class="max-w-3xl">
 
             <template #buttons>

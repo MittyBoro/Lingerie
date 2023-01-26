@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\Product;
-use App\Models\ProductAttribute;
+use App\Models\ProductOption;
 
 
 class ProductSeeder extends Seeder
@@ -18,11 +18,11 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $this->runAttributes();
+        $this->runOptions();
 		Product::factory(25)->create();
     }
 
-    private function runAttributes()
+    private function runOptions()
     {
         $insertSizes = array_map(fn ($value) => [
             'type' => 'size',
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
             'extra' => $value[1],
         ], $colorList);
 
-        ProductAttribute::insert($insertSizes);
-        ProductAttribute::insert($insertColors);
+        ProductOption::insert($insertSizes);
+        ProductOption::insert($insertColors);
     }
 }

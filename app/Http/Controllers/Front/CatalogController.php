@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Product;
-use App\Models\ProductAttribute;
+use App\Models\ProductOption;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -49,7 +49,7 @@ class CatalogController extends Controller
 
     private function sidebarData(): array
     {
-        $attrs = ProductAttribute::getPublic()->toArray();
+        $attrs = ProductOption::getPublic()->toArray();
 
         $prices = Product::minMaxPrice($this->getLang());
 

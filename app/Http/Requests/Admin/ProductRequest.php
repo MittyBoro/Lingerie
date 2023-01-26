@@ -49,8 +49,8 @@ class ProductRequest extends AdminFormRequest
             'categories'   => 'nullable|array',
             'categories.*' => 'exists:product_categories,id',
 
-            'attributes'   => 'nullable|array',
-            'attributes.*' => 'exists:product_attributes,id',
+            'options'   => 'nullable|array',
+            'options.*' => 'exists:product_options,id',
 
             ...$this->validationSEO('translations.*.'),
 

@@ -30,8 +30,8 @@ return [
                     // 'query' => [ 'type' => 'products' ],
                 ],
                 [
-                    'name' => 'Атрибуты',
-                    'route' => 'admin.product_attributes.index',
+                    'name' => 'Варианты',
+                    'route' => 'admin.product_options.index',
                 ],
             ],
         ],
