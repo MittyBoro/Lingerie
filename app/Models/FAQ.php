@@ -18,4 +18,15 @@ class FAQ extends Model
 
     protected $sortable = ['position', 'title', 'lang'];
 
+
+    public function scopeGetFrontList($query, $lang)
+    {
+        $result = $query
+                    ->select('title', 'description')
+                    ->orderBy('position')
+                    ->whereLang($lang)
+                    ->get();
+
+        return $result;
+    }
 }

@@ -191,7 +191,7 @@ class PageSeeder extends Seeder
 
         // faq
         $pages[] = [
-            'title' => 'FAQ',
+            'title' => 'Частые вопросы',
             'slug' => 'faq',
             'view' => 'faq',
             'lang' => 'ru',
