@@ -4,9 +4,9 @@ import "../sass/app.sass";
 // Import modules...
 
 import { createApp, h } from 'vue';
-import { createInertiaApp, Link } from '@inertiajs/inertia-vue3';
-import { InertiaProgress } from '@inertiajs/progress';
+import { createInertiaApp, Link } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+
 import { ZiggyVue } from 'ziggy';
 
 import Toast from "vue-toastification";
@@ -24,22 +24,21 @@ import.meta.glob([
 
 createInertiaApp({
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({ el, App, props, plugin }) {
 
-    setup({ el, app, props, plugin }) {
-
-        let createdApp = createApp({ render: () => h(app, props) });
+        let createdApp = createApp({ render: () => h(App, props) });
 
         createdApp.config.globalProperties.$admin = {}
 
         createdApp
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(Toast)
 
             .mixin({ methods: { route } })
             .mixin(MixinFormat)
             .mixin(MixinMain)
             .mixin(MixinRouting)
-            .use(Toast)
             .component('Icon', Icon)
             .component('Link', Link)
 
@@ -50,8 +49,8 @@ createInertiaApp({
 
         return createdApp.mount(el);
     },
+    progress: {
+        color: '#fff',
+    },
 });
 
-
-
-InertiaProgress.init({ color: '#fff' });
