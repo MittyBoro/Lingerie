@@ -29,7 +29,7 @@ class CatalogController extends Controller
     {
         $category = ProductCategory::findForFront($slug, $this->getLang());
 
-        $products = Product::whereCategory($category->id)
+        $products = Product::whereCategories($category->id)
                            ->orderByStr($request->get('sort'))
                            ->getFrontList($this->getLang());
 

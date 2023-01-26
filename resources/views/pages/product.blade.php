@@ -138,36 +138,18 @@
     </div>
 </div>
 
+@if (count($product['similars']))
 <div class="catalog-box product-catalog-box">
     <div class="container">
         <div class="handwritten secondary">Look</div>
         <div class="h2">@lang('front.product_page.may_like')</div>
         <div class="catalog-list grid-4">
-            @foreach (range(1, 4) as $i)
-                <div class="catalog-item">
-                    <div class="catalog-images-wrapper">
-                        <div class="swiper">
-                            <div class="swiper-wrapper">
-                                @foreach (range(1, 3) as $i)
-                                    <div class="swiper-slide">
-                                        <a href="#" class="catalog-image"><img src="/storage/tmp/{{ rand(1, 2) }}.png" alt=""></a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="sw-arrow sw-prev">
-                            <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
-                        </div>
-                        <div class="sw-arrow sw-next">
-                            <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg">
-                        </div>
-                    </div>
-                    <a href="#" class="ci-name">Длинный заголовок чудесного товара</a>
-                    <div class="ci-price"><span>4990</span> ₽</div>
-                </div>
+            @foreach ($product['similars'] as $prod)
+                @include('elements.catalog_item')
             @endforeach
         </div>
     </div>
 </div>
+@endif
 
 @endsection

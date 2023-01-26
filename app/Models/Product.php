@@ -6,7 +6,8 @@ use App\Models\Traits\ProductCartTrait;
 use App\Models\Traits\RetrievingTrait;
 use App\Models\Translations\ProductTranslation;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
-
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -91,7 +92,6 @@ class Product extends Model implements HasMedia
     public function categories()
     {
         return $this->belongsToMany(ProductCategory::class)
-                    ->localized($this->lang)
                     ->orderBy('position')
                     ->withDepth();
     }
@@ -169,6 +169,23 @@ class Product extends Model implements HasMedia
         return collect($ancestors)->concat([$category]);
     }
 
+    // запрос не дублируется
+    protected function similars(): Attribute
+    {
+        return Attribute::make(get: function () {
+            $categories = $this->categories->pluck('id');
+
+            $result = self::isPublished()
+                        ->whereCategories($categories)
+                        ->localized($this->lang)
+                        ->with('media')
+                        ->limit(4)
+                        ->get();
+            $result->append(['gallery']);
+            return $result;
+        });
+    }
+
 
     public function scopeIsPublished($query)
     {
@@ -205,6 +222,7 @@ class Product extends Model implements HasMedia
                 'products.slug',
                 'product_translations.title',
                 'product_translations.price',
+                'product_translations.lang',
             );
 
         if ($fullData) {
@@ -219,10 +237,16 @@ class Product extends Model implements HasMedia
     }
 
 
-    public function scopeWhereCategory($query, $categoryId)
+    public function scopeWhereCategories($query, $categoryIds)
     {
-        $query
-            ->whereHas('categories', fn($q) => $q->where('id', $categoryId));
+        if (is_string($categoryIds) || is_int($categoryIds)) {
+            $categoryIds = [$categoryIds];
+        }
+
+        $query->whereHas(
+                'categories',
+                fn($q) => $q->whereIn('id', $categoryIds)
+            );
     }
 
     // catalog
@@ -237,7 +261,6 @@ class Product extends Model implements HasMedia
 
         return $result;
     }
-
     public function scopeMinMaxPrice($query, $lang)
     {
         $result = $query
@@ -250,6 +273,7 @@ class Product extends Model implements HasMedia
     }
 
 
+
     // single
     public function scopeFrontBySlug($query, $slug, $lang)
     {
@@ -258,12 +282,15 @@ class Product extends Model implements HasMedia
                     ->whereSlug($slug)
                     ->localized($lang, true)
                     ->with(['media', 'options'])
-                    ->with('categories', fn ($q) =>
-                            $q->with('ancestors', fn ($aQ) => $aQ->localized($lang))
-                          )
+                    ->with('categories',
+                        fn ($q) =>
+                            $q->localized($lang)
+                              ->with('ancestors', fn ($aQ) => $aQ->localized($lang))
+
+                        )
                     ->firstOrFail();
 
-        $result->append(['gallery', 'sizes', 'colors', 'sizes_table', 'bread_cats']);
+        $result->append(['gallery', 'sizes', 'colors', 'sizes_table', 'bread_cats', 'similars']);
         $result->setHidden([...$this->hidden, 'options']);
 
         return $result;

@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->string('title');
 
-            $table->string('lang')->default('ru');
+            $table->string('lang')->index()->default('ru');
 
             $table->decimal('price')->default(0);
 

@@ -8,8 +8,9 @@ class PageController extends Controller
 {
     public function index(Request $request)
     {
-        $viewName = view()->exists('pages.'.$request->page->view) ?
-                                    'pages.'.$request->page->view : 'pages.page';
+        $pageView = $request->get('page')->view;
+        $viewName = view()->exists('pages.'.$pageView) ?
+                                    'pages.'.$pageView : 'pages.page';
 
         return view($viewName);
     }
