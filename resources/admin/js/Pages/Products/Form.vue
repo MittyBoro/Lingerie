@@ -70,7 +70,7 @@
 
                         price: null,
 
-                        texts: {
+                        details: {
                             description: null,
                             composition: null,
                             care: null,

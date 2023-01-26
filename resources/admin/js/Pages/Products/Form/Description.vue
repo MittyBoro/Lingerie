@@ -1,16 +1,16 @@
 <template>
     <div class="form-grid">
 
-        <FLabel title="Описание" :error="translation.errors?.texts?.description">
-            <FTextarea v-model="translation.texts.description" :mini="true"/>
+        <FLabel title="Описание" :error="translation.errors?.details?.description">
+            <FTextarea v-model="translation.details.description" :mini="true"/>
         </FLabel>
 
-        <FLabel title="Состав" :error="translation.errors?.texts?.composition">
-            <FTextarea v-model="translation.texts.composition" :mini="true"/>
+        <FLabel title="Состав" :error="translation.errors?.details?.composition">
+            <FTextarea v-model="translation.details.composition" :mini="true"/>
         </FLabel>
 
-        <FLabel title="Уход" :error="translation.errors?.texts?.care">
-            <FTextarea v-model="translation.texts.care" :mini="true"/>
+        <FLabel title="Уход" :error="translation.errors?.details?.care">
+            <FTextarea v-model="translation.details.care" :mini="true"/>
         </FLabel>
 
         <FLabel title="Таблица размеров" :error="form.errors.size_table">

@@ -36,13 +36,13 @@ class Product extends Model implements HasMedia
     protected $casts = [
         'is_published' => 'bool',
         'is_stock'     => 'bool',
-        'texts'        => 'array',
+        'details'        => 'array',
     ];
 
     protected $searchable = [
         'columns' => [
-            'product_translations.title' => 3,
-            'product_translations.texts' => 1,
+            'product_translations.details' => 3,
+            'product_translations.details' => 1,
         ],
         'joins' => [
             'product_translations' => ['products.id','product_translations.product_id'],
@@ -130,6 +130,15 @@ class Product extends Model implements HasMedia
         return $preivew;
     }
 
+    public function getColorsAttribute()
+    {
+        return $this->options->where('type', 'color');
+    }
+    public function getSizesAttribute()
+    {
+        return $this->options->where('type', 'size');
+    }
+
 
     public function scopeIsPublished($query)
     {
@@ -171,7 +180,7 @@ class Product extends Model implements HasMedia
         if ($fullData) {
             $query
                 ->addSelect(
-                    'product_translations.texts',
+                    'product_translations.details',
                     'product_translations.meta_title',
                     'product_translations.meta_description',
                     'product_translations.meta_keywords',
@@ -224,7 +233,9 @@ class Product extends Model implements HasMedia
                           )
                     ->firstOrFail();
 
-        $result->append('gallery');
+        $result->append(['gallery', 'sizes', 'colors']);
+        $result->setHidden([...$this->hidden, 'options']);
+
 
         return $result;
     }

@@ -17,7 +17,7 @@ class ProductTranslation extends Model
         'title',
         'price',
 
-        'texts',
+        'details',
 
         'meta_title',
         'meta_description',
@@ -26,8 +26,7 @@ class ProductTranslation extends Model
     ];
 
     protected $casts = [
-        'texts'   => 'array',
-        'is_stock'     => 'bool',
+        'details'  => 'array',
     ];
 
     public function setMetaTitleAttribute($val)

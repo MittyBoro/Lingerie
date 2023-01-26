@@ -59,7 +59,7 @@ class ProductFactory extends Factory
 
             'price' => $lang == 'en' ? rand(50, 500) : rand(500, 3000),
 
-            'texts' => [
+            'details' => [
                 'description' => $this->faker->text,
                 'composition' => $this->faker->text,
                 'care' => $this->faker->text,
