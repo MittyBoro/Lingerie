@@ -1,6 +1,6 @@
 <template>
     <div class="form-grid">
-        <FTitleSlug :form="translation" />
+        <FTitleSlug :formTitle="translation" :formSlug="form"  />
 
         <FLabel :title="'Цена, ' + currencyByLang(translation.lang)" :error="translation.errors?.price">
             <FInput v-model="translation.price" type="number" step="0.01" />

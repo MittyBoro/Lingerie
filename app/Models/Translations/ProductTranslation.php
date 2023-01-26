@@ -13,7 +13,6 @@ class ProductTranslation extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'slug',
         'lang',
         'title',
         'price',

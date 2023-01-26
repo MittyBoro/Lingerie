@@ -30,6 +30,7 @@ class Product extends Model implements HasMedia
         'is_published',
         'is_stock',
         'position',
+        'slug',
     ];
 
     protected $casts = [
@@ -162,8 +163,8 @@ class Product extends Model implements HasMedia
             ->joinTranslations($lang)
             ->addSelect(
                 'products.id',
+                'products.slug',
                 'product_translations.title',
-                'product_translations.slug',
                 'product_translations.price',
             );
 

@@ -53,6 +53,7 @@
                 form: this.setForm({
                     is_stock: true,
                     is_published: false,
+                    slug: null,
 
                     gallery: null,
                     categories: null,
@@ -62,7 +63,6 @@
                     attributes: null,
 
                     translations: this.defaultTranslations({
-                        slug: null,
                         title: null,
                         meta_title: null,
                         meta_keywords: null,

@@ -16,6 +16,7 @@ class ProductFactory extends Factory
         return [
             'is_stock' => 1,
             'is_published' => !!rand(0, 5),
+            'slug' => $this->faker->unique()->word,
         ];
     }
 
@@ -49,10 +50,12 @@ class ProductFactory extends Factory
     }
     private function getOneTranslation($lang)
     {
+        $title = $this->faker->unique()->sentence(rand(3,5));
+
         $data = [
-            'title' => $this->faker->unique()->sentence(rand(2,4)),
+            'title' => $title,
+            'meta_title' => $title,
             'lang' => $lang,
-            'slug' => $this->faker->unique()->word,
 
             'price' => $lang == 'en' ? rand(50, 500) : rand(500, 3000),
 

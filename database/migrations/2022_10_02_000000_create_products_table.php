@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_stock')->default(true);
 
             $table->integer('position')->default(0);
+            $table->string('slug')->index()->unique();
 
             $table->timestamps();
             $table->softDeletes();
