@@ -5,7 +5,6 @@
         <EditorContent v-if="!isSource" class="editor__content" :editor="editor"/>
         <textarea v-else
             class="editor__raw_content"
-            @update:modelValue="editor.commands.setContent($event)"
             v-model="content"
             ></textarea>
 
@@ -47,7 +46,9 @@
 
         watch: {
             modelValue(val) {
-                !this.isSource && this.editor.commands.setContent(val)
+                if (this.isSource) {
+                    this.editor.commands.setContent(val)
+                }
             }
         },
 
