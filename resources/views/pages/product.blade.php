@@ -107,10 +107,10 @@
                 <div class="full-row">
                     <div class="swiper">
                         <div class="swiper-wrapper lightgallery">
-                            @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
-                                <a class="swiper-slide" href="/storage/tmp/{{ $i }}.png">
-                                    <div class="prod-image zoom-image" style="background-image: url('/storage/tmp/{{ $i }}.png')"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
-                                </a>
+                            @foreach ($product['gallery'] ?? [] as $img)
+                            <a class="swiper-slide" href="{{ $img['big'] }}">
+                                <div class="prod-image zoom-image" style="background-image: url('{{ $img['big'] }}')"><img src="{{ $img['medium'] }}" alt=""></div>
+                            </a>
                             @endforeach
                         </div>
                     </div>
@@ -126,9 +126,9 @@
                     <div class="swiper-container">
                         <div class="swiper">
                             <div class="swiper-wrapper">
-                                @foreach ([2, 1, 2, 1, 2, 1, 2] as $i)
+                                @foreach ($product['gallery'] ?? [] as $img)
                                     <div class="swiper-slide">
-                                        <div class="prod-image"><img src="/storage/tmp/{{ $i }}.png" alt=""></div>
+                                        <div class="prod-image"><img src="{{ $img['thumb'] }}" alt=""></div>
                                     </div>
                                 @endforeach
                             </div>

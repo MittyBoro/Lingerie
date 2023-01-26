@@ -40,6 +40,11 @@
 
     .gallery-col
         display: flex
+        &.single
+            .thumbs-row,
+            .sw-arrow
+                display: none
+
         .swiper
             width: 100%
             &:not(&-initialized)
@@ -49,6 +54,7 @@
             display: flex
             align-items: center
             min-width: 1px
+            max-width: 464px
             flex: 1
             .zoom-image
                 background-position: 50% 50%
@@ -106,6 +112,8 @@
             .swiper-slide-thumb-active
                 img
                     opacity: .5
+            .prod-image
+                cursor: pointer
 
 
     .b-title

@@ -86,7 +86,7 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
         on: {
             init: (swiper) => {
                 if (swiper.slides.length < 2) {
-                    el.querySelector('.full-row').classList.add('hidden');
+                    el.classList.add('single');
                 }
             },
         },
