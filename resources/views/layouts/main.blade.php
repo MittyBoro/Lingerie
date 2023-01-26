@@ -96,10 +96,10 @@
                     </div>
                     <div class="col-menu left-menu">
 
-                        <div class="m-item"><a href="/catalog">{{ $pages['catalog'] ?? '' }}</a></div>
+                        <div class="m-item"><a href="/catalog">@lang('front.catalog')</a></div>
                         <div class="m-item">
                             <span class="a">
-                                <span>{{ $pages['categories'] ?? '' }}</span>
+                                <span>@lang('front.categories')</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
                             <div class="m-item-list">
@@ -108,14 +108,14 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="m-item"><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></div>
+                        <div class="m-item"><a href="/delivery">@lang('front.delivery')</a></div>
                     </div>
                     <a href="/" class="logo">
                        @svg('images/icons/logo.svg')
                     </a>
                     <div class="col-menu right-menu">
-                        <div class="m-item"><a href="/faq">{{ $pages['faq'] ?? '' }}</a></div>
-                        <div class="m-item"><a href="/cart">{{ $pages['cart'] ?? '' }}</a></div>
+                        <div class="m-item"><a href="/faq">FAQ</a></div>
+                        <div class="m-item"><a href="/cart">@lang('front.cart')</a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.current_lang')</span>
