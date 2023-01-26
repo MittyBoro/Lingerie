@@ -31,12 +31,12 @@ class ProductSeeder extends Seeder
 
 
         $colorList = [
-            ['red', '#f00'],
-            ['green', '#0f0'],
-            ['blue', '#00f'],
-            ['white', '#fff; border: 1px solid #D9D9D9;'],
-            ['black', '#000'],
-            ['gray', '#888'],
+            ['red', 'background: #f00'],
+            ['green', 'background: #0f0'],
+            ['blue', 'background: #00f'],
+            ['white', 'background: #fff; border: 1px solid #D9D9D9;'],
+            ['black', 'background: #000'],
+            ['gray', 'background: #888'],
         ];
 
         $insertColors = array_map(fn ($value) => [

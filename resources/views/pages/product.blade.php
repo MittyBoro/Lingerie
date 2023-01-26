@@ -15,11 +15,11 @@
         <div class="prod-grid grid-12">
             <div class="prod-main-col prod-main-col-mini">
                 <div class="breadcrumbs">
-                    <a href="#">@lang('front.home')</a>
+                    <a href="/">@lang('front.home')</a>
+                    @foreach ($product['bread_cats'] as $cat)
                     <span class="delimeter">/</span>
-                    <a href="#">Нижнее белье</a>
-                    <span class="delimeter">/</span>
-                    <a href="#">Пояса</a>
+                    <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
+                    @endforeach
                 </div>
                 <div class="prod-title">{{ $product['title'] }}</div>
             </div>
@@ -28,71 +28,46 @@
                 <div class="pmc-top">
                     <div class="breadcrumbs">
                         <a href="#">Главная</a>
+                        @foreach ($product['bread_cats'] as $cat)
                         <span class="delimeter">/</span>
-                        <a href="#">Нижнее белье</a>
-                        <span class="delimeter">/</span>
-                        <a href="#">Пояса</a>
+                        <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
+                        @endforeach
                     </div>
                     <div class="prod-title"><h1>{{ $product['title'] }}</h1></div>
                 </div>
+
+                @if ($product['colors'])
                 <div class="prod-attr-wrap">
-                    <div class="pm-title">Размер</div>
+                    <div class="pm-title">@lang('front.product_page.size')</div>
                     <div class="pm-list pm-size">
+                        @foreach ($product['sizes'] as $size)
                         <label class="form-radio pm-item">
-                            <input type="radio" name="size">
+                            <input type="radio" name="size" value="{{ $size['value'] }}">
                             <div class="fr-item">
-                                <span>XS</span>
+                                <span>{{ $size['value'] }}</span>
                             </div>
                         </label>
-                        <label class="form-radio pm-item">
-                            <input type="radio" name="size">
-                            <div class="fr-item">
-                                <span>S</span>
-                            </div>
-                        </label>
-                        <label class="form-radio pm-item">
-                            <input type="radio" name="size">
-                            <div class="fr-item">
-                                <span>M</span>
-                            </div>
-                        </label>
-                        <label class="form-radio pm-item">
-                            <input type="radio" name="size">
-                            <div class="fr-item">
-                                <span>L</span>
-                            </div>
-                        </label>
-                        <label class="form-radio pm-item">
-                            <input type="radio" name="size">
-                            <div class="fr-item">
-                                <span>XL</span>
-                            </div>
-                        </label>
+                        @endforeach
                     </div>
                 </div>
+                @endif
+
+                @if ($product['colors'])
                 <div class="prod-attr-wrap">
-                    <div class="pm-title">Цвет</div>
+                    <div class="pm-title">@lang('front.product_page.color')</div>
                     <div class="pm-list pm-color">
+                        @foreach ($product['colors'] as $color)
                         <label class="form-radio pm-item">
-                            <input type="radio" name="color" value="1">
+                            <input type="radio" name="color" value="{{ $color['value'] }}">
                             <div class="fr-item">
-                                <span style="background-color: #fff; border: 1px solid #D9D9D9;"></span>
+                                <span style="{{ $color['extra'] }}"></span>
                             </div>
                         </label>
-                        <label class="form-radio pm-item">
-                            <input type="radio" name="color" value="2">
-                            <div class="fr-item">
-                                <span style="background-color: #F67FC6"></span>
-                            </div>
-                        </label>
-                        <label class="form-radio pm-item">
-                            <input type="radio" name="color" value="3">
-                            <div class="fr-item">
-                                <span style="background-color: #88DD61"></span>
-                            </div>
-                        </label>
+                        @endforeach
                     </div>
                 </div>
+                @endif
+
                 <div class="prod-price">
                     @if ($cy == 'rub')
                         <span>@price($product['price'])</span> {{ $cySymb }}
@@ -138,37 +113,27 @@
             </div>
 
             <div class="bottom-info-col left-col">
+                @foreach ($product['details'] as $k => $text)
                 <div class="bi-item active" toggling>
                     <div class="b-title" toggle-click>
-                        <span>Описание</span>
+                        <span>@lang('front.product_page.'. $k)</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
-                    <div class="bi-text text-el" toggle-el>Этот пояс для чулок из лаконичной и в то же время чувственной коллекции Henrieta выполнен из розового тюля. Передняя панель украшена вышивкой с растительным мотивом. Края обрамлены эластичными лентами. </div>
+                    <div class="bi-text text-el" toggle-el>{{ nl2br($text) }}</div>
                 </div>
-                <div class="bi-item active" style="max-width: 263px" toggling>
-                    <div class="b-title" toggle-click>
-                        <span>Состав</span>
-                        <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
-                    </div>
-                    <div class="bi-text text-el" toggle-el>Верхний слой с вышивкой: Основа: 100% полиамид, Вышивка: 100% полиэстер, Сетчатый верхний слой: 100% полиамид. </div>
-                </div>
-                <div class="bi-item active" style="max-width: 263px" toggling>
-                    <div class="b-title text-el" toggle-click>
-                        <span>уход</span>
-                        <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
-                    </div>
-                    <div class="bi-text" toggle-el>Рекомендована раздельная ручная стирка и бережная сушка.</div>
-                </div>
+                @endforeach
             </div>
+            @if ($product['sizes_table'])
             <div class="bottom-table-col right-col active" toggling>
                 <div class="b-title" toggle-click>
-                    <span>@lang('front.product_page.table_of_sizes')</span>
+                    <span>@lang('front.product_page.sizes_table')</span>
                     <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                 </div>
                 <div class="table-el" toggle-el>
-                    <img src="/storage/tmp/table.png" alt="">
+                    <img src="{{ $product['sizes_table'] }}" alt="">
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

@@ -81,7 +81,7 @@
                         @foreach ($colors as $color)
                         <label class="sb-item">
                             <input type="checkbox" name="color" value="{{ $color['value'] }}">
-                            <div class="sbi-color" style="background-color: {{ $color['extra'] ?: '#eee' }}"></div>
+                            <div class="sbi-color" style="{{ $color['extra'] ?: '#eee' }}"></div>
                             <span>@lang('front.colors.'.$color['value'])</span>
                         </label>
                         @endforeach

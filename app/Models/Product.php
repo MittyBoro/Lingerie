@@ -80,7 +80,6 @@ class Product extends Model implements HasMedia
     {
         return [
             self::MEDIA_COLLECTION,
-            self::MEDIA_COLLECTION_SIZE_TABLE,
         ];
     }
 
@@ -91,7 +90,10 @@ class Product extends Model implements HasMedia
 
     public function categories()
     {
-        return $this->belongsToMany(ProductCategory::class)->orderBy('position')->localized($this->lang);
+        return $this->belongsToMany(ProductCategory::class)
+                    ->localized($this->lang)
+                    ->orderBy('position')
+                    ->withDepth();
     }
 
     public function options()
@@ -120,6 +122,11 @@ class Product extends Model implements HasMedia
         ]]);
     }
 
+    public function getSizesTableAttribute()
+    {
+        return $this->getMediaUrls(self::MEDIA_COLLECTION_SIZE_TABLE)?->first();
+    }
+
     public function getPreviewAttribute($val)
     {
         if ($val !== null)
@@ -137,6 +144,29 @@ class Product extends Model implements HasMedia
     public function getSizesAttribute()
     {
         return $this->options->where('type', 'size');
+    }
+
+    public function getDetailsAttribute($value)
+    {
+        $details = json_decode($value, true);
+        $keys = ['description', 'composition', 'care'];
+        $details = array_merge(array_combine($keys, $keys), $details);
+
+        return $details;
+    }
+
+    public function getBreadCatsAttribute()
+    {
+        $categories = $this->categories->sortByDesc('depth');
+        if ($categories->isEmpty()) {
+            return collect();
+        }
+
+        $category = $categories->first();
+        $category->makeHidden('ancestors');
+        $ancestors = $category->ancestors ?? collect();
+
+        return collect($ancestors)->concat([$category]);
     }
 
 
@@ -233,9 +263,8 @@ class Product extends Model implements HasMedia
                           )
                     ->firstOrFail();
 
-        $result->append(['gallery', 'sizes', 'colors']);
+        $result->append(['gallery', 'sizes', 'colors', 'sizes_table', 'bread_cats']);
         $result->setHidden([...$this->hidden, 'options']);
-
 
         return $result;
     }

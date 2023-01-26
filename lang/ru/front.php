@@ -62,8 +62,13 @@ return [
     ],
 
     'product_page' => [
-        'table_of_sizes' => 'Таблица размеров',
+        'sizes_table' => 'Таблица размеров',
         'may_like' => 'Вам может понравиться',
+        'color' => 'Цвет',
+        'size' => 'Размер',
+        'description' => 'Описание',
+        'composition' => 'Состав',
+        'care' => 'Уход',
     ],
 
     'cart_page' => [
