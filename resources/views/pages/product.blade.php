@@ -119,7 +119,7 @@
                         <span>@lang('front.product_page.'. $k)</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
-                    <div class="bi-text text-el" toggle-el>{{ nl2br($text) }}</div>
+                    <div class="bi-text text-el" toggle-el>{!! nl2br($text) !!}</div>
                 </div>
                 @endforeach
             </div>
