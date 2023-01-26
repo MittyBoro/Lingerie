@@ -69,10 +69,10 @@ new Swiper('.home-novelties-box .swiper', {
             let current = swiper.slides[swiper.activeIndex]
 
             let name = current.querySelector('.n-name').innerText
-            let price = current.querySelector('.n-price-value').innerText
+            let price = current.querySelector('.n-price').innerText
 
             document.querySelector('.home-novelties-box .prod-name').innerHTML = name
-            document.querySelector('.home-novelties-box .prod-price-value').innerHTML = price
+            document.querySelector('.home-novelties-box .prod-price').innerHTML = price
         },
     },
 });

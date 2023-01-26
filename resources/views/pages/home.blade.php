@@ -31,14 +31,14 @@
                 <div class="ht-ints">
                     <span class="sw-current-int">1</span>
                     <span> / </span>
-                    <span>5</span>
+                    <span>{{ count($products) }}</span>
                 </div>
             </div>
         </div>
 
         <div class="n-prod-name">
             <div class="prod-name"></div>
-            <div class="prod-price secondary-alt"><span class="prod-price-value"></span> ₽</div>
+            <div class="prod-price secondary-alt"></div>
         </div>
 
         <div class="sw-arrow sw-prev sw-arrow-big">
@@ -51,16 +51,22 @@
             </div>
             <div class="swiper">
                 <div class="swiper-wrapper">
-                    @foreach (range(1, 7) as $i)
+                    @foreach ($products as $prod)
                     <div class="swiper-slide">
-                        <a href="#" class="n-item">
+                        <a href="{{ route('front.product', $prod['slug']) }}" class="n-item">
                             <div class="n-image">
-                                <img data-src="/storage/tmp/{{ rand(1,2) }}.png" alt="" class="swiper-lazy">
+                                <img data-src="{{ $prod['preview'] }}" alt="" class="swiper-lazy">
                             </div>
                             <div class="btn btn-secondary">@lang('front.more')</div>
                             <div class="n-info">
-                                <div class="n-name">Длинный заголовок чудесного товара #{{ $i }}</div>
-                                <div class="n-price"><span class="n-price-value">{{ $i }}000</span> ₽</div>
+                                <div class="n-name">{{ $prod['title'] }}</div>
+                                <div class="n-price">
+                                    @if ($cy == 'rub')
+                                        <span>@price($prod['price'])</span> {{ $cySymb }}
+                                    @else
+                                        {{ $cySymb }}<span>@price($prod['price'])</span>
+                                    @endif
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -117,22 +123,12 @@
             <div class="h2">@lang('front.home_page.categories')</div>
         </div>
         <div class="cats-list grid-4">
-            <a class="cat-item">
-                <div class="prod-image"><img src="/storage/tmp/cat-1.png" alt=""></div>
-                <div class="cat-name">Нижнее белье</div>
-            </a>
-            <a class="cat-item">
-                <div class="prod-image"><img src="/storage/tmp/cat-2.png" alt=""></div>
-                <div class="cat-name">Купальники</div>
-            </a>
-            <a class="cat-item">
-                <div class="prod-image"><img src="/storage/tmp/cat-3.png" alt=""></div>
-                <div class="cat-name">одежда для дома</div>
-            </a>
-            <a class="cat-item">
-                <div class="prod-image"><img src="/storage/tmp/cat-4.png" alt=""></div>
-                <div class="cat-name">комплекты</div>
-            </a>
+            @foreach ($homeCategories as $cat)
+                <a class="cat-item">
+                    <div class="prod-image"><img src="{{ $cat['preview'] }}" alt=""></div>
+                    <div class="cat-name">{{ $cat['title'] }}</div>
+                </a>
+            @endforeach
         </div>
     </div>
 </div>

@@ -116,25 +116,15 @@ class Product extends Model implements HasMedia
         }
 
         return collect([[
-            'thumb' => $this->preview,
-            'medium' => $this->preview,
-            'big' => $this->preview,
+            'thumb' => '',
+            'medium' => '',
+            'big' => '',
         ]]);
     }
 
     public function getSizesTableAttribute()
     {
-        return $this->getMediaUrls(self::MEDIA_COLLECTION_SIZE_TABLE)?->first();
-    }
-
-    public function getPreviewAttribute($val)
-    {
-        if ($val !== null)
-            $preivew = $val;
-        else
-            $preivew = $this->getFirstMediaUrl(self::MEDIA_COLLECTION, 'medium');
-
-        return $preivew;
+        return $this->getFirstMediaUrl(self::MEDIA_COLLECTION_SIZE_TABLE);
     }
 
     public function getColorsAttribute()
@@ -170,17 +160,23 @@ class Product extends Model implements HasMedia
     }
 
     // запрос не дублируется
+    protected function preview(): Attribute
+    {
+        return Attribute::make(
+                    get: fn () => $this->getFirstMediaUrl(self::MEDIA_COLLECTION, 'medium')
+                );
+    }
+
+    // запрос не дублируется
     protected function similars(): Attribute
     {
         return Attribute::make(get: function () {
             $categories = $this->categories->pluck('id');
 
-            $result = self::isPublished()
+            $result = self::limit(4)
                         ->whereCategories($categories)
-                        ->localized($this->lang)
-                        ->with('media')
-                        ->limit(4)
-                        ->get();
+                        ->getFrontList($this->lang, false);
+
             $result->append(['gallery']);
             return $result;
         });
@@ -250,14 +246,20 @@ class Product extends Model implements HasMedia
     }
 
     // catalog
-    public function scopeGetFrontList($query, $lang)
+    public function scopeGetFrontList($query, $lang, $paginate = true, $append = 'gallery')
     {
-        $result = $query
-                    ->isPublished()
-                    ->localized($lang)
-                    ->with('media')
-                    ->customPaginate(6, ['gallery'])
-                    ;
+        $query
+            ->isPublished()
+            ->localized($lang)
+            ->with('media');
+
+        if ($paginate) {
+            $result = $query->customPaginate(6, $append);
+        }
+        else {
+            $result = $query->get();
+            $result->append($append);
+        }
 
         return $result;
     }

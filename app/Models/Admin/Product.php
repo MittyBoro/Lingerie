@@ -5,6 +5,7 @@ namespace App\Models\Admin;
 use App\Models\Product as Model;
 use App\Models\Traits\Admin\TranslationTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Product extends Model
 {

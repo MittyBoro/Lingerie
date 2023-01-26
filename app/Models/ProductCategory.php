@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Translations\ProductCategoryTranslation;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Kalnoy\Nestedset\NodeTrait;
 
 use Illuminate\Database\Eloquent\Model;
@@ -67,6 +68,13 @@ class ProductCategory extends Model implements HasMedia
         return $this->belongsToMany(Product::class);
     }
 
+    protected function preview(): Attribute
+    {
+        return Attribute::make(
+                    get: fn () => $this->getFirstMediaUrl(self::MEDIA_COLLECTION, 'thumb')
+                );
+    }
+
     public function scopeGetAllCategories($query)
     {
         return $query
@@ -114,6 +122,21 @@ class ProductCategory extends Model implements HasMedia
                     'product_category_translations.meta_keywords',
                 );
         }
+    }
+
+    public function scopeGetFrontParentList($query, $lang)
+    {
+        $slugs = ['underwear', 'swimwear', 'homewear', 'linen_sets'];
+        $result = $query
+                    ->whereIn('slug', $slugs)
+                    ->localized($lang)
+                    ->with(['media'])
+                    ->orderByRaw("FIELD(`slug`, '".implode("','", $slugs)."')")
+                    ->get();
+
+        $result->append('preview');
+
+        return $result;
     }
 
     public function scopeGetFrontList($query, $lang)

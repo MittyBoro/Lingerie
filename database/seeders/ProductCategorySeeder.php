@@ -34,11 +34,8 @@ class ProductCategorySeeder extends Seeder
                     });
 
         $productCategory = ProductCategory::create(
-                                Arr::except($catItem, ['children', 'translations'])
+                                Arr::except($catItem, ['children', 'translations', 'preview'])
                             );
-
-        if (!empty($children))
-            $catItem['preview'] = [ [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ] ];
 
         $productCategory->saveAfter($catItem);
 
@@ -55,6 +52,7 @@ class ProductCategorySeeder extends Seeder
 
         $cats[] = [
             'slug' => 'underwear',
+            'preview' => [ [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ] ],
             'translations' => [
                 [ 'title' => 'Нижнее белье', 'lang' => 'ru', ],
                 [ 'title' => 'Underwear', 'lang' => 'en', ],
@@ -83,6 +81,7 @@ class ProductCategorySeeder extends Seeder
                 ],
                 [
                     'slug' => 'linen_sets',
+                    'preview' => [ [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ] ],
                     'translations' => [
                         [ 'title' => 'Комплекты', 'lang' => 'ru', ],
                         [ 'title' => 'Linen sets', 'lang' => 'en', ],
@@ -94,6 +93,7 @@ class ProductCategorySeeder extends Seeder
 
         $cats[] = [
             'slug' => 'swimwear',
+            'preview' => [ [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ] ],
             'translations' => [
                 [ 'title' => 'Купальники', 'lang' => 'ru', ],
                 [ 'title' => 'Swimwear', 'lang' => 'en', ],
@@ -119,6 +119,7 @@ class ProductCategorySeeder extends Seeder
 
         $cats[] = [
             'slug' => 'homewear',
+            'preview' => [ [ 'url' => 'https://api.lorem.space/image/fashion?w=500&h=500' ] ],
             'translations' => [
                 [ 'title' => 'Для дома', 'lang' => 'ru', ],
                 [ 'title' => 'Homewear', 'lang' => 'en', ],

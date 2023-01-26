@@ -5,6 +5,7 @@ namespace App\Models\Admin;
 use App\Models\ProductCategory as Model;
 use App\Models\Traits\Admin\TranslationTrait;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Arr;
 
 class ProductCategory extends Model
@@ -48,9 +49,11 @@ class ProductCategory extends Model
         return $this->translations->first()?->title;
     }
 
-    public function getPreviewAttribute()
+    protected function preview(): Attribute
     {
-        return $this->getAdminMedia(self::MEDIA_COLLECTION, 'thumb');
+        return Attribute::make(
+                    get: fn () => $this->getAdminMedia(self::MEDIA_COLLECTION, 'thumb')
+                );
     }
 
     public function scopeGetList($query)

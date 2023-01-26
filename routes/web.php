@@ -44,6 +44,7 @@ Route::name('front.')->namespace('Front')->group(function () {
 
     Route::middleware('only_page')->group(function () {
 
+        Route::get('/', 'HomeController@index')->name('home');
         Route::get('catalog', 'CatalogController@index')->name('catalog');
         Route::get('categories/{slug}', 'CatalogController@categories')
                             ->name('categories');
