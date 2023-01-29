@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\View\Composers\MainComposer;
+use App\View\Composers\FrontComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,6 +31,6 @@ class ViewServiceProvider extends ServiceProvider
             'profile.*',
             'layouts.email',
             'errors::404',
-        ], MainComposer::class);
+        ], FrontComposer::class);
     }
 }

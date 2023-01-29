@@ -174,6 +174,7 @@ class Product extends Model implements HasMedia
             $categories = $this->categories->pluck('id');
 
             $result = self::limit(4)
+                        ->where('products.id', '!=', $this->id)
                         ->whereCategories($categories)
                         ->getFrontList($this->lang, false);
 

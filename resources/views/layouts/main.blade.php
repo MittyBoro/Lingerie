@@ -115,7 +115,7 @@
                     </a>
                     <div class="col-menu right-menu">
                         <div class="m-item"><a href="/faq">FAQ</a></div>
-                        <div class="m-item"><a href="/cart">@lang('front.cart')</a></div>
+                        <div class="m-item"><a href="/cart">@lang('front.cart') <span>({{ $cartCount }})</span></a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.current_lang')</span>

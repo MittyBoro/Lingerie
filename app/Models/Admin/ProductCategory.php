@@ -14,7 +14,6 @@ class ProductCategory extends Model
 
     protected $appends = [
         'title',
-        'preview',
     ];
 
     public static function boot()

@@ -142,7 +142,8 @@ class Prop extends Model implements HasMedia
         return $query
                 ->queryByKeys($key)
                 ->queryByModel($model)
-                ->first();
+                ->first()
+                ?->value;
     }
 
     public function scopeGetByKey(Builder $query, string $keys, Model $model = null)
@@ -151,7 +152,10 @@ class Prop extends Model implements HasMedia
                 ->queryByKeys($keys)
                 ->queryByModel($model)
                 ->get()
-                ->keyBy('key');
+                ->keyBy('key')
+                // ->pluck('value)
+                // ->only('value)
+                ->map(fn($m) => $m->value);
     }
 
 

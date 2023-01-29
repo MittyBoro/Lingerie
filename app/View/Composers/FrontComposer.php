@@ -5,12 +5,11 @@ namespace App\View\Composers;
 use App\Models\Page;
 use App\Models\ProductCategory;
 use App\Models\Prop;
-use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class MainComposer
+class FrontComposer
 {
     private $lang;
     private $view;
@@ -44,10 +43,13 @@ class MainComposer
 
         $footerCategories = $categories->take(3);
 
+        $cartCount = app('CartService')->count();
+
         $this->view->with([
             'pages'      => $pages->toArray(),
             'categories' => $categories->toArray(),
             'footerCategories' => $footerCategories->toArray(),
+            'cartCount' => $cartCount,
         ]);
     }
 
