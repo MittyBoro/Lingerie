@@ -8,25 +8,35 @@ export default {
         // Authorization: 'Bearer ' + localStorage.getItem("user-token"),
     },
 
+    fetchArgs( ...args )
+    {
+        return fetch( ...args ).then( response => {
+            if (response.ok) {
+                return response;
+            }
+            throw new Error('Something went wrong');
+        } );
+    },
+
     getUrl( url )
     {
-        return fetch( url ).then( response => this.toJson(response) );
+        return this.fetchArgs( url ).then( response => response.json() );
     },
 
     get( url )
     {
-        return fetch( this.base_url + url, {
+        return this.fetchArgs( this.base_url + url, {
                 headers: this.headers,
-            }).then( response => this.toJson(response) );
+            }).then( response => response.json() );
     },
 
     post( url, data )
     {
-        return fetch( this.base_url + url, {
+        return this.fetchArgs( this.base_url + url, {
                 method: 'POST',
                 headers: this.headers,
                 body: JSON.stringify( data )
-            }).then( response => this.toJson(response) );
+            }).then( response => response.json() );
     },
 
     postFile( url, data )
@@ -44,28 +54,20 @@ export default {
             data = fd;
         }
 
-        return fetch( this.base_url + url, {
+        return this.fetchArgs( this.base_url + url, {
                 method: 'POST',
                 headers: headers,
                 body: data
-            }).then( response => this.toJson(response) );
+            }).then( response => response.json() );
     },
 
     put( url, data )
     {
-        return fetch( this.base_url + url, {
+        return this.fetchArgs( this.base_url + url, {
                 method: 'PUT',
                 headers: this.headers,
                 body: JSON.stringify( data )
             }).then( response => response.text() );
-    },
-
-    toJson(response)
-    {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Something went wrong');
     },
 
     setToken()
