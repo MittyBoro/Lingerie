@@ -20,9 +20,9 @@ class Product extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithCustomMedia;
-    // use SearchableTrait;
-    // use ProductCartTrait;
+    use ProductCartTrait;
     use RetrievingTrait;
+    // use SearchableTrait;
 
     const MEDIA_COLLECTION            = 'images';
     const MEDIA_COLLECTION_SIZE_TABLE = 'size';
@@ -127,9 +127,9 @@ class Product extends Model implements HasMedia
         return $this->getFirstMediaUrl(self::MEDIA_COLLECTION_SIZE_TABLE);
     }
 
-    public function getColorsAttribute()
+    public function getOptsAttribute()
     {
-        return $this->options->where('type', 'color');
+        return $this->options->groupBy('type');
     }
     public function getSizesAttribute()
     {
@@ -293,8 +293,8 @@ class Product extends Model implements HasMedia
                         )
                     ->firstOrFail();
 
-        $result->append(['gallery', 'sizes', 'colors', 'sizes_table', 'bread_cats', 'similars']);
-        $result->setHidden([...$this->hidden, 'options']);
+        $result->append(['gallery', 'opts', 'sizes_table', 'bread_cats', 'similars']);
+        $result->makeHidden(['options']);
 
         return $result;
     }

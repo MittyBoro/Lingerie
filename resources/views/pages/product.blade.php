@@ -75,8 +75,11 @@
                         {{ $cySymb }}<span>@price($product['price'])</span>
                     @endif
                 </div>
-                <div class="btn" @click="store({{ $product['id'] }})">
-                    <span v-if="!inCart">
+                <div class="btn" :class="{'btn-secondary': inCart}" @click="store({{ $product['id'] }})">
+                    <span v-if="success">
+                        @lang('front.done')!
+                    </span>
+                    <span v-else-if="!inCart">
                         @lang('front.add_to_cart')
                     </span>
                     <span v-else>
@@ -164,6 +167,8 @@
 
 @section('bodycode')
     <script>
+        const $id = @json($product['id']);
         const $options = @json($product['opts']);
+        const $cartMini = @json($cartMini);
     </script>
 @endsection

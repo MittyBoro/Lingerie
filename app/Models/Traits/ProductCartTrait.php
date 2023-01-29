@@ -2,28 +2,45 @@
 
 namespace App\Models\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 
 trait ProductCartTrait
 {
 
-    public function scopeFind4Cart($query, $id)
+    public function scopeFindForCart(Builder $query, $id, $lang)
     {
-        $query->select( 'id', 'slug', 'title', 'is_stock', 'is_published' )
-                ->with(['variations']);
+        $prod = $query
+                ->with(['options', 'media'])
+                ->isPublished()
+                ->localized($lang)
+                ->findOrFail($id);
 
-        return $query->find($id);
+        $prod->append('preview');
+
+        return $prod;
     }
 
-    public function scopeSet4Cart()
+    public function getOptionsWords($ids)
     {
-        $this->attributes['preview'] = (clone $this)->preview;
-        $this->offsetUnset('filtred_variations');
-        return $this->withoutRelations();
+        $options = $this->options->whereIn('id', $ids)->values();
+
+        if ($options->count() != count($ids)) {
+            abort(412);
+        }
+
+        return $options->map(function($value) {
+                    return [
+                        'id' => $value->id,
+                        'type' => $value->type,
+                        'value' => $value->value,
+                    ];
+                });
     }
 
-    public function getCartPriceAttribute()
+    public function getCartId($options)
     {
-        return $this->filtred_variations->sum('price');
+        return $this->id . '__'. implode('_', Arr::sort($options));
     }
 
     public function getIsAvailableAttribute()

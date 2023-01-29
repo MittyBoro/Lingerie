@@ -6,9 +6,9 @@ import HTTP from '../libs/http';
 const app = createApp({
 	data() {
 		return {
-			count: 1,
-            inCart: false,
+            cartMini: $cartMini,
 			loading: false,
+			success: false,
 
             options: $options,
 
@@ -18,7 +18,22 @@ const app = createApp({
 
 
 	computed: {
+        inCart() {
+            let inCart = false
 
+            this.cartMini.forEach(item => {
+                let key = $id + '__' + this.formValues.join('_')
+
+                if (key == item.id) {
+                    inCart = true
+                }
+            })
+
+            return inCart
+        },
+        formValues() {
+            return Object.values(this.form).sort((a, b) => a - b)
+        }
 	},
 
 	watch: {
@@ -45,15 +60,19 @@ const app = createApp({
 			this.loading = true;
 
 			HTTP.post('/cart/store/' + id, {
-                options: Object.values(this.form),
+                options: this.formValues,
             })
-            .then(res => {
-				console.log('res', res);
+            .then(cart => {
+                this.cartMini = cart.mini
 
-                let event = new CustomEvent('setCartCount', { bubbles: true, detail: { count: res.count} });
+                let event = new CustomEvent('setCartCount', { bubbles: true, detail: { count: cart.count} });
                 document.dispatchEvent(event);
 
-                this.inCart = true;
+
+                this.success = true
+
+                setTimeout(() => {this.success = false}, 2000)
+
 			})
             .catch(err => alert(err))
 			.then(() => {

@@ -2,66 +2,50 @@
 
 namespace App\Services\Cart;
 
-use Cart;
+use App\Models\Product;
+use App\Models\Prop;
 
-use App\Models\Product\Product;
-use App\Services\Cart\Traits\BonuseTrait;
-use App\Services\Cart\Traits\CartItemTrait;
-use App\Services\Cart\Traits\DeliveryTrait;
-use App\Services\Cart\Traits\PromoCodeTrait;
-use App\Services\Cart\Traits\SimpleMethodsTrait;
-use Illuminate\Support\Arr;
+use Darryldecode\Cart\CartCondition;
+use Darryldecode\Cart\CartServiceProvider;
+
+use Cart;
+use Illuminate\Database\Eloquent\Model;
 
 class CartService
 {
-    use BonuseTrait;
-    use DeliveryTrait;
-    use CartItemTrait;
-    use PromoCodeTrait;
-    use SimpleMethodsTrait;
 
-    protected $promoCodeInstance;
-
-    public function __construct()
+    public function get()
     {
-        $this->promoCodeInstance = new PromoCodeService();
-    }
-
-    protected function getContent()
-    {
-        return Cart::getContent();
-    }
-
-    public function list()
-    {
-        $cart = $this->getContent()->take(100)
-                    ->map(fn ($item) => $this->getSupplementedItem($item))->values();
+        $cart = Cart::getContent()->take(100);
 
         return $cart;
     }
 
-    public function add(array $data)
+    public function getMini()
     {
-        $product = Product::find4Cart($data['product_id']);
+        return $this->get()->map(function($item,) {
+            return [
+                'id' => $item->id,
+                'quantity' => $item->quantity,
+            ];
+        })->values();
+    }
 
-        $cartId = array_hash(Arr::except($data, ['count']));
-
-        $cartItem = [
-            'id' => $cartId,
-            'name' => $product->title,
-            'quantity' => $data['count'],
-
-            ...$this->arrayForItem($product, $data['variation_ids']),
-        ];
-
-        Cart::add($cartItem);
-
-        $this->applyPromoCode4Item(Cart::get($cartId));
+    public function store($data, Model $product)
+    {
+        Cart::add([
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'price' => $data['price'],
+            'quantity' => $data['quantity'] ?? 1,
+            'attributes' => $data['attributes'] ?? [],
+            'associatedModel' => $product->toArray()
+        ]);
 
         return Cart::getContent()->count();
     }
 
-    public function updateQuantity($cart_id, $quantity)
+    public function update($cart_id, $quantity)
     {
         Cart::update($cart_id, [
             'quantity' => [
@@ -69,39 +53,48 @@ class CartService
                 'value' => $quantity,
             ]
         ]);
-        $this->updateCartDelivery();
+    }
+
+    public function destroy($cart_id)
+    {
+        return Cart::remove(456);
+    }
+
+    public function clear()
+    {
+        return Cart::clear();
+    }
+
+    public function count()
+    {
+        return Cart::getContent()->count();
+    }
+
+    public function total()
+    {
+        $this->setShipping();
+
+        return Cart::getTotal();
     }
 
 
-    public function recalculateCart()
+    public function setShipping()
     {
-        $ids = Cart::getContent()->map->attributes->pluck('product_id')->unique();
+        $freeShippingProp = Prop::findByKey('free_shipping');
+        $shippingProp = Prop::findByKey('shipping');
+        $subTotal = Cart::getSubTotal();
+        $shipping = $freeShippingProp && $subTotal > $freeShippingProp ? 0 : $shippingProp;
 
-        $products = Product::whereIn('id', $ids)->with('variations')->get();
-
-        Cart::getContent()->each(function($item) use ($products) {
-
-            $product = $products->firstWhere('id', $item->attributes->product_id);
-
-            $variationIds = Arr::pluck($item->attributes['variations'], 'id');
-
-            try {
-                $updateData = $this->arrayForItem($product, $variationIds);
-                Cart::update($item->id, $updateData);
-            } catch (\Throwable $e) {
-                Cart::remove($item->id);
-            }
-        });
-
-        $this->applyPromoCode();
-        $this->clearCartBonuses();
-    }
-
-    public function creatableList()
-    {
-        $allowAddBonuses = $this->allowAddBonuses();
-        return $this->list()
-            ->map(fn ($item) => $this->getCreatableItem($item, $allowAddBonuses))->toArray();
+        Cart::condition(new CartCondition([
+            'name' => 'shipping',
+            'type' => 'shipping',
+            'target' => 'total',
+            'value' => $shipping,
+            'attributes' => [
+                'description' => 'Value added tax',
+                'more_data' => 'more data here'
+            ]
+        ]));
     }
 
 }
