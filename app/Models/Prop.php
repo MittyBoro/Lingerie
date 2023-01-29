@@ -114,51 +114,44 @@ class Prop extends Model implements HasMedia
     }
 
 
-    /*
-    public static function manyByKey($key, $raw = false)
+    public function scopeQueryByKeys(Builder $query, string|array $keys)
     {
-        if (!is_array($key))
-            $key = [$key];
-
-        $result = self::select('id','type', 'key', 'value_string', 'value_text')
-                    ->with('media')
-                    ->whereIn('key', $key)
-                    ->get()
-                    ->keyBy('key');
-
-        if ($raw) {
-            return $result;
-        }
-
-        return $result
-                ?->map(function($item) {
-                    return $item->value;
-                });
-    }
-    public static function byKey($key, $raw = false)
-    {
-        return self::manyByKey($key, $raw)->first() ?? null;
-    }
-    */
-
-    public function scopeList(Builder $query, $model_type = null, $model_id = null)
-    {
-        $query
-            ->select('id','type', 'key', 'value_string', 'value_text')
-            ->with('media');
-
-        if ($model_type)
-            $query->whereHasMorph('model', $model_type, fn($q) => $q->where('model_id', $model_id));
-        else
-            $query->whereNull('model_type');
-
+        $keys = is_array($keys) ? $keys : explode(',', $keys);
 
         return $query
+                ->select('id','type', 'key', 'value_string', 'value_text')
+                ->with('media')
+                ->whereIn('key', $keys);
+    }
+    public function scopeQueryByModel(Builder $query, Model $model = null)
+    {
+        if ($model) {
+            return $query->where([
+                    ['model_type', $model::class],
+                    ['model_id', $model->id],
+                ]);
+        }
+
+        return $query
+                ->whereNull('model_type')
+                ->whereNull('model_id');
+    }
+
+    public function scopeFindByKey(Builder $query, string $key, Model $model = null)
+    {
+        return $query
+                ->queryByKeys($key)
+                ->queryByModel($model)
+                ->first();
+    }
+
+    public function scopeGetByKey(Builder $query, string $keys, Model $model = null)
+    {
+        return $query
+                ->queryByKeys($keys)
+                ->queryByModel($model)
                 ->get()
-                ->keyBy('key')
-                ->map(function($item) {
-                    return $item->value;
-                });
+                ->keyBy('key');
     }
 
 
