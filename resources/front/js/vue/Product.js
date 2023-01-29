@@ -4,20 +4,20 @@ import HTTP from '../libs/http';
 
 
 const app = createApp({
-	data() {
-		return {
+    data() {
+        return {
             cartMini: $cartMini,
-			loading: false,
-			success: false,
+            loading: false,
+            success: false,
 
             options: $options,
 
             form: {},
-		};
-	},
+        };
+    },
 
 
-	computed: {
+    computed: {
         inCart() {
             let inCart = false
 
@@ -34,32 +34,32 @@ const app = createApp({
         formValues() {
             return Object.values(this.form).sort((a, b) => a - b)
         }
-	},
+    },
 
-	watch: {
-		form: {
-			deep: true,
-			handler(val) {
+    watch: {
+        form: {
+            deep: true,
+            handler(val) {
                 Object.entries(val).forEach(arr => {
                     this.setProductOption(arr[0], arr[1])
                 })
-			}
-		}
-	},
+            }
+        }
+    },
 
     mounted() {
         this.setInitValues()
     },
 
-	methods: {
+    methods: {
 
-		store(id) {
-			if (this.loading)
-				return;
+        store(id) {
+            if (this.loading)
+                return;
 
-			this.loading = true;
+            this.loading = true;
 
-			HTTP.post('/cart/store/' + id, {
+            HTTP.post('/cart/store/' + id, {
                 options: this.formValues,
             })
             .then(cart => {
@@ -73,12 +73,12 @@ const app = createApp({
 
                 setTimeout(() => {this.success = false}, 2000)
 
-			})
+            })
             .catch(err => alert(err))
-			.then(() => {
-				this.loading = false;
-			});
-		},
+            .then(() => {
+                this.loading = false;
+            });
+        },
 
         setInitValues() {
 
@@ -98,7 +98,7 @@ const app = createApp({
 
         },
 
-	},
+    },
 });
 
 

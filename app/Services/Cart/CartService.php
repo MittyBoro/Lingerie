@@ -16,9 +16,33 @@ class CartService
 
     public function get()
     {
-        $cart = Cart::getContent()->take(100);
+        $cart = Cart::getContent()->sort()->values();
 
         return $cart;
+    }
+    public function getReadable()
+    {
+        return $this->get()->map(function($item,) {
+            $model = (array)$item->associatedModel;
+
+            $optionsString = collect($item->attributes->options)->map(function($opt) {
+                $type = __('front.'.$opt['type']);
+                $value = ($opt['type'] == 'color') ? __('front.colors.'.$opt['value']) : $opt['value'];
+                return $type . ': ' . $value;
+            })->implode(', ');;
+
+            return [
+                'id' => $item->id,
+                'product_id' => $model['id'],
+                'url' => route('front.product', $model['slug']),
+                'preview' => $model['preview'],
+                'name' => $item->name,
+                'options' => $item->attributes->options,
+                'options_string' => $optionsString,
+                'quantity' => $item->quantity,
+                'price' => $item->price,
+            ];
+        });
     }
 
     public function getMini()
@@ -28,7 +52,7 @@ class CartService
                 'id' => $item->id,
                 'quantity' => $item->quantity,
             ];
-        })->values();
+        });
     }
 
     public function store($data, Model $product)
@@ -57,7 +81,7 @@ class CartService
 
     public function destroy($cart_id)
     {
-        return Cart::remove(456);
+        return Cart::remove($cart_id);
     }
 
     public function clear()
@@ -90,10 +114,10 @@ class CartService
             'type' => 'shipping',
             'target' => 'total',
             'value' => $shipping,
-            'attributes' => [
-                'description' => 'Value added tax',
-                'more_data' => 'more data here'
-            ]
+            // 'attributes' => [
+            //     'description' => 'Value added tax',
+            //     'more_data' => 'more data here'
+            // ]
         ]));
     }
 

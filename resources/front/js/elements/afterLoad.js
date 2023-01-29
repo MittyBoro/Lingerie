@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let rem = 500 - window.timeEnd;
         if ( rem < 0 ) rem = 10;
         setTimeout( () => {
-            document.body.classList.remove('preload');
+            if (!window.manualPreloader)
+                document.body.classList.remove('preload');
         }, rem);
     });
 

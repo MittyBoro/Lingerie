@@ -1,7 +1,17 @@
 export default {
     data() {
         return {
+            manualPreloader: false
         }
+    },
+
+    created() {
+        window.manualPreloader = true
+    },
+
+    mounted() {
+        if (!this.manualPreloader)
+            document.body.classList.remove('preload')
     },
 
     methods: {
@@ -22,6 +32,18 @@ export default {
 
         setProductOption(key, value) {
             localStorage.setItem('product_' + key, value)
-        }
+        },
+
+
+        formatPrice() {
+            let price = [...arguments].reduce((a, b) => parseFloat(a) + parseFloat(b), 0);
+
+            if (price) {
+                price = Math.round(price);
+                return new Intl.NumberFormat('ru-RU').format(price);
+            }
+            else
+                return 0;
+        },
     }
 }

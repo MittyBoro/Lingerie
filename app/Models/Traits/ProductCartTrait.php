@@ -17,6 +17,7 @@ trait ProductCartTrait
                 ->findOrFail($id);
 
         $prod->append('preview');
+        $prod->makeHidden('options');
 
         return $prod;
     }

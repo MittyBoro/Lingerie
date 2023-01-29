@@ -30,8 +30,7 @@ class CartController extends Controller
 
     public function index(Request $request)
     {
-        // $cart = app('CartService')->get();
-        // return $cart;
+        return $this->responseData();
     }
 
 
@@ -65,28 +64,30 @@ class CartController extends Controller
         ];
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $cartId)
     {
         $data = $request->validate([
-            'id' => 'string',
             'quantity' => 'integer|min:1',
         ]);
 
-        app('CartService')->update($data['id'], $data['quantity']);
+        app('CartService')->update($cartId, $data['quantity']);
 
-        return [
-            'success' => true,
-            ...$this->getCartData($request)
-        ];
+        return $this->responseData();
     }
 
-    public function destroy(Request $request)
+    public function destroy($cartId)
     {
-        app('CartService')->destroy($request->get('id'));
+        app('CartService')->destroy($cartId);
 
+        return $this->responseData();
+    }
+
+
+
+    private function responseData()
+    {
         return [
-            'success' => true,
-            ...$this->getCartData($request)
+            'data' => app('CartService')->getReadable(),
         ];
     }
 

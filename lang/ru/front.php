@@ -11,6 +11,7 @@ return [
     'add_to_cart' => 'Добавить в корзину',
     'add_more' => 'Добавить ещё',
     'done' => 'Готово',
+    'remove' => 'Удалить',
 
     'home' => 'Главная ',
 
@@ -26,6 +27,7 @@ return [
 
     'price' => 'Цена',
     'size' => 'Размер',
+    'color' => 'Цвет',
 
     'our_instagram' => 'Наш Instagram',
 
@@ -75,6 +77,7 @@ return [
 
     'cart_page' => [
         'cart_title' => 'Ваша корзина',
+        'cart_empty' => 'Ваша корзина пуста',
         'checkout_title' => 'Оформление заказа',
         'subtotal' => 'Подытог',
         'checkout' => 'Оформить заказ',

@@ -9,10 +9,9 @@ Route::prefix('cart')
     Route::controller('CartController')
         ->group(function () {
         Route::get('get', 'index')->name('get');
-        Route::post('store/{product}', 'store')->name('store');
-        Route::post('update/{product}', 'update')->name('update');
-        Route::post('destroy/{product}', 'destroy')->name('destroy');
-        Route::post('destroy', 'destroy')->name('destroy');
+        Route::post('store/{id}', 'store')->name('store');
+        Route::post('update/{cart_id}', 'update')->name('update');
+        Route::post('destroy/{cart_id}', 'destroy')->name('destroy');
     });
 
 });
