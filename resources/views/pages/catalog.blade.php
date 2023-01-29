@@ -4,7 +4,7 @@
 @section('meta_description', $page['meta_description'] ?? '')
 @section('meta_keywords', $page['meta_keywords'] ?? '')
 
-@section('head_end')
+@section('headcode')
     @vite('resources/front/js/catalog.js')
 @endsection
 

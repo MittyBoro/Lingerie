@@ -5,16 +5,9 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller as BaseController;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
 
 abstract class Controller extends BaseController
 {
-    protected $lang;
-
-    protected function getLang()
-    {
-        return App::getLocale();
-    }
 
     protected function replacePageData(Page $page, Model|string $replaceData, string $replaceKey = '%replace%')
     {

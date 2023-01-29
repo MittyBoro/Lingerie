@@ -35,8 +35,6 @@ new Swiper('.home-novelties-box .swiper', {
         disableOnInteraction: false,
     },
 
-    autoplay: false,
-
     lazy: {
         checkInView: true,
         loadPrevNext: true,

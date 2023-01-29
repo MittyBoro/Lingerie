@@ -10,14 +10,14 @@ export default {
 
     getUrl( url )
     {
-        return fetch( url ).then( response => response.json() );
+        return fetch( url ).then( response => this.toJson(response) );
     },
 
     get( url )
     {
         return fetch( this.base_url + url, {
                 headers: this.headers,
-            }).then( response => response.json() );
+            }).then( response => this.toJson(response) );
     },
 
     post( url, data )
@@ -26,7 +26,7 @@ export default {
                 method: 'POST',
                 headers: this.headers,
                 body: JSON.stringify( data )
-            }).then( response => response.json() );
+            }).then( response => this.toJson(response) );
     },
 
     postFile( url, data )
@@ -48,7 +48,7 @@ export default {
                 method: 'POST',
                 headers: headers,
                 body: data
-            }).then( response => response.json() );
+            }).then( response => this.toJson(response) );
     },
 
     put( url, data )
@@ -58,6 +58,14 @@ export default {
                 headers: this.headers,
                 body: JSON.stringify( data )
             }).then( response => response.text() );
+    },
+
+    toJson(response)
+    {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Something went wrong');
     },
 
     setToken()

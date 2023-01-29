@@ -71,7 +71,7 @@
 
         {{-- <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css', 'assets') }}"> --}}
 
-        @yield('head_end')
+        @yield('headcode')
         {{-- {!! $props['head_code'] ?? '' !!} --}}
 
     </head>
@@ -115,7 +115,7 @@
                     </a>
                     <div class="col-menu right-menu">
                         <div class="m-item"><a href="/faq">FAQ</a></div>
-                        <div class="m-item"><a href="/cart">@lang('front.cart') <span>({{ $cartCount }})</span></a></div>
+                        <div class="m-item"><a href="/cart">@lang('front.cart') (<span class="cart-count">{{ $cartCount }}</span>)</a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.current_lang')</span>
@@ -129,7 +129,7 @@
                     </div>
                     <div class="cart-wrap">
                         <div class="cart-icon a">
-                            <span class="int">3</span>
+                            <span class="int cart-count">{{ $cartCount }}</span>
                             @svg('images/icons/shopping-bag.svg')
                         </div>
                     </div>
@@ -213,7 +213,7 @@
 
         {{-- <script src="{{ mix('js/app.js', 'assets') }}" defer></script> --}}
 
-        @yield('body_end')
+        @yield('bodycode')
 
         {{-- {!! $props['body_code'] ?? '' !!} --}}
 

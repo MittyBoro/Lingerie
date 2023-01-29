@@ -4,13 +4,13 @@
 @section('meta_description', $page['meta_description'] ?? '')
 @section('meta_keywords', $page['meta_keywords'] ?? '')
 
-@section('head_end')
+@section('headcode')
     @vite('resources/front/js/product.js')
 @endsection
 
 @section('content')
 
-<div class="product-box">
+<div class="product-box" id="product">
     <div class="container">
         <div class="prod-grid grid-12">
             <div class="prod-main-col prod-main-col-mini">
@@ -24,7 +24,7 @@
                 <div class="prod-title">{{ $product['title'] }}</div>
             </div>
 
-            <div class="prod-main-col left-col">
+            <div class="prod-main-col left-col" :class="{'loading-blink': loading}">
                 <div class="pmc-top">
                     <div class="breadcrumbs">
                         <a href="#">Главная</a>
@@ -36,13 +36,13 @@
                     <div class="prod-title"><h1>{{ $product['title'] }}</h1></div>
                 </div>
 
-                @if ($product['colors'])
+                @isset ($product['opts']['size'])
                 <div class="prod-attr-wrap">
                     <div class="pm-title">@lang('front.product_page.size')</div>
                     <div class="pm-list pm-size">
-                        @foreach ($product['sizes'] as $size)
+                        @foreach ($product['opts']['size'] as $size)
                         <label class="form-radio pm-item">
-                            <input type="radio" name="size" value="{{ $size['value'] }}">
+                            <input type="radio" name="size" value="{{ $size['id'] }}" v-model="form.size">
                             <div class="fr-item">
                                 <span>{{ $size['value'] }}</span>
                             </div>
@@ -50,15 +50,15 @@
                         @endforeach
                     </div>
                 </div>
-                @endif
+                @endisset
 
-                @if ($product['colors'])
+                @isset ($product['opts']['color'])
                 <div class="prod-attr-wrap">
                     <div class="pm-title">@lang('front.product_page.color')</div>
                     <div class="pm-list pm-color">
-                        @foreach ($product['colors'] as $color)
+                        @foreach ($product['opts']['color'] as $color)
                         <label class="form-radio pm-item">
-                            <input type="radio" name="color" value="{{ $color['value'] }}">
+                            <input type="radio" name="color" value="{{ $color['id'] }}" v-model="form.color">
                             <div class="fr-item">
                                 <span style="{{ $color['extra'] }}"></span>
                             </div>
@@ -66,7 +66,7 @@
                         @endforeach
                     </div>
                 </div>
-                @endif
+                @endisset
 
                 <div class="prod-price">
                     @if ($cy == 'rub')
@@ -75,7 +75,14 @@
                         {{ $cySymb }}<span>@price($product['price'])</span>
                     @endif
                 </div>
-                <div class="btn">@lang('front.add_to_cart')</div>
+                <div class="btn" @click="store({{ $product['id'] }})">
+                    <span v-if="!inCart">
+                        @lang('front.add_to_cart')
+                    </span>
+                    <span v-else>
+                        @lang('front.add_more')
+                    </span>
+                </div>
             </div>
 
             <div class="gallery-col right-col">
@@ -152,4 +159,11 @@
 </div>
 @endif
 
+@endsection
+
+
+@section('bodycode')
+    <script>
+        const $options = @json($product['opts']);
+    </script>
 @endsection
