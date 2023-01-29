@@ -1,5 +1,6 @@
 // import {setScrollbarWidth} from './libs/methods';
 import { slideDown, slideUp } from '../libs/slideToggle';
+import cacheMethod from '../libs/cacheMethod';
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -125,22 +126,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // image to svg, after other init
     document.addEventListener('readystatechange', function() {
         document.querySelectorAll('img.to-svg').forEach(image => {
-            fetch(image.src)
-            .then(res => res.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const svg = parser.parseFromString(data, 'image/svg+xml').querySelector('svg');
 
-                if (image.id) svg.id = image.id;
-                if (image.className) svg.classList = image.classList;
+            cacheMethod(image.src, () => {
+                fetch(image.src)
+                .then(res => res.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const svg = parser.parseFromString(data, 'image/svg+xml').querySelector('svg');
 
-                Object.keys(image.dataset).forEach(function(key) {
-                    svg.dataset[key] = image.dataset[key];
-                });
+                    if (image.id) svg.id = image.id;
+                    if (image.className) svg.classList = image.classList;
 
-                image.parentNode.replaceChild(svg, image);
+                    Object.keys(image.dataset).forEach(function(key) {
+                        svg.dataset[key] = image.dataset[key];
+                    });
+
+                    image.parentNode.replaceChild(svg, image);
+                })
+                .catch(error => console.error(error))
             })
-            .catch(error => console.error(error))
+
         })
     })
 
