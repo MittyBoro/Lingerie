@@ -26,6 +26,8 @@
                 display: grid
                 gap: 8px
                 margin-top: 15px
+                .active
+                    font-weight: 700
 
     .catalog-grid
         align-items: start
@@ -37,6 +39,15 @@
         font-size: 14px
         .sb-element
             margin-bottom: 17px
+
+            &.limited
+                .sb-list > *
+                    &:nth-child(6)
+                        & ~ *
+                            display: none
+                            &:not(.show-more) ~ .show-more
+                                display: block
+
 
         .sb-title
             display: flex
@@ -59,6 +70,8 @@
             .sb-parent-item
                 font-weight: 700
                 font-size: 15px
+                &.active:not(:hover)
+                    color: $primary-alt
             .sb-sub-list
                 display: grid
                 gap: 7px
@@ -82,8 +95,8 @@
                 gap: 5px
                 padding-bottom: 5px
         .show-more
+            display: none
             margin-top: 9px
-            margin-bottom: 4px
             font-weight: 700
             &:hover
                 color: $primary-alt
@@ -94,7 +107,9 @@
                 display: grid
                 gap: 5px
                 padding-top: 7px
+                padding-bottom: 4px
             .sb-item
+                line-height: 1
                 .sbi-color
                     flex-shrink: 0
                     margin-right: 10px
@@ -112,6 +127,7 @@
                 display: grid
                 gap: 5px 20px
                 padding-top: 6px
+                padding-bottom: 4px
             .sb-item
                 display: flex
                 align-items: center

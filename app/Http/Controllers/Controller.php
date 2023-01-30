@@ -17,4 +17,9 @@ class Controller extends BaseController
     {
         return App::getLocale();
     }
+    protected function getFilter($requsst)
+    {
+        parse_str($requsst->get('filter'), $output);
+        return $output;
+    }
 }

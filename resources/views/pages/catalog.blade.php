@@ -11,7 +11,7 @@
 
 @section('content')
 
-<div class="catalog-box">
+<div class="catalog-box" id="catalog">
     <div class="container">
         <div class="h2">{{ $page['title'] }}</div>
 
@@ -22,9 +22,11 @@
                     <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                 </div>
                 <div class="cs-list" toggle-el data-display="grid">
-                    <a href="?" class="cs-item">@lang('front.catalog_page.sort_new')</a>
-                    <a href="?sort=price-desc'" class="cs-item active">@lang('front.catalog_page.sort_price_desc')</a>
-                    <a href="?sort=price-asc" class="cs-item">@lang('front.catalog_page.sort_price_asc')</a>
+                    <a v-for="s in sortable"
+                    v-text="s.text"
+                    :href="s.href"
+                    :class="{active: s.href == activeSort.href}"
+                    class="sb-item"></a>
                 </div>
             </div>
             <div class="btn btn-mini" filter-toggle>фильтр</div>
@@ -34,21 +36,15 @@
             <div class="sidebar">
                 <div class="sb-sort sb-element" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>
-                            @if ($sort == 'price-desc')
-                                @lang('front.catalog_page.sort_price_desc')
-                            @elseif ($sort == 'price-asc')
-                                @lang('front.catalog_page.sort_price_asc')
-                            @else
-                                @lang('front.catalog_page.sort_new')
-                            @endif
-                        </span>
+                        <span v-text="activeSort.text"></span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
-                    <div class="sb-list" toggle-el style="display: none;" data-display="grid">
-                        <a href="?" class="sb-item">@lang('front.catalog_page.sort_new')</a>
-                        <a href="?sort=price-desc" class="sb-item">@lang('front.catalog_page.sort_price_desc')</a>
-                        <a href="?sort=price-asc" class="sb-item">@lang('front.catalog_page.sort_price_asc')</a>
+                    <div class="sb-list" toggle-el data-display="grid">
+                        <a v-for="s in sortable"
+                            v-text="s.text"
+                            :href="s.href"
+                            :class="{active: s.href == activeSort.href}"
+                            class="sb-item"></a>
                     </div>
                 </div>
 
@@ -59,20 +55,17 @@
                         <div class="btn btn-mini btn-gray prevent" filter-toggle>@lang('front.close')</div>
                     </div>
                     <div toggle-el>
-                        @foreach ($categories as $pCat)
-                        <div class="sb-list">
-                            <a href="{{ route('front.categories', $pCat['slug']) }}" class="sb-parent-item">{{ $pCat['title'] }}</a>
+                        <div v-for="parent in categories" class="sb-list">
+                            <a :href="parent.href" class="sb-parent-item" :class="{active: activeSlug == parent.slug}">@{{ parent.title }}</a>
                             <div class="sb-sub-list">
-                                @foreach ($pCat['children'] as $cat)
-                                    <a href="{{ route('front.categories', $cat['slug']) }}" class="sb-item {{ $cat['slug'] == $slug ? 'active' : '' }}">{{ $cat['title'] }}</a>
-                                @endforeach
+                                <a v-for="child in parent.children" :href="child.href" class="sb-item" :class="{active: activeSlug == child.slug}">@{{ child.title }}</a>
                             </div>
                         </div>
-                        @endforeach
                     </div>
                 </div>
 
-                <div class="sb-color sb-element active" toggling>
+                {{-- из-за перевода проще так --}}
+                <div class="sb-color sb-element active" :class="{limited: colorsLimit}" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>@lang('front.catalog_page.color')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
@@ -80,31 +73,31 @@
                     <div class="sb-list" toggle-el>
                         @foreach ($colors as $color)
                         <label class="sb-item">
-                            <input type="checkbox" name="color" value="{{ $color['value'] }}">
+                            <input type="checkbox" name="options" value="{{ $color['id'] }}" v-model="filter.options">
                             <div class="sbi-color" style="{{ $color['extra'] ?: '#eee' }}"></div>
                             <span>@lang('front.colors.'.$color['value'])</span>
                         </label>
                         @endforeach
 
-                        <div class="show-more primary a">@lang('front.show_all')</div>
+                        <div @click="colorsLimit = false" class="show-more primary a">@lang('front.show_all')</div>
                     </div>
                 </div>
 
-                <div class="sb-price sb-element active" toggling>
+                <div class="sb-price sb-element active range-sliger" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>@lang('front.price'), {{ $cySymb }}</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div toggle-el>
-                        <input class="range-end" type="hidden" v-model="filter.price.maxRange" @change="updateSlider('price')">
-                        <input class="range-start" type="hidden" v-model="filter.price.minRange" @change="updateSlider('price')">
+                        <input class="range-min" type="hidden" @change="filter.price[0] = $event.target.value" :value="filter.price[0]">
+                        <input class="range-max" type="hidden" @change="filter.price[1] = $event.target.value" :value="filter.price[1]">
                         <div class="sb-list sb-range">
-                            <div class="sb-range-price" ref="priceSlider" data-min="{{ $min_price }}" data-max="{{ $max_price }}" data-step="1"></div>
+                            <div class="range-sliger-element" ref="priceSlider" data-min="{{ $pricesRange[0] }}" data-max="{{ $pricesRange[1] }}" data-step="1"></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="sb-size sb-element active" toggling>
+                <div class="sb-size sb-element active" :class="{limited: sizesLimit}" toggling>
                     <div class="sb-title mini-title" toggle-click>
                         <span>@lang('front.size')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
@@ -112,15 +105,15 @@
                     <div class="sb-list" toggle-el>
                         @foreach ($sizes as $size)
                         <label class="sb-item">
-                            <input type="checkbox" name="size" value="{{ $size['value'] }}">
+                            <input type="checkbox" name="options" value="{{ $size['id'] }}" v-model="filter.options">
                             <span>{{ $size['value'] }}</span>
                         </label>
                         @endforeach
-                        <div class="show-more primary a col-full">@lang('front.show_all')</div>
+                        <div @click="sizesLimit = false" class="show-more primary a col-full">@lang('front.show_all')</div>
                     </div>
                 </div>
                 <div class="btns-row">
-                    <div class="btn btn-mini">@lang('front.reset')</div>
+                    <div class="btn btn-mini" @click="reset">@lang('front.reset')</div>
                     <div class="btn btn-mini btn-gray" filter-toggle>@lang('front.close')</div>
                 </div>
             </div>
@@ -131,5 +124,23 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('bodycode')
+
+<script>
+    const $sortable = [
+        { href: '?', text: "@lang('front.catalog_page.sort_new')" },
+        { href: '?sort=price-desc', text: "@lang('front.catalog_page.sort_price_desc')" },
+        { href: '?sort=price-asc', text: "@lang('front.catalog_page.sort_price_asc')" },
+    ];
+    const $categories = @json($categories);
+    const $slug = @json($slug);
+
+    const $colorsCount = {{ count($colors) }};
+    const $sizesCount = {{ count($sizes) }};
+
+</script>
 
 @endsection

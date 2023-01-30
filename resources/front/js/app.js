@@ -3,7 +3,6 @@
 import './elements/afterLoad';
 import './elements/header';
 
-import './elements/swiper';
 
 // import './popup';
 

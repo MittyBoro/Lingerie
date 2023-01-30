@@ -28,6 +28,7 @@ class CartService
             $optionsString = collect($item->attributes->options)->map(function($opt) {
                 $type = __('front.'.$opt['type']);
                 $value = ($opt['type'] == 'color') ? __('front.colors.'.$opt['value']) : $opt['value'];
+
                 return $type . ': ' . $value;
             })->implode(', ');;
 

@@ -41,11 +41,12 @@ class ProductOption extends Model
         $this->attributes['value'] = Str::lower($value);
     }
 
-    public function scopeGetPublic($query)
+    public function scopeGetPublic($query, $categoryId = null)
     {
         $result = $query
-                        ->whereHas('products', function($prodQ) {
+                        ->whereHas('products', function($prodQ) use ($categoryId) {
                             $prodQ->isPublished();
+                            $prodQ->relationByIds('categories', $categoryId);
                         })
                         ->orderBy('position')
                         ->get(['id', 'type', 'value', 'extra'])

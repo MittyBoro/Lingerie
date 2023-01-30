@@ -77,33 +77,6 @@ const app = createApp({
             });
         },
 
-        store(id) {
-            if (this.loading)
-                return;
-
-            this.loading = true;
-
-            HTTP.post('/cart/store/' + id, {
-                options: this.formValues,
-            })
-            .then(cart => {
-                this.cartMini = cart.mini
-
-                let event = new CustomEvent('setCartCount', { bubbles: true, detail: { count: cart.count} });
-                document.dispatchEvent(event);
-
-
-                this.success = true
-
-                setTimeout(() => {this.success = false}, 2000)
-
-            })
-            .catch(err => alert(err))
-            .then(() => {
-                this.loading = false;
-            });
-        },
-
         setItemCount(item, integer) {
             if (item.quantity == 1 && integer < 1)
                 return item;

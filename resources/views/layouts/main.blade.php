@@ -78,9 +78,9 @@
     <body class="preload page-{{ $viewName }} @yield('body_class')">
 
         <div class="preload-box">
-            <div class="loading-logo">
+            <a href="/" class="loading-logo">
                 @svg('images/icons/logo.svg')
-            </div>
+            </a>
             <div class="loading-circle"></div>
             <div class="loading-text">@lang('front.loading')...</div>
         </div>

@@ -1,6 +1,8 @@
 
 import './vue/Product';
 
+import './elements/catalogSwiper';
+
 import lightGallery from 'lightgallery';
 
 import lgThumbnail from 'lightgallery/plugins/thumbnail'

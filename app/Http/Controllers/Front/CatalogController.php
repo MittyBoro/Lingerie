@@ -6,22 +6,17 @@ use App\Models\Product;
 use App\Models\ProductOption;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class CatalogController extends Controller
 {
 
     public function index(Request $request)
     {
-        $products = Product::orderByStr($request->get('sort'))
-                           ->getFrontList($this->getLang());
-
+        $content = $this->content($request);
 
         return view('pages.catalog', [
-            'products' => $products,
             'slug' => '',
-            'sort' => $request->get('sort'),
-            ...$this->sidebarData(),
+            ...$content,
         ]);
     }
 
@@ -29,35 +24,40 @@ class CatalogController extends Controller
     {
         $category = ProductCategory::findForFront($slug, $this->getLang());
 
-        $products = Product::whereCategories($category->id)
-                           ->orderByStr($request->get('sort'))
-                           ->getFrontList($this->getLang());
-
         $page = $this->replacePageData($request->get('page'), $category);
         $page->title = $category->title;
 
+        $content = $this->content($request, $category->id);
 
         return view('pages.catalog', [
-            'products' => $products,
             'page' => $page,
             'slug' => $slug,
-            'sort' => $request->get('sort'),
-            ...$this->sidebarData(),
+            ...$content,
         ]);
     }
 
-
-    private function sidebarData(): array
+    private function content(Request $request, $categoryId = null)
     {
+        $products = Product::orderByStr($request->get('sort'))
+                           ->priceBetween($request->get('price'))
+                           ->relationByIds('categories', $categoryId)
+                           ->relationByIds('options', $request->get('options'))
+                           ->getFrontList($this->getLang());
+
+        $pricesRange = Product::relationByIds('categories', $categoryId)
+                              ->relationByIds('options', $request->get('options'))
+                              ->minMaxPrice($this->getLang());
+
         $attrs = ProductOption::getPublic()->toArray();
 
-        $prices = Product::minMaxPrice($this->getLang());
-
         return [
+            'products' => $products,
             'colors' => $attrs['color'],
             'sizes' => $attrs['size'],
-            ...$prices->toArray(),
+            'pricesRange' => $pricesRange,
+            'sort' => $request->get('sort'),
         ];
     }
+
 
 }

@@ -68,6 +68,12 @@ class ProductCategory extends Model implements HasMedia
         return $this->belongsToMany(Product::class);
     }
 
+    protected function href(): Attribute
+    {
+        return Attribute::make(
+                    get: fn () => route('front.categories', $this->slug)
+                );
+    }
     protected function preview(): Attribute
     {
         return Attribute::make(
@@ -144,10 +150,11 @@ class ProductCategory extends Model implements HasMedia
         $result = $query
                     ->localized($lang)
                     ->withDepth()
-                    ->get()
-                    ->toTree();
+                    ->get();
 
-        return $result;
+        $result->append('href');
+
+        return $result->toTree();
     }
 
     public function scopeFindForFront($query, $slug, $lang)

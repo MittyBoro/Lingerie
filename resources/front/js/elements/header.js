@@ -1,4 +1,4 @@
 
-document.addEventListener('setCartCount', el => {
-    document.querySelector('.cart-count').innerText = el.detail.count || 0;
+document.addEventListener('setCartCount', e => {
+    document.querySelector('.cart-count').innerText = e.detail.count || 0;
 })

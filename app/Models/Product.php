@@ -234,16 +234,17 @@ class Product extends Model implements HasMedia
     }
 
 
-    public function scopeWhereCategories($query, $categoryIds)
+    public function scopeRelationByIds($query, $relation, $ids = null)
     {
-        if (is_string($categoryIds) || is_int($categoryIds)) {
-            $categoryIds = [$categoryIds];
-        }
-
-        $query->whereHas(
-                'categories',
-                fn($q) => $q->whereIn('id', $categoryIds)
+        if ($ids) {
+            if (is_string($ids)) {
+                $ids = explode(',', $ids);
+            }
+            $query->whereRelation(
+                $relation,
+                fn($q) => $q->whereIn('id', collect($ids))
             );
+        }
     }
 
     // catalog
@@ -269,10 +270,20 @@ class Product extends Model implements HasMedia
         $result = $query
                     ->isPublished()
                     ->joinTranslations($lang)
-                    ->selectRaw('min(price) as min_price, max(price) as max_price')
-                    ->first();
+                    ->selectRaw('min(price) as `0`, max(price) as `1`')
+                    ->first()
+                    ->toArray();
 
         return $result;
+    }
+    public function scopePriceBetween($query, $price = null)
+    {
+        if (is_string($price)) {
+            $price = explode(',', $price);
+        }
+        if (is_array($price) && count($price) == 2) {
+            $query->whereBetween('price', [...$price]);
+        }
     }
 
 
