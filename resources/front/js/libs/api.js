@@ -8,40 +8,33 @@ export default {
         // Authorization: 'Bearer ' + localStorage.getItem("user-token"),
     },
 
-    fetchArgs( ...args )
-    {
-        return fetch( ...args ).then( response => {
-            if (response.ok) {
-                return response;
-            }
-            throw new Error('Something went wrong');
-        } );
+    fetchArgs( ...args ) {
+        return fetch( ...args )
+                .then( response => {
+                    if (response.ok) {
+                        return response;
+                    }
+                    throw new Error('Something went wrong');
+                } )
     },
 
-    getUrl( url )
-    {
-        return this.fetchArgs( url ).then( response => response.json() );
-    },
-
-    get( url )
-    {
+    get( url, raw = false ) {
         return this.fetchArgs( this.base_url + url, {
-                headers: this.headers,
-            }).then( response => response.json() );
+                headers: this.getHeaders(raw),
+            }).then( response => this.getResponse(response, raw) );
     },
 
-    post( url, data )
-    {
+
+    post( url, data, raw = false ) {
         return this.fetchArgs( this.base_url + url, {
                 method: 'POST',
-                headers: this.headers,
+                headers: this.getHeaders(raw),
                 body: JSON.stringify( data )
-            }).then( response => response.json() );
+            }).then( response => this.getResponse(response, raw) );
     },
 
-    postFile( url, data )
-    {
-        let headers = Object.assign({}, this.headers);
+    postFile( url, data ) {
+        let headers = Object.assign({}, this.getHeaders());
 
         delete headers['Content-Type'];
 
@@ -58,25 +51,33 @@ export default {
                 method: 'POST',
                 headers: headers,
                 body: data
-            }).then( response => response.json() );
+            }).then( response => this.getResponse(response) );
     },
 
-    put( url, data )
-    {
+    put( url, data ) {
         return this.fetchArgs( this.base_url + url, {
                 method: 'PUT',
-                headers: this.headers,
+                headers: this.getHeaders(),
                 body: JSON.stringify( data )
-            }).then( response => response.text() );
+            }).then( response => this.getResponse(response, true) );
     },
 
-    setToken()
-    {
+    getResponse(response, raw = false) {
+        return raw ? response.text() : response.json()
+    },
+
+    getHeaders(raw = false) {
+        return raw ? {
+            ...this.headers,
+            'Content-Type': 'text/html;charset=utf-8',
+        } : this.headers
+    },
+
+    setToken() {
         this.headers.Authorization = 'Bearer ' + localStorage.getItem("user-token");
     },
 
-    setSocketId( socketId )
-    {
+    setSocketId( socketId ) {
         this.headers['X-Socket-ID'] = socketId;
     }
 }

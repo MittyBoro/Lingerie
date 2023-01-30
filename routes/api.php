@@ -16,6 +16,9 @@ Route::prefix('cart')
 
 });
 
+
+Route::post('catalog/{slug?}', 'CatalogController@index')->name('catalog');
+
 //         Route::prefix('checkout')
 //             ->name('checkout.')
 //             ->controller('CheckoutController')

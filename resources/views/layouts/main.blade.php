@@ -40,17 +40,18 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                color: #DEA19A;
             }
             .preload-box .loading-logo {
                 max-width: 90%;
                 animation: blink 1s infinite linear alternate;
+                color: #DEA19A;
             }
             .preload-box .loading-logo svg {
                 width: 300px;
                 height: auto;
             }
             .preload-box .loading-circle {
+                flex-shrink: 0;
                 margin: 30px 0;
                 width: 40px;
                 height: 40px;

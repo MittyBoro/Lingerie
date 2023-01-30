@@ -26,7 +26,7 @@ class Product extends Model
     public function scopeFilter($query, array $filter)
     {
         if (isset($filter['category'])) {
-            $query->whereCategories($filter['category']);
+            $query->relationByIds('categories', $filter['category']);
         }
 
         if (isset($filter['q'])) {

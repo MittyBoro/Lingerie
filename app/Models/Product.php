@@ -175,7 +175,7 @@ class Product extends Model implements HasMedia
 
             $result = self::limit(4)
                         ->where('products.id', '!=', $this->id)
-                        ->whereCategories($categories)
+                        ->relationByIds('categories', $categories)
                         ->getFrontList($this->lang, false);
 
             $result->append(['gallery']);
@@ -248,6 +248,15 @@ class Product extends Model implements HasMedia
     }
 
     // catalog
+    public function scopeGetCatalog($query, $lang, $data)
+    {
+        return $query
+                ->orderByStr($data['sort'] ?? null)
+                ->priceBetween($data['price'] ?? null)
+                ->relationByIds('options', $data['options'] ?? null)
+                ->relationByIds('categories', $data['categories'] ?? null)
+                ->getFrontList($lang);
+    }
     public function scopeGetFrontList($query, $lang, $paginate = true, $append = 'gallery')
     {
         $query

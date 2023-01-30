@@ -1,13 +1,14 @@
 import { createApp } from 'vue/dist/vue.esm-bundler';
 import Mixin from "./Mixins";
-import HTTP from '../libs/http';
+import API from '../libs/api';
+import imgToSvg from '../libs/imgToSvg';
 
 
 const app = createApp({
     data() {
         let filter = {
             options: [],
-            price: [],
+            price: [0,0],
         }
         return {
             timerId: null,
@@ -21,17 +22,19 @@ const app = createApp({
             colorsLimit: true,
             sizesLimit: true,
 
-            listenFilter: 0,
+            listenFilter: false,
 
             defaultFilter: JSON.parse(JSON.stringify(filter)),
             filter: filter,
+
+            locationSearch: window.location.search
         };
     },
 
 
 	computed: {
         activeSort() {
-            let urlParams = new URLSearchParams(window.location.search);
+            let urlParams = new URLSearchParams(this.locationSearch);
 
             let sortHref = urlParams.get('sort');
 
@@ -40,13 +43,13 @@ const app = createApp({
 	},
 
 	watch: {
+        locationSearch(val) {
+            history.pushState(null, null, location.pathname + val);
+        },
+
         filter: {
             deep: true,
             handler() {
-                if (this.listenFilter === 0) {
-                    this.listenFilter = true;
-                    return;
-                }
                 if (!this.listenFilter)
                     return;
 
@@ -66,26 +69,11 @@ const app = createApp({
     },
 
     mounted() {
+        this.setCatalogLinkEvents(this.$el)
+        this.listenFilter = true;
     },
 
     methods: {
-        setFilterToUrl() {
-            let params = new URLSearchParams();
-
-            Object.entries(this.filter).forEach(([key, value]) => {
-                const filterValue = Array.isArray(value) ? value.join(',') : value;
-
-                if (filterValue)
-                    params.append(key, filterValue);
-                else
-                    params.delete(key);
-            });
-
-            let paramsString = params.toString()
-            let newUrl = location.pathname + (paramsString ? '?' + paramsString : '');
-
-            history.pushState(null, null, newUrl);
-        },
 
         setUrlToFilter() {
             let params = new URLSearchParams(location.search);
@@ -97,40 +85,77 @@ const app = createApp({
             });
         },
 
+        filterToUrl() {
+            let params = new URLSearchParams(location.search);
 
-        filtering() {
+            Object.entries(this.filter).forEach(([key, value]) => {
+                const filterValue = Array.isArray(value) ? value.join(',') : value;
 
-            this.setFilterToUrl()
-
-            return;
-
-            HTTP.get('/cart/get')
-            .then(cart => {
-                this.cart = cart.data;
-                this.setCartCount(this.cart.length);
-            })
-            .catch(err => alert(err))
-            .then(() => {
-                this.loading = false;
-                this.ready = true;
-
-                document.body.classList.remove('preload')
+                if (filterValue && filterValue != '0,0')
+                    params.set(key, filterValue);
+                else
+                    params.delete(key);
             });
+
+            params.delete('p');
+
+            return params.toString() ? '?' + params : ''
         },
 
-        update(item) {
+
+        filtering() {
+            let search = this.filterToUrl()
+            this.getCatalog(search)
+        },
+
+
+        getCatalog(search = '') {
+            this.locationSearch = search;
             this.loading = true;
 
-            HTTP.post('/cart/update/' + item.id, {
-                quantity: item.quantity,
-            }).then(cart => {
-                this.cart = cart.data;
-                this.setCartCount(this.cart.length);
+            let url = '/catalog' + (this.activeSlug ? '/' + this.activeSlug : '') + search;
+
+            API.post(url, {}, true)
+                .then(data => {
+                    this.updateCatalog(data);
+                })
+                .catch(err => alert(err))
+                .then(() => {
+                    this.loading = false;
+                })
+        },
+
+        updateCatalog(data) {
+            let catalogList = this.$refs.catalogList
+                catalogList.innerHTML = data;
+
+            imgToSvg(catalogList);
+
+            document.dispatchEvent(new CustomEvent('catalogChanged', { bubbles: true }));
+
+            this.setCatalogLinkEvents(catalogList)
+        },
+
+        setCatalogLinkEvents(parent) {
+            parent.querySelectorAll('.event-links a').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault()
+
+                    let search = new URL(a.href).search;
+                    this.getCatalog(search)
+                    this.toTop()
+
+                })
             })
-            .catch(err => alert(err))
-            .then(() => {
-                this.loading = false;
-            });
+        },
+
+        setCategory(link) {
+            this.activeSlug = link.slug;
+            this.getCatalog()
+            history.pushState(null, null, link.href);
+
+            this.$refs.title.innerText = link.title
+            this.toTop()
         },
 
         reset() {
@@ -139,8 +164,12 @@ const app = createApp({
 
             if (this.$refs.priceSlider)
                 this.$refs.priceSlider.setUi()
+            this.toTop()
         },
 
+        toTop() {
+            document.body.scrollIntoView();
+        },
     },
 });
 

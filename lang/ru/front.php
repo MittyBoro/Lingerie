@@ -49,6 +49,7 @@ return [
         'sort_price_asc' => 'Цены по возрастанию',
         'category' => 'Категория',
         'color' => 'Выбор цвета',
+        'not_found' => 'Не найдено',
     ],
 
     'colors' => [

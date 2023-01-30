@@ -1,6 +1,6 @@
 import { createApp } from 'vue/dist/vue.esm-bundler';
 import Mixin from "./Mixins";
-import HTTP from '../libs/http';
+import API from '../libs/api';
 
 
 const app = createApp({
@@ -59,7 +59,7 @@ const app = createApp({
 
             this.loading = true;
 
-            HTTP.post('/cart/store/' + id, {
+            API.post('/cart/store/' + id, {
                 options: this.formValues,
             })
             .then(cart => {

@@ -1,6 +1,6 @@
 import { createApp } from 'vue/dist/vue.esm-bundler';
 import Mixin from "./Mixins";
-import HTTP from '../libs/http';
+import API from '../libs/api';
 
 
 const app = createApp({
@@ -36,7 +36,7 @@ const app = createApp({
 
     methods: {
         get() {
-            HTTP.get('/cart/get')
+            API.get('/cart/get')
             .then(cart => {
                 this.cart = cart.data;
                 this.setCartCount(this.cart.length);
@@ -53,7 +53,7 @@ const app = createApp({
         update(item) {
             this.loading = true;
 
-            HTTP.post('/cart/update/' + item.id, {
+            API.post('/cart/update/' + item.id, {
                 quantity: item.quantity,
             }).then(cart => {
                 this.cart = cart.data;
@@ -67,7 +67,7 @@ const app = createApp({
         destroy(item) {
             this.loading = true;
 
-            HTTP.post('/cart/destroy/' + item.id, {}).then(cart => {
+            API.post('/cart/destroy/' + item.id, {}).then(cart => {
                 this.cart = cart.data;
                 this.setCartCount(this.cart.length);
             })

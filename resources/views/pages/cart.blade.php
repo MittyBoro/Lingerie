@@ -58,9 +58,11 @@
                 <div class="btn">@lang('front.cart_page.checkout')</div>
             </div>
         </div>
-        <div v-else class="cart-empty">
-            <div class="h2">@lang('front.cart_page.cart_empty')</div>
-            <a href="/catalog" class="btn">@lang('front.to_catalog')</a>
+        <div v-else class="cart-empty white-box">
+            <div class="white-item">
+                <div class="h2">@lang('front.cart_page.cart_empty')</div>
+                <a href="/catalog" class="btn">@lang('front.to_catalog')</a>
+            </div>
         </div>
     </div>
 </div>

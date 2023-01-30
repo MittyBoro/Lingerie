@@ -38,22 +38,20 @@ class CatalogController extends Controller
 
     private function content(Request $request, $categoryId = null)
     {
-        $products = Product::orderByStr($request->get('sort'))
-                           ->priceBetween($request->get('price'))
-                           ->relationByIds('categories', $categoryId)
-                           ->relationByIds('options', $request->get('options'))
-                           ->getFrontList($this->getLang());
+        $data = $request->all();
+        $data['categories'] = $categoryId;
+
+        $products = Product::getCatalog($this->getLang(), $data);
 
         $pricesRange = Product::relationByIds('categories', $categoryId)
                               ->relationByIds('options', $request->get('options'))
                               ->minMaxPrice($this->getLang());
 
-        $attrs = ProductOption::getPublic()->toArray();
+        $options = ProductOption::getPublic()->toArray();
 
         return [
             'products' => $products,
-            'colors' => $attrs['color'],
-            'sizes' => $attrs['size'],
+            'options' => $options,
             'pricesRange' => $pricesRange,
             'sort' => $request->get('sort'),
         ];

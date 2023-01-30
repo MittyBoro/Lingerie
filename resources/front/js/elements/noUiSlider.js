@@ -27,7 +27,7 @@ rangeSliders.forEach(container => {
 		}
 	});
 
-	rangeEl.noUiSlider.on('change', function (values, handle) {
+	rangeEl.noUiSlider.on('set', function (values, handle) {
 
 		let value = values[handle];
 
