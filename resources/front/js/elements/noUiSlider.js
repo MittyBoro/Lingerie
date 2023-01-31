@@ -27,17 +27,13 @@ rangeSliders.forEach(container => {
 		}
 	});
 
-	rangeEl.noUiSlider.on('set', function (values, handle) {
+	rangeEl.noUiSlider.on('change', function (values, handle) {
 
-		let value = values[handle];
+        rangeMin.value = values[0];
+        rangeMax.value = values[1];
 
-		if (!handle) {
-			rangeMin.value = value;
-            fireEvent(rangeMin, 'change');
-		} else {
-			rangeMax.value = value;
-            fireEvent(rangeMax, 'change');
-		}
+        fireEvent(rangeMin, 'change');
+        fireEvent(rangeMax, 'change');
 	});
 
     rangeEl.setUi = (...args) => {

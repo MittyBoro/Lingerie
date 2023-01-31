@@ -144,7 +144,7 @@
                        @include('elements.footer_category')
 
                         <div class="top-col">
-                            <div class="f-title mini-title primary">@lang('front.footer.for_lients')</div>
+                            <div class="f-title mini-title primary">@lang('front.footer.for_clients')</div>
                             <ul>
                                 <li><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></li>
                                 <li><a href="/faq">{{ $pages['faq'] ?? '' }}</a></li>

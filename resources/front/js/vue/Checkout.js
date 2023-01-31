@@ -31,7 +31,7 @@ const app = createApp({
                     street: '',
                     postcode: '',
                 },
-                payment: 'receipt',
+                payment_type: 'receipt',
             }
         };
     },

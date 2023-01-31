@@ -13,9 +13,9 @@
 
 <div class="catalog-box" id="catalog">
     <div class="container" :class="{'loading-blink': loading}">
-        <div class="h2" ref="title">{{ $page['title'] }}</div>
+        <div class="h2" ref="title" data-default="@lang('front.catalog_page.catalog')">{{ $page['title'] }}</div>
 
-        <div class="catalog-mobile-sort">
+        <div class="catalog-mobile-sort" ref="mobiCat">
             <div class="cm-sort" toggling>
                 <div class="mini-title" toggle-click>
                     <span>@lang('front.catalog_page.sort')</span>
@@ -29,7 +29,7 @@
                     class="sb-item"></a>
                 </div>
             </div>
-            <div class="btn btn-mini" filter-toggle>фильтр</div>
+            <div class="btn btn-mini" @click="stopListeningFilter" filter-toggle>@lang('front.filter')</div>
         </div>
 
         <div class="catalog-grid grid-12">
@@ -52,7 +52,7 @@
                     <div class="sb-title mini-title" toggle-click>
                         <span>@lang('front.catalog_page.category')</span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
-                        <div class="btn btn-mini btn-gray prevent" filter-toggle>@lang('front.close')</div>
+                        <div @click="mobileFiltering" class="btn btn-mini btn-gray prevent" filter-toggle>@lang('front.close')</div>
                     </div>
                     <div toggle-el>
                         <div v-for="parent in categories" class="sb-list">
@@ -60,6 +60,9 @@
                             <div class="sb-sub-list">
                                 <a v-for="child in parent.children" @click="setCategory(child)" :href="child.href" class="sb-item prevent" :class="{active: activeSlug == child.slug}">@{{ child.title }}</a>
                             </div>
+                        </div>
+                        <div class="sb-list">
+                            <a @click="setCategory(catalogLink)" :href="catalogLink.href" class="sb-parent-item prevent">@lang('front.catalog_page.all_products')</a>
                         </div>
                     </div>
                 </div>
@@ -118,8 +121,8 @@
                 @endisset
 
                 <div class="btns-row">
-                    <div class="btn btn-mini" @click="reset">@lang('front.reset')</div>
-                    <div class="btn btn-mini btn-gray" filter-toggle>@lang('front.close')</div>
+                    <div class="btn btn-mini" @click="resetFilter">@lang('front.reset')</div>
+                    <div class="btn btn-mini btn-gray" @click="mobileFiltering" filter-toggle>@lang('front.close')</div>
                 </div>
             </div>
 

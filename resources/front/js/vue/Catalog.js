@@ -27,7 +27,12 @@ const app = createApp({
             defaultFilter: JSON.parse(JSON.stringify(filter)),
             filter: filter,
 
-            locationSearch: window.location.search
+            locationSearch: window.location.search,
+
+            catalogLink: {
+                slug: '',
+                href: '/catalog',
+            }
         };
     },
 
@@ -134,6 +139,8 @@ const app = createApp({
             document.dispatchEvent(new CustomEvent('catalogChanged', { bubbles: true }));
 
             this.setCatalogLinkEvents(catalogList)
+
+            this.$refs.mobiCat.classList.remove('active')
         },
 
         setCatalogLinkEvents(parent) {
@@ -154,21 +161,34 @@ const app = createApp({
             this.getCatalog()
             history.pushState(null, null, link.href);
 
-            this.$refs.title.innerText = link.title
-            this.toTop()
+            this.$refs.title.innerText = link.title || this.$refs.title.dataset?.default
+
+            this.resetFilter()
         },
 
-        reset() {
+        resetFilter() {
             this.filter = JSON.parse(JSON.stringify(this.defaultFilter));
-            this.setFilterToUrl()
+            this.filterToUrl()
 
             if (this.$refs.priceSlider)
                 this.$refs.priceSlider.setUi()
+
             this.toTop()
         },
 
+
+        mobileFiltering() {
+            this.listenFilter = true;
+            this.filtering()
+            this.toTop()
+        },
+
+        stopListeningFilter() {
+            this.listenFilter = false;
+        },
+
         toTop() {
-            document.body.scrollIntoView();
+            window.scrollTo(0,0);
         },
     },
 });

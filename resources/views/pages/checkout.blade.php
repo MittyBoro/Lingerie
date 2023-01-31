@@ -98,11 +98,11 @@
                     <div class="just-title">@lang('front.cart_page.payment_type')</div>
                     <div class="payment-method grid-2">
                         <label class="pm-item">
-                            <input type="radio" v-model="form.payment" value="bank">
+                            <input type="radio" v-model="form.payment_type" value="bank">
                             <span>@lang('front.cart_page.card_payment')</span>
                         </label>
                         <label class="pm-item">
-                            <input type="radio" v-model="form.payment" value="receipt">
+                            <input type="radio" v-model="form.payment_type" value="receipt">
                             <span>@lang('front.cart_page.upon_receipt')</span>
                         </label>
                     </div>

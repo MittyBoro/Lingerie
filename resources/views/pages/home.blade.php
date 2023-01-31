@@ -120,7 +120,7 @@
         </div>
         <div class="cats-list grid-4">
             @foreach ($homeCategories as $cat)
-                <a class="cat-item">
+                <a href="{{ route('front.categories', $cat['slug']) }}" class="cat-item">
                     <div class="prod-image"><img src="{{ $cat['preview'] }}" alt=""></div>
                     <div class="cat-name">{{ $cat['title'] }}</div>
                 </a>
