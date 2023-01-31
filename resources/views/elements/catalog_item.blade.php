@@ -23,10 +23,6 @@
     </div>
     <a href="{{ route('front.product', $prod['slug']) }}" class="ci-name">{{ $prod['title'] }}</a>
     <div class="ci-price">
-        @if ($cy == 'rub')
-            <span>@price($prod['price'])</span> {{ $cySymb }}
-        @else
-            {{ $cySymb }}<span>@price($prod['price'])</span>
-        @endif
+        <span class="price-el" data-cy="{{cy()}}">@price($prod['price'])</span>
     </div>
 </div>

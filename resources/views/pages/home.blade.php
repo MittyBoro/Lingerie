@@ -61,11 +61,7 @@
                             <div class="n-info">
                                 <div class="n-name">{{ $prod['title'] }}</div>
                                 <div class="n-price">
-                                    @if ($cy == 'rub')
-                                        <span>@price($prod['price'])</span> {{ $cySymb }}
-                                    @else
-                                        {{ $cySymb }}<span>@price($prod['price'])</span>
-                                    @endif
+                                    <span class="price-el" data-cy="{{cy()}}">@price($prod['price'])</span>
                                 </div>
                             </div>
                         </a>

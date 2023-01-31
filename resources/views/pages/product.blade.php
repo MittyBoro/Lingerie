@@ -69,11 +69,7 @@
                 @endisset
 
                 <div class="prod-price">
-                    @if ($cy == 'rub')
-                        <span>@price($product['price'])</span> {{ $cySymb }}
-                    @else
-                        {{ $cySymb }}<span>@price($product['price'])</span>
-                    @endif
+                    <span class="price-el" data-cy="{{cy()}}">@price($product['price'])</span>
                 </div>
                 <div class="btn" :class="{'btn-secondary': inCart}" @click="store({{ $product['id'] }})">
                     <span v-if="success">

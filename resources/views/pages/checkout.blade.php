@@ -31,11 +31,7 @@
                             <div class="col-price col-info">
                                 <div class="checkout-price">
                                     <b>
-                                        @if ($cy == 'rub')
-                                            <span>@{{ formatPrice(item.price * item.quantity) }}</span> {{ $cySymb }}
-                                        @else
-                                            {{ $cySymb }}<span>@{{ formatPrice(item.price * item.quantity) }}</span>
-                                        @endif
+                                        <span class="price-el" data-cy="{{cy()}}">@{{ formatPrice(item.price * item.quantity) }}</span>
                                     </b>
                                 </div>
                                 <div class="checkout-quantity ch-mini">@lang('front.count'): <span>@{{ item.quantity }}</span></div>

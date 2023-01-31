@@ -87,7 +87,7 @@
 
                 <div class="sb-price sb-element active range-sliger" toggling>
                     <div class="sb-title mini-title" toggle-click>
-                        <span>@lang('front.price'), {{ $cySymb }}</span>
+                        <span>@lang('front.price'), <span class="price-el" data-cy="{{cy()}}"></span></span>
                         <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="to-svg icon">
                     </div>
                     <div toggle-el>

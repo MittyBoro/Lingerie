@@ -199,3 +199,16 @@ body:not(.preload)
     pointer-events: none
     filter: blur(2px)
     user-select: none
+
+.price-el
+    &::after
+        content: ' ???'
+        text-transform: uppercase
+    &[data-cy=usd]
+        display: inline-flex
+        flex-direction: row-reverse
+        &::after
+            content: '$ '
+    &[data-cy=rub]
+        &::after
+            content: ' ₽'

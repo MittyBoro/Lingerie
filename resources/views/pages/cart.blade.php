@@ -33,11 +33,7 @@
                 </div>
                 <div class="cart-price-col c-text-col">
                     <div class="cart-price">
-                        @if ($cy == 'rub')
-                            <span>@{{ formatPrice(item.price * item.quantity) }}</span> {{ $cySymb }}
-                        @else
-                            {{ $cySymb }}<span>@{{ formatPrice(item.price * item.quantity) }}</span>
-                        @endif
+                        <span class="price-el" data-cy="{{cy()}}">@{{ formatPrice(item.price * item.quantity) }}</span>
                     </div>
                     <div class="cart-remove gray a" @click="destroy(item)">
                         <span>@lang('front.remove')</span>
@@ -48,12 +44,7 @@
             <div class="cart-subtotal-row grid-12">
                 <div class="cart-sb-name">@lang('front.cart_page.subtotal')</div>
                 <div class="cart-price">
-
-                    @if ($cy == 'rub')
-                        <span>@{{ formatPrice(subtotal) }}</span> {{ $cySymb }}
-                    @else
-                        {{ $cySymb }}<span>@{{ formatPrice(subtotal) }}</span>
-                    @endif
+                    <span class="price-el" data-cy="{{cy()}}">@{{ formatPrice(subtotal) }}</span>
                 </div>
                 <a href="/checkout" class="btn">@lang('front.cart_page.checkout')</a>
             </div>

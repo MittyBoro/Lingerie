@@ -40,6 +40,7 @@ const app = createApp({
         form: {
             deep: true,
             handler(val) {
+                this.success = false
                 Object.entries(val).forEach(arr => {
                     this.setProductOption(arr[0], arr[1])
                 })
