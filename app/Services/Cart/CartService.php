@@ -8,6 +8,8 @@ use Darryldecode\Cart\CartCondition;
 
 use Cart;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cookie;
 
 class CartService
 {
@@ -17,7 +19,7 @@ class CartService
 
     public function __construct()
     {
-        $this->cart = Cart::session(123);
+        $this->cart = Cart::session($this->guestId());
     }
 
     public function get()
@@ -149,6 +151,26 @@ class CartService
             'quantity' => $item->quantity,
             'price' => $item->price,
         ];
+    }
+
+
+    private function guestId()
+    {
+        $lang = App::getLocale();
+        $key = 'cart_id_' . $lang;
+
+        $cart_id = Cookie::get($key);
+
+        $storage_days = 30;
+
+        if (!$cart_id) {
+            $cart_id = 'guest_'.uniqid();
+            Cookie::queue(
+                Cookie::make($key, $cart_id, 60 * 24 * $storage_days)
+            );
+        }
+
+        return $cart_id;
     }
 
 }
