@@ -29,6 +29,8 @@ return [
     'size' => 'Размер',
     'color' => 'Цвет',
 
+    'shipping' => 'Доставка',
+
     'our_instagram' => 'Наш Instagram',
 
     'footer' => [
@@ -83,7 +85,6 @@ return [
         'subtotal' => 'Подытог',
         'checkout' => 'Оформить заказ',
         'total' => 'Итог',
-        'delivery' => 'Доставка',
         'back_to_cart' => 'Вернуться в корзину',
         'your_checkout' => 'Ваш заказ',
 
@@ -105,6 +106,8 @@ return [
         'street_house_flat' => 'Улица, дом, квартира',
         'city' => 'Населенный пункт',
         'region' => 'Область / регион',
+        'country' => 'Страна',
+        'default_country' => 'Россия',
         'postcode' => 'Почтовый индекс',
     ],
 

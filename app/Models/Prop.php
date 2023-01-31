@@ -137,25 +137,22 @@ class Prop extends Model implements HasMedia
                 ->whereNull('model_id');
     }
 
-    public function scopeFindByKey(Builder $query, string $key, Model $model = null)
+    public static function findByKey(string $key, Model $model = null)
     {
-        return $query
-                ->queryByKeys($key)
-                ->queryByModel($model)
-                ->first()
-                ?->value;
+        return self::queryByKeys($key)
+                   ->queryByModel($model)
+                   ->first();
     }
 
-    public function scopeGetByKey(Builder $query, string $keys, Model $model = null)
+    public static function getByKey(string $keys, Model $model = null)
     {
-        return $query
-                ->queryByKeys($keys)
-                ->queryByModel($model)
-                ->get()
-                ->keyBy('key')
-                // ->pluck('value)
-                // ->only('value)
-                ->map(fn($m) => $m->value);
+        return self::queryByKeys($keys)
+                   ->queryByModel($model)
+                   ->get()
+                   ->keyBy('key')
+                   // ->pluck('value)
+                   // ->only('value)
+                   ->map(fn($m) => $m->value);
     }
 
 

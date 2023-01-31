@@ -55,7 +55,7 @@
                         {{ $cySymb }}<span>@{{ formatPrice(subtotal) }}</span>
                     @endif
                 </div>
-                <div class="btn">@lang('front.cart_page.checkout')</div>
+                <a href="/checkout" class="btn">@lang('front.cart_page.checkout')</a>
             </div>
         </div>
         <div v-else class="cart-empty white-box">

@@ -10,7 +10,7 @@ const app = createApp({
             timerId: null,
             loading: false,
 
-            manualPreloader: true
+            manualPreloader: true,
         };
     },
 
@@ -28,9 +28,6 @@ const app = createApp({
 
     created() {
         window.manualPreloader = true
-    },
-
-    mounted() {
         this.get();
     },
 
@@ -44,7 +41,6 @@ const app = createApp({
             .catch(err => alert(err))
             .then(() => {
                 this.loading = false;
-                this.ready = true;
 
                 document.body.classList.remove('preload')
             });
