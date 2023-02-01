@@ -26,9 +26,7 @@
                 <div class="wh-subinfo"></div>
             @elseif ($order['status'] == $order::STATUS_PENDING)
                 <div class="h1 gray">@lang('front.order_page.pending')</div>
-                <div class="wh-subinfo">
-                    @lang('front.order_page.continue_link', ['link' => '/'])
-                </div>
+                <div class="wh-subinfo"></div>
             @else
                 <div class="h1 red">@lang('front.order_page.canceled')</div>
                 <div class="wh-subinfo"></div>

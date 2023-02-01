@@ -34,26 +34,11 @@ return [
 
     'our_instagram' => 'Наш Instagram',
 
-    'footer' => [
-        'for_clients' => 'КЛИЕНТАМ',
-    ],
+    'for_clients' => 'Клиентам',
 
-    'home_page' => [
-        'popular_new' => 'Популярные новинки',
-        'about' => 'О бренде',
-        'categories' => 'Категории товаров',
-    ],
-
-    'catalog_page' => [
-        'catalog' => 'Каталог',
-        'sort' => 'Сортировка',
-        'sort_new' => 'Сначала новое',
-        'sort_price_desc' => 'Цены по убыванию',
-        'sort_price_asc' => 'Цены по возрастанию',
-        'category' => 'Категория',
-        'color' => 'Выбор цвета',
-        'not_found' => 'Не найдено',
-        'all_products' => 'Весь каталог',
+    'pagination' => [
+        'prev' => 'Назад',
+        'next' => 'Далее',
     ],
 
     'colors' => [
@@ -65,16 +50,26 @@ return [
         'gray' => 'Серый',
     ],
 
-    'pagination' => [
-        'prev' => 'Назад',
-        'next' => 'Далее',
+    'home_page' => [
+        'popular_new' => 'Популярные новинки',
+        'about' => 'О бренде',
+        'categories' => 'Категории товаров',
+    ],
+
+    'catalog_page' => [
+        'sort' => 'Сортировка',
+        'sort_new' => 'Сначала новое',
+        'sort_price_desc' => 'Цены по убыванию',
+        'sort_price_asc' => 'Цены по возрастанию',
+        'category' => 'Категория',
+        'color' => 'Выбор цвета',
+        'not_found' => 'Не найдено',
+        'all_products' => 'Весь каталог',
     ],
 
     'product_page' => [
         'sizes_table' => 'Таблица размеров',
         'may_like' => 'Вам может понравиться',
-        'color' => 'Цвет',
-        'size' => 'Размер',
         'description' => 'Описание',
         'composition' => 'Состав',
         'care' => 'Уход',
@@ -85,8 +80,8 @@ return [
         'cart_empty' => 'Ваша корзина пуста',
         'checkout_title' => 'Оформление заказа',
         'subtotal' => 'Подытог',
-        'checkout' => 'Оформить заказ',
         'total' => 'Итог',
+        'checkout' => 'Оформить заказ',
         'back_to_cart' => 'Вернуться в корзину',
         'your_checkout' => 'Ваш заказ',
 
@@ -97,7 +92,6 @@ return [
 
         'policy_text' => 'Нажимая эту кнопку я соглашаюсь с',
         'policy_link' => 'Политикой конфиденциальности',
-
     ],
     'contact' => [
         'contact_title' => 'Контактная информация',
@@ -128,7 +122,6 @@ return [
     'error_page' => [
         'not_found' => 'Страница не найдена',
         'oops' => 'Упс... Кажется вы потерялись, потому что такой страницы не существует.',
-
     ],
 
 ];

@@ -10,7 +10,7 @@
         <div class="white-item">
             @svg('/images/icons/404.svg')
             <div class="wh-subinfo">@lang('front.error_page.oops')</div>
-            <a href="#" class="btn">@lang('front.back_to_shopping')</a>
+            <a href="/catalog" class="btn">@lang('front.back_to_shopping')</a>
         </div>
     </div>
 </div>

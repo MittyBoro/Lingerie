@@ -21,7 +21,7 @@
                 <div class="cart-name-col c-text-col">
                     <a :href="item.url" class="cart-name">@{{ item.name }}</a>
                     <div class="cart-attr gray">
-                        <span>@{{ item.options_string }}</span>
+                        <span v-for="opt in item.options">@{{ opt.string }}</span>
                     </div>
                 </div>
                 <div class="cart-count-col c-text-col">

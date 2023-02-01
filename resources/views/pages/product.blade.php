@@ -38,7 +38,7 @@
 
                 @isset ($product['opts']['size'])
                 <div class="prod-attr-wrap">
-                    <div class="pm-title">@lang('front.product_page.size')</div>
+                    <div class="pm-title">@lang('front.size')</div>
                     <div class="pm-list pm-size">
                         @foreach ($product['opts']['size'] as $size)
                         <label class="form-radio pm-item">
@@ -54,7 +54,7 @@
 
                 @isset ($product['opts']['color'])
                 <div class="prod-attr-wrap">
-                    <div class="pm-title">@lang('front.product_page.color')</div>
+                    <div class="pm-title">@lang('front.color')</div>
                     <div class="pm-list pm-color">
                         @foreach ($product['opts']['color'] as $color)
                         <label class="form-radio pm-item">

@@ -13,7 +13,7 @@
 
 <div class="catalog-box" id="catalog">
     <div class="container" :class="{'loading-blink': loading}">
-        <div class="h2" ref="title" data-default="@lang('front.catalog_page.catalog')">{{ $page['title'] }}</div>
+        <div class="h2" ref="title" data-default="@lang('front.catalog')">{{ $page['title'] }}</div>
 
         <div class="catalog-mobile-sort" ref="mobiCat">
             <div class="cm-sort" toggling>
