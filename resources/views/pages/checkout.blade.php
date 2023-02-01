@@ -41,17 +41,17 @@
                     <div class="checkout-subtotal">
                         <div class="ct-row">
                             <div class="ct-name">@lang('front.cart_page.subtotal')</div>
-                            <div class="ct-value">@{{ subtotal }} ₽</div>
+                            <div class="ct-value"><span class="price-el" data-cy="{{cy()}}">@{{ formatPrice(subtotal) }}</span></div>
                         </div>
 
                         <div class="ct-row" v-for="c in conditions">
                             <div class="ct-name">@{{ c.type }}</div>
-                            <div class="ct-value">@{{ c.value }} ₽</div>
+                            <div class="ct-value">@{{ c.value }}</div>
                         </div>
                     </div>
                     <div class="checkout-total ct-row just-title">
                         <div class="ct-name">@lang('front.cart_page.total')</div>
-                        <div class="ct-value">@{{ total }} ₽</div>
+                        <div class="ct-value"><span class="price-el" data-cy="{{cy()}}">@{{ formatPrice(total) }}</span></div>
                     </div>
                 </div>
                 <div class="checkout-botom-row">

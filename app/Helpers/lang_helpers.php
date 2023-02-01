@@ -18,7 +18,6 @@ if ( !function_exists('admin_lang') ) {
 
 if ( !function_exists('cy') ) {
     function cy() {
-        $locale = \App::getLocale();
-        return config('app.currencies.' . $locale);
+        return config('app.currency');
     }
 }
