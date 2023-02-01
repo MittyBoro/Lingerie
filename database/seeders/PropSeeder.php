@@ -5,9 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-use App\Models\Product;
-use App\Models\ProductOption;
-
+use App\Models\Admin\Prop;
 
 class PropSeeder extends Seeder
 {
@@ -18,37 +16,63 @@ class PropSeeder extends Seeder
      */
     public function run()
     {
-        /*
-
-         */
-
-        $this->runOptions();
+        foreach ($this->getData() as $prop) {
+            Prop::create($prop);
+        }
     }
 
-    private function runOptions()
+    private function getData()
     {
-        $insertSizes = array_map(fn ($value) => [
-            'type' => 'size',
-            'value' => $value,
-        ], ['XS', 'S', 'M', 'L', 'XL', 'XXL']);
+        $props = [];
 
-
-        $colorList = [
-            ['red', 'background: #f00'],
-            ['green', 'background: #0f0'],
-            ['blue', 'background: #00f'],
-            ['white', 'background: #fff; border: 1px solid #D9D9D9;'],
-            ['black', 'background: #000'],
-            ['gray', 'background: #888'],
+        $props[] = [
+            'tab' => Prop::DEFAULT_TAB,
+            'type' => 'string',
+            'key' =>'instagram',
+            'title' => 'Ссылка на Instagram',
+            'value' => ['string' => '#'],
         ];
 
-        $insertColors = array_map(fn ($value) => [
-            'type' => 'color',
-            'value' => $value[0],
-            'extra' => $value[1],
-        ], $colorList);
+        $props[] = [
+            'tab' => Prop::DEFAULT_TAB,
+            'type' => 'string',
+            'key' =>'notification_email',
+            'title' => 'Email для оповещений',
+            'value' => ['string' => 'iboro770@gmail.com'],
+        ];
 
-        ProductOption::insert($insertSizes);
-        ProductOption::insert($insertColors);
+
+        $props[] = [
+            'tab' => Prop::DEFAULT_TAB,
+            'type' => 'string',
+            'key' =>'free_shipping_rub',
+            'title' => 'Бесплатная доставка от, ₽',
+            'value' => ['string' => '1000000'],
+        ];
+        $props[] = [
+            'tab' => Prop::DEFAULT_TAB,
+            'type' => 'string',
+            'key' =>'shipping_rub',
+            'title' => 'Цена доставки, ₽',
+            'value' => ['string' => '1000'],
+        ];
+
+        $props[] = [
+            'tab' => Prop::DEFAULT_TAB,
+            'type' => 'string',
+            'key' =>'free_shipping_usd',
+            'title' => 'Бесплатная доставка от, $',
+            'value' => ['string' => '1000000'],
+        ];
+        $props[] = [
+            'tab' => Prop::DEFAULT_TAB,
+            'type' => 'string',
+            'key' =>'shipping_usd',
+            'title' => 'Цена доставки, $',
+            'value' => ['string' => '100'],
+        ];
+
+        return $props;
+
     }
 }

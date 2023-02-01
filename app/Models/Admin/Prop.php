@@ -10,23 +10,6 @@ use Illuminate\Support\Str;
 class Prop extends Model
 {
 
-    const MODELS = [
-        'pages'    => \App\Models\Page::class,
-        'products' => \App\Models\Product::class,
-    ];
-
-    const TYPES = [
-        'string'      => 'Строка',
-        'text'        => 'Текст',
-        'format_text' => 'Форматируемый текст',
-        'text_array'  => 'Текстовый массив',
-        'boolean'     => 'Выключатель',
-        'file'        => 'Файл',
-        'files'       => 'Файлы',
-        'image'        => 'Изображение',
-        'images'       => 'Изображения',
-    ];
-
     protected $sortable = ['position'];
 
 
@@ -109,6 +92,35 @@ class Prop extends Model
         return $value;
     }
 
+    // syncMedia несработает при создании
+    public function setValueAttribute($value)
+    {
+        if (!is_array($value))
+            return;
+
+        $type = $this->attributes['type'];
+
+        switch ($type) {
+            case 'file':
+            case 'files':
+                $this->syncMedia($value['files'] ?? null, self::MEDIA_COLLECTION_FILE);
+                break;
+            case 'image':
+            case 'images':
+                $this->syncMedia($value['images'] ?? null, self::MEDIA_COLLECTION_IMAGE);
+                break;
+            case 'string':
+            case 'boolean':
+                $this->attributes['value_string'] = $value['string'] ?? null;
+                break;
+            case 'text_array':
+                $this->attributes['value_text'] = json_encode($value['text_array'] ?? null);
+                break;
+            default:
+                $this->attributes['value_text'] = $value['text'] ?? null;
+        }
+    }
+
     public function setKeyAttribute($value)
     {
         $this->attributes['key'] = Str::slug($value, '_');
@@ -131,46 +143,12 @@ class Prop extends Model
     {
         $res = collect($data)->map(function ($item) {
             $prop = self::find($item['id']);
-            $prop->updateItem($item);
+            $prop->update($item);
 
             return $prop->id;
         });
 
         return $res;
     }
-
-    public function updateItem($data)
-    {
-        $value = $data['value'] ?? [];
-        $type = $this->attributes['type'];
-
-        switch ($type) {
-            case 'file':
-            case 'files':
-                $this->syncMedia($value['files'] ?? null, self::MEDIA_COLLECTION_FILE);
-                break;
-            case 'image':
-            case 'images':
-                $this->syncMedia($value['images'] ?? null, self::MEDIA_COLLECTION_IMAGE);
-                break;
-            case 'string':
-            case 'boolean':
-                $this->attributes['value_string'] = $value['string'] ?? null;
-                break;
-            case 'text_array':
-                $this->attributes['value_text'] = json_encode($value['text_array'] ?? null);
-                break;
-            default:
-                $this->attributes['value_text'] = $value['text'] ?? null;
-        }
-
-        // faker...
-        unset($data['value']);
-
-        $this->fill($data);
-
-        return $this->save();
-    }
-
 
 }

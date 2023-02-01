@@ -11,8 +11,9 @@ trait FinalTrait
 
     public function setShipping()
     {
-        $freeShippingProp = Prop::findByKey('free_shipping_'. $this->lang);
-        $shippingProp = Prop::findByKey('shipping_'. $this->lang);
+        $cy = config('app.currency');
+        $freeShippingProp = Prop::findByKey('free_shipping_'. $cy);
+        $shippingProp = Prop::findByKey('shipping_'. $cy);
         $subTotal = $this->cart->getSubTotal();
         $shipping = $freeShippingProp && $subTotal > $freeShippingProp ? 0 : $shippingProp;
 

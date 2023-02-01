@@ -22,6 +22,24 @@ class Prop extends Model implements HasMedia
     const MEDIA_COLLECTION_FILE = 'file';
     const MEDIA_COLLECTION_IMAGE = 'image';
 
+
+    const MODELS = [
+        'pages'    => \App\Models\Page::class,
+        'products' => \App\Models\Product::class,
+    ];
+
+    const TYPES = [
+        'string'      => 'Строка',
+        'text'        => 'Текст',
+        'format_text' => 'Форматируемый текст',
+        'text_array'  => 'Текстовый массив',
+        'boolean'     => 'Выключатель',
+        'file'        => 'Файл',
+        'files'       => 'Файлы',
+        'image'        => 'Изображение',
+        'images'       => 'Изображения',
+    ];
+
     protected $fillable = [
         'tab',
         'model_type',
@@ -31,6 +49,7 @@ class Prop extends Model implements HasMedia
         'title',
         'value_string',
         'value_text',
+        'value',
         'position'
     ];
 
@@ -141,7 +160,8 @@ class Prop extends Model implements HasMedia
     {
         return self::queryByKeys($key)
                    ->queryByModel($model)
-                   ->first();
+                   ->first()
+                   ?->value;
     }
 
     public static function getByKey(string $keys, Model $model = null)

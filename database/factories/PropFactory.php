@@ -47,7 +47,7 @@ class PropFactory extends Factory
                 $value['text'] = $this->faker->realText();
 
 
-            $prop->updateItem(['value' => $value]);
+            $prop->update(['value' => $value]);
         });
     }
 

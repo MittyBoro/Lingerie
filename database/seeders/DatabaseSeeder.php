@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PageSeeder::class,
+            PropSeeder::class,
             ProductCategorySeeder::class,
             ProductSeeder::class,
         ]);
