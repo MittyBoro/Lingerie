@@ -20,7 +20,7 @@ class CatalogController extends Controller
         ]);
     }
 
-    public function categories(Request $request, $slug)
+    public function categories(Request $request, $slug = null)
     {
         $category = ProductCategory::findForFront($slug, $this->getLang());
 

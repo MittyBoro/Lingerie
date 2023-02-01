@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $request, $slug)
+    public function index(Request $request, $slug = null)
     {
         $product = Product::frontBySlug($slug, $this->getLang());
 

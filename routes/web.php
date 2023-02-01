@@ -46,10 +46,10 @@ Route::name('front.')->namespace('Front')->group(function () {
 
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('catalog', 'CatalogController@index')->name('catalog');
-        Route::get('categories/{slug}', 'CatalogController@categories')
+        Route::get('categories/{slug?}', 'CatalogController@categories')
                             ->name('categories');
 
-        Route::get('product/{slug}', 'ProductController@index')->name('product');
+        Route::get('product/{slug?}', 'ProductController@index')->name('product');
 
         Route::get('order/{order:uuid}', 'OrderController@index')->name('order');
 
