@@ -9,9 +9,9 @@ class OrderController extends Controller
 {
     public function index(Request $request, Order $order)
     {
-        dd($order);
+        // dd($order);
 
-        return view('pages.status', [
+        return view('pages.order', [
             'order' => $order,
         ]);
     }

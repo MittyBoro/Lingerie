@@ -113,11 +113,16 @@ return [
         'postcode' => 'Почтовый индекс',
     ],
 
-    'success_page' => [
+    'order_page' => [
         'thanks' => 'Спасибо',
         'for_order' => 'за заказ!',
         'information' => 'Мы вышлем на ваш E-mail детали заказа и трек номер для отслеживания.',
+        'continue_link' => 'Вы можете продолжить оплату <a target="_blank" href=":link">по этой ссылке</a>',
 
+        'pending' => 'Ожидается оплата',
+        'success' => 'Оплачено',
+        'canceled' => 'Заказ отменён',
+        'refunded' => 'Средства возвращены',
     ],
 
     'error_page' => [

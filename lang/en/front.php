@@ -87,7 +87,7 @@ return [
         'postcode' => 'Postcode',
     ],
 
-    'success_page' => [
+    'order_page' => [
         'thanks' => 'Thank you',
         'for_order' => 'for your order!',
         'information' => 'We will send an email with the details of your order and a tracking number for you to follow.',

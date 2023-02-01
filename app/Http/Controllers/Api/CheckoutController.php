@@ -45,7 +45,7 @@ class CheckoutController extends Controller
 
         if ($result) {
             return [
-                'url' => route('order', $result->uuid)
+                'url' => route('front.order', $result->uuid)
             ];
         }
 

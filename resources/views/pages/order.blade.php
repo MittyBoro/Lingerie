@@ -7,14 +7,34 @@
 
 @section('content')
 
-<div class="page-box white-box success-box">
+<div class="page-box white-box order-box">
     <div class="container">
+
+
+
         <div class="white-item">
-            <div class="h1">
-                <div><span class="secondary">@lang('front.success_page.thanks')</span> @lang('front.success_page.for_order')</div>
-            </div>
-            <div class="wh-subinfo">@lang('front.success_page.information')</div>
-            <a href="#" class="btn">@lang('front.back_to_shopping')</a>
+
+            @if ($order['status'] == $order::STATUS_SUCCESS)
+                <div class="h1">
+                    <div><span class="secondary">@lang('front.order_page.thanks')</span> @lang('front.order_page.for_order')</div>
+                </div>
+                <div class="wh-subinfo">
+                    @lang('front.order_page.information')
+                </div>
+            @elseif ($order['status'] == $order::STATUS_REFUNDED)
+                <div class="h1 primary-alt">@lang('front.order_page.refunded')</div>
+                <div class="wh-subinfo"></div>
+            @elseif ($order['status'] == $order::STATUS_PENDING)
+                <div class="h1 gray">@lang('front.order_page.pending')</div>
+                <div class="wh-subinfo">
+                    @lang('front.order_page.continue_link', ['link' => '/'])
+                </div>
+            @else
+                <div class="h1 red">@lang('front.order_page.canceled')</div>
+                <div class="wh-subinfo"></div>
+            @endif
+
+            <a href="/catalog" class="btn">@lang('front.back_to_shopping')</a>
         </div>
     </div>
 </div>
