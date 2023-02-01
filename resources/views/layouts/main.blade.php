@@ -153,7 +153,7 @@
                     </div>
                     <div class="bottom-row">
                         <div class="gray">
-                            <a href="#" class="insta">
+                            <a href="{{ $props['instagram'] }}" target="_blank" class="insta">
                                 @svg('images/icons/instagram.svg')
                                 <span>@lang('front.our_instagram')</span>
                             </a>
@@ -195,7 +195,7 @@
                             <a href="/policy" class="politic-link">{{ $pages['policy'] ?? '' }}</a>
                         </div>
                         <div class="insta-col">
-                            <a href="#" class="insta">
+                            <a href="{{ $props['instagram'] }}" target="_blank"  class="insta">
                                 @svg('images/icons/instagram.svg')
                                 <span>@lang('front.our_instagram')</span>
                             </a>
@@ -217,18 +217,19 @@
         @yield('bodycode')
 
         {{-- {!! $props['body_code'] ?? '' !!} --}}
-
-        <div class="bottom-box" style="display: grid; text-align: center; gap: 2px; padding: 30px">
-            <a href="http://lingerie.bo/">home</a>
-            <a href="http://lingerie.bo/catalog">catalog</a>
-            <a href="http://lingerie.bo/product">product</a>
-            <a href="http://lingerie.bo/cart">cart</a>
-            <a href="http://lingerie.bo/checkout">checkout</a>
-            <a href="http://lingerie.bo/page">page</a>
-            <a href="http://lingerie.bo/faq">faq</a>
-            <a href="http://lingerie.bo/success">success</a>
-            <a href="http://lingerie.bo/404">404</a>
-        </div>
+        @auth
+            <div class="bottom-box" style="display: grid; text-align: center; gap: 2px; padding: 30px">
+                <a href="/">home</a>
+                <a href="/catalog">catalog</a>
+                <a href="/product">product</a>
+                <a href="/cart">cart</a>
+                <a href="/checkout">checkout</a>
+                <a href="/page">page</a>
+                <a href="/faq">faq</a>
+                <a href="/success">success</a>
+                <a href="/404">404</a>
+            </div>
+        @endauth
 
     </body>
 </html>

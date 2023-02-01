@@ -26,7 +26,7 @@ class FrontComposer
 
     private function setLayoutValues()
     {
-        // $props = Prop::list();
+        $props = Prop::getByKeys('instagram');
 
         $pages      = Page::getFrontList($this->lang);
         $categories = ProductCategory::getFrontList($this->lang);
@@ -36,6 +36,7 @@ class FrontComposer
         $cartCount = app('CartService')->count();
 
         $this->view->with([
+            'props'      => $props->toArray(),
             'pages'      => $pages->toArray(),
             'categories' => $categories->toArray(),
             'footerCategories' => $footerCategories->toArray(),

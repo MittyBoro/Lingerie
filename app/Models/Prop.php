@@ -135,7 +135,7 @@ class Prop extends Model implements HasMedia
 
     public function scopeQueryByKeys(Builder $query, string|array $keys)
     {
-        $keys = is_array($keys) ? $keys : explode(',', $keys);
+        $keys = is_string($keys) ?  explode(',', $keys) : $keys;
 
         return $query
                 ->select('id','type', 'key', 'value_string', 'value_text')
@@ -164,15 +164,31 @@ class Prop extends Model implements HasMedia
                    ?->value;
     }
 
-    public static function getByKey(string $keys, Model $model = null)
+    public static function getMain(Model $model = null)
     {
-        return self::queryByKeys($keys)
-                   ->queryByModel($model)
+        return self::queryByModel($model)
                    ->get()
                    ->keyBy('key')
-                   // ->pluck('value)
-                   // ->only('value)
                    ->map(fn($m) => $m->value);
+    }
+
+    public static function getByKeys($keys, Model $model = null)
+    {
+        $keys = (array) $keys;
+
+        $data = self::queryByKeys($keys)
+                    ->queryByModel($model)
+                    ->get()
+                    ->keyBy('key')
+                    ->map(fn($m) => $m->value);
+
+        foreach($keys as $key) {
+            if ( !$data->has($key) ) {
+                $data->put($key, null);
+            }
+        }
+
+        return $data;
     }
 
 

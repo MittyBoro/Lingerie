@@ -30,7 +30,7 @@ class PropSeeder extends Seeder
             'type' => 'string',
             'key' =>'instagram',
             'title' => 'Ссылка на Instagram',
-            'value' => ['string' => '#'],
+            'value' => ['string' => 'https://www.instagram.com/'],
         ];
 
         $props[] = [

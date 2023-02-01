@@ -38,7 +38,7 @@
 
         <div class="n-prod-name">
             <div class="prod-name"></div>
-            <div class="prod-price secondary-alt"></div>
+            <div class="prod-price secondary-alt price-el" data-cy="{{cy()}}"></div>
         </div>
 
         <div class="sw-arrow sw-prev sw-arrow-big">
@@ -83,7 +83,7 @@
 <div class="home-about-box">
     <div class="container">
         <div class="hab-wrap">
-            <a href="#" class="about-circle">
+            <a href="{{ $props['instagram'] }}" target="_blank"  class="about-circle">
                 <div class="logo-wrap">
                     @svg('images/icons/logo.svg')
                 </div>
@@ -95,7 +95,7 @@
                 <div class="handwritten secondary">About</div>
                 <div class="h2">@lang('front.home_page.about')</div>
 
-                <a href="#" class="about-circle">
+                <a href="{{ $props['instagram'] }}" target="_blank"  class="about-circle">
                     <div class="logo-wrap">
                         @svg('images/icons/logo.svg')
                     </div>
