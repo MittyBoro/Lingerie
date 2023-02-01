@@ -43,9 +43,7 @@ class CatalogController extends Controller
 
         $products = Product::getCatalog($this->getLang(), $data);
 
-        $pricesRange = Product::relationByIds('categories', $categoryId)
-                              ->relationByIds('options', $request->get('options'))
-                              ->minMaxPrice($this->getLang());
+        $pricesRange = Product::minMaxPrice($this->getLang());
 
         $options = ProductOption::getPublic()->toArray();
 

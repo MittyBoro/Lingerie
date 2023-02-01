@@ -17,10 +17,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
+            $table->string('uuid', 40)->unique()->index();
+
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
 
             $table->string('payment_type')->nullable();
-            $table->string('payment_id')->nullable();
             $table->json('payment_data')->nullable();
 
             $table->string('name')->nullable();
@@ -29,8 +30,8 @@ return new class extends Migration
             $table->json('address')->nullable();
             $table->text('comment')->nullable();
 
-            $table->decimal('delivery', 10, 2)->unsigned();
             $table->decimal('amount', 10, 2)->unsigned();
+            $table->string('currency', 10);
 
             $table->string('status', 16)->default(Order::STATUS_PENDING);
 

@@ -9,5 +9,6 @@ return [
 
     'types' => [
         'yookassa',
+        'receipt',
     ],
 ];

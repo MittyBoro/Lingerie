@@ -17,7 +17,7 @@ class DBStorage {
 
     private function find($key)
     {
-        if (!isset($this->storage[$key])) {
+        if (!array_key_exists($key, $this->storage)) {
             $this->storage[$key] = CartStorage::find($key);
         }
 

@@ -9,10 +9,18 @@ use Illuminate\Support\Facades\Session;
 
 class Locale {
 
-    const SESSION_KEY = 'locale';
+    const SESSION_KEY = 'locals';
     const LOCALES = ['en', 'ru'];
 
     public function handle(Request $request, Closure $next)
+    {
+        $this->setSessionLocale($request);
+        $this->setAppLocale();
+
+        return $next($request);
+    }
+
+    private function setSessionLocale($request)
     {
         if (!Session::has(self::SESSION_KEY)) {
             $locale = $request->getPreferredLanguage(self::LOCALES);
@@ -24,9 +32,12 @@ class Locale {
             if ( in_array($locale, self::LOCALES) )
                 Session::put(self::SESSION_KEY, $locale);
         }
+    }
+    private function setAppLocale()
+    {
+        $locale = Session::get(self::SESSION_KEY);
 
-        App::setLocale(Session::get(self::SESSION_KEY));
-
-        return $next($request);
+        App::setLocale($locale);
+        config( ['app.currency' => config('app.currencies.' . $locale)] );
     }
 }

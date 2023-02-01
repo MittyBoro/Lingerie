@@ -2,23 +2,24 @@
 
 namespace App\Services\Cart;
 
-use App\Models\Prop;
-
-use Darryldecode\Cart\CartCondition;
+use App\Services\Cart\Traits\FinalTrait;
+use App\Services\Cart\Traits\HelperTrait;
 
 use Cart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cookie;
 
 class CartService
 {
+    use HelperTrait;
+    use FinalTrait;
 
+    private $lang;
     private $cart;
-    private $rawCart;
 
     public function __construct()
     {
+        $this->lang = App::getLocale();
         $this->cart = Cart::session($this->guestId());
     }
 
@@ -27,6 +28,16 @@ class CartService
         $cart = $this->getRaw()->map(fn($item) => $this->readableItem($item));
 
         return $cart;
+    }
+
+    public function getRaw()
+    {
+        return $this->cart->getContent()->sort()->values();
+    }
+
+    public function condtions()
+    {
+        return $this->cart->getConditions()->values();
     }
 
     public function getMini()
@@ -78,12 +89,17 @@ class CartService
         return $this->getRaw()->count();
     }
 
+    public function total()
+    {
+        return $this->cart->getTotal();
+    }
+
     public function final()
     {
+        $this->recalculateCart();
         $this->setShipping();
 
-        $cart = $this->get();
-        $conditions = $this->cart->getConditions()->values()
+        $conditions = $this->condtions()
                            ->map(function ($item){
                                return [
                                     'name' => $item->getName(),
@@ -92,7 +108,8 @@ class CartService
                                ];
                            });
         $subtotal = $this->cart->getSubTotal();
-        $total = $this->cart->getTotal();
+        $total = $this->total();
+        $cart = $this->get();
 
         return [
             'data' => $cart,
@@ -102,75 +119,34 @@ class CartService
         ];
     }
 
-
-    public function setShipping()
+    public function totalItems()
     {
-        $freeShippingProp = Prop::findByKey('free_shipping');
-        $shippingProp = Prop::findByKey('shipping') ?: 100;
-        $subTotal = $this->cart->getSubTotal();
-        $shipping = $freeShippingProp && $subTotal > $freeShippingProp ? 0 : $shippingProp;
+        $this->recalculateCart();
+        $this->setShipping();
 
-        $shippingString = ($shipping < 0 ? "-" : "+") . abs($shipping);
-
-        $this->cart->condition(new CartCondition([
-            'name' => 'shipping',
-            'type' => __('front.shipping'),
-            'target' => 'total',
-            'value' => $shippingString,
-        ]));
-    }
-
-    public function getRaw()
-    {
-        if (!$this->rawCart) {
-            $this->rawCart = $this->cart->getContent()->sort()->values();
-        }
-
-        return $this->rawCart;
-    }
-
-    private function readableItem($item)
-    {
-        $model = (array)$item->associatedModel;
-
-        $optionsString = collect($item->attributes->options)->map(function($opt) {
-            $type = __('front.'.$opt['type']);
-            $value = ($opt['type'] == 'color') ? __('front.colors.'.$opt['value']) : $opt['value'];
-
-            return $type . ': ' . $value;
-        })->implode(', ');;
-
-        return [
-            'id' => $item->id,
-            'product_id' => $model['id'],
-            'url' => route('front.product', $model['slug']),
-            'preview' => $model['preview'],
-            'name' => $item->name,
-            'options' => $item->attributes->options,
-            'options_string' => $optionsString,
-            'quantity' => $item->quantity,
-            'price' => $item->price,
-        ];
-    }
+        $cartItems = $this->get()->map(function ($item) {
+            return [
+                'product_id' => $item['product_id'],
+                'name' => $item['name'],
+                'price' => $item['price'],
+                'quantity' => $item['quantity'],
+                'options' => $item['options'],
+            ];
+        });
 
 
-    private function guestId()
-    {
-        $lang = App::getLocale();
-        $key = 'cart_id_' . $lang;
+        $condtionItems = $this->condtions()->map(function ($item){
+            return [
+                'name' => $item->getName(),
+                'type' => $item->getType(),
+                'price' => (float)$item->getValue(),
+                'quantity' => 1,
+            ];
+        });
 
-        $cart_id = Cookie::get($key);
+        $items = $cartItems->merge($condtionItems);
 
-        $storage_days = 30;
-
-        if (!$cart_id) {
-            $cart_id = 'guest_'.uniqid();
-            Cookie::queue(
-                Cookie::make($key, $cart_id, 60 * 24 * $storage_days)
-            );
-        }
-
-        return $cart_id;
+        return $items;
     }
 
 }

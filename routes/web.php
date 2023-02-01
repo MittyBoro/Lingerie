@@ -50,6 +50,9 @@ Route::name('front.')->namespace('Front')->group(function () {
                             ->name('categories');
 
         Route::get('product/{slug}', 'ProductController@index')->name('product');
+
+        Route::get('order/{order:uuid}', 'OrderController@index')->name('order');
+
         Route::get('faq', 'FAQController@index')->name('faq');
         Route::get('{path}',  'PageController@index')->where('path', '.*');
     });

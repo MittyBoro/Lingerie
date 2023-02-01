@@ -21,9 +21,8 @@ return new class extends Migration
 
             $table->string('name');
             $table->decimal('price')->unsigned();
-            $table->decimal('discount_price')->unsigned();
             $table->tinyInteger('quantity')->unsigned()->default(1);
-            $table->json('variations')->nullable();
+            $table->json('options')->nullable();
         });
     }
 

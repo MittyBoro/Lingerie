@@ -225,15 +225,15 @@ class PageSeeder extends Seeder
 
         // success
         $pages[] = [
-            'title' => 'Заказ оформлен',
-            'slug' => 'success',
-            'view' => 'success',
+            'title' => 'Статус заказа',
+            'slug' => 'order',
+            'view' => 'order',
             'lang' => 'ru',
         ];
         $pages[] = [
-            'title' => 'Order is processed',
-            'slug' => 'success',
-            'view' => 'success',
+            'title' => 'Order status',
+            'slug' => 'order',
+            'view' => 'order',
             'lang' => 'en',
         ];
 

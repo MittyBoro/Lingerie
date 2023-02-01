@@ -9,18 +9,8 @@ import {parsePhoneNumberFromString} from 'libphonenumber-js';
 
 const app = createApp({
     data() {
-        return {
-            cart: [],
-            conditions: [],
-            subtotal: 0,
-            total: 0,
 
-            timerId: null,
-            loading: false,
-
-            manualPreloader: true,
-
-            form: {
+        let form = {
                 name: '',
                 phone: '',
                 email: '',
@@ -33,31 +23,32 @@ const app = createApp({
                 },
                 payment_type: 'receipt',
             }
+
+        let localForm = JSON.parse(localStorage.getItem('checkout_form'))
+
+        return {
+            cart: [],
+            conditions: [],
+            subtotal: 0,
+            total: 0,
+
+            timerId: null,
+            loading: false,
+
+            manualPreloader: true,
+
+            form: { ...form, ...localForm }
         };
     },
 
 
-    computed: {
-        phone: {
-            get() {
-                return this.form.phone;
-            },
-            set(val) {
-                let phone = parsePhoneNumberFromString(val, 'RU');
-                if (phone) {
-                    if (!phone.isValid() ) {
-                        this.$refs.phone.setCustomValidity("Invalid phone");
-                    } else {
-                        this.$refs.phone.setCustomValidity("");
-                    }
-
-                    this.form.phone = phone.formatInternational().replace(/^8/g, '+7');
-                }
-            }
-        }
-    },
-
     watch: {
+        form: {
+            deep: true,
+            handler(val) {
+                localStorage.setItem('checkout_form', JSON.stringify(val));
+            },
+        },
         'form.phone'(val) {
             let phone = parsePhoneNumberFromString(val, 'RU');
             if (phone) {
@@ -76,10 +67,11 @@ const app = createApp({
     created() {
         window.manualPreloader = true
         this.get();
-
     },
+
     mounted() {
-        this.form.address.country = this.$refs.country.dataset.default
+        if (!this.form.address.country)
+            this.form.address.country = this.$refs.country.dataset.default
     },
 
 
@@ -91,6 +83,7 @@ const app = createApp({
                 this.conditions = cart.conditions;
                 this.subtotal = cart.subtotal;
                 this.total = cart.total;
+                this.form.total = cart.total;
             })
             .catch(err => alert(err))
             .then(() => {

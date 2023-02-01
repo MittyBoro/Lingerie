@@ -294,6 +294,13 @@ class Product extends Model implements HasMedia
             $query->whereBetween('price', [...$price]);
         }
     }
+    public function scopePricesById($query, $ids, $lang,)
+    {
+        return $query
+                ->localized($lang)
+                ->whereIn('products.id', $ids)
+                ->get();
+    }
 
 
 

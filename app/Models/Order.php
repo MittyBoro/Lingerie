@@ -5,13 +5,31 @@ namespace App\Models;
 use App\Events\ProductOrderPaid;
 
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Propaganistas\LaravelPhone\PhoneNumber;
+
 
 class Order extends Model
 {
     protected $casts = [
         'address' => 'array',
+        'payment_data' => 'array',
+    ];
+
+    protected $fillable = [
+        'uuid',
+        'user_id',
+        'payment_type',
+        'payment_data',
+        'name',
+        'phone',
+        'email',
+        'address',
+        'comment',
+        'amount',
+        'currency',
+        'status',
     ];
 
     const STATUS_PENDING  = 'pending';
@@ -23,26 +41,13 @@ class Order extends Model
     {
         parent::boot();
 
-        static::created( function($model)
-        {
-        });
-
         static::saving( function($model)
         {
             if ($model->status != $model->getOriginal('status')) {
-                if ($model->status == self::STATUS_SUCCESS) {
-                    event(new ProductOrderPaid($model));
-                }
-
-                // if ($model->status != self::STATUS_PENDING)
-                //     $model->url = null;
-
+                // if ($model->status == self::STATUS_SUCCESS) {
+                //     event(new ProductOrderPaid($model));
+                // }
             }
-        });
-
-        static::deleted( function($model)
-        {
-            $model->cancelDebitBonuses();
         });
     }
 
@@ -58,43 +63,22 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(ProductOrderItem::class, 'order_id')->with('product');
-    }
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(OrderItem::class, 'order_id')->with('product');
     }
 
-    public function cancelDebitBonuses()
+    public function setPhoneAttribute($value)
     {
-        return $this->debit_bonus?->forceDelete();
-    }
+        // не очень важно
+        try {
+            $this->attributes['phone'] = PhoneNumber::make($value)->formatE164();
+        } catch (\Throwable $e) {
 
-    public function getOldAmountAttribute()
-    {
-        return $this->items->sum('sum_old_price');
-    }
-
-    public function getDiscountsAttribute()
-    {
-        return ($this->old_amount + $this->delivery - $this->amount) * -1;
+        }
     }
 
     public function getIsPaidAttribute()
     {
         return $this->status == self::STATUS_SUCCESS;
-    }
-
-    public static function createOrder($data, $items)
-    {
-        $order = DB::transaction(function () use ($data, $items) {
-            $order = self::create($data);
-            $order->items()->createMany($items);
-
-            return $order;
-        });
-
-        return $order;
     }
 
     public function scopeIsPaid($query)
@@ -109,10 +93,6 @@ class Order extends Model
             ->selectRaw('SUM(`amount`) as `sum`, COUNT(*) AS `count`');
     }
 
-    public function scopeUser($query, $user_id)
-    {
-        $query->where('user_id', $user_id);
-    }
     public function setSuccess()
     {
         $this->update([
@@ -138,11 +118,19 @@ class Order extends Model
         ]);
     }
 
-    public function scopeFilter($query, array $filter)
+
+
+    public static function createOrder($data)
     {
-        if (isset($filter['user_id'])) {
-            $query->where( 'user_id' , $filter['user_id'] );
-        }
+        $order = DB::transaction(function () use ($data) {
+            $data['uuid'] = Str::uuid();
+            $order = self::create($data);
+            $order->items()->createMany($data['items']);
+
+            return $order;
+        });
+
+        return $order;
     }
 
 

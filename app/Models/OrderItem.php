@@ -12,12 +12,16 @@ class OrderItem extends Model
     public $timestamps = false;
 
     protected $casts = [
-        'variations' => 'array',
+        'options' => 'array',
     ];
 
-    protected $appends = [
-        'sum_old_price',
-        'sum_price',
+    protected $fillable = [
+        'order_id',
+        'product_id',
+        'name',
+        'price',
+        'quantity',
+        'options',
     ];
 
     public function product()
@@ -25,13 +29,5 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class)->with('media');
     }
 
-    public function getSumOldPriceAttribute()
-    {
-        return $this->price * $this->quantity;
-    }
 
-    public function getSumPriceAttribute()
-    {
-        return ($this->discount_price ?: $this->price) * $this->quantity;
-    }
 }
