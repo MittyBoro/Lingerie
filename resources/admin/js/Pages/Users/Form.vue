@@ -2,7 +2,7 @@
     <AppLayout title="Редактировать">
 
         <div class="grid grid-cols-6 gap-4 items-start">
-            <FormSection :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix>
+            <FormSection :submit="submit" :form="form" class="col-span-6 sm:col-span-3" hideFix hideAdder>
                 <template #title>Пользовательские данные</template>
 
                 <template #content>

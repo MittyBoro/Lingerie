@@ -58,8 +58,6 @@
 
         data() {
             return {
-                routePrefix: 'admin.products.',
-                roles: this.$page.props.roles,
             }
         },
 

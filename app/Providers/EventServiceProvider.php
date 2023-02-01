@@ -16,7 +16,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-            \App\Listeners\AddRegisterBonuses::class,
         ],
 
         \Illuminate\Auth\Events\Login::class => [
@@ -24,7 +23,6 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         \App\Events\ProductOrderPaid::class => [
-            \App\Listeners\Cart\AddPaymentBonuses::class,
             \App\Listeners\Cart\SendProductOrderMail::class,
             \App\Listeners\Cart\ClearUserCart::class,
         ],

@@ -58,15 +58,6 @@ class ProductRequest extends AdminFormRequest
             ...$this->validationFiles('gallery', 'dimensions:min_width=400,min_height=400'),
             ...$this->validationFiles('size_table', 'dimensions:min_width=300,min_height=300'),
 
-
-
-            // 'variations'         => 'array|min:1',
-            // 'variations.*.id'    => 'nullable|exists:product_variations,id',
-            // 'variations.*.name'  => 'nullable|string',
-            // 'variations.*.value' => 'nullable|string',
-            // 'variations.*.price' => 'required|numeric',
-            // 'variations.*.bonuses' => 'required|integer',
-
         ];
 
         return $rules;

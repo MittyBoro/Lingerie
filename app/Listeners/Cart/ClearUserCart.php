@@ -3,7 +3,6 @@
 namespace App\Listeners\Cart;
 
 use App\Events\ProductOrderPaid;
-use App\Models\Bonus;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 

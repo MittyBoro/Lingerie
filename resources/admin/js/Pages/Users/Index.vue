@@ -1,10 +1,10 @@
 <template>
     <AppLayout title="Пользователи" >
-        <IndexSection class="max-w-6xl">
+        <IndexSection class="max-w-5xl">
 
             <template #content>
 
-                <ListFilter v-if="table.items.length" class="border-t bg-gray-50" />
+                <!-- <ListFilter v-if="table.items.length" class="border-t bg-gray-50" /> -->
 
                 <TTable :table="table">
                     <template #row="sp">
@@ -78,7 +78,7 @@
                 });
             },
             verify(id) {
-                this.$inertia.form().post( this.currentRoute('verify', id) , {
+                this.$inertia.form({}).post( this.currentRoute('verify', id) , {
                     preserveScroll: true,
                 });
             },

@@ -102,11 +102,6 @@ class Product extends Model implements HasMedia
                         ->select('id', 'type', 'value', 'extra');
     }
 
-    public function variations()
-    {
-        return $this->hasMany(ProductVariation::class)->with('promo_code_prices');
-    }
-
     public function getGalleryAttribute()
     {
         $gallery = $this->getMediaUrlsConversions(self::MEDIA_COLLECTION, ['thumb', 'medium', 'big']);
