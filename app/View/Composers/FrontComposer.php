@@ -5,17 +5,20 @@ namespace App\View\Composers;
 use App\Models\Page;
 use App\Models\ProductCategory;
 use App\Models\Prop;
-
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
-class FrontComposer extends Composer
+class FrontComposer
 {
     private $view;
+    protected $lang;
 
     public function compose(View $view)
     {
         $this->view = $view;
+        $this->lang = App::getLocale();
+
 
         $this->setLayoutValues();
         $this->setViewName();

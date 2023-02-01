@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cart_storage', function (Blueprint $table) {
+        Schema::create('cart_storages', function (Blueprint $table) {
             $table->string('id')->index();
             $table->longText('cart_data');
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart_storage');
+        Schema::dropIfExists('cart_storages');
     }
 };

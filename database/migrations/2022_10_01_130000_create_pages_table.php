@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
 
-            $table->string('slug');
-            $table->string('lang')->default('ru');
+            $table->string('slug')->index();
+            $table->string('lang')->index()->default('ru');
 
             $table->string('title')->nullable();
             $table->text('description')->nullable();
@@ -31,7 +31,6 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->unique(['slug', 'lang']);
-            $table->index(['slug', 'lang']);
         });
     }
 
