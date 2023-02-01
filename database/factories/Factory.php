@@ -34,6 +34,16 @@ abstract class Factory extends MainFactory
         $modelAlt->save();
     }
 
+    protected function toLocaleArray($array, $to = 'ru', array $ignoreKeys = null)
+    {
+        array_walk_recursive($array, function (&$item, $key) use ($to, $ignoreKeys) {
+            if ( !in_array($key, $ignoreKeys) && is_string($item) ) {
+                $item = $this->toLocaleItem($item, $to);
+            }
+        });
+        return $array;
+    }
+
     protected function toLocaleItem($text, $to = 'ru')
     {
         return $to == 'ru' ?

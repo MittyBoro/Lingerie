@@ -66,6 +66,10 @@ class ProductFactory extends Factory
             ]
         ];
 
+        if ($lang == 'ru') {
+            $data = $this->toLocaleArray($data, $lang, ['price', 'lang']);
+        }
+
         return $data;
     }
 
