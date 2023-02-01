@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="Переводы">
-        <IndexSection class="max-w-3xl">
+        <IndexSection mini>
 
             <template #buttons>
                 <Link :href="currentRoute('create')" class="btn">Добавить</Link>

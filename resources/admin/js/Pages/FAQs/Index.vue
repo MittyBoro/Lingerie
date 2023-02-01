@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="FAQ">
-        <IndexSection class="max-w-3xl">
+        <IndexSection mini>
 
             <template #buttons>
                 <Link :href="currentRoute('create')" class="btn">Добавить</Link>
@@ -10,7 +10,7 @@
 
                 <TTable :table="table">
                     <template #pagination>
-                        <MLanguageRow withAll globLang class="ml-auto" />
+                        <MLanguageRow withAll globLang class="mr-auto" />
                     </template>
 
                     <template #row="sp">
@@ -46,8 +46,7 @@
                         { key: 'title', text: 'Заголовок',  sortable: true },
                         { key: 'lang', text: 'Язык',  sortable: true },
                     ],
-                    items: this.$page.props.list.data,
-                    pagination: this.$page.props.list,
+                    items: this.$page.props.list,
 
                     sortRoute: this.currentRouteStr('sort'),
                     editRoute: this.currentRouteStr('edit'),

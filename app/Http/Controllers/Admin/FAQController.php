@@ -14,7 +14,7 @@ class FAQController extends Controller
     {
         $list = FAQ::whereLang($this->getListLang())
                    ->orderByStr($request->get('sort'))
-                   ->customPaginate($request->get('perPage', 20));
+                   ->get();
 
         return Inertia::render('FAQs/Index', [
             'list' => $list,

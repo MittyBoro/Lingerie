@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="Заказы товаров">
-        <IndexSection class="max-w-4xl">
+        <IndexSection mini>
 
             <template #title>Все заказы</template>
             <template #subtitle>

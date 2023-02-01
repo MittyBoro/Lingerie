@@ -1,6 +1,6 @@
 <template>
     <AppLayout title="Товары" >
-        <IndexSection class="max-w-5xl">
+        <IndexSection>
 
             <template #buttons>
                 <Link :href="currentRoute('create')" class="btn">Добавить</Link>
