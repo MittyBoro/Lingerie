@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" class="loading bg-white shadow-lg rounded-xl sm:rounded-2xl border-gray-200" :class="{'max-w-2xl': mini}">
+    <form @submit.prevent="submit" class="loading bg-white shadow-lg rounded-xl sm:rounded-2xl border-gray-200" :class="{'max-w-2xl': mini, 'max-w-3xl': middle}">
 
         <div v-if="hasHeaderSlots" class="px-4 py-6 sm:px-8 md:flex md:items-center border-b border-gray-100">
             <div>
@@ -80,6 +80,7 @@
             hideAdder: Boolean,
             internalLink: Boolean,
             mini:  Boolean,
+            middle:  Boolean,
             hiddenTitle:  Boolean,
         },
 

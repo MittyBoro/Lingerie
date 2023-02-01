@@ -31,6 +31,7 @@ class CheckoutController extends Controller
             'phone'   => 'string|required',
             'email'   => 'email|required',
 
+            'address.country' => 'required|string',
             'address.region' => 'required|string',
             'address.city' => 'required|string',
             'address.street' => 'required|string',

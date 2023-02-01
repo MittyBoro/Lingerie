@@ -1,13 +1,8 @@
 <template>
     <AppLayout title="Заказы товаров">
-        <IndexSection mini>
+        <IndexSection middle>
 
-            <template #title>Все заказы</template>
             <template #subtitle>
-                <div v-if="user" class="mb-2">
-                    <span>Заказы пользователя <Link class="link" :href="route('admin.users.show', user.id)">{{ user.name }}</Link></span>
-                </div>
-
                 <template v-if="$page.props.auth.user.id == 1">
                     <div>Продаж за месяц: {{ sales.month.count }} на {{ formatPrice(sales.month.sum) }}₽</div>
                     <div>Продаж за год: {{ sales.year.count }} на {{ formatPrice(sales.year.sum) }}₽</div>

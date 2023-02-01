@@ -37,7 +37,7 @@ return [
         ],
         [
             'name' => 'Заказы',
-            'route' => 'admin.dashboard',
+            'route' => 'admin.orders.index',
             'icon' => 'cart-shopping',
         ],
         [

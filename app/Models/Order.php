@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use App\Events\ProductOrderPaid;
-
+use App\Models\Traits\DateTrait;
+use App\Models\Traits\RetrievingTrait;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -12,6 +13,9 @@ use Propaganistas\LaravelPhone\PhoneNumber;
 
 class Order extends Model
 {
+    use RetrievingTrait;
+    use DateTrait;
+
     protected $casts = [
         'address' => 'array',
         'payment_data' => 'array',

@@ -17,6 +17,9 @@ export default {
         validAdminLang() {
             return this.$page.props.langs[this.adminLang] ? this.adminLang : 'ru';
         },
+        isAdmin() {
+            return this.$page.props.auth.user.role == 'admin'
+        },
     },
 
     methods: {
@@ -28,7 +31,7 @@ export default {
             if (!confirm('Вы уверены?'))
                 e.preventDefault()
         },
-        
+
         truncateString(str, num) {
             return (str.length > num) ? str.substr(0, num) + '...' : str;
         }

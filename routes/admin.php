@@ -38,11 +38,11 @@ Route::middleware(['admin.role:editor'])
     Route::resource('product_categories', 'ProductCategoryController');
     Route::post('product_categories/sort', 'ProductCategoryController@sort')->name('product_categories.sort');
 
+    Route::resource('orders', 'OrderController')->only(['index', 'update']);
 
 
 
 
-    // Route::resource('product_orders', 'ProductOrderController')->only(['index', 'show', 'update']);
     // Route::resource('feedback_orders', 'FeedbackOrderController')->only(['index', 'destroy']);
 
 
