@@ -57,6 +57,21 @@ const app = createApp({
         }
     },
 
+    watch: {
+        'form.phone'(val) {
+            let phone = parsePhoneNumberFromString(val, 'RU');
+            if (phone) {
+                if (!phone.isValid() ) {
+                    this.$refs.phone.setCustomValidity("Invalid phone");
+                } else {
+                    this.$refs.phone.setCustomValidity("");
+                }
+
+                this.form.phone = phone.formatInternational().replace(/^8/g, '+7');
+            }
+        }
+    },
+
 
     created() {
         window.manualPreloader = true
@@ -79,9 +94,14 @@ const app = createApp({
             })
             .catch(err => alert(err))
             .then(() => {
-                this.loading = false;
+                if (!this.cart.length){
+                    window.location = '/cart';
+                }
+                else {
+                    this.loading = false;
+                    document.body.classList.remove('preload')
+                }
 
-                document.body.classList.remove('preload')
             });
         },
 
