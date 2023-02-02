@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Order;
+use App\Services\Payment\PaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -22,7 +23,7 @@ class CheckoutController extends Controller
         // и можно сравнить, если с товарами что-то изменилось
         if ($data['amount'] != $request->get('total')) {
             return [
-                'url' => '/checkout',
+                'url' => '/checkout?error=total',
             ];
         }
 
@@ -39,18 +40,22 @@ class CheckoutController extends Controller
 
             'comment'   => 'string|nullable',
 
-            'payment_type' => [ 'string', Rule::in(config('payment.types'),) ],
+            'payment_type' => [ 'string', Rule::in( array_keys(config('payment.drivers')) ) ],
         ]);
 
-        $result = Order::createOrder($data);
 
-        if ($result) {
-            return [
-                'url' => route('front.order', $result->uuid)
-            ];
+        $order = Order::createOrder($data);
+
+        if (!$order) {
+            abort(500);
         }
 
-        abort(500);
+        $payemnt = PaymentService::set($order);
+        $payemnt->charge();
+
+        return [
+            'url' => $payemnt->redirectUrl() ?: route('front.order', $order->uuid)
+        ];
     }
 
 }

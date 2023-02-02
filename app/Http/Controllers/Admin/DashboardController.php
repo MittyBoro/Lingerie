@@ -25,11 +25,11 @@ class DashboardController extends Controller
             'orders' => [
                 'title' =>'Заказы',
                 'route' => 'admin.orders.index',
-                'info' => Order::sumAndCount()->first(),
-                'week_info' => Order::week()->sumAndCount()->first(),
-                'month_info' => Order::month()->sumAndCount()->first(),
-                'half_year_info' => Order::halfYear()->sumAndCount()->first(),
-                'year_info' => Order::year()->sumAndCount()->first(),
+                'count' => Order::week()->count(),
+                'count_week' => Order::week()->count(),
+                'count_month' => Order::month()->count(),
+                'count_half_year' => Order::halfYear()->count(),
+                'count_year' => Order::year()->count(),
             ],
         ];
 

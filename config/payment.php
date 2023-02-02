@@ -2,13 +2,15 @@
 
 return [
 
-    'yookassa' => [
-        'shop_id' => env('YOO_SHOP_ID', null),
-        'secret_key' => env('YOO_SECRET_KEY', null),
-    ],
+    'drivers' => [
+        'yookassa' => [
+            'class' => \App\Payments\YooKassaPayment::class,
 
-    'types' => [
-        'yookassa',
-        'receipt',
+            'shop_id' => env('YOO_SHOP_ID', null),
+            'secret_key' => env('YOO_SECRET_KEY', null),
+        ],
+        'receipt' => [
+            'class' => \App\Payments\ReceiptPayment::class,
+        ],
     ],
 ];

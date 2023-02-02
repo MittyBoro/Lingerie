@@ -5,7 +5,7 @@ namespace App\Services\Cart;
 use App\Services\Cart\Traits\FinalTrait;
 use App\Services\Cart\Traits\HelperTrait;
 
-use Cart;
+use Darryldecode\Cart\Cart;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 
@@ -16,11 +16,13 @@ class CartService
 
     private $lang;
     private $cart;
+    private $session_key;
 
-    public function __construct()
+    public function __construct(Cart $cart, $session_key)
     {
         $this->lang = App::getLocale();
-        $this->cart = Cart::session($this->cartId());
+        $this->cart = $cart;
+        $this->session_key = $session_key;
     }
 
     public function get()
@@ -92,6 +94,11 @@ class CartService
     public function count()
     {
         return $this->getRaw()->count();
+    }
+
+    public function cartId()
+    {
+        return $this->session_key;
     }
 
     public function total()

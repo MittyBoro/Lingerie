@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Models\Admin\Product;
-
+use App\Models\Traits\Order\OrderItemTrait;
+use App\Contracts\OrderItemInterface;
 use Illuminate\Database\Eloquent\Model;
 
 
-class OrderItem extends Model
+class OrderItem extends Model implements OrderItemInterface
 {
+    use OrderItemTrait;
+
     public $timestamps = false;
 
     protected $casts = [

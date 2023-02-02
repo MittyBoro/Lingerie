@@ -1,24 +1,32 @@
 <?php
 
-namespace App\Services\Payment;
+namespace App\Payments;
 
-use App\Models\Product\ProductOrder;
+use App\Models\Order;
+use App\Contracts\PaymentInterface;
 
 use YooKassa\Client;
 use YooKassa\Model\Notification\NotificationFactory;
 
-class YooKassa
+class YooKassaPayment implements PaymentInterface
 {
+    private $order;
     private $client;
 
-    public function __construct()
+    public function __construct(Order $order)
     {
+        $this->order = $order;
+
         $this->client = new Client();
         $this->client->setAuth( config('payment.yookassa.shop_id'), config('payment.yookassa.secret_key') );
     }
 
-    public function create($data, $returnUrl): array
+    public function charge($returnUrl = null)
     {
+        $this->order->setStatus(self::STATUS_PENDING);
+        return;
+
+
         try {
             $idempotenceKey = uniqid('', true);
             $response = $this->client->createPayment(
@@ -67,6 +75,7 @@ class YooKassa
 
     }
 
+
     private function getItemsArray($items, $delivery)
     {
         $items4Kassa = [];
@@ -104,8 +113,11 @@ class YooKassa
         return $items4Kassa;
     }
 
-    public function status($paymentId)
+    public function check()
     {
+        $this->order->setStatus(self::STATUS_SUCCESS);
+        return;
+
         try {
             $payment = $this->client->getPaymentInfo($paymentId);
             return $this->getStatusByKey( $payment->getStatus() );
@@ -115,8 +127,13 @@ class YooKassa
         }
     }
 
-    public function webhook(): array
+    public function redirectUrl() {}
+
+    public function webhook()
     {
+        $this->order->setStatus(self::STATUS_SUCCESS);
+        return;
+
         $source = file_get_contents('php://input');
         $requestBody = json_decode($source, true);
 
@@ -132,19 +149,5 @@ class YooKassa
             throw new \Exception('Ошибка получения webhook данных #2');
         }
 
-        return [
-            'id' => $payment->getMetadata()['order_id'],
-            'status' => $this->getStatusByKey( $payment->getStatus() ),
-        ];
-    }
-
-    private function getStatusByKey($key)
-    {
-        if ($key == 'succeeded')
-            return ProductOrder::STATUS_SUCCESS;
-        elseif ($key == 'canceled')
-            return ProductOrder::STATUS_CANCELED;
-        else
-            return ProductOrder::STATUS_PENDING;
     }
 }

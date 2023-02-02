@@ -3,18 +3,26 @@
 namespace App\Models;
 
 use App\Events\ProductOrderPaid;
+
+use App\Contracts\OrderInterface;
+use App\Contracts\PaymentStatusInterface;
+
 use App\Models\Traits\DateTrait;
+use App\Models\Traits\Order\OrderTrait;
 use App\Models\Traits\RetrievingTrait;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 
-class Order extends Model
+class Order extends Model implements PaymentStatusInterface, OrderInterface
 {
     use RetrievingTrait;
     use DateTrait;
+    use OrderTrait;
 
     protected $casts = [
         'address' => 'array',
@@ -36,11 +44,6 @@ class Order extends Model
         'currency',
         'status',
     ];
-
-    const STATUS_PENDING  = 'pending';
-    const STATUS_SUCCESS  = 'success';
-    const STATUS_CANCELED = 'canceled';
-    const STATUS_REFUNDED = 'refunded';
 
     public static function boot()
     {
@@ -99,33 +102,6 @@ class Order extends Model
                 ->groupBy('currency')
                 ->get();
     }
-
-    public function setSuccess()
-    {
-        $this->update([
-            'status' => self::STATUS_SUCCESS,
-        ]);
-    }
-    public function setCanceled()
-    {
-        $this->update([
-            'status' => self::STATUS_CANCELED,
-        ]);
-    }
-    public function setPending()
-    {
-        $this->update([
-            'status' => self::STATUS_PENDING
-        ]);
-    }
-    public function setRefunded()
-    {
-        $this->update([
-            'status' => self::STATUS_REFUNDED
-        ]);
-    }
-
-
 
     public static function createOrder($data)
     {

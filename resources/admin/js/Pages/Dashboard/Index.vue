@@ -36,35 +36,35 @@
                     <div class="text-row">
                         <div class="text-title">За неделю: </div>
                         <div class="text-value">
-                            {{ data.orders.week_info.count }}
+                            {{ data.orders.count_week }}
                             <!-- на {{ formatPrice(data.orders.week_info.sum) }}₽ -->
                         </div>
                     </div>
                     <div class="text-row">
                         <div class="text-title">За месяц: </div>
                         <div class="text-value">
-                            {{ data.orders.month_info.count }}
+                            {{ data.orders.count_month }}
                             <!-- на {{ formatPrice(data.orders.month_info.sum) }}₽ -->
                         </div>
                     </div>
                     <div class="text-row">
                         <div class="text-title">За полгода: </div>
                         <div class="text-value">
-                            {{ data.orders.half_year_info.count }}
+                            {{ data.orders.count_half_year }}
                             <!-- на {{ formatPrice(data.orders.half_year_info.sum) }}₽ -->
                         </div>
                     </div>
                     <div class="text-row">
                         <div class="text-title">За год: </div>
                         <div class="text-value">
-                            {{ data.orders.year_info.count }}
+                            {{ data.orders.count_year }}
                             <!-- на {{ formatPrice(data.orders.year_info.sum) }}₽ -->
                         </div>
                     </div>
                     <div class="text-row">
                         <div class="text-title">Всего: </div>
                         <div class="text-value">
-                            {{ data.orders.info.count }}
+                            {{ data.orders.count }}
                             <!-- на {{ formatPrice(data.orders.info.sum) }}₽ -->
                         </div>
                     </div>

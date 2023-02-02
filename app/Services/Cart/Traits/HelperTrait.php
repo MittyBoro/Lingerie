@@ -2,28 +2,8 @@
 
 namespace App\Services\Cart\Traits;
 
-use Illuminate\Support\Facades\Cookie;
-
 trait HelperTrait
 {
-
-    public function cartId()
-    {
-        $key = 'cart_id_' . $this->lang;
-
-        $cartId = Cookie::get($key);
-
-        if (!$cartId) {
-            $cartId = 'guest_'.uniqid();
-            $storage_days = 30;
-            Cookie::queue(
-                Cookie::make($key, $cartId, 60 * 24 * $storage_days)
-            );
-        }
-
-        return $cartId;
-    }
-
     private function readableItem($item)
     {
         $model = $item->associatedModel;

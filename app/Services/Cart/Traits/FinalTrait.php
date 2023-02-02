@@ -5,6 +5,7 @@ namespace App\Services\Cart\Traits;
 use App\Models\Product;
 use App\Models\Prop;
 use Darryldecode\Cart\CartCondition;
+use Illuminate\Support\Facades\App;
 
 trait FinalTrait
 {
@@ -52,7 +53,7 @@ trait FinalTrait
         })->values();
 
         $prodIds = $cartIds->pluck('product_id')->unique();
-        $prices = Product::pricesById($prodIds, $this->lang);
+        $prices = Product::pricesById($prodIds, App::getLocale());
 
         $cartIds->each(function ($row) use ($prices) {
             $prod = $prices->find($row['product_id']);
