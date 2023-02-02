@@ -23,14 +23,17 @@ class Product extends Model
         return Model::class;
     }
 
-    public function scopeFilter($query, array $filter)
+    public function scopeFilter($query, array $filter, $lang = 'ru')
     {
         if (isset($filter['category'])) {
             $query->relationByIds('categories', $filter['category']);
         }
 
         if (isset($filter['q'])) {
-            $query->search($filter['q']);
+            $query
+                ->where('product_translations.lang', $lang)
+                ->search($filter['q'])
+                ;
         }
     }
 

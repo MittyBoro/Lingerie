@@ -3,15 +3,16 @@
         <IndexSection mini>
 
             <template #buttons>
-                <Link :href="currentRoute('create')" class="btn">Добавить</Link>
+                <div class="grid gap-6 sm:grid-flow-col">
+                    <MLanguageRow withAll globLang />
+                    <Link :href="currentRoute('create')" class="btn">Добавить</Link>
+                </div>
             </template>
 
             <template #content>
 
                 <TTable :table="table">
-                    <template #pagination>
-                        <MLanguageRow withAll globLang class="ml-auto"/>
-                    </template>
+                    <template #pagination />
 
                     <template #row="sp">
                         <TData v-model="sp.element.key" @update:modelValue="update(sp.element)" />

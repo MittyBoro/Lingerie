@@ -6,7 +6,6 @@ use App\Models\Traits\ProductCartTrait;
 use App\Models\Traits\RetrievingTrait;
 use App\Models\Translations\ProductTranslation;
 use App\Services\SpatieMedia\InteractsWithCustomMedia;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,7 +21,7 @@ class Product extends Model implements HasMedia
     use InteractsWithCustomMedia;
     use ProductCartTrait;
     use RetrievingTrait;
-    // use SearchableTrait;
+    use SearchableTrait;
 
     const MEDIA_COLLECTION            = 'images';
     const MEDIA_COLLECTION_SIZE_TABLE = 'size';
@@ -42,8 +41,11 @@ class Product extends Model implements HasMedia
 
     protected $searchable = [
         'columns' => [
-            'product_translations.details' => 3,
-            'product_translations.details' => 1,
+            'product_translations.title' => 3,
+            'product_translations.details' => 2,
+            'product_translations.meta_title' => 1,
+            'product_translations.meta_description' => 1,
+            'product_translations.meta_keywords' => 1,
         ],
         'joins' => [
             'product_translations' => ['products.id','product_translations.product_id'],

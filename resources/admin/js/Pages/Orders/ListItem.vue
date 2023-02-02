@@ -61,8 +61,6 @@
                 <div class="whitespace-pre-line">{{ element.comment }}</div>
             </template>
 
-            <div class="col-span-full py-2"></div>
-
             <div class="ci-title self-center">Итого:</div>
             <div class="self-center">
                 <span class="px-2 py-0.5 text-white font-bold bg-primary-400 rounded">{{ formatPrice(element.amount) }} {{ currency }}</span>

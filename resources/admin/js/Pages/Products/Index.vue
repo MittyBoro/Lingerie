@@ -3,19 +3,20 @@
         <IndexSection>
 
             <template #buttons>
-                <Link :href="currentRoute('create')" class="btn">Добавить</Link>
+                <div class="grid gap-6 sm:grid-flow-col">
+                    <MLanguageRow globLang />
+                    <Link :href="currentRoute('create')" class="btn">Добавить</Link>
+                </div>
             </template>
 
 
             <template #content>
 
-                <ListFilter v-if="table.items.length" class="border-t bg-gray-50" />
+                <ListFilter class="border-t bg-gray-50" />
 
                 <TTable :table="table">
 
-                    <template #pagination>
-                        <MLanguageRow globLang class="ml-auto" />
-                    </template>
+                    <template #pagination />
 
                     <template #row="sp">
                         <TData mini>

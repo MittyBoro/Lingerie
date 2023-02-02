@@ -1,10 +1,10 @@
 <template>
 
-    <div class="flex flex-wrap">
+    <div class="flex">
         <div
             v-for="item in langsList"
             :key="item[0]"
-            class="px-4 py-2 text-xs mr-2 last:mr-0 bg-gray-100 rounded-md shadow-md transition hover:bg-gray-200 cursor-pointer"
+            class="flex items-center px-4 py-3 h-9 text-xs mr-2 last:mr-0 bg-gray-100 rounded-md shadow-md transition hover:bg-gray-200 cursor-pointer"
             @click="currentLang = item[0]"
             :class=" { 'bg-secondary-500 text-white pointer-events-none': currentLang == item[0] } "
             >{{ item[1] }}</div>

@@ -15,9 +15,9 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
-        $products = Product::filter($request->all())
-                            ->with('media')
-                            ->localized($this->getListLang())
+        $products = Product::with('media')
+                            ->filter($request->all(), $this->getListLang())
+                            ->localized($this->getListLang(), true)
                             ->orderByStr($request->get('sort'))
                             ->customPaginate($request->get('perPage', 20));
 
