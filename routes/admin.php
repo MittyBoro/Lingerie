@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['admin.role:editor'])
     ->group(function () {
 
-    Route::get('/', function () {
-        return redirect(route('admin.dashboard'));
-    });
-
-    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::post('admin_lang', 'Controller@setListLang')->name('admin_lang.set');
 
     Route::resource('users', 'UserController')->except(['create','store','show']);

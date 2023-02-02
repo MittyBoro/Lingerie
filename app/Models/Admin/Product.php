@@ -4,12 +4,12 @@ namespace App\Models\Admin;
 
 use App\Models\Product as Model;
 use App\Models\Traits\Admin\TranslationTrait;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use App\Models\Traits\DateTrait;
 
 class Product extends Model
 {
     use TranslationTrait;
+    use DateTrait;
 
 
     protected $sortable = ['position', 'id', 'created_at', 'is_published', 'price', 'title'];

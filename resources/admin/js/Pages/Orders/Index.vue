@@ -4,9 +4,12 @@
 
             <template #subtitle>
                 <template v-if="$page.props.auth.user.id == 1">
-                    <div>Продаж за месяц: {{ sales.month.count }} на {{ formatPrice(sales.month.sum) }}₽</div>
-                    <div>Продаж за год: {{ sales.year.count }} на {{ formatPrice(sales.year.sum) }}₽</div>
-                    <div>Продаж за всё время: {{ sales.all.count }} на {{ formatPrice(sales.all.sum) }}₽</div>
+                    <div v-for="(sale, key) in sales" :key="key">
+                        <span>{{ keyToName(key) }}:</span>
+                        <span class="text-gray-500 ml-2" v-for="s in sale" :key="s.currency">
+                            {{ s.count }} на {{ formatPrice(s.sum) }}{{ currencySymbol(s.currency) }}
+                        </span>
+                    </div>
                 </template>
             </template>
 
@@ -45,6 +48,24 @@
             return {
                 sales: this.$page.props.sales,
                 user: this.$page.props.user,
+            }
+        },
+
+        methods: {
+            keyToName(key) {
+                if (key == "month") {
+                    return 'Продаж за месяц'
+                }
+                if (key == "half_year") {
+                    return 'Продаж за полгода'
+                }
+                if (key == "year") {
+                    return 'Продаж за год'
+                }
+                if (key == "all") {
+                    return 'Продаж за всё время'
+                }
+                return key
             }
         },
     }

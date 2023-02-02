@@ -19,9 +19,9 @@ class OrderController extends Controller
                             ->customPaginate(30);
 
         $sales = [
-            'month' => Order::month()->sumAndCount()->first(),
-            'year' => Order::year()->sumAndCount()->first(),
-            'all' => Order::sumAndCount()->first(),
+            'month' => Order::month()->sumAndCount(),
+            'year' => Order::year()->sumAndCount(),
+            'all' => Order::sumAndCount(),
         ];
 
         return Inertia::render('Orders/Index', [

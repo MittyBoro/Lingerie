@@ -92,9 +92,11 @@ class Order extends Model
 
     public function scopeSumAndCount($query)
     {
-        $query
-            ->isPaid()
-            ->selectRaw('SUM(`amount`) as `sum`, COUNT(*) AS `count`');
+        return $query
+                ->isPaid()
+                ->selectRaw('SUM(`amount`) as `sum`, COUNT(*) AS `count`, `currency`')
+                ->groupBy('currency')
+                ->get();
     }
 
     public function setSuccess()
