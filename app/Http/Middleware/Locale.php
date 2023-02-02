@@ -15,8 +15,7 @@ class Locale {
 
     public function handle(Request $request, Closure $next)
     {
-        $defaultLocale = config('app.locale');
-        $locale = $this->getSelectedLocale($request, $defaultLocale);
+        $locale = $this->getSelectedLocale($request);
 
         if ($locale && in_array($locale, self::LOCALES)) {
             Session::put(self::SESSION_KEY, $locale);
@@ -27,7 +26,7 @@ class Locale {
         return $next($request);
     }
 
-    private function getSelectedLocale(Request $request, $defaultLocale)
+    private function getSelectedLocale(Request $request)
     {
         if ($request->route()->named('front.locale')) {
             return $request->route()->parameters()['locale'];
@@ -36,8 +35,6 @@ class Locale {
         } elseif (!Session::has(self::SESSION_KEY)) {
             return $request->getPreferredLanguage(self::LOCALES);
         }
-
-        return $defaultLocale;
     }
 
     private function setApp()
