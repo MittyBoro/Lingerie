@@ -20,6 +20,11 @@
                                 </Link>
                             </TData>
                             <TData mini>
+                                <Link :href="currentRoute('show', element.id)">
+                                    <Icon icon="eye" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
+                                </Link>
+                            </TData>
+                            <TData mini>
                                 <Link :href="currentRoute('edit', element.id)">
                                     <Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
                                 </Link>
@@ -31,7 +36,7 @@
                             </TData>
                         </tr>
                         <tr>
-                            <td colspan="5" class="no-style pl-4 p-0 bg-gray-500 bg-opacity-10 ">
+                            <td colspan="6" class="no-style pl-4 p-0 bg-gray-500 bg-opacity-10 ">
                                 <table-draggable :deep="deep + 1" :list="element.children" @showSaveBtn="$emit('showSaveBtn')" />
                             </td>
                         </tr>

@@ -9,22 +9,8 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        /**
-         * Заказы
-         * Обратная связь
-         * Товары
-         * Новости
-         * Партнёры (дистриб/франч)
-         */
-
-        // $orderFK = array_flip(array_keys(FeedbackOrder::FORM_TYPES));
 
         $data = [
             'products' => [

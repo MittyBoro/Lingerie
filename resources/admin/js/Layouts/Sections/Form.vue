@@ -7,15 +7,13 @@
                     <div class="flex items-center">
                         <slot v-if="$slots.title" name="title"></slot>
                         <template v-else>{{ $admin.title }}</template>
-                        <component
-                            v-if="showLink"
-                            :is="internalLink ? 'Link' : 'a'"
+                        <Link
                             :href="showLink"
                             target="_blank"
                             class="text-gray-500 hover-link ml-2 mt-0.5 text-sm"
                             >
                             <Icon icon="eye"/>
-                        </component>
+                        </Link>
                     </div>
                 </div>
                 <div v-if="$slots.subtitle" class="mt-4 grid gap-1">
@@ -78,7 +76,6 @@
             hideFix: Boolean,
             hideButtons: Boolean,
             hideAdder: Boolean,
-            internalLink: Boolean,
             mini:  Boolean,
             middle:  Boolean,
             hiddenTitle:  Boolean,

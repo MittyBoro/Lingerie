@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -14,26 +15,32 @@ class Locale {
 
     public function handle(Request $request, Closure $next)
     {
-        $this->setSessionLocale($request);
-        $this->setAppLocale();
+        $defaultLocale = config('app.locale');
+        $locale = $this->getSelectedLocale($request, $defaultLocale);
+
+        if ($locale && in_array($locale, self::LOCALES)) {
+            Session::put(self::SESSION_KEY, $locale);
+        }
+
+        $this->setApp();
 
         return $next($request);
     }
 
-    private function setSessionLocale($request)
+    private function getSelectedLocale(Request $request, $defaultLocale)
     {
-        if (!Session::has(self::SESSION_KEY)) {
-            $locale = $request->getPreferredLanguage(self::LOCALES);
-            Session::put(self::SESSION_KEY, $locale);
+        if ($request->route()->named('front.locale')) {
+            return $request->route()->parameters()['locale'];
+        } elseif ($request->lang && Auth::user()?->is_admin) {
+            return $request->lang;
+        } elseif (!Session::has(self::SESSION_KEY)) {
+            return $request->getPreferredLanguage(self::LOCALES);
         }
 
-        if ($request->route()->named('front.locale')) {
-            $locale = $request->route()->parameters()['locale'];
-            if ( in_array($locale, self::LOCALES) )
-                Session::put(self::SESSION_KEY, $locale);
-        }
+        return $defaultLocale;
     }
-    private function setAppLocale()
+
+    private function setApp()
     {
         $locale = Session::get(self::SESSION_KEY);
 

@@ -42,8 +42,7 @@ class ProductCategoryController extends Controller
 
     public function show(ProductCategory $productCategory)
     {
-        dd($productCategory);
-        return redirect('/');
+        return redirect()->route('front.categories', ['slug' => $productCategory->slug, 'lang' => $this->getListLang()]);
     }
 
     public function edit(ProductCategory $productCategory)

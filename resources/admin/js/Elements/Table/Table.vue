@@ -27,9 +27,9 @@
                                 </TData>
                                 <slot name="row" :element="element"></slot>
                                 <TData v-if="routes.show" mini>
-                                    <a target="_blank" :href="route(routes.show, element.id)">
+                                    <Link :href="route(routes.show, element.id)">
                                         <Icon icon="eye" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
-                                    </a>
+                                    </Link>
                                 </TData>
                                 <TData v-if="routes.edit" mini>
                                     <Link :href="route(routes.edit, element.id)">

@@ -27,7 +27,7 @@
             <div class="prod-main-col left-col" :class="{'loading-blink': loading}">
                 <div class="pmc-top">
                     <div class="breadcrumbs">
-                        <a href="#">Главная</a>
+                        <a href="/">@lang('front.home')</a>
                         @foreach ($product['bread_cats'] as $cat)
                         <span class="delimeter">/</span>
                         <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
