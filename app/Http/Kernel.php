@@ -73,9 +73,6 @@ class Kernel extends HttpKernel
 
         'locale' => \App\Http\Middleware\Locale::class,
 
-        'guest_or_verified' => \App\Http\Middleware\GuestOrVerified::class,
-        'apply_cart' => \App\Http\Middleware\ApplyCart::class,
-
         'only_page' => \App\Http\Middleware\OnlyPage::class,
     ];
 }
