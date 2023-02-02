@@ -3,7 +3,7 @@
         <IndexSection middle>
 
             <template #subtitle>
-                <template v-if="$page.props.auth.user.id == 1">
+                <template v-if="$page.props.auth.user.id == 1 && $page.props.list.data.length">
                     <div v-for="(sale, key) in sales" :key="key">
                         <span>{{ keyToName(key) }}:</span>
                         <span class="text-gray-500 ml-2" v-for="s in sale" :key="s.currency">

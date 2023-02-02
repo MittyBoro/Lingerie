@@ -61,10 +61,10 @@ return [
                     'name' => 'Параметры',
                     'route' => 'admin.props.index',
                 ],
-                [
-                    'name' => 'Переводы',
-                    'route' => 'admin.translations.index',
-                ],
+                // [
+                //     'name' => 'Переводы',
+                //     'route' => 'admin.translations.index',
+                // ],
                 [
                     'name' => 'FAQ',
                     'route' => 'admin.faqs.index',

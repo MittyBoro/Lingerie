@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         // Page::factory(5)->create();
         // ProductCategory::factory(15)->create();
 		FAQ::factory(5)->create();
-		Translation::factory(20)->create();
+		// Translation::factory(20)->create();
     }
 
 
