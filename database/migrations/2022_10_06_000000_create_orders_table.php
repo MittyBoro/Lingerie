@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('uuid', 40)->unique()->index();
+            $table->string('cart_id')->nullable();
 
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
 

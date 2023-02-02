@@ -7,22 +7,21 @@ use Illuminate\Support\Facades\Cookie;
 trait HelperTrait
 {
 
-    private function guestId()
+    public function cartId()
     {
         $key = 'cart_id_' . $this->lang;
 
-        $cart_id = Cookie::get($key);
+        $cartId = Cookie::get($key);
 
-        $storage_days = 30;
-
-        if (!$cart_id) {
-            $cart_id = 'guest_'.uniqid();
+        if (!$cartId) {
+            $cartId = 'guest_'.uniqid();
+            $storage_days = 30;
             Cookie::queue(
-                Cookie::make($key, $cart_id, 60 * 24 * $storage_days)
+                Cookie::make($key, $cartId, 60 * 24 * $storage_days)
             );
         }
 
-        return $cart_id;
+        return $cartId;
     }
 
     private function readableItem($item)

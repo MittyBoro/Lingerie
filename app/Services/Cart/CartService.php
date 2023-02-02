@@ -20,7 +20,7 @@ class CartService
     public function __construct()
     {
         $this->lang = App::getLocale();
-        $this->cart = Cart::session($this->guestId());
+        $this->cart = Cart::session($this->cartId());
     }
 
     public function get()
@@ -82,6 +82,11 @@ class CartService
     public function clear()
     {
         return $this->cart->clear();
+    }
+
+    public function clearById($cartId)
+    {
+        return \Cart::session($cartId)->clear();
     }
 
     public function count()

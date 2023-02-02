@@ -22,6 +22,7 @@ class Order extends Model
     ];
 
     protected $fillable = [
+        'cart_id',
         'uuid',
         'user_id',
         'payment_type',
