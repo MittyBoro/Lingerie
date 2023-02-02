@@ -33,6 +33,7 @@ return new class extends Migration
 
             $table->decimal('amount', 10, 2)->unsigned();
             $table->string('currency', 10);
+            $table->string('lang', 4);
 
             $table->string('status', 16)->default(Order::STATUS_PENDING);
 

@@ -42,6 +42,7 @@ class Order extends Model implements PaymentStatusInterface, OrderInterface
         'comment',
         'amount',
         'currency',
+        'lang',
         'status',
     ];
 

@@ -18,6 +18,7 @@ class CheckoutController extends Controller
             'amount' => app('cart')->total(),     // и получит их
             'cart_id' => app('cart')->cartId(),
             'currency' => config('app.currency'),
+            'lang' => locale(),
         ];
 
         // и можно сравнить, если с товарами что-то изменилось
