@@ -4,7 +4,7 @@
             <Link :href="route('admin.dashboard')" class="link"><Icon icon="house" /></Link>
             <div class="text-sm opacity-50 mx-2">/</div>
 
-            <div class="flex items-center" v-for="item in breadCrumbs" v-show="item.name != title" :key="item.route">
+            <div class="flex flex-wrap items-center" v-for="item in breadCrumbs" v-show="item.name != title" :key="item.route">
                 <Link :href="route(item.route)" class="link" v-text="item.name" />
                 <div class="text-sm opacity-30 mx-2">/</div>
             </div>

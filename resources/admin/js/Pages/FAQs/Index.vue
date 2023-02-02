@@ -48,10 +48,6 @@
                         { key: 'lang', text: 'Язык',  sortable: true },
                     ],
                     items: this.$page.props.list,
-
-                    sortRoute: this.currentRouteStr('sort'),
-                    editRoute: this.currentRouteStr('edit'),
-                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

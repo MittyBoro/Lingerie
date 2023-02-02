@@ -32,11 +32,6 @@
                         <TData mini>
                             <FSwitcher v-model="sp.element.is_published" @update:modelValue="update(sp.element)" mini/>
                         </TData>
-                        <TData mini>
-                            <a :href="frontUrl('product/' + sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
-                                <Icon icon="eye"/>
-                            </a>
-                        </TData>
                     </template>
                 </TTable>
 
@@ -70,14 +65,9 @@
                         { key: 'title', text: 'Название', sortable: true },
                         { key: 'price', text: 'Цена', sortable: true },
                         { key: 'is_published', fa: 'eye', sortable: true, class: 'text-center' },
-                        {},
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
-
-                    sortRoute: this.currentRouteStr('sort'),
-                    editRoute: this.currentRouteStr('edit'),
-                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

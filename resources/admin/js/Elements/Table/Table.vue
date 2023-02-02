@@ -1,8 +1,8 @@
 <template>
     <div class="table-wrapper loading text-sm">
-        <TPagination v-if="pagination && pagination.total" :pages="pagination" class="border-t" ref="pagination">
+        <TPagination v-if="(pagination && pagination.total) || (!pagination && routes.sort)" :pages="pagination" class="border-t" ref="pagination">
             <div
-                v-if="sortRoute"
+                v-if="routes.sort"
                 @click="sortToggle"
                 class="ml-auto">
                 <div v-if="!sortEnable" class="btn btn-mini">Сортировать</div>
@@ -19,147 +19,150 @@
                 </thead>
 
                 <template v-if="$slots.row" >
-                    <tbody v-if="!sortRoute">
-                        <tr v-for="element in items" :key="element.id">
-                            <slot name="row" :element="element"></slot>
-                            <TData v-if="editRoute" mini>
-                                <Link :href="route(editRoute, element.id)">
-                                    <Icon icon="pencil" class="text-gray-500 hover-link"/>
-                				</Link>
-							</TData>
-							<TData v-if="destroyRoute" mini>
-								<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
-									<Icon @click="confirm" icon="trash-can" class="text-gray-500 hover-link block"/>
-								</Link>
-							</TData>
-						</tr>
-					</tbody>
-					<Draggable v-else tag="tbody" v-model="items" item-key="element.id" handle=".drag-handle" :scroll="true" :scroll-sensitivity="500">
-						<template #item="{ element }">
-							<tr class="drag-tr">
-								<TData v-if="sortEnable" class="sort-td" mini>
-									<Icon icon="arrows-up-down-left-right" class="drag-handle"/>
-								</TData>
-								<slot name="row" :element="element"></slot>
-								<TData v-if="editRoute" mini>
-									<Link :href="route(editRoute, element.id)">
-										<Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
-									</Link>
-								</TData>
-								<TData v-if="destroyRoute" mini>
-									<Link :href="route(destroyRoute, element.id)" method="delete" as="button">
-										<Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
-									</Link>
-								</TData>
-							</tr>
-						</template>
-					</Draggable>
-				</template>
-				<TBody v-else :items="items" :headers="headers" />
+                    <Draggable tag="tbody" v-model="items" item-key="element.id" handle=".drag-handle" :scroll="true" :scroll-sensitivity="500">
+                        <template #item="{ element }">
+                            <tr class="drag-tr">
+                                <TData v-if="sortEnable" class="sort-td" mini>
+                                    <Icon icon="arrows-up-down-left-right" class="drag-handle"/>
+                                </TData>
+                                <slot name="row" :element="element"></slot>
+                                <TData v-if="routes.show" mini>
+                                    <a target="_blank" :href="route(routes.show, element.id)">
+                                        <Icon icon="eye" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
+                                    </a>
+                                </TData>
+                                <TData v-if="routes.edit" mini>
+                                    <Link :href="route(routes.edit, element.id)">
+                                        <Icon icon="pencil" class="text-gray-500 hover:text-primary-500 transition cursor-pointer"/>
+                                    </Link>
+                                </TData>
+                                <TData v-if="routes.destroy" mini>
+                                    <Link :href="route(routes.destroy, element.id)" method="delete" as="button">
+                                        <Icon @click="confirm" icon="trash-can" class="text-gray-500 hover:text-primary-500 transition cursor-pointer block"/>
+                                    </Link>
+                                </TData>
+                            </tr>
+                        </template>
+                    </Draggable>
+                </template>
+                <TBody v-else :items="items" :headers="headers" />
 
-			</table>
+            </table>
 
-			<TNotify class="border-t border-b" v-else>Данных ещё нет</TNotify>
-		</div>
-		<div v-if="sortEnable" class="table-save-row border-b">
-			<div @click="saveSort" class="btn w-full">Сохранить сортировку</div>
-		</div>
+            <TNotify class="border-t border-b" v-else>Данных ещё нет</TNotify>
+        </div>
+        <div v-if="sortEnable" class="table-save-row border-b">
+            <div @click="saveSort" class="btn w-full">Сохранить сортировку</div>
+        </div>
 
-		<TPagination ref="pagination" v-if="pagination && pagination.total" :pages="pagination" />
-	</div>
+        <TPagination ref="pagination" v-if="pagination && pagination.total" :pages="pagination" />
+    </div>
 </template>
 
 
 <script>
-	import Draggable from "vuedraggable";
+    import Draggable from "vuedraggable";
 
-	export default {
-		components: {
-			Draggable
-		},
+    export default {
+        components: {
+            Draggable
+        },
 
-		props: ['table'],
+        props: ['table'],
 
-		data() {
-			return {
-				headers: null,
-				items: null,
-				pagination: null,
-				sortRoute: null,
-				editRoute: null,
-				destroyRoute: null,
+        data() {
+            return {
+                headers: null,
+                items: null,
+                destroyRoute: null,
 
-				sortEnable: false,
-			}
-		},
+                sortEnable: false,
+                routes: {
+                    sort: null,
+                    show: null,
+                    edit: null,
+                    destroy: null,
+                },
+            }
+        },
 
-		watch: {
-			table(e) {
-				this.setVariables();
-			},
-			sortEnable(e) {
-				this.setVariables();
-			},
-		},
+        watch: {
+            table(e) {
+                this.setVariables();
+            },
+            sortEnable(e) {
+                this.setVariables();
+            },
+        },
 
-		created() {
-			this.setVariables();
-		},
+        created() {
+            this.setVariables();
+        },
 
-		methods: {
+        methods: {
 
-			setVariables() {
-				this.headers = [...this.table.headers]
-				this.items = this.table.items
-				this.pagination = this.table.pagination
-				this.sortRoute = this.table.sortRoute
-				this.editRoute = this.table.editRoute
-				this.destroyRoute = this.table.destroyRoute
-				if (this.headers) {
-					if (this.sortRoute && this.sortEnable)
-						this.headers = [{class: 'sort-td'}, ...this.headers]
-					if (this.editRoute)
-						this.headers.push({})
-					if (this.destroyRoute)
-						this.headers.push({})
-				}
-			},
+            setVariables() {
 
-			saveSort() {
-				let sortedList = this.items.map((element, index) => {
-					return {
-						id: element.id,
-						position: index
-					}
-				});
+                this.headers = [...this.table.headers]
+                this.items = this.table.items
+                this.pagination = this.table.pagination
 
-				let form = this.$inertia.form({sorted: sortedList});
-				form.post( route( this.sortRoute ), {
-					preserveScroll: true,
-					preserveState: true,
-					onSuccess: () => {
-						this.sortToggle();
-					},
-				});
-			},
+                Object.keys(this.routes).forEach( key => {
 
-			sortToggle() {
+                    let routeValue = this.currentRouteStr(key)
 
-				if ( this.pagination ) {
-					if ( !this.sortEnable ) {
-						if (this.pagination.per_page < this.pagination.total) {
-							this.$refs.pagination.showAll()
-						}
-					}
-					else {
-						this.$refs.pagination.showDefault()
-					}
-				}
+                    if ( !route().has(routeValue) || this.table.hideRoutes?.includes(key) ) {
+                        delete this.routes[key]
+                    }
+                    else {
+                        this.routes[key] = routeValue
+                        if (key == 'sort') {
+                            if (this.sortEnable) {
+                                this.headers = [{class: 'sort-td'}, ...this.headers]
+                            }
+                        }
+                        else {
+                            this.headers.push({})
+                        }
+                    }
+                })
+            },
 
-				this.sortEnable = !this.sortEnable
-				this.setVariables();
-			},
-		},
+            saveSort() {
+                let sortedList = this.items.map((element, index) => {
+                    return {
+                        id: element.id,
+                        position: index
+                    }
+                });
 
-	}
+                let form = this.$inertia.form({sorted: sortedList});
+                form.post( route( this.routes.sort ), {
+                    preserveScroll: true,
+                    preserveState: true,
+                    onSuccess: () => {
+                        this.sortToggle();
+                    },
+                });
+            },
+
+            sortToggle() {
+
+                if ( this.pagination ) {
+                    if ( !this.sortEnable ) {
+                        if (this.pagination.per_page < this.pagination.total) {
+                            this.$refs.pagination.showAll()
+                        }
+                    }
+                    else {
+                        this.$refs.pagination.showDefault()
+                    }
+                }
+
+                this.sortEnable = !this.sortEnable
+                this.setVariables();
+            },
+        },
+
+    }
 </script>

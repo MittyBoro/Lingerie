@@ -54,7 +54,7 @@ Route::name('front.')->namespace('Front')->group(function () {
         Route::get('order/{order:uuid}', 'OrderController@index')->name('order');
 
         Route::get('faq', 'FAQController@index')->name('faq');
-        Route::get('{path}',  'PageController@index')->where('path', '.*');
+        Route::get('{path}',  'PageController@index')->where('path', '.*')->name('page');
     });
 
 

@@ -53,8 +53,6 @@
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
-
-                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

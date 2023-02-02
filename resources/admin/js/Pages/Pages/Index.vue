@@ -18,11 +18,6 @@
                         <TData v-model="sp.element.title" @update:modelValue="update(sp.element)" />
                         <TData v-model="sp.element.slug" @update:modelValue="update(sp.element)" />
                         <TData v-text="sp.element.lang" class="uppercase font-bold text-gray-500" />
-                        <TData mini>
-                            <a :href="frontUrl(sp.element.slug)" target="_blank" class="text-gray-500 hover-link">
-                                <Icon icon="eye"/>
-                            </a>
-                        </TData>
                     </template>
                 </TTable>
 
@@ -43,7 +38,6 @@
 
         data() {
             return {
-                routePrefix: 'admin.pages.',
             }
         },
 
@@ -54,13 +48,9 @@
                         { key: 'title', text: 'Заголовок',  sortable: true },
                         { key: 'slug', text: 'Ярлык',  sortable: true },
                         { key: 'lang', text: 'Язык',  sortable: true },
-                        {},
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
-
-                    editRoute: this.currentRouteStr('edit'),
-                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

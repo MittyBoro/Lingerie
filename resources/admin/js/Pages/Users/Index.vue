@@ -60,9 +60,6 @@
                     ],
                     items: this.$page.props.list.data,
                     pagination: this.$page.props.list,
-
-                    editRoute: this.currentRouteStr('edit'),
-                    destroyRoute: this.currentRouteStr('destroy'),
                 }
             }
         },

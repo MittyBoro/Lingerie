@@ -77,10 +77,6 @@
             table() {
                 return {
                     items: this.list,
-
-                    sortRoute: this.routePrefix + 'sort',
-                    // editRoute: this.routePrefix + 'edit',
-                    // destroyRoute: this.routePrefix + 'destroy',
                 }
             },
         },
