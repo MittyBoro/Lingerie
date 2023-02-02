@@ -7,7 +7,6 @@ use Darryldecode\Cart\Cart;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 
@@ -50,7 +49,7 @@ class CartServiceProvider extends ServiceProvider implements DeferrableProvider
 
     private function cartId()
     {
-        $key = 'cart_id_' . App::getLocale();
+        $key = 'cart_id_' . locale();
 
         $cartId = Cookie::get($key);
 

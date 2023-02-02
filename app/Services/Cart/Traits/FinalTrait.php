@@ -53,7 +53,7 @@ trait FinalTrait
         })->values();
 
         $prodIds = $cartIds->pluck('product_id')->unique();
-        $prices = Product::pricesById($prodIds, App::getLocale());
+        $prices = Product::pricesById($prodIds, locale());
 
         $cartIds->each(function ($row) use ($prices) {
             $prod = $prices->find($row['product_id']);

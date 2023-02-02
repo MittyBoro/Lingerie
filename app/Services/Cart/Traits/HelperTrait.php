@@ -9,8 +9,8 @@ trait HelperTrait
         $model = $item->associatedModel;
 
         $options = collect($item->attributes->options)->map(function($opt) {
-            $type = __('front.'.$opt['type']);
-            $value = ($opt['type'] == 'color') ? __('front.colors.'.$opt['value']) : $opt['value'];
+            $type = trans('front.'.$opt['type']);
+            $value = ($opt['type'] == 'color') ? trans('front.colors.'.$opt['value']) : $opt['value'];
 
             $opt['string'] = $type . ': ' . $value;
 

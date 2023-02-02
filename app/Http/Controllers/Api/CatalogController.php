@@ -11,9 +11,9 @@ class CatalogController extends Controller
     public function index(Request $request, $slug = null)
     {
         $data = $request->all();
-        $data['categories'] = $slug ? ProductCategory::findForFront($slug, $this->getLang()) : null;
+        $data['categories'] = $slug ? ProductCategory::findForFront($slug, locale()) : null;
 
-        $products = Product::getCatalog($this->getLang(), $data);
+        $products = Product::getCatalog(locale(), $data);
 
         return view('elements.catalog_list', [
             'products' => $products,

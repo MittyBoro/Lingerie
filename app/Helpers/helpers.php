@@ -175,3 +175,11 @@ if (!function_exists('cyrillic_to_latin')) {
         return str_replace($cyr, $lat, $cyrillicString);
     }
 }
+
+if (!function_exists('locale')) {
+    function locale() {
+        return \App::getLocale();
+    }
+}
+
+

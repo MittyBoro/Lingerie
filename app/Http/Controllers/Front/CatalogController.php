@@ -22,7 +22,7 @@ class CatalogController extends Controller
 
     public function categories(Request $request, $slug = null)
     {
-        $category = ProductCategory::findForFront($slug, $this->getLang());
+        $category = ProductCategory::findForFront($slug, locale());
 
         $page = $this->replacePageData($request->get('page'), $category);
         $page->title = $category->title;
@@ -41,9 +41,9 @@ class CatalogController extends Controller
         $data = $request->all();
         $data['categories'] = $categoryId;
 
-        $products = Product::getCatalog($this->getLang(), $data);
+        $products = Product::getCatalog(locale(), $data);
 
-        $pricesRange = Product::minMaxPrice($this->getLang());
+        $pricesRange = Product::minMaxPrice(locale());
 
         $options = ProductOption::getPublic()->toArray();
 

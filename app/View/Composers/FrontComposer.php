@@ -12,12 +12,10 @@ use Illuminate\View\View;
 class FrontComposer
 {
     private $view;
-    protected $lang;
 
     public function compose(View $view)
     {
         $this->view = $view;
-        $this->lang = App::getLocale();
 
 
         $this->setLayoutValues();
@@ -28,8 +26,8 @@ class FrontComposer
     {
         $props = Prop::getByKeys('instagram');
 
-        $pages      = Page::getFrontList($this->lang);
-        $categories = ProductCategory::getFrontList($this->lang);
+        $pages      = Page::getFrontList( locale() );
+        $categories = ProductCategory::getFrontList( locale() );
 
         $footerCategories = $categories->take(3);
 

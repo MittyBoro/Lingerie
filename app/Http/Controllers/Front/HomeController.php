@@ -11,9 +11,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $products = Product::limit(10)
-                           ->getFrontList($this->getLang(), false, 'preview');
+                           ->getFrontList(locale(), false, 'preview');
 
-        $categories = ProductCategory::getFrontParentList($this->getLang());
+        $categories = ProductCategory::getFrontParentList(locale());
 
 
         return view('pages.home', [

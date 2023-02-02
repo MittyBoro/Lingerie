@@ -14,13 +14,11 @@ class CartService
     use HelperTrait;
     use FinalTrait;
 
-    private $lang;
     private $cart;
     private $session_key;
 
     public function __construct(Cart $cart, $session_key)
     {
-        $this->lang = App::getLocale();
         $this->cart = $cart;
         $this->session_key = $session_key;
     }

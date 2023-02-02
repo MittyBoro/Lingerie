@@ -9,7 +9,7 @@ class FAQController extends Controller
 {
     public function index(Request $request)
     {
-        $faq = FAQ::getFrontList($this->getLang());
+        $faq = FAQ::getFrontList(locale());
 
         return view('pages.faq', [
             'faq' => $faq,

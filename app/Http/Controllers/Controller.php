@@ -13,10 +13,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    protected function getLang()
-    {
-        return App::getLocale();
-    }
     protected function getFilter($requsst)
     {
         parse_str($requsst->get('filter'), $output);

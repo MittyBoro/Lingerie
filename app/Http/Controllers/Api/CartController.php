@@ -16,7 +16,7 @@ class CartController extends Controller
 
     public function store(Request $request, $id)
     {
-        $product = Product::findForCart($id, $this->getLang());
+        $product = Product::findForCart($id, locale());
 
         $validated = $request->validate([
             'options' => 'nullable|exists:product_options,id',
