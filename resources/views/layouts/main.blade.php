@@ -16,15 +16,17 @@
         <meta property="og:description" content="@yield('meta_description', '')">
         <meta property="og:type" content="@yield('meta_type', 'website')">
         @hasSection('meta_image')
-            <meta property="og:image" content="@yield('meta_image')" />
+        <meta property="og:image" content="@yield('meta_image')" />
         @endif
 
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;1,300&family=Playfair+Display&display=swap" rel="stylesheet">
+
+        <meta name="yandex-tableau-widget" content="logo=@vite_asset('images/icons/favicon.svg'), color=#FFF2F0">
+        <link rel="icon" type="image/x-icon" href="@vite_asset('images/icons/favicon.svg')">
+        <link rel="apple-touch-icon" sizes="152x152" href="@vite_asset('images/icons/favicon.svg')">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="@vite_asset('images/icons/favicon.svg')">
 
         @vite('resources/front/sass/style.sass')
         @vite('resources/front/js/app.js')
-
 
         <style>
             .preload-box {
