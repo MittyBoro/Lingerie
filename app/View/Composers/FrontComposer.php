@@ -33,7 +33,7 @@ class FrontComposer
 
         $footerCategories = $categories->take(3);
 
-        $cartCount = app('CartService')->count();
+        $cartCount = app('cart')->count();
 
         $this->view->with([
             'props'      => $props->toArray(),

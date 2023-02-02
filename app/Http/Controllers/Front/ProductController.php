@@ -14,7 +14,7 @@ class ProductController extends Controller
         $page = $this->replacePageData($request->get('page'), $product);
         $page->title = $product->title;
 
-        $cartMini = app('CartService')->getMini();
+        $cartMini = app('cart')->getMini();
 
         return view('pages.product', [
             'page' => $page,

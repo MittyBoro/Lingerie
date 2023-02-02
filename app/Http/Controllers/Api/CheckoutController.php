@@ -14,9 +14,9 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'items' => app('CartService')->totalItems(), // обновит данные по прайсу, если надо
-            'amount' => app('CartService')->total(),     // и получит их
-            'cart_id' => app('CartService')->cartId(),
+            'items' => app('cart')->totalItems(), // обновит данные по прайсу, если надо
+            'amount' => app('cart')->total(),     // и получит их
+            'cart_id' => app('cart')->cartId(),
             'currency' => config('app.currency'),
         ];
 

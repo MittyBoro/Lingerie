@@ -36,11 +36,11 @@ class CartController extends Controller
             ],
         ];
 
-        app('CartService')->store($data, $product);
+        app('cart')->store($data, $product);
 
         return [
-            'count' => app('CartService')->count(),
-            'mini' => app('CartService')->getMini(),
+            'count' => app('cart')->count(),
+            'mini' => app('cart')->getMini(),
         ];
     }
 
@@ -50,21 +50,21 @@ class CartController extends Controller
             'quantity' => 'integer|min:1',
         ]);
 
-        app('CartService')->update($cartId, $data['quantity']);
+        app('cart')->update($cartId, $data['quantity']);
 
         return $this->responseData();
     }
 
     public function destroy($cartId)
     {
-        app('CartService')->destroy($cartId);
+        app('cart')->destroy($cartId);
 
         return $this->responseData();
     }
 
     public function clear()
     {
-        app('CartService')->clear();
+        app('cart')->clear();
 
         return true;
     }
@@ -72,13 +72,13 @@ class CartController extends Controller
 
     public function final()
     {
-        return app('CartService')->final();
+        return app('cart')->final();
     }
 
     private function responseData()
     {
         return [
-            'data' => app('CartService')->get(0),
+            'data' => app('cart')->get(0),
         ];
     }
 
