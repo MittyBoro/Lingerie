@@ -20,9 +20,7 @@
                 </div>
                 <div class="cart-name-col c-text-col">
                     <a :href="item.url" class="cart-name">@{{ item.name }}</a>
-                    <div class="cart-attr gray">
-                        <span v-for="opt in item.options">@{{ opt.string }}</span>
-                    </div>
+                    <div class="cart-attr gray">@{{ item.options_string }}</div>
                 </div>
                 <div class="cart-count-col c-text-col">
                     <div class="c-ints-row">
