@@ -86,7 +86,7 @@ class CartService
 
     public function clearById($cartId)
     {
-        return \Cart::session($cartId)->clear();
+        return  $this->cart->session($cartId)->clear();
     }
 
     public function count()
@@ -147,8 +147,7 @@ class CartService
 
         $condtionItems = $this->condtions()->map(function ($item){
             return [
-                'name' => $item->getName(),
-                'type' => $item->getType(),
+                'name' => $item->getType(),
                 'price' => (float)$item->getValue(),
                 'quantity' => 1,
             ];

@@ -164,7 +164,7 @@ class Prop extends Model implements HasMedia
                    ?->value;
     }
 
-    public static function getMain(Model $model = null)
+    public static function list(Model $model = null)
     {
         return self::queryByModel($model)
                    ->get()

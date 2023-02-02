@@ -36,7 +36,7 @@ class PropSeeder extends Seeder
         $props[] = [
             'tab' => Prop::DEFAULT_TAB,
             'type' => 'string',
-            'key' =>'notification_email',
+            'key' =>'mail_to',
             'title' => 'Email для оповещений',
             'value' => ['string' => 'iboro770@gmail.com'],
         ];

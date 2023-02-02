@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Product\ProductOrder;
+use App\Models\Order;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ProductOrderPaid
+class OrderPaid
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -23,7 +23,7 @@ class ProductOrderPaid
      *
      * @return void
      */
-    public function __construct(ProductOrder $order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
     }

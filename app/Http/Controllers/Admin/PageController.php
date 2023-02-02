@@ -38,7 +38,7 @@ class PageController extends Controller
 
     public function show(Page $page)
     {
-        return redirect()->route('front.page', ['path' => $page->slug, 'lang' => $page->lang]);
+        return redirect()->route('front.pages', ['path' => $page->slug, 'lang' => $page->lang]);
     }
 
     public function edit(Page $page)

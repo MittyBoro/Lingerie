@@ -5,7 +5,7 @@
             <div class="swiper-wrapper">
                 @foreach ($prod['gallery'] ?? [] as $img)
                 <div class="swiper-slide">
-                    <a href="{{ route('front.product', $prod['slug']) }}" class="prod-image">
+                    <a href="{{ route('front.products', $prod['slug']) }}" class="prod-image">
                         <img src="{{ $img['thumb'] }}" alt="{{ $prod['title'] }} #{{ $loop->index }}">
                     </a>
                 </div>
@@ -21,7 +21,7 @@
             </div>
         @endif
     </div>
-    <a href="{{ route('front.product', $prod['slug']) }}" class="ci-name">{{ $prod['title'] }}</a>
+    <a href="{{ route('front.products', $prod['slug']) }}" class="ci-name">{{ $prod['title'] }}</a>
     <div class="ci-price">
         <span class="price-el" data-cy="{{cy()}}">@price($prod['price'])</span>
     </div>

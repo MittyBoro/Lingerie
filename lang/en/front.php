@@ -32,6 +32,8 @@ return [
 
     'shipping' => 'Shipping',
 
+    'order_accepted' => 'Order is accepted',
+
     'our_instagram' => 'Our Instagram',
 
     'for_clients' => 'For clients',

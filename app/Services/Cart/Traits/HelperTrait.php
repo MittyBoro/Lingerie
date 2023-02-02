@@ -20,7 +20,7 @@ trait HelperTrait
         return [
             'id' => $item->id,
             'product_id' => $model['id'],
-            'url' => route('front.product', $model['slug']),
+            'url' => route('front.products', $model['slug']),
             'preview' => $model['preview'],
             'name' => $item->name,
             'options' => $options,

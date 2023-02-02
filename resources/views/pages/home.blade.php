@@ -53,7 +53,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($products as $prod)
                     <div class="swiper-slide">
-                        <a href="{{ route('front.product', $prod['slug']) }}" class="n-item">
+                        <a href="{{ route('front.products', $prod['slug']) }}" class="n-item">
                             <div class="n-image">
                                 <img data-src="{{ $prod['preview'] }}" alt="" class="swiper-lazy">
                             </div>

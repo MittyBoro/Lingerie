@@ -123,7 +123,7 @@ class YooKassaPayment implements PaymentInterface
             return $this->getStatusByKey( $payment->getStatus() );
         } catch (\Exception $e) {
             logger()->error($e->getMessage());
-            return ProductOrder::STATUS_CANCELED;
+            return Order::STATUS_CANCELED;
         }
     }
 

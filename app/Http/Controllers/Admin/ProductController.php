@@ -46,7 +46,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return redirect()->route('front.product', ['slug' => $product->slug, 'lang' => $this->getListLang()]);
+        return redirect()->route('front.products', ['slug' => $product->slug, 'lang' => $this->getListLang()]);
     }
 
     public function edit(Product $product)

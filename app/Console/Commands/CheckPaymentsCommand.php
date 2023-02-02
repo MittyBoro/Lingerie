@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Product\ProductOrder;
+use App\Models\Order;
 use App\Services\Payment\Payment;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
@@ -41,14 +41,14 @@ class CheckPaymentsCommand extends Command
      */
     public function handle()
     {
-        $ordres = ProductOrder::where('status', ProductOrder::STATUS_PENDING)
+        $ordres = Order::where('status', Order::STATUS_PENDING)
                         ->where( 'created_at', '<=', Carbon::now()->subMinutes(5))
                         ->latest()
                         ->get();
 
         // dd($ordres->count());
 
-        $ordres->each(function (ProductOrder $order) {
+        $ordres->each(function (Order $order) {
             $this->updateStatus($order);
         });
     }

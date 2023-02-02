@@ -65,11 +65,10 @@ Route::middleware(['admin.role:editor'])
 
     // проверка внешнего вида писем
     Route::prefix('mail')->group(function () {
-
-        Route::get('product/{id?}', function ($id = null) {
+        Route::get('order/{id?}', function ($id = null) {
             $invoice = App\Models\Order::isPaid()->latest();
             $invoice = $id ? $invoice->findOrFail($id) : $invoice->first();
-            return new App\Mail\ProductOrderPaid($invoice, null);
+            return new App\Mail\OrderPaid($invoice, null);
         });
     });
 

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\ProductOrderPaid;
+use App\Events\OrderPaid;
 
 use App\Contracts\OrderInterface;
 use App\Contracts\PaymentStatusInterface;
@@ -53,9 +53,9 @@ class Order extends Model implements PaymentStatusInterface, OrderInterface
         static::saving( function($model)
         {
             if ($model->status != $model->getOriginal('status')) {
-                // if ($model->status == self::STATUS_SUCCESS) {
-                //     event(new ProductOrderPaid($model));
-                // }
+                if ($model->status == self::STATUS_SUCCESS) {
+                    event(new OrderPaid($model));
+                }
             }
         });
     }

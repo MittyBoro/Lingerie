@@ -22,9 +22,9 @@ class EventServiceProvider extends ServiceProvider
             \App\Listeners\TransferGuestCartToUser::class
         ],
 
-        \App\Events\ProductOrderPaid::class => [
-            \App\Listeners\Cart\SendProductOrderMail::class,
-            \App\Listeners\Cart\ClearUserCart::class,
+        \App\Events\OrderPaid::class => [
+            \App\Listeners\SendOrderMail::class,
+            \App\Listeners\ClearCart::class,
         ],
     ];
 

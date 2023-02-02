@@ -8,9 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
 use App\Models\Prop;
-use App\Models\FeedbackOrder;
+use App\Models\Order;
 
-class FeedbackOrderSend extends Mailable
+class OrderPaid extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,12 +18,12 @@ class FeedbackOrderSend extends Mailable
     public $order;
     public $subject;
 
-    public function __construct(FeedbackOrder $order)
+    public function __construct(Order $order)
     {
         $this->props = Prop::list();
         $this->order = $order;
 
-        $this->subject = "«{$this->order->form_name}» – новая заявка";
+        $this->subject = trans('front.order_accepted');
     }
 
     /**
@@ -34,6 +34,10 @@ class FeedbackOrderSend extends Mailable
     public function build()
     {
         return $this->subject($this->subject)
-                    ->view('emails.feedback_orders');
+                    ->view('emails.order', [
+                        'bgColor' => '#FFF2F0',
+                        'primaryColor' => '#DEA19A',
+                        'secondaryColor' => '#8D9041',
+                    ]);
     }
 }

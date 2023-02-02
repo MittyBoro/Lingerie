@@ -32,6 +32,8 @@ return [
 
     'shipping' => 'Доставка',
 
+    'order_accepted' => 'Заказ принят',
+
     'our_instagram' => 'Наш Instagram',
 
     'for_clients' => 'Клиентам',

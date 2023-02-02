@@ -21,3 +21,14 @@ if ( !function_exists('cy') ) {
         return config('app.currency');
     }
 }
+
+if ( !function_exists('cySymb') ) {
+    function cySymb($cy) {
+        if ($cy == 'usd')
+            return '$';
+        if ($cy == 'rub')
+            return '₽';
+
+        return $cy;
+    }
+}

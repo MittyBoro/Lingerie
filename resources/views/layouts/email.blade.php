@@ -16,7 +16,7 @@
     <title></title>
 
         <style type="text/css">
-            table, td { color: #000000; } a { color: #c76ffb; text-decoration: underline; } @media (max-width: 480px) { #u_row_1 .v-row-columns-background-color-background-color { background-color: #ffffff !important; } #u_column_1 .v-col-border { border-top: 0px solid transparent !important;border-left: 0px solid transparent !important;border-right: 0px solid transparent !important;border-bottom: 10px solid #faf2fe !important; } #u_row_17 .v-row-columns-background-color-background-color { background-color: #ffffff !important; } #u_column_21 .v-col-border { border-top: 0px solid transparent !important;border-left: 0px solid transparent !important;border-right: 0px solid transparent !important;border-bottom: 10px solid #faf2fe !important; } #u_content_menu_2 .v-container-padding-padding { padding: 10px !important; } #u_content_menu_2 .v-font-size { font-size: 10px !important; } #u_content_menu_2 .v-padding { padding: 0px 3px !important; } #u_content_social_1 .v-container-padding-padding { padding: 20px 10px 0px !important; } #u_row_2305 h1.v-font-size {font-size: 16px !important;} }
+            table, td { color: #000000; } a { color: {{ $secondaryColor }}; text-decoration: underline; } @media (max-width: 480px) { #u_row_1 .v-row-columns-background-color-background-color { background-color: #ffffff !important; } #u_column_1 .v-col-border { border-top: 0px solid transparent !important;border-left: 0px solid transparent !important;border-right: 0px solid transparent !important;border-bottom: 10px solid {{ $bgColor }} !important; } #u_row_17 .v-row-columns-background-color-background-color { background-color: #ffffff !important; } #u_column_21 .v-col-border { border-top: 0px solid transparent !important;border-left: 0px solid transparent !important;border-right: 0px solid transparent !important;border-bottom: 10px solid {{ $bgColor }} !important; } #u_content_menu_2 .v-container-padding-padding { padding: 10px !important; } #u_content_menu_2 .v-font-size { font-size: 10px !important; } #u_content_menu_2 .v-padding { padding: 0px 3px !important; } #u_content_social_1 .v-container-padding-padding { padding: 20px 10px 0px !important; } #u_row_2305 h1.v-font-size {font-size: 16px !important;} }
 @media only screen and (min-width: 620px) {
     .u-row {
         width: 600px !important;
@@ -95,14 +95,14 @@ a[x-apple-data-detectors='true'] {
 
 </head>
 
-<body class="clean-body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #faf2fe;color: #000000">
+<body class="clean-body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: {{ $bgColor }};color: #000000">
     <!--[if IE]><div class="ie-container"><![endif]-->
     <!--[if mso]><div class="mso-container"><![endif]-->
-    <table style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: #faf2fe;width:100%" cellpadding="0" cellspacing="0">
+    <table style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 320px;Margin: 0 auto;background-color: {{ $bgColor }};width:100%" cellpadding="0" cellspacing="0">
     <tbody>
     <tr style="vertical-align: top">
         <td style="width:100%; word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #faf2fe;"><![endif]-->
+        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: {{ $bgColor }};"><![endif]-->
 
 
 <div id="u_row_1" class="u-row-container" style="padding: 0px;background-color: transparent">
@@ -110,10 +110,10 @@ a[x-apple-data-detectors='true'] {
         <div style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
             <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr class="v-row-columns-background-color-background-color" style="background-color: transparent;"><![endif]-->
 
-<!--[if (mso)|(IE)]><td align="center" width="600" class="v-col-border" style="background-color: #ffffff;width: 600px;padding: 0px;border-top: 10px solid #faf2fe;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid #faf2fe;" valign="top"><![endif]-->
+<!--[if (mso)|(IE)]><td align="center" width="600" class="v-col-border" style="background-color: #ffffff;width: 600px;padding: 0px;border-top: 10px solid {{ $bgColor }};border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid {{ $bgColor }};" valign="top"><![endif]-->
 <div id="u_column_1" class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
     <div style="background-color: #ffffff;width: 100% !important;">
-    <!--[if (!mso)&(!IE)]><!--><div class="v-col-border" style="padding: 0px;border-top: 30px solid #faf2fe;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid #faf2fe;"><!--<![endif]-->
+    <!--[if (!mso)&(!IE)]><!--><div class="v-col-border" style="padding: 0px;border-top: 30px solid {{ $bgColor }};border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid {{ $bgColor }};"><!--<![endif]-->
 
 <table style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
     <tbody>
@@ -124,7 +124,7 @@ a[x-apple-data-detectors='true'] {
     <tr>
         <td style="padding-right: 0px;padding-left: 0px;" align="center">
             <a href="{{ config('app.url') }}" target="_blank">
-            <img align="center" border="0" src="{{ asset('images/logo.png') }}" alt="AleVi" title="AleVi" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 20%;max-width: 112px;" width="112"/>
+            <img align="center" border="0" src="@vite_asset('images/icons/logo.png')" alt="{{ config('app.name') }}" title="{{ config('app.name') }}" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 70%;max-width: 252px;" width="112"/>
             </a>
         </td>
     </tr>
@@ -151,12 +151,12 @@ a[x-apple-data-detectors='true'] {
         <div style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
             <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr class="v-row-columns-background-color-background-color" style="background-color: transparent;"><![endif]-->
 
-<!--[if (mso)|(IE)]><td align="center" width="600" class="v-col-border" style="background-color: #ffffff;width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid #faf2fe;" valign="top"><![endif]-->
+<!--[if (mso)|(IE)]><td align="center" width="600" class="v-col-border" style="background-color: #ffffff;width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid {{ $bgColor }};" valign="top"><![endif]-->
 <div id="u_column_21" class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
     <div style="background-color: #ffffff;width: 100% !important;">
-    <!--[if (!mso)&(!IE)]><!--><div class="v-col-border" style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid #faf2fe;"><!--<![endif]-->
+    <!--[if (!mso)&(!IE)]><!--><div class="v-col-border" style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 10px solid {{ $bgColor }};"><!--<![endif]-->
 
-<table id="u_content_menu_2" style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+{{-- <table id="u_content_menu_2" style="font-family:'Montserrat',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
     <tbody>
         <tr>
             <td class="v-container-padding-padding" style="width:100%;overflow-wrap:break-word;word-break:break-word;padding:14px;font-family:'Montserrat',sans-serif;" align="left">
@@ -166,7 +166,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'shop') }}" target="_blank" style="padding:0px 4px;display:inline;color:#b872e2;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ route('front.pages', 'shop') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Каталог
         </a>
 
@@ -175,7 +175,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'distributors') }}" target="_blank" style="padding:0px 4px;display:inline;color:#b872e2;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ route('front.pages', 'distributors') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Дистрибьюторы
         </a>
 
@@ -184,7 +184,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'franchisee') }}" target="_blank" style="padding:0px 4px;display:inline;color:#b872e2;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ route('front.pages', 'franchisee') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Франчайзи
         </a>
 
@@ -193,7 +193,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'news') }}" target="_self" style="padding:0px 4px;display:inline;color:#b872e2;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ route('front.pages', 'news') }}" target="_self" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Блог
         </a>
 
@@ -202,7 +202,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'about') }}" target="_blank" style="padding:0px 4px;display:inline;color:#b872e2;font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ route('front.pages', 'about') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             О нас
         </a>
 
@@ -210,7 +210,7 @@ a[x-apple-data-detectors='true'] {
 
 
 <!--[if (mso)|(IE)]></tr></table><![endif]-->
-</div>
+</div> --}}
 
             </td>
         </tr>
@@ -291,10 +291,10 @@ a[x-apple-data-detectors='true'] {
 
 
 
-<div class="u-row-container" style="padding: 0px;background-color: #c790e7">
+<div class="u-row-container" style="padding: 0px;background-color: {{ $primaryColor }}">
     <div class="u-row v-row-columns-background-color-background-color" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
         <div style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: #c790e7;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr class="v-row-columns-background-color-background-color" style="background-color: #ffffff;"><![endif]-->
+            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: {{ $primaryColor }};" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr class="v-row-columns-background-color-background-color" style="background-color: #ffffff;"><![endif]-->
 
 <!--[if (mso)|(IE)]><td align="center" width="600" class="v-col-border" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
 <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
@@ -332,10 +332,10 @@ a[x-apple-data-detectors='true'] {
 
 
 
-<div class="u-row-container" style="padding: 0px;background-color: #c790e7">
+<div class="u-row-container" style="padding: 0px;background-color: {{ $primaryColor }}">
     <div class="u-row v-row-columns-background-color-background-color" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;">
         <div style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: #c790e7;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr class="v-row-columns-background-color-background-color" style="background-color: transparent;"><![endif]-->
+            <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: {{ $primaryColor }};" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:600px;"><tr class="v-row-columns-background-color-background-color" style="background-color: transparent;"><![endif]-->
 
 <!--[if (mso)|(IE)]><td align="center" width="600" class="v-col-border" style="width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
 <div class="u-col u-col-100" style="max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;">
@@ -351,35 +351,14 @@ a[x-apple-data-detectors='true'] {
     <div style="display: table; max-width:125px;">
     <!--[if (mso)|(IE)]><table width="125" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-collapse:collapse;" align="center"><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:125px;"><tr><![endif]-->
 
-
-        <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 10px;" valign="top"><![endif]-->
-        <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 10px">
-            <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                <a href="{{ $props['vk'] }}" title="VK" target="_blank">
-                    <img src="{{ asset('images/vk.png') }}" alt="VK" title="VK" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                </a>
-            </td></tr>
-        </tbody></table>
-        <!--[if (mso)|(IE)]></td><![endif]-->
-
-        <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 10px;" valign="top"><![endif]-->
-        <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 10px">
-            <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                <a href="{{ $props['vk_group'] }}" title="VK" target="_blank">
-                    <img src="{{ asset('images/vk.png') }}" alt="VK" title="VK" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
-                </a>
-            </td></tr>
-        </tbody></table>
-        <!--[if (mso)|(IE)]></td><![endif]-->
-
         <!--[if (mso)|(IE)]><td width="32" style="width:32px; padding-right: 0px;" valign="top"><![endif]-->
-        {{-- <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
+        <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
             <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
                 <a href="{{ $props['instagram'] }}" title="Instagram" target="_blank">
-                    <img src="{{ asset('images/instagram.png') }}" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+                    <img src="@vite_asset('/images/icons/instagram.png')" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                 </a>
             </td></tr>
-        </tbody></table> --}}
+        </tbody></table>
         <!--[if (mso)|(IE)]></td><![endif]-->
 
 
@@ -398,7 +377,7 @@ a[x-apple-data-detectors='true'] {
             <td class="v-container-padding-padding" style="width:100%; overflow-wrap:break-word;word-break:break-word;padding:10px 10px 20px;font-family:'Montserrat',sans-serif;" align="left">
 
     <div style="color: #ffffff; line-height: 180%; text-align: center; word-wrap: break-word;">
-        <p style="line-height: 180%; font-size: 14px;"><span style="font-size: 12px; line-height: 21.6px;"><span style="font-size: 12px; line-height: 21.6px; color: #ffffff;"><a style="color: #ffffff;" href="{{ config('app.url') }}" target="_blank" rel="noopener">AleVi.su</a></span> &copy; {{ date('Y') }}</span></p>
+        <p style="line-height: 180%; font-size: 14px;"><span style="font-size: 12px; line-height: 21.6px;"><span style="font-size: 12px; line-height: 21.6px; color: #ffffff;"><a style="color: #ffffff;" href="{{ config('app.url') }}" target="_blank" rel="noopener">{{ config('app.name') }}</a></span> &copy; {{ date('Y') }}</span></p>
     </div>
 
             </td>

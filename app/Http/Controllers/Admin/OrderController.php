@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Models\Order;
-use App\Models\User;
-use App\Services\Payment\Payment;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
@@ -30,15 +28,15 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update(Request $request, Order $productOrder)
+    public function update(Request $request, Order $order)
     {
         $data = $request->validate([
             'status' => ['required', 'string', Rule::in(Order::statuses())]
         ]);
 
-        $productOrder->load(['items']);
+        $order->load(['items']);
 
-        $productOrder->update($data);
+        $order->update($data);
 
         return back();
     }

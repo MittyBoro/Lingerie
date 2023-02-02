@@ -49,12 +49,12 @@ Route::name('front.')->namespace('Front')->group(function () {
         Route::get('categories/{slug?}', 'CatalogController@categories')
                             ->name('categories');
 
-        Route::get('product/{slug?}', 'ProductController@index')->name('product');
+        Route::get('product/{slug?}', 'ProductController@index')->name('products');
 
-        Route::get('order/{order:uuid}', 'OrderController@index')->name('order');
+        Route::get('order/{order:uuid}', 'OrderController@index')->name('orders');
 
         Route::get('faq', 'FAQController@index')->name('faq');
-        Route::get('{path}',  'PageController@index')->where('path', '.*')->name('page');
+        Route::get('{path}',  'PageController@index')->where('path', '.*')->name('pages');
     });
 
 
