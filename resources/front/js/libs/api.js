@@ -10,9 +10,18 @@ export default {
 
     fetchArgs( ...args ) {
         return fetch( ...args )
-                .then( response => {
+                .then( async response => {
+                    const contentType = response.headers.get("content-type");
                     if (response.ok) {
                         return response;
+                    }
+                    if (contentType && contentType.indexOf("application/json") !== -1) {
+                        let json = await response.json()
+
+                        if (json.errors) {
+                            let errors = Object.values(json.errors);
+                            throw new Error(errors.flat().join("\n"));
+                        }
                     }
                     throw new Error('Something went wrong');
                 } )
