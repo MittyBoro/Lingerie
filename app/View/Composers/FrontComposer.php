@@ -24,7 +24,11 @@ class FrontComposer
 
     private function setLayoutValues()
     {
-        $props = Prop::getByKeys('instagram');
+        $props = Prop::getByKeys([
+            'body_code',
+            'head_code',
+            'instagram',
+        ]);
 
         $pages      = Page::getFrontList( locale() );
         $categories = ProductCategory::getFrontList( locale() );

@@ -72,13 +72,14 @@
         </style>
 
 
-        {{-- <link rel="stylesheet" type="text/css" href="{{ mix('css/style.css', 'assets') }}"> --}}
-
-        @yield('headcode')
-        {{-- {!! $props['head_code'] ?? '' !!} --}}
+        @yield('head_code')
+        {!! $props['head_code'] ?? '' !!}
 
     </head>
     <body class="preload page-{{ $viewName }} @yield('body_class')">
+        @auth
+            @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
+        @endauth
 
         <div class="preload-box">
             <a href="/" class="loading-logo">
@@ -87,9 +88,6 @@
             <div class="loading-circle"></div>
             <div class="loading-text">@lang('front.loading')...</div>
         </div>
-        {{-- @auth
-            @includeWhen(Auth::user()->is_editor, 'elements.admin_row')
-        @endauth --}}
 
         <div class="wrapper">
             <div class="header-box" toggling>
@@ -209,17 +207,11 @@
 
         </div>
 
-        {{-- <script>
-            const config = { mainAddress: @json( $props['map_addresses'] ), };
-            const cartCount = @json( $cart_count ?? null );
-        </script> --}}
+        @yield('body_code')
 
-        {{-- <script src="{{ mix('js/app.js', 'assets') }}" defer></script> --}}
+        {!! $props['body_code'] ?? '' !!}
 
-        @yield('bodycode')
-
-        {{-- {!! $props['body_code'] ?? '' !!} --}}
-        @auth
+        {{-- @auth
             <div class="bottom-box" style="display: grid; text-align: center; gap: 2px; padding: 30px">
                 <a href="/">home</a>
                 <a href="/catalog">catalog</a>
@@ -231,7 +223,7 @@
                 <a href="/success">success</a>
                 <a href="/404">404</a>
             </div>
-        @endauth
+        @endauth --}}
 
     </body>
 </html>

@@ -5,7 +5,7 @@
 @section('meta_keywords', $page['meta_keywords'] ?? '')
 @section('meta_image', $product['preview'] ?? '')
 
-@section('headcode')
+@section('head_code')
     @vite('resources/front/js/product.js')
 @endsection
 
@@ -163,7 +163,7 @@
 @endsection
 
 
-@section('bodycode')
+@section('body_code')
     <script>
         const $id = @json($product['id']);
         const $options = @json($product['opts']);
