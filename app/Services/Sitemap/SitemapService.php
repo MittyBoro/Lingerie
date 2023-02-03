@@ -6,10 +6,9 @@ use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use Carbon\Carbon;
 
-use App\Models\Product\Product;
-use App\Models\Category;
+use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\Page;
-use App\Models\Post;
 
 class SitemapService
 {
@@ -17,16 +16,13 @@ class SitemapService
     public static function generate()
     {
         $products = Product::isPublished()->get();
-        $news = Post::isPublished()->get();
 
-        $pageSlugs = ['about', 'shop', 'news', 'contacts', 'franchisee', 'distributors', 'contract', 'franchising', ];
+        $pageSlugs = ['delivery', 'catalog', 'faq', ];
         $pages = Page::whereIn('slug', $pageSlugs)->get();
-
-        $cities = Cities::list();
 
         $shopUpd = $products->sortBy('updated_at')->last()->updated_at;
 
-        $categories = Category::getAllCategories(Product::class);
+        $categories = ProductCategory::getAllCategories(Product::class);
 
         $sitemap = Sitemap::create()
                                 ->add(Url::create('/')
@@ -36,7 +32,7 @@ class SitemapService
 
 
         $pages->each(function ($item) use ($sitemap, $shopUpd) {
-            $updated_at = $item->slug == 'shop' ? $shopUpd : $item->updated_at;
+            $updated_at = $item->slug == 'catalog' ? $shopUpd : $item->updated_at;
 
             $sitemap->add(Url::create("/{$item->slug}")
                             ->setLastModificationDate($updated_at)
@@ -52,22 +48,8 @@ class SitemapService
                             ->setPriority(0.6));
         });
 
-        $news->each(function ($item) use ($sitemap) {
-            $sitemap->add(Url::create("/article/{$item->slug}")
-                            ->setLastModificationDate($item->updated_at)
-                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                            ->setPriority(0.4));
-        });
-
         $categories->each(function ($item) use ($sitemap, $shopUpd) {
-            $sitemap->add(Url::create("/category/{$item->slug}")
-                            ->setLastModificationDate($shopUpd)
-                            ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-                            ->setPriority(0.4));
-        });
-
-        $cities->each(function ($item) use ($sitemap, $shopUpd) {
-            $sitemap->add(Url::create("/city-shop/{$item['slug']}")
+            $sitemap->add(Url::create("/categories/{$item->slug}")
                             ->setLastModificationDate($shopUpd)
                             ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
                             ->setPriority(0.4));

@@ -26,13 +26,17 @@
                 <div class="wh-subinfo"></div>
             @elseif ($order['status'] == $order::STATUS_PENDING)
                 <div class="h1 gray">@lang('front.order_page.pending')</div>
-                <div class="wh-subinfo"></div>
+                <div class="wh-subinfo">
+                    @isset($order['redirect_url'])
+                        @lang('front.order_page.continue_link', ['link' => $order['redirect_url']])
+                    @endisset
+                </div>
             @else
                 <div class="h1 red">@lang('front.order_page.canceled')</div>
                 <div class="wh-subinfo"></div>
             @endif
 
-            <a href="/catalog" class="btn">@lang('front.back_to_shopping')</a>
+            <a href="{{ localRoute('front.pages', 'catalog') }}" class="btn">@lang('front.back_to_shopping')</a>
         </div>
     </div>
 </div>

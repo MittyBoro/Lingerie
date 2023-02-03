@@ -17,10 +17,10 @@
         <div class="prod-grid grid-12">
             <div class="prod-main-col prod-main-col-mini">
                 <div class="breadcrumbs">
-                    <a href="/">@lang('front.home')</a>
+                    <a href="{{ localRoute('front.home') }}">@lang('front.home')</a>
                     @foreach ($product['bread_cats'] as $cat)
                     <span class="delimeter">/</span>
-                    <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
+                    <a href="{{ localRoute('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
                     @endforeach
                 </div>
                 <div class="prod-title">{{ $product['title'] }}</div>
@@ -29,10 +29,10 @@
             <div class="prod-main-col left-col" :class="{'loading-blink': loading}">
                 <div class="pmc-top">
                     <div class="breadcrumbs">
-                        <a href="/">@lang('front.home')</a>
+                        <a href="{{ localRoute('front.home') }}">@lang('front.home')</a>
                         @foreach ($product['bread_cats'] as $cat)
                         <span class="delimeter">/</span>
-                        <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
+                        <a href="{{ localRoute('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
                         @endforeach
                     </div>
                     <div class="prod-title"><h1>{{ $product['title'] }}</h1></div>

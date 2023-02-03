@@ -17,7 +17,7 @@
     <div class="container">
         <div class="middle-row">
             <div class="h1">{{ $page['props']['home_title'] }}</div>
-            <a href="/catalog" class="btn">@lang('front.to_catalog')</a>
+            <a href="{{ localRoute('front.pages', 'catalog') }}" class="btn">@lang('front.to_catalog')</a>
         </div>
     </div>
 </div>
@@ -53,7 +53,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($products as $prod)
                     <div class="swiper-slide">
-                        <a href="{{ route('front.products', $prod['slug']) }}" class="n-item">
+                        <a href="{{ localRoute('front.products', $prod['slug']) }}" class="n-item">
                             <div class="n-image">
                                 <img src="{{ $prod['preview'] }}" alt="" loading="lazy">
                             </div>
@@ -120,7 +120,7 @@
         </div>
         <div class="cats-list grid-4">
             @foreach ($homeCategories as $cat)
-                <a href="{{ route('front.categories', $cat['slug']) }}" class="cat-item">
+                <a href="{{ localRoute('front.categories', $cat['slug']) }}" class="cat-item">
                     <div class="prod-image">
                         <img src="{{ $cat['preview'] }}" alt="{{ $cat['title'] }}" loading="lazy">
                     </div>

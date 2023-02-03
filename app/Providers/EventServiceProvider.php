@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         \Illuminate\Auth\Events\Login::class => [
-            \App\Listeners\TransferGuestCartToUser::class
+            // \App\Listeners\TransferGuestCartToUser::class
         ],
 
         \App\Events\OrderPaid::class => [

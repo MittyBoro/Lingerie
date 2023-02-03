@@ -31,7 +31,7 @@ const app = createApp({
 
             catalogLink: {
                 slug: '',
-                href: '/catalog',
+                href: this.localePath('catalog'),
             }
         };
     },

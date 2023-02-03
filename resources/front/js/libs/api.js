@@ -1,6 +1,6 @@
 export default {
 
-    base_url: '/api',
+    base_url: '/api/' + $lang,
     headers: {
         "X-Requested-With": "XMLHttpRequest",
         'Content-Type': 'application/json;charset=utf-8',

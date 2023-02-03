@@ -71,8 +71,8 @@ class Kernel extends HttpKernel
         'admin.role' => \App\Http\Middleware\Admin\Role::class,
         'admin.category' => \App\Http\Middleware\Admin\Category::class,
 
-        'locale' => \App\Http\Middleware\Locale::class,
+        'locale' => \App\Http\Middleware\SetLocale::class,
 
-        'only_page' => \App\Http\Middleware\OnlyPage::class,
+        'page' => \App\Http\Middleware\SetPage::class,
     ];
 }

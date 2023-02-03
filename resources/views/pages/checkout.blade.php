@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="checkout-botom-row">
-                    <a href="/cart" class="btn btn-mini">@lang('front.cart_page.back_to_cart')</a>
+                    <a href="{{ localRoute('front.pages', 'cart') }}" class="btn btn-mini">@lang('front.cart_page.back_to_cart')</a>
                     <img src="@vite_asset('images/icons/arrow-line-right.svg')" alt="" class="to-svg icon">
                 </div>
             </div>

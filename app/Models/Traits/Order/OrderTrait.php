@@ -60,6 +60,11 @@ trait OrderTrait
         return $this->payemnt_data;
     }
 
+    public function redirectUrl()
+    {
+        return ;
+    }
+
     public function setPaymentData($value)
     {
         $this->update([

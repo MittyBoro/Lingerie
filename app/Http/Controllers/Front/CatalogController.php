@@ -20,9 +20,9 @@ class CatalogController extends Controller
         ]);
     }
 
-    public function categories(Request $request, $slug = null)
+    public function categories(Request $request)
     {
-        $category = ProductCategory::findForFront($slug, locale());
+        $category = ProductCategory::findForFront($request->slug, locale());
 
         $page = $this->replacePageData($request->get('page'), $category);
         $page->title = $category->title;
@@ -31,7 +31,7 @@ class CatalogController extends Controller
 
         return view('pages.catalog', [
             'page' => $page,
-            'slug' => $slug,
+            'slug' => $request->slug,
             ...$content,
         ]);
     }

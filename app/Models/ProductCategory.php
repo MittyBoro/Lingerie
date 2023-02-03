@@ -71,7 +71,7 @@ class ProductCategory extends Model implements HasMedia
     protected function href(): Attribute
     {
         return Attribute::make(
-                    get: fn () => route('front.categories', $this->slug)
+                    get: fn () => localRoute('front.categories', $this->slug)
                 );
     }
     protected function preview(): Attribute

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $request, $slug = null)
+    public function index(Request $request)
     {
-        $product = Product::frontBySlug($slug, locale());
+        $product = Product::frontBySlug($request->slug, locale());
 
         $page = $this->replacePageData($request->get('page'), $product);
         $page->title = $product->title;

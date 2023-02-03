@@ -44,13 +44,13 @@
                 <div class="cart-price">
                     <span class="price-el" data-cy="{{cy()}}">@{{ formatPrice(subtotal) }}</span>
                 </div>
-                <a href="/checkout" class="btn">@lang('front.cart_page.checkout')</a>
+                <a href="{{ localRoute('front.pages', 'checkout') }}" class="btn">@lang('front.cart_page.checkout')</a>
             </div>
         </div>
         <div v-else class="cart-empty white-box">
             <div class="white-item">
                 <div class="h2">@lang('front.cart_page.cart_empty')</div>
-                <a href="/catalog" class="btn">@lang('front.to_catalog')</a>
+                <a href="{{ localRoute('front.pages', 'catalog') }}" class="btn">@lang('front.to_catalog')</a>
             </div>
         </div>
     </div>

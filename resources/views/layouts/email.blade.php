@@ -166,7 +166,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'shop') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ localRoute('front.pages', 'shop') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Каталог
         </a>
 
@@ -175,7 +175,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'distributors') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ localRoute('front.pages', 'distributors') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Дистрибьюторы
         </a>
 
@@ -184,7 +184,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'franchisee') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ localRoute('front.pages', 'franchisee') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Франчайзи
         </a>
 
@@ -193,7 +193,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'news') }}" target="_self" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ localRoute('front.pages', 'news') }}" target="_self" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             Блог
         </a>
 
@@ -202,7 +202,7 @@ a[x-apple-data-detectors='true'] {
 
     <!--[if (mso)|(IE)]><td style="padding:0px 4px"><![endif]-->
 
-        <a href="{{ route('front.pages', 'about') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
+        <a href="{{ localRoute('front.pages', 'about') }}" target="_blank" style="padding:0px 4px;display:inline;color:{{ $primaryColor }};font-family:'Montserrat',sans-serif;font-size:12px;text-decoration:none"  class="v-padding v-font-size">
             О нас
         </a>
 

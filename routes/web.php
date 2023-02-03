@@ -4,66 +4,30 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::middleware('locale')
+    ->name('front.')
+    ->namespace('Front')
+    ->group(function () {
 
-Route::name('front.')->namespace('Front')->group(function () {
+    Route::post('locale', fn () => back())->name('locale');
 
-        // Route::view('/', 'pages.home');
-        // Route::view('catalog', 'pages.catalog');
-        // Route::view('product', 'pages.product');
-        // Route::view('cart', 'pages.cart');
-        // Route::view('checkout', 'pages.checkout');
-        // Route::view('page', 'pages.page');
-        // Route::view('faq', 'pages.faq');
-        // Route::view('success', 'pages.success');
-        // Route::view('404', 'pages.404');
+    Route::prefix('/{lang?}')->group(function () {
 
-        // Route::view('category', 'pages.shop.catalog');
+        Route::middleware('page')->group(function () {
 
-    // Route::namespace('Cart')->group(function () {
-    //     Route::middleware(['auth'])->get('checkout', 'CheckoutController@index')->name('checkout');
+            Route::get('/', 'HomeController@index')->name('home');
+            Route::get('catalog', 'CatalogController@index')->name('catalog');
+            Route::get('categories/{slug?}', 'CatalogController@categories')
+                                ->name('categories');
 
-    //     Route::any('payment/webhook/{type}', 'PaymentController@webhook')->name('payment.webhook');
-    //     Route::middleware(['auth'])->any('payment/return/{order}', 'PaymentController@return')->name('payment.return');
-    // });
+            Route::get('product/{slug?}', 'ProductController@index')->name('products');
 
-    // Route::get('search', 'SearchController@index')->name('search');
-    Route::get('/locale/{locale}', fn () => back())->name('locale');
+            Route::get('order/{order:uuid}', 'OrderController@index')->name('orders');
 
-
-    /*
-        home     DefaultController
-        catalog  CatalogController
-        product  ProductController
-        cart     DefaultController
-        checkout DefaultController
-        page     DefaultController
-        faq      FAQController
-        success  DefaultController
-     */
-
-
-    Route::middleware('only_page')->group(function () {
-
-        Route::get('/', 'HomeController@index')->name('home');
-        Route::get('catalog', 'CatalogController@index')->name('catalog');
-        Route::get('categories/{slug?}', 'CatalogController@categories')
-                            ->name('categories');
-
-        Route::get('product/{slug?}', 'ProductController@index')->name('products');
-
-        Route::get('order/{order:uuid}', 'OrderController@index')->name('orders');
-
-        Route::get('faq', 'FAQController@index')->name('faq');
-        Route::get('{path}',  'PageController@index')->where('path', '.*')->name('pages');
+            Route::get('faq', 'FAQController@index')->name('faq');
+            Route::get('{path}',  'PageController@index')->where('path', '.*')->name('pages');
+        });
     });
 
-
-
-    // Route::get('{page?}/{any2?}/{any3?}', 'FrontController')->name('pages');
 });
 
-
-// php artisan make:controller Front\DefaultController
-// php artisan make:controller Front\CatalogController
-// php artisan make:controller Front\ProductController
-// php artisan make:controller Front\FAQController

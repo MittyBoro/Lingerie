@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
         return $this->responseData();
     }
 
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $product = Product::findForCart($id, locale());
+        $product = Product::findForCart($request->id, locale());
 
         $validated = $request->validate([
             'options' => 'nullable|exists:product_options,id',
@@ -44,23 +44,26 @@ class CartController extends Controller
         ];
     }
 
-    public function update(Request $request, $cartId)
+
+    public function update(Request $request)
     {
         $data = $request->validate([
             'quantity' => 'integer|min:1',
         ]);
 
-        app('cart')->update($cartId, $data['quantity']);
+        app('cart')->update($request->cart_id, $data['quantity']);
 
         return $this->responseData();
     }
 
-    public function destroy($cartId)
+
+    public function destroy(Request $request)
     {
-        app('cart')->destroy($cartId);
+        app('cart')->destroy($request->cart_id);
 
         return $this->responseData();
     }
+
 
     public function clear()
     {

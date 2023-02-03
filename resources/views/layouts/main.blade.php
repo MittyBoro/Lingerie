@@ -82,7 +82,7 @@
         @endauth
 
         <div class="preload-box">
-            <a href="/" class="loading-logo">
+            <a href="{{ localRoute('front.home') }}" class="loading-logo">
                 @svg('images/icons/logo.svg')
             </a>
             <div class="loading-circle"></div>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-menu left-menu">
 
-                        <div class="m-item"><a href="/catalog">@lang('front.catalog')</a></div>
+                        <div class="m-item"><a href="{{ localRoute('front.pages', 'catalog') }}">@lang('front.catalog')</a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.categories')</span>
@@ -105,27 +105,28 @@
                             </span>
                             <div class="m-item-list">
                                 @foreach ($categories as $cat)
-                                    <a href="{{ route('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
+                                    <a href="{{ localRoute('front.categories', $cat['slug']) }}">{{ $cat['title'] }}</a>
                                 @endforeach
                             </div>
                         </div>
-                        <div class="m-item"><a href="/delivery">@lang('front.delivery')</a></div>
+                        <div class="m-item"><a href="{{ localRoute('front.pages', 'delivery') }}">@lang('front.delivery')</a></div>
                     </div>
-                    <a href="/" class="logo">
+                    <a href="{{ localRoute('front.home', 'home') }}" class="logo">
                        @svg('images/icons/logo.svg')
                     </a>
                     <div class="col-menu right-menu">
-                        <div class="m-item"><a href="/faq">FAQ</a></div>
-                        <div class="m-item"><a href="/cart">@lang('front.cart') (<span class="cart-count">{{ $cartCount }}</span>)</a></div>
+                        <div class="m-item"><a href="{{ localRoute('front.pages', 'faq') }}">FAQ</a></div>
+                        <div class="m-item"><a href="{{ localRoute('front.pages', 'cart') }}">@lang('front.cart') (<span class="cart-count">{{ $cartCount }}</span>)</a></div>
                         <div class="m-item">
                             <span class="a">
                                 <span>@lang('front.current_lang')</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
-                            <div class="m-item-list">
-                                <a href="/locale/ru">Русский</a>
-                                <a href="/locale/en">English</a>
-                            </div>
+                            <form method="post" action="/locale" class="m-item-list">
+                                @csrf
+                                <button name="setlang" value="ru" class="a">Русский</button>
+                                <button name="setlang" value="en" class="a">English</button>
+                            </form>
                         </div>
                     </div>
                     <div class="cart-wrap">
@@ -146,8 +147,8 @@
                         <div class="top-col">
                             <div class="f-title mini-title primary">@lang('front.for_clients')</div>
                             <ul>
-                                <li><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></li>
-                                <li><a href="/faq">{{ $pages['faq'] ?? '' }}</a></li>
+                                <li><a href="{{ localRoute('front.pages', 'delivery') }}">{{ $pages['delivery'] ?? '' }}</a></li>
+                                <li><a href="{{ localRoute('front.pages', 'faq') }}">{{ $pages['faq'] ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -163,10 +164,11 @@
                                 <span>@lang('front.current_lang')</span>
                                 <img src="@vite_asset('images/icons/arrow-down.svg')" alt="" class="icon to-svg">
                             </span>
-                            <div class="m-item-list">
-                                <a href="/locale/ru">Русский</a>
-                                <a href="/locale/en">English</a>
-                            </div>
+                            <form method="post" action="/locale" class="m-item-list">
+                                @csrf
+                                <button name="setlang" value="ru" class="a">Русский</button>
+                                <button name="setlang" value="en" class="a">English</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -184,15 +186,15 @@
                         <div class="top-col">
                             <div class="f-title mini-title primary">@lang('front.for_clients')</div>
                             <ul>
-                                <li><a href="/delivery">{{ $pages['delivery'] ?? '' }}</a></li>
-                                <li><a href="/faq">{{ $pages['faq'] ?? '' }}</a></li>
+                                <li><a href="{{ localRoute('front.pages', 'delivery') }}">{{ $pages['delivery'] ?? '' }}</a></li>
+                                <li><a href="{{ localRoute('front.pages', 'faq') }}">{{ $pages['faq'] ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="bottom-row">
                         <div class="politic-col">
-                            <a href="/policy" class="politic-link">{{ $pages['policy'] ?? '' }}</a>
+                            <a href="{{ localRoute('front.pages', 'policy') }}" class="politic-link">{{ $pages['policy'] ?? '' }}</a>
                         </div>
                         <div class="insta-col">
                             <a href="{{ $props['instagram'] }}" target="_blank"  class="insta">
@@ -211,19 +213,9 @@
 
         {!! $props['body_code'] ?? '' !!}
 
-        {{-- @auth
-            <div class="bottom-box" style="display: grid; text-align: center; gap: 2px; padding: 30px">
-                <a href="/">home</a>
-                <a href="/catalog">catalog</a>
-                <a href="/product">product</a>
-                <a href="/cart">cart</a>
-                <a href="/checkout">checkout</a>
-                <a href="/page">page</a>
-                <a href="/faq">faq</a>
-                <a href="/success">success</a>
-                <a href="/404">404</a>
-            </div>
-        @endauth --}}
+        <script>
+            const $lang = '{{ locale() }}';
+        </script>
 
     </body>
 </html>

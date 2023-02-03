@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(Request $request, $slug = null)
+    public function index(Request $request)
     {
         $data = $request->all();
-        $data['categories'] = $slug ? ProductCategory::findForFront($slug, locale()) : null;
+        $data['categories'] = $request->slug ? ProductCategory::findForFront($request->slug, locale()) : null;
 
         $products = Product::getCatalog(locale(), $data);
 

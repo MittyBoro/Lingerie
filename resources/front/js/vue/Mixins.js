@@ -34,6 +34,11 @@ export default {
             localStorage.setItem('product_' + key, value)
         },
 
+        localePath(path) {
+            if (path.startsWith('/'))
+                path = path.slice(1)
+            return '/' + $lang + '/' + path;
+        },
 
         formatPrice() {
             let price = [...arguments].reduce((a, b) => parseFloat(a) + parseFloat(b), 0);

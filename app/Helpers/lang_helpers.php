@@ -32,3 +32,28 @@ if ( !function_exists('cySymb') ) {
         return $cy;
     }
 }
+
+if (!function_exists('locale')) {
+    function locale() {
+        return \App::getLocale();
+    }
+}
+
+if (!function_exists('lang')) {
+    function lang() {
+        return \App::getLocale();
+    }
+}
+
+if (!function_exists('localRoute')) {
+    function localRoute(...$args) {
+
+        $args[1] = [
+            ...(array) ($args[1] ?? null),
+            'lang' => lang(),
+        ];
+
+        return route(...$args);
+    }
+}
+

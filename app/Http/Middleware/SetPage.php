@@ -7,11 +7,11 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class OnlyPage {
+class SetPage {
 
     public function handle(Request $request, Closure $next)
     {
-        $slug = explode('/', $request->path())[0] ?: 'home';
+        $slug = explode('/', $request->path())[1] ?? 'home';
         $lang = locale();
 
         $page = Page::findForFront($slug, $lang);

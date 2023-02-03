@@ -55,7 +55,7 @@ class CheckoutController extends Controller
         $payemnt->charge();
 
         return [
-            'url' => $payemnt->redirectUrl() ?: route('front.orders', $order->uuid)
+            'url' => $payemnt->redirectUrl() ?: localRoute('front.orders', ['order' => $order->uuid])
         ];
     }
 

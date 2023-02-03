@@ -88,7 +88,7 @@ const app = createApp({
             .catch(err => alert(err))
             .then(() => {
                 if (!this.cart.length){
-                    window.location = '/cart';
+                    window.location = this.localePath('cart');
                 }
                 else {
                     this.loading = false;
