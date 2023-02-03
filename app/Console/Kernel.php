@@ -15,12 +15,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('sitemap:generate')->daily();
-        $schedule->command('payments:check')->everyFiveMinutes();
-        $schedule->command('payments:clear')->dailyAt('04:20');
-        $schedule->command('cart:clear')->dailyAt('04:20');
-
-        $schedule->command('users:clear')->daily('04:20');
+        $schedule->command('sitemap:generate')->daily('04:20');
+        $schedule->command('order:check')->everyFiveMinutes();
+        $schedule->command('order:clear')->dailyAt('04:30');
+        $schedule->command('cart:clear')->dailyAt('04:40');
     }
 
     /**

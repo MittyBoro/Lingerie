@@ -4,8 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\Order;
 use App\Services\Payment\Payment;
+use App\Services\Payment\PaymentService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
 
 class CheckPaymentsCommand extends Command
 {
@@ -42,20 +42,14 @@ class CheckPaymentsCommand extends Command
     public function handle()
     {
         $ordres = Order::where('status', Order::STATUS_PENDING)
-                        ->where( 'created_at', '<=', Carbon::now()->subMinutes(5))
+                        ->where( 'created_at', '<=', now()->subMinutes(5))
                         ->latest()
                         ->get();
 
-        // dd($ordres->count());
-
         $ordres->each(function (Order $order) {
-            $this->updateStatus($order);
+            $payemnt = PaymentService::set($order);
+            $payemnt->check();
         });
     }
 
-    private function updateStatus($order)
-    {
-        $payment = new Payment($order->payment_type);
-        $payment->updateStatus($order);
-    }
 }

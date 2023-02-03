@@ -2,8 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\DatabaseStorageModel;
-use App\Models\User;
+use App\Services\Cart\Models\CartStorage;
 use Illuminate\Console\Command;
 
 class ClearCartCommand extends Command
@@ -39,20 +38,8 @@ class ClearCartCommand extends Command
      */
     public function handle()
     {
-        $this->clearGuestData();
-        $this->clearUserData();
-    }
-
-    private function clearUserData()
-    {
-        DatabaseStorageModel::whereDate('updated_at', '<', now()->subDays(180))
+        CartStorage::whereDate('updated_at', '<', now()->subMonths(12))
                     ->delete();
     }
 
-    private function clearGuestData()
-    {
-        DatabaseStorageModel::where('id', 'like', 'guest_%')
-                    ->whereDate('updated_at', '<', now()->subDays(60))
-                    ->delete();
-    }
 }

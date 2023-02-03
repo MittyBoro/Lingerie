@@ -3,10 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Order;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class ClearPaymentsCommand extends Command
+class ClearOrderCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -40,7 +39,7 @@ class ClearPaymentsCommand extends Command
     public function handle()
     {
         Order::where('status', Order::STATUS_CANCELED)
-                    ->where( 'created_at', '<=', Carbon::now()->subDays(30))
+                    ->where( 'created_at', '<=', now()->subDays(30))
                     ->get()
                     ->each->delete();
     }
