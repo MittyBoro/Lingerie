@@ -21,7 +21,7 @@
                         <div v-for="item in cart" class="checkout-item">
                             <div class="col-image">
                                 <div class="prod-image wa-hover">
-                                    <img :src="item.preview" alt="">
+                                    <img :src="item.preview" alt="" loading="lazy">
                                 </div>
                             </div>
                             <div class="col-name col-info">

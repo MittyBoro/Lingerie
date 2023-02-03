@@ -3,14 +3,12 @@
 import Swiper, {
     Navigation,
     EffectFade,
-    Lazy,
 } from 'swiper'
 
 Swiper.use([
     Navigation,
     EffectFade,
     EffectFade,
-    Lazy,
 ]);
 
 
@@ -29,11 +27,6 @@ function initCatalogSlider() {
             slidesPerView: 1,
             loop: true,
             effect: 'fade',
-
-            lazy: {
-                checkInView: true,
-                loadPrevNext: true,
-            },
 
             navigation: {
                 nextEl: parent.querySelector('.sw-next'),

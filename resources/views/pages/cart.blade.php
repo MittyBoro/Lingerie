@@ -16,7 +16,7 @@
         <div v-if="cart.length" class="cart-list">
             <div v-for="item in cart" class="cart-item grid-12">
                 <div class="cart-image-col">
-                    <div class="prod-image wa-hover"><img :src="item.preview" alt=""></div>
+                    <div class="prod-image wa-hover"><img :src="item.preview" alt="" loading="lazy"></div>
                 </div>
                 <div class="cart-name-col c-text-col">
                     <a :href="item.url" class="cart-name">@{{ item.name }}</a>

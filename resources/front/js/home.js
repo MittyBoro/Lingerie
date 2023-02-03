@@ -4,14 +4,12 @@ import Swiper, {
     Navigation,
     Autoplay ,
     Keyboard,
-    Lazy,
 } from 'swiper'
 
 Swiper.use([
     Navigation,
     Autoplay ,
     Keyboard,
-    Lazy,
 ]);
 
 
@@ -25,22 +23,16 @@ new Swiper('.home-novelties-box .swiper', {
     centeredSlides: true,
 
     loop: true,
-    loopAdditionalSlides: 5,
+    loopedSlides: 4,
 
     keyboard: true,
     slideToClickedSlide: true,
 
     autoplay: {
         delay: 7000,
+        pauseOnMouseEnter: true,
         disableOnInteraction: false,
     },
-
-    lazy: {
-        checkInView: true,
-        loadPrevNext: true,
-        loadPrevNextAmount: 5,
-    },
-
 
     navigation: {
         nextEl: '.home-novelties-box .sw-next',
@@ -48,16 +40,6 @@ new Swiper('.home-novelties-box .swiper', {
     },
 
     on: {
-        init: (swiper) => {
-            if (swiper.autoplay.running) {
-                swiper.$el[0].addEventListener('mouseenter', () => {
-                    swiper.autoplay.stop()
-                }, false);
-                swiper.$el[0].addEventListener('mouseleave', () => {
-                    swiper.autoplay.start()
-                }, false);
-            }
-        },
         snapIndexChange: (swiper) => {
             let intEl = document.querySelector('.home-novelties-box .sw-current-int')
             if (intEl)

@@ -92,7 +92,7 @@
                         <div class="swiper-wrapper lightgallery">
                             @foreach ($product['gallery'] ?? [] as $img)
                             <a class="swiper-slide" href="{{ $img['big'] }}">
-                                <div class="prod-image zoom-image" style="background-image: url('{{ $img['big'] }}')"><img src="{{ $img['medium'] }}" alt=""></div>
+                                <div class="prod-image zoom-image" style="background-image: url('{{ $img['big'] }}')"><img src="{{ $img['medium'] }}" alt="" loading="lazy"></div>
                             </a>
                             @endforeach
                         </div>
@@ -111,7 +111,7 @@
                             <div class="swiper-wrapper">
                                 @foreach ($product['gallery'] ?? [] as $img)
                                     <div class="swiper-slide">
-                                        <div class="prod-image"><img src="{{ $img['thumb'] }}" alt=""></div>
+                                        <div class="prod-image"><img src="{{ $img['thumb'] }}" alt="" loading="lazy"></div>
                                     </div>
                                 @endforeach
                             </div>

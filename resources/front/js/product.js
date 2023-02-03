@@ -41,7 +41,6 @@ import Swiper, {
     EffectFade,
     Scrollbar,
     Mousewheel,
-    Lazy,
 } from 'swiper'
 
 Swiper.use([
@@ -52,7 +51,6 @@ Swiper.use([
     EffectFade,
     Scrollbar,
     Mousewheel,
-    Lazy,
 ]);
 
 
@@ -80,13 +78,6 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
             hide: false,
             draggable: true,
         },
-
-
-        lazy: {
-            checkInView: true,
-            loadPrevNext: true,
-        },
-
         on: {
             init: (swiper) => {
                 if (swiper.slides.length < 2) {
@@ -95,10 +86,6 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
             },
         },
         breakpoints: {
-            // 576: {
-            // },
-            // 768: {
-            // },
             992: {
                 spaceBetween: 10,
                 slidesPerView: 'auto',
@@ -114,11 +101,6 @@ document.querySelectorAll('.product-box .gallery-col').forEach(el => {
         spaceBetween: 15,
         loop: true,
         effect: 'fade',
-
-        lazy: {
-            checkInView: true,
-            loadPrevNext: true,
-        },
 
         navigation: {
             nextEl: el.querySelector('.sw-next'),

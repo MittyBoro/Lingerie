@@ -6,7 +6,7 @@
                 @foreach ($prod['gallery'] ?? [] as $img)
                 <div class="swiper-slide">
                     <a href="{{ route('front.products', $prod['slug']) }}" class="prod-image">
-                        <img src="{{ $img['thumb'] }}" alt="{{ $prod['title'] }} #{{ $loop->index }}">
+                        <img src="{{ $img['thumb'] }}" alt="{{ $prod['title'] }} #{{ $loop->index }}" loading="lazy">
                     </a>
                 </div>
                 @endforeach

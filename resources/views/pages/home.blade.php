@@ -55,7 +55,7 @@
                     <div class="swiper-slide">
                         <a href="{{ route('front.products', $prod['slug']) }}" class="n-item">
                             <div class="n-image">
-                                <img data-src="{{ $prod['preview'] }}" alt="" class="swiper-lazy">
+                                <img src="{{ $prod['preview'] }}" alt="" loading="lazy">
                             </div>
                             <div class="btn btn-secondary">@lang('front.more')</div>
                             <div class="n-info">
@@ -121,7 +121,9 @@
         <div class="cats-list grid-4">
             @foreach ($homeCategories as $cat)
                 <a href="{{ route('front.categories', $cat['slug']) }}" class="cat-item">
-                    <div class="prod-image"><img src="{{ $cat['preview'] }}" alt=""></div>
+                    <div class="prod-image">
+                        <img src="{{ $cat['preview'] }}" alt="{{ $cat['title'] }}" loading="lazy">
+                    </div>
                     <div class="cat-name">{{ $cat['title'] }}</div>
                 </a>
             @endforeach
