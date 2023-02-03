@@ -49,18 +49,19 @@ const app = createApp({
                 localStorage.setItem('checkout_form', JSON.stringify(val));
             },
         },
-        'form.phone'(val) {
-            let phone = parsePhoneNumberFromString(val, 'RU');
-            if (phone) {
-                if (!phone.isValid() ) {
-                    this.$refs.phone.setCustomValidity("Invalid phone");
-                } else {
-                    this.$refs.phone.setCustomValidity("");
-                }
+		'form.phone'(val) {
+			val = val.replace(/^8/g, '+7')
+			let phone = parsePhoneNumberFromString(val, 'RU');
+			if (phone) {
+				if (!phone.isValid() ) {
+					this.$refs.phone.setCustomValidity("Введите корректный номер телефона (+7…)");
+				} else {
+					this.$refs.phone.setCustomValidity("");
+				}
 
-                this.form.phone = phone.formatInternational().replace(/^8/g, '+7');
-            }
-        }
+				this.form.phone = phone.formatInternational();
+			}
+		}
     },
 
 

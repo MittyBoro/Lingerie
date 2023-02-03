@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\SitemapService;
+use App\Services\Sitemap\SitemapService;
 use Illuminate\Console\Command;
 
 class SitemapGenerateCommand extends Command

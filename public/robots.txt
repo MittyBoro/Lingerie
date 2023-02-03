@@ -1,2 +1,11 @@
-User-agent: *
-Disallow:
+User-agent:*
+Disallow: */search?*
+Disallow: */?p=*
+Disallow: */*?*
+Disallow: */search
+
+Disallow: */privacy-policy
+Disallow: */cart
+
+Host: legendary-lingerie.com
+Sitemap: https://legendary-lingerie.com/sitemap.xml
