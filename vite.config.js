@@ -3,7 +3,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 
-
 export default defineConfig({
     plugins: [
         require('autoprefixer'),
@@ -11,8 +10,13 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/admin/js/app.js',
+                'resources/front/sass/style.sass',
                 'resources/front/js/app.js',
-                'resources/assets/sass/style.sass',
+                'resources/front/js/cart.js',
+                'resources/front/js/catalog.js',
+                'resources/front/js/checkout.js',
+                'resources/front/js/home.js',
+                'resources/front/js/product.js',
             ],
             refresh: true,
         }),
