@@ -1,4 +1,4 @@
-import noUiSlider from 'noUiSlider';
+import noUiSlider from 'nouislider';
 
 
 const rangeSliders = document.querySelectorAll('.range-sliger');
