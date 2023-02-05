@@ -1,9 +1,13 @@
-import cacheMethod from './cacheMethod';
+import { getCached } from './cacheMethod';
 
-export default (parent) => {
-    parent.querySelectorAll('img.to-svg').forEach(image => {
-        cacheMethod(image.src, () => {
-            fetch(image.src)
+export default async (parent) => {
+
+    let elements = Array.from( parent.querySelectorAll('img.to-svg') );
+
+    // иначе дублируется загрузка
+    for await (const image of elements) {
+
+        await getCached(image.src)
             .then(res => res.text())
             .then(data => {
                 const parser = new DOMParser();
@@ -19,6 +23,6 @@ export default (parent) => {
                 image.parentNode.replaceChild(svg, image);
             })
             .catch(error => console.error(error))
-        })
-    })
+    }
+
 }

@@ -1,6 +1,6 @@
 import './vue/Catalog';
 
-import './elements/noUiSlider';
+import './elements/rangeSlider';
 import './elements/catalogSwiper';
 
 
