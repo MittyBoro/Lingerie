@@ -47,4 +47,4 @@ async function deleteOldCaches( currentCache ) {
     }
 }
 
-export { getCached }
+export default getCached

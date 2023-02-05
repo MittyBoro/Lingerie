@@ -1,4 +1,4 @@
-import { getCached } from './cacheMethod';
+import getCached from './cached';
 
 export default async (parent) => {
 

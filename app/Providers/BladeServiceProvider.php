@@ -11,6 +11,10 @@ class BladeServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        Vite::useScriptTagAttributes([
+            'defer' => true, // Specify an attribute without a value...
+        ]);
+
         $this->registerSVG();
         $this->registerPrice();
         $this->registerViteAssets();

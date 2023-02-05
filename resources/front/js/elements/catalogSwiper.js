@@ -36,7 +36,9 @@ function initCatalogSlider() {
     })
 }
 
-initCatalogSlider();
+document.addEventListener('DOMContentLoaded', () => {
+    initCatalogSlider();
+})
 
 document.addEventListener('catalogChanged', () => {
     initCatalogSlider();
