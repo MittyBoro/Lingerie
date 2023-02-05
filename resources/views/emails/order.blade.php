@@ -68,7 +68,7 @@
                 </td>
                 <td style="{!! $prodTDStyle !!} padding-left: 15px;">
                     @if($item->product)
-                        <a style="font-weight: 600; font-size: 90%;" target="_blank" href="{{ localRoute('front.pages', ['product', $item->product->slug]) }}">{{ $item->name }}</a>
+                        <a style="font-weight: 600; font-size: 90%;" target="_blank" href="{{ route('front.products', [$order->lang, $item->product->slug]) }}">{{ $item->name }}</a>
                     @else
                         <span>{{ $item->name }}</span>
                     @endif

@@ -111,7 +111,7 @@
                         </div>
                         <div class="m-item"><a href="{{ localRoute('front.pages', 'delivery') }}">@lang('front.delivery')</a></div>
                     </div>
-                    <a href="{{ localRoute('front.home', 'home') }}" class="logo">
+                    <a href="{{ localRoute('front.home') }}" class="logo">
                        @svg('images/icons/logo.svg')
                     </a>
                     <div class="col-menu right-menu">

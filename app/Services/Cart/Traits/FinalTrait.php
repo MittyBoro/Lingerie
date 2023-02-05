@@ -5,7 +5,6 @@ namespace App\Services\Cart\Traits;
 use App\Models\Product;
 use App\Models\Prop;
 use Darryldecode\Cart\CartCondition;
-use Illuminate\Support\Facades\App;
 
 trait FinalTrait
 {
@@ -18,8 +17,6 @@ trait FinalTrait
         $subTotal = $this->cart->getSubTotal();
         $shipping = $freeShippingProp && $subTotal > $freeShippingProp ? 0 : $shippingProp;
 
-
-        $shipping = 1000;
 
         if ($shipping) {
             $shippingString = ($shipping < 0 ? "-" : "+") . abs($shipping);
