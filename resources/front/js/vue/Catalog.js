@@ -164,6 +164,13 @@ const app = createApp({
             this.$refs.title.innerText = link.title || this.$refs.title.dataset?.default
 
             this.resetFilter()
+
+            // после сброса фильтра не обновлять ещё раз
+            setTimeout(() => {
+                if (this.timerId) {
+                    this.timerId = clearInterval(this.timerId);
+                }
+            }, 50);
         },
 
         resetFilter() {
