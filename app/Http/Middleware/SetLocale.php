@@ -14,7 +14,7 @@ class SetLocale {
     {
         if ($request->setlang && in_array($request->setlang, self::LOCALES)) {
             $url = url()->previous();
-            $newUrl = preg_replace('#^(.+://[^/]+)/[^/]+#', '$1/'.$request->setlang, $url);
+            $newUrl = replace_lang_in_url($url, $request->setlang);
             return redirect($newUrl);
         }
 

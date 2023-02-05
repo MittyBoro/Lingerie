@@ -43,6 +43,7 @@ class FrontComposer
             'categories' => $categories->toArray(),
             'footerCategories' => $footerCategories->toArray(),
             'cartCount' => $cartCount,
+            'currentUrl' => url()->current(),
         ]);
     }
 

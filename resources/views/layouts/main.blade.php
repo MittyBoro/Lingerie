@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ lang() }}">
     <head>
         <meta charset="UTF-8">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
 
         <title>@yield('meta_title', 'Lingerie')</title>
 
         <meta name="description" content="@yield('meta_description', '')">
         <meta name="keywords" content="@yield('meta_keywords', '')" />
 
-        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:locale" content="{{ loc_REG() }}" />
         <meta property="og:title" content="@yield('meta_title', '')">
         <meta property="og:description" content="@yield('meta_description', '')">
         <meta property="og:type" content="@yield('meta_type', 'website')">
         @hasSection('meta_image')
         <meta property="og:image" content="@yield('meta_image')" />
         @endif
-
+        @foreach (alt_langs(lang()) as $lang)
+        <link rel="alternate" hreflang="{{ $lang }}" href="{{ replace_lang_in_url($currentUrl, $lang) }}" />
+        @endforeach
 
         <meta name="yandex-tableau-widget" content="logo=@vite_asset('images/icons/favicon.svg'), color=#FFF2F0">
         <link rel="icon" type="image/x-icon" href="@vite_asset('images/icons/favicon.svg')">
@@ -27,6 +29,9 @@
 
         @vite('resources/front/sass/style.sass')
         @vite('resources/front/js/app.js')
+
+        @yield('head_code')
+        {!! $props['head_code'] ?? '' !!}
 
         <style>
             .preload-box {
@@ -70,10 +75,6 @@
                 font-size: 16px;
             }
         </style>
-
-
-        @yield('head_code')
-        {!! $props['head_code'] ?? '' !!}
 
     </head>
     <body class="preload page-{{ $viewName }} @yield('body_class')">

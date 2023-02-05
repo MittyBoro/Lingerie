@@ -6,6 +6,8 @@
 
 @section('head_code')
     @vite('resources/front/js/catalog.js')
+
+    <link rel="canonical" href="{{ localRoute('front.catalog') }}">
 @endsection
 
 
