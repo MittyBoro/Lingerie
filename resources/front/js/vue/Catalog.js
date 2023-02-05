@@ -195,7 +195,9 @@ const app = createApp({
         },
 
         toTop() {
-            window.scrollTo(0,0);
+            let y = this.$el.getBoundingClientRect().top + window.pageYOffset - 50;
+            if (window.scrollY > y)
+                window.scrollTo({top: y, behavior: 'smooth'});
         },
     },
 });
