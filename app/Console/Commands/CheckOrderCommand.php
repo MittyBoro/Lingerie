@@ -3,11 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Models\Order;
-use App\Services\Payment\Payment;
 use App\Services\Payment\PaymentService;
 use Illuminate\Console\Command;
 
-class CheckPaymentsCommand extends Command
+class CheckOrderCommand extends Command
 {
 
     /**
@@ -15,7 +14,7 @@ class CheckPaymentsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'payments:check';
+    protected $signature = 'order:check';
 
     /**
      * The console command description.
