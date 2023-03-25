@@ -6,7 +6,7 @@ use App\Models\Order;
 use App\Services\Payment\PaymentService;
 use Illuminate\Console\Command;
 
-class CheckOrderCommand extends Command
+class OrderCheckCommand extends Command
 {
 
     /**

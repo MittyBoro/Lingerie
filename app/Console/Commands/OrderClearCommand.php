@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Models\Order;
 use Illuminate\Console\Command;
 
-class ClearOrderCommand extends Command
+class OrderClearCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'payments:clear';
+    protected $signature = 'order:clear';
 
     /**
      * The console command description.

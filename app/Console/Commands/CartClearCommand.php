@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Services\Cart\Models\CartStorage;
 use Illuminate\Console\Command;
 
-class ClearCartCommand extends Command
+class CartClearCommand extends Command
 {
     /**
      * The name and signature of the console command.
