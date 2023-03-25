@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits\Order;
 
+use App\Contracts\PaymentStatusInterface;
 use Illuminate\Support\Collection;
 
 trait OrderTrait
@@ -58,11 +59,6 @@ trait OrderTrait
     public function getPaymentData()
     {
         return $this->payemnt_data;
-    }
-
-    public function redirectUrl()
-    {
-        return ;
     }
 
     public function setPaymentData($value)

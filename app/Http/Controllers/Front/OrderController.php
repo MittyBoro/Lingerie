@@ -3,13 +3,18 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Order;
-use Illuminate\Http\Request;
+use App\Services\Payment\PaymentService;
 
 class OrderController extends Controller
 {
-    public function index(Request $request, $lang, Order $order)
+    public function index(Order $order)
     {
-        $order->redirect_url = $order->redirectUrl();
+
+        if ($order->status == Order::STATUS_PENDING) {
+            $payemnt = PaymentService::set($order);
+            $order->redirect_url = $payemnt->redirectUrl();
+            $payemnt->check();
+        }
 
         return view('pages.order', [
             'order' => $order,

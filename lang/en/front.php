@@ -79,7 +79,7 @@ return [
 
     'cart_page' => [
         'cart_title' => 'Your cart',
-        'cart_empty' => 'Your cart is empty',
+        'cart_empty' => 'Your cart is empty',
         'checkout_title' => 'Checkout',
         'subtotal' => 'Subtotal',
         'total' => 'Total',
@@ -87,13 +87,17 @@ return [
         'back_to_cart' => 'Return to cart',
         'your_checkout' => 'Your order',
 
-        'payment_type' => 'Способ оплаты',
-        'card_payment' => 'Банковская карта',
-        'upon_receipt' => 'При получении',
-        'done_btn' => 'Оформить заказ',
+        'payment_type' => 'Payment method',
+        'card_payment' => 'Credit card',
+        'upon_receipt' => 'Upon receipt',
+        'done_btn' => 'Place order',
 
-        'policy_text' => 'Нажимая эту кнопку я соглашаюсь с',
-        'policy_link' => 'Политикой конфиденциальности',
+        'policy_text' => "By clicking this button I agree with",
+        'policy_link' => "Privacy Policy",
+    ],
+    'payment_types' => [
+        'freekassa' => "Credit card",
+        'receipt' => "Upon receipt",
     ],
     'contact' => [
         'contact_title' => 'Contact information',

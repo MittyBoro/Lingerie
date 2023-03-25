@@ -8,9 +8,9 @@ use App\Payments\DefaultPayment;
 
 class PaymentService
 {
-    public static function set(Order $order): PaymentInterface
+    public static function set(Order|null $order, string|null $type = null): PaymentInterface
     {
-        $paymentType = $order->getPaymentType();
+        $paymentType = $type ?? $order->getPaymentType();
 
         $modelClass = config('payment.drivers.' . $paymentType . '.class');
 

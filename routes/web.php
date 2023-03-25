@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('payment/webhook/{payment_type}', 'PaymentController@webhook')->name('payment.webhook');
+
 
 Route::middleware('locale')
     ->name('front.')
@@ -22,9 +24,12 @@ Route::middleware('locale')
 
             Route::get('product/{slug?}', 'ProductController@index')->name('products');
 
-            Route::get('order/{order:uuid}', 'OrderController@index')->name('orders');
+            Route::get('orders/{order:uuid}', 'OrderController@index')->name('orders');
 
             Route::get('faq', 'FAQController@index')->name('faq');
+
+
+            // все вставлять до этого!
             Route::get('{path}',  'PageController@index')->where('path', '.*')->name('pages');
         });
     });

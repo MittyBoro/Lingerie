@@ -18,6 +18,6 @@ interface PaymentInterface extends PaymentStatusInterface
     public function webhook();
 
 
-    public function redirectUrl();
+    public function redirectUrl(); // кажется, зря добавил
 
 }

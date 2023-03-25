@@ -27,8 +27,6 @@ interface OrderInterface
 
     public function getPaymentData();
 
-    public function redirectUrl();
-
     public function setPaymentData($value);
 
     public function setStatus($value);

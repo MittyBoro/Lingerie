@@ -95,6 +95,10 @@ return [
         'policy_text' => 'Нажимая эту кнопку я соглашаюсь с',
         'policy_link' => 'Политикой конфиденциальности',
     ],
+    'payment_types' => [
+        'freekassa' => 'Банковская карта',
+        'receipt' => 'При получении',
+    ],
     'contact' => [
         'contact_title' => 'Контактная информация',
         'first_last_name' => 'Имя и фамилия',
