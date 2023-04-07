@@ -5,7 +5,7 @@
     <div class="col-full white-box event-links">
         <div class="white-item">
             <div class="h2 tac">@lang('front.catalog_page.not_found')</div>
-            <a href="{{ localeRoute('front.pages', 'catalog') }}" class="btn">@lang('front.to_catalog')</a>
+            <a href="{{ localRoute('front.pages', 'catalog') }}" class="btn">@lang('front.to_catalog')</a>
         </div>
     </div>
 @endforelse
