@@ -150,6 +150,7 @@
                             <ul>
                                 <li><a href="{{ localRoute('front.pages', 'delivery') }}">{{ $pages['delivery'] ?? '' }}</a></li>
                                 <li><a href="{{ localRoute('front.pages', 'faq') }}">{{ $pages['faq'] ?? '' }}</a></li>
+                                <li><a href="{{ localRoute('front.pages', 'contacts') }}">{{ $pages['contacts'] ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -189,6 +190,7 @@
                             <ul>
                                 <li><a href="{{ localRoute('front.pages', 'delivery') }}">{{ $pages['delivery'] ?? '' }}</a></li>
                                 <li><a href="{{ localRoute('front.pages', 'faq') }}">{{ $pages['faq'] ?? '' }}</a></li>
+                                <li><a href="{{ localRoute('front.pages', 'contacts') }}">{{ $pages['contacts'] ?? '' }}</a></li>
                             </ul>
                         </div>
                     </div>
