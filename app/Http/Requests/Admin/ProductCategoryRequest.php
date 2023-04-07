@@ -36,7 +36,7 @@ class ProductCategoryRequest extends AdminFormRequest
 
             ...$this->validationSEO('translations.*.'),
 
-            ...$this->validationFiles('preview', 'dimensions:min_width=400,min_height=400'),
+            ...$this->validationFiles('preview', 'dimensions:min_width=250,min_height=250'),
         ];
     }
 

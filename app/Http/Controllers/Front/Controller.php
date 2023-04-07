@@ -34,7 +34,7 @@ abstract class Controller extends BaseController
                 return;
             }
         }
-        $page->{$key} = str_replace($replaceKey, $data, $pageValue);
+        $page->{$key} = str_replace($replaceKey, $data ?? '', $pageValue);
     }
 
 }

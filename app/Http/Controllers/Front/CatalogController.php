@@ -32,6 +32,7 @@ class CatalogController extends Controller
         return view('pages.catalog', [
             'page' => $page,
             'slug' => $request->slug,
+            'category_id' => $category->id,
             ...$content,
         ]);
     }

@@ -17,6 +17,9 @@ trait RetrievingTrait
     {
         $sort = empty($column) ? ($this->defaultSort ?: $sort) : $sort;
 
+        if (!$sort)
+            return;
+
         [$column, $direction] = array_pad(explode('-', $sort, 2), 2, 'asc');
 
         $sortableColumns = $this->sortable ?: ['id'];

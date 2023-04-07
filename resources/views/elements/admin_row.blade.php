@@ -6,8 +6,8 @@
         @isset($product['id'])
             <a href="{{ route('admin.products.edit', $product->id) }}" target="_blank">Редактировать товар</a>
         @endisset
-        @if(isset($page['slug']) && $page['slug'] == 'categories')
-            <a href="{{ route('admin.product_categories.index') }}" target="_blank">Редактировать категорию</a>
+        @if(isset($category_id))
+            <a href="{{ route('admin.product_categories.edit', $category_id) }}" target="_blank">Редактировать категорию</a>
         @endif
 
         @isset($page['id'])

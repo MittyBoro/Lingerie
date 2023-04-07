@@ -13,7 +13,7 @@ class ProductCategory extends Model
     use TranslationTrait;
 
     protected $appends = [
-        'title',
+        'title', 'preview'
     ];
 
     public static function boot()
