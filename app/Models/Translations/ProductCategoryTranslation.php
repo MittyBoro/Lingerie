@@ -26,8 +26,7 @@ class ProductCategoryTranslation extends Model
 
     public function setMetaTitleAttribute($val)
     {
-        if ( empty($this->attributes['meta_title']) )
-            $this->attributes['meta_title'] = $this->attributes['title'];
+        $this->attributes['meta_title'] = empty($val) ? $this->attributes['title'] : $val;
     }
 
     public function setSlugAttribute($val)
