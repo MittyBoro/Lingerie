@@ -93,7 +93,8 @@
                 get() {
                     if (!this.modelValue || !Object.keys(this.modelValue).length)
                         return [];
-                    return [...this.modelValue];
+                    let files = [...this.modelValue].filter(file => !file.del);
+                    return files;
                 },
                 set(val) {
                     this.$emit('update:modelValue', val);
