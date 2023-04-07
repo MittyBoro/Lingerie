@@ -69,6 +69,7 @@ class Page extends Model
                         'faq',
                         'cart',
                         'policy',
+                        'contacts',
                     ])
                     ->get(['title', 'slug'])
                     ->keyBy('slug')
