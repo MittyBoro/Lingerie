@@ -105,7 +105,7 @@
                 </a>
 
                 <div class="a-text">
-                    {{ $page['props']['about_text'] }}
+                    {!! $page['props']['about_text'] !!}
                 </div>
             </div>
         </div>
