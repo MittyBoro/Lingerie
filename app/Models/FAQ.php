@@ -16,6 +16,13 @@ class FAQ extends Model
 
     protected $table = 'faqs';
 
+    protected $fillable = [
+        'lang',
+        'title',
+        'description',
+        'position',
+    ];
+
     protected $sortable = ['position', 'title', 'lang'];
 
 
