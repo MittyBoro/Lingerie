@@ -112,7 +112,7 @@
                         <button :disabled="loading" class="btn">@lang('front.cart_page.done_btn')</button>
                         <label class="pm-item">
                             <input type="checkbox" required checked>
-                            <span>@lang('front.cart_page.policy_text') <a href="{{ localRoute('front.pages', 'faq') }}" class="primary"><b>@lang('front.cart_page.policy_link')</b></a></span>
+                            <span>@lang('front.cart_page.policy_text') <a href="{{ localRoute('front.pages', 'privacy') }}" class="primary"><b>@lang('front.cart_page.policy_link')</b></a></span>
                         </label>
                     </div>
                 </div>
