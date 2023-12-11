@@ -15,7 +15,7 @@ trait FinalTrait
         $freeShippingProp = Prop::findByKey('free_shipping_'. $cy);
         $shippingProp = Prop::findByKey('shipping_'. $cy);
         $subTotal = $this->cart->getSubTotal();
-        $shipping = $freeShippingProp && $subTotal > $freeShippingProp ? 0 : $shippingProp;
+        $shipping = intval($freeShippingProp && $subTotal > $freeShippingProp ? 0 : $shippingProp);
 
 
         if ($shipping) {
