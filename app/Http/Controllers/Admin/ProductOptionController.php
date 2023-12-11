@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
 use App\Models\ProductOption;
+
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProductOptionController extends Controller
@@ -13,7 +13,7 @@ class ProductOptionController extends Controller
     public function index(Request $request)
     {
         $pages = ProductOption::orderByStr($request->get('sort'))
-                                 ->customPaginate($request->get('perPage', 20));
+                                 ->customPaginate($request->get('perPage', 40));
 
         return Inertia::render('ProductOptions/Index', [
             'list' => $pages,
