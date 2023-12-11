@@ -16,7 +16,7 @@
                             <div class="-mx-2 flex gap-3">
                                 <input v-if="sp.element.type == 'color'" type="color" class="w-6 h-7 flex-shrink-0 rounded-full cursor-pointer" v-model="sp.element.extra"
                                     @change="update(sp.element)">
-                                <FTextarea
+                                <FTextarea v-else
                                     rows="1"
                                     class="max-h-16 focus:max-h-max"
                                     @change="update(sp.element)"
