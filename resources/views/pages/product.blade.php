@@ -62,7 +62,7 @@
                         <label class="form-radio pm-item">
                             <input type="radio" name="color" value="{{ $color['id'] }}" v-model="form.color">
                             <div class="fr-item">
-                                <span style="{{ $color['extra'] }}"></span>
+                                <span style="background: {{ $color['extra'] }}"></span>
                             </div>
                         </label>
                         @endforeach
