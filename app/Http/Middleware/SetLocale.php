@@ -15,13 +15,22 @@ class SetLocale {
         if ($request->setlang && in_array($request->setlang, self::LOCALES)) {
             $url = url()->previous();
             $newUrl = replace_lang_in_url($url, $request->setlang);
-            return redirect($newUrl);
+
+            $cookie = \Cookie::make('lang', $request->setlang, 60*24*365);
+
+            return redirect($newUrl)->withCookie($cookie);
         }
 
         $locale = $request->route('lang');
 
         if ($locale === null) {
-            $locale = $request->getPreferredLanguage(self::LOCALES);
+            $cookieLang =  $request->cookie('lang');
+            if ($cookieLang  && in_array($cookieLang , self::LOCALES)) {
+                $locale = $cookieLang;
+            } else {
+                $locale = $request->getPreferredLanguage(self::LOCALES);
+            }
+
             $routeName = $request->route()->getName();
             $routeParams = $request->route()->parameters();
             $routeParams['lang'] = $locale;
