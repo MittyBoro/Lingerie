@@ -12,7 +12,19 @@
                     <template #row="sp">
                         <TData v-model="sp.element.type" @update:modelValue="update(sp.element)" />
                         <TData v-model="sp.element.value" @update:modelValue="update(sp.element)" />
-                        <TData v-model="sp.element.extra" @update:modelValue="update(sp.element)" />
+                        <TData>
+                            <div class="-mx-2 flex gap-3">
+                                <input v-if="sp.element.type == 'color'" type="color" class="w-6 h-7 flex-shrink-0 rounded-full cursor-pointer" v-model="sp.element.extra"
+                                    @update:modelValue="update(sp.element)"
+                                    v-model.lazy="sp.element.extra">
+                                <FTextarea
+                                    rows="1"
+                                    class="max-h-16 focus:max-h-max"
+                                    @update:modelValue="update(sp.element)"
+                                    v-model.lazy="sp.element.extra"
+                                />
+                            </div>
+                        </TData>
                     </template>
                 </TTable>
 
@@ -64,3 +76,16 @@
         }
     }
 </script>
+
+<style lang="sass" scoped>
+    input::-webkit-color-swatch
+        border-radius: 50%
+    textarea
+        @apply bg-transparent block border-0 w-full rounded-sm shadow-none px-2 py-1 align-middle
+        font-size: inherit
+        &:not(:focus):hover
+            @apply ring-primary-500 ring-opacity-20 ring bg-white bg-opacity-40
+        &:disabled
+            @apply bg-transparent pointer-events-none opacity-50
+
+</style>
